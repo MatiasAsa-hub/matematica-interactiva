@@ -78,6 +78,21 @@
 .lista-temas a strong { display: block; }
 .lista-temas a span { color: var(--texto-suave); font-size: 0.93rem; }
 .proximamente { color: var(--texto-tenue); font-style: italic; }
+
+/* --- Carpetas desplegables (listas de temas y de tutores) --- */
+.arbol-temas { display: grid; gap: 0.7rem; margin: 1.2rem 0; }
+details.carpeta { margin: 0; border-radius: var(--radio); }
+details.carpeta > summary { min-height: 56px; padding: 0.8rem 1rem; font-size: 1.12rem; }
+.carpeta-titulo { flex: 1; }
+.carpeta-cuenta { font-size: 0.85rem; font-weight: 400; color: var(--texto-suave); white-space: nowrap; }
+details.carpeta > .desplegado { padding: 0.4rem 0.9rem 0.9rem; }
+details.carpeta-guia { margin: 1.2rem 0 0; }
+details.subcarpeta { background: var(--fondo); margin: 0.6rem 0; }
+details.subcarpeta > summary { font-size: 1rem; }
+details.subcarpeta > summary .carpeta-cuenta { margin-left: auto; }
+.subcarpeta-titulo { margin: 0.8rem 0 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--texto-suave); }
+.arbol-temas .lista-temas { margin-top: 0.5rem; }
+.arbol-temas .lista-temas a { background: var(--fondo); }
 .link-pendiente { color: var(--texto-suave); }
 
 /* --- Página de un tema --- */

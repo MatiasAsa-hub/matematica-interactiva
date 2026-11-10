@@ -1,0 +1,71 @@
+---
+// Lista de temas en carpetas desplegables:
+//   sección (Básico, Análisis…) → subsección (Operaciones, Funciones…) → temas.
+// Se usa en la página de Temas (alumnos) y en la de Tutores.
+import { datosDelSitio } from '../lib/contenido.js';
+import { url } from '../lib/rutas.js';
+
+interface Tema { slug: string; seccion: string; subseccion: string; titulo: string; resumen: string; orden: number }
+interface Props {
+  temas: Tema[];
+  destino: 'temas' | 'tutores'; // a qué página llevan los links
+  textoTema?: string;          // texto fijo debajo de cada tema (si no, va el resumen)
+}
+const { temas, destino, textoTema } = Astro.props;
+const sitio = datosDelSitio();
+
+// Agrupa los temas de una sección por subsección, en el orden en que aparecen.
+function porSubseccion(lista: Tema[]) {
+  const grupos = new Map<string, Tema[]>();
+  for (const t of lista) {
+    const clave = t.subseccion || '';
+    if (!grupos.has(clave)) grupos.set(clave, []);
+    grupos.get(clave)!.push(t);
+  }
+  return [...grupos.entries()];
+}
+---
+<div class="arbol-temas">
+  {sitio.secciones.map((s: any) => {
+    const deEsta = temas.filter((t) => t.seccion === s.id);
+    const grupos = porSubseccion(deEsta);
+    const anidar = grupos.length > 1;
+    return (
+      <details class="carpeta" open={false}>
+        <summary>
+          <span class="carpeta-titulo">{s.nombre}</span>
+          <span class="carpeta-cuenta">{deEsta.length > 0 ? `${deEsta.length} ${deEsta.length === 1 ? 'tema' : 'temas'}` : 'próximamente'}</span>
+        </summary>
+        <div class="desplegado">
+          <p class="texto-suave chico">{s.descripcion}</p>
+          {deEsta.length === 0 && <p class="proximamente">Próximamente.</p>}
+          {grupos.map(([subseccion, lista]) => {
+            const items = (
+              <ul class="lista-temas">
+                {lista.map((t) => (
+                  <li>
+                    <a href={url(`${destino}/${t.slug}/`)}>
+                      <strong>{t.titulo}</strong>
+                      <span>{textoTema ?? t.resumen}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            );
+            return anidar ? (
+              <details class="subcarpeta">
+                <summary>{subseccion || 'Otros'} <span class="carpeta-cuenta">{lista.length}</span></summary>
+                <div class="desplegado">{items}</div>
+              </details>
+            ) : (
+              <>
+                {subseccion && <p class="subcarpeta-titulo">{subseccion}</p>}
+                {items}
+              </>
+            );
+          })}
+        </div>
+      </details>
+    );
+  })}
+</div>

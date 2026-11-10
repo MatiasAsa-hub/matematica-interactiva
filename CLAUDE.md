@@ -89,10 +89,15 @@ Una página de referencia con todas las convenciones, que va creciendo. Las conv
 - **·** para multiplicar y **:** para dividir (como en la escuela). Los números negativos que van después de una operación llevan paréntesis: 3 · (−2). Confirmado.
 - Las convenciones nuevas que surjan, preguntáselas a Mati y sumalas.
 
+### Organización de las listas (pedido de Mati)
+
+- La lista de **Temas** y la de **Tutores** se organizan en **carpetas desplegables**: sección (Básico, Análisis, Álgebra) → subsección (Operaciones, Funciones…) → temas. Así se ve solo lo principal y se abre lo que interesa.
+
 ### BÁSICO — Cómo operar
 
 Primero con números y después con *x*:
 - Suma, resta, multiplicación, división. Regla de los signos. Orden de las operaciones.
+- **División con la "galera"** (dividendo | divisor, cociente y resto), paso a paso. Va antes de fracciones (pedido de Mati).
 - Fracciones (operaciones, simplificación).
 - Potencias y sus propiedades. Raíces.
 - Propiedad distributiva, factor común.

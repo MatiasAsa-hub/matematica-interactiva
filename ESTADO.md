@@ -36,6 +36,13 @@ _Última actualización: 10/11/2026 — sesión 2_
   - El motor que lee y resuelve las cuentas (`src/lib/expresiones.js`) sirve para temas futuros, por ejemplo la distributiva.
   - 9 ejercicios.
 - Convención confirmada: **·** para multiplicar y **:** para dividir. Ya está en la página de Notación.
+- **División: cociente y resto** (`division-cociente-y-resto.md`, pedido de Mati): interactivo `galera`.
+  - La división con la galera, paso a paso: qué número tomo, cuántas veces entra el divisor, el producto que se resta, el resto y la cifra que se baja. Avisa del **0 en el cociente** cuando no alcanza.
+  - Un puntito marca las cifras del dividendo que ya se usaron. Al final hace la comprobación: divisor · cociente + resto.
+  - Casilla **Tabla del divisor**: marca el producto elegido y tacha el siguiente, que "se pasa".
+  - Ejemplos elegibles (campo `divisiones:` del tema) y un formulario para probar una división propia.
+  - 7 ejercicios. Va antes de fracciones.
+- **Listas de Temas y de Tutores en carpetas desplegables** (pedido de Mati): sección → subsección → temas. Las subsecciones se vuelven carpetas cuando una sección tiene más de una. En Tutores, "Cómo usar esta página en una clase" también va en una carpeta.
 
 ## Falta
 - Etapa 1, el resto:

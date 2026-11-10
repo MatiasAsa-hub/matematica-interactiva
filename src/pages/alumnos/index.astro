@@ -1,40 +1,15 @@
 ---
-// Lista de temas, agrupados por sección (Básico, Análisis, Álgebra).
+// Lista de temas, en carpetas desplegables por sección y subsección.
 import Base from '../../layouts/Base.astro';
-import { datosDelSitio, listaDeTemas, obtenerPagina } from '../../lib/contenido.js';
-import { url } from '../../lib/rutas.js';
+import ArbolDeTemas from '../../components/ArbolDeTemas.astro';
+import { listaDeTemas, obtenerPagina } from '../../lib/contenido.js';
 
-const sitio = datosDelSitio();
-const temas = listaDeTemas();
 const pagina = obtenerPagina('alumnos');
 ---
 <Base titulo="Temas" seccion="alumnos">
   <div class="contenedor">
     <h1 style="margin-top:1.4rem">{pagina.datos.titulo}</h1>
     <div class="texto" set:html={pagina.html} />
-
-    {sitio.secciones.map((s) => {
-      const deEsta = temas.filter((t) => t.seccion === s.id);
-      return (
-        <section class="grupo-temas">
-          <h2>{s.nombre}</h2>
-          <p class="texto-suave">{s.descripcion}</p>
-          {deEsta.length > 0 ? (
-            <ul class="lista-temas">
-              {deEsta.map((t) => (
-                <li>
-                  <a href={url(`temas/${t.slug}/`)}>
-                    <strong>{t.titulo}</strong>
-                    {t.resumen && <span>{t.resumen}</span>}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p class="proximamente">Próximamente.</p>
-          )}
-        </section>
-      );
-    })}
+    <ArbolDeTemas temas={listaDeTemas()} destino="temas" />
   </div>
 </Base>

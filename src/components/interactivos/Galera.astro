@@ -1,0 +1,58 @@
+---
+// Interactivo: la división con la galera, paso a paso.
+// Lógica: src/interactivos/galera.js
+// Las divisiones de ejemplo vienen del tema (campo "divisiones:" del .md).
+interface Props { divisiones?: string[] }
+const { divisiones = ['670 : 10'] } = Astro.props;
+const ejemplos = divisiones.map((d) => {
+  const m = String(d).match(/^\s*(\d+)\s*:\s*(\d+)\s*$/);
+  if (!m || Number(m[2]) === 0) throw new Error(`No entiendo la división "${d}" (tiene que ser como "670 : 10")`);
+  return `${Number(m[1])}:${Number(m[2])}`;
+});
+---
+<div class="interactivo interactivo-cuentas interactivo-galera" data-interactivo="galera" data-divisiones={JSON.stringify(ejemplos)}>
+  <div class="galera-ejemplos" role="group" aria-label="Divisiones de ejemplo">
+    {ejemplos.map((e) => {
+      const [a, d] = e.split(':');
+      return <button type="button" class="casilla" data-ejemplo={e} aria-pressed="false">{a} : {d}</button>;
+    })}
+  </div>
+
+  <div class="galera" aria-live="polite">
+    <div class="galera-izquierda" data-izquierda></div>
+    <div class="galera-derecha">
+      <div class="galera-divisor" data-divisor></div>
+      <div class="galera-cociente" data-cociente></div>
+    </div>
+  </div>
+
+  <p class="galera-texto" data-texto></p>
+
+  <div class="cuentas-botones">
+    <button type="button" class="boton boton-principal" data-siguiente>Siguiente paso</button>
+    <button type="button" class="boton" data-todo>Ver todo</button>
+    <button type="button" class="boton" data-reiniciar>Empezar de nuevo</button>
+  </div>
+
+  <div class="casillas-grupo">
+    <button type="button" class="casilla" data-casilla="tabla" aria-pressed="false" style="--color: var(--c-funcion)">
+      <span class="casilla-marca" aria-hidden="true"></span>
+      <span>Tabla del divisor</span>
+    </button>
+  </div>
+  <ol class="galera-tabla" data-tabla hidden></ol>
+
+  <form class="galera-propia" data-propia novalidate>
+    <span class="texto-suave chico">O probá con la tuya:</span>
+    <input type="number" inputmode="numeric" min="1" max="99999" data-entrada="dividendo" aria-label="Dividendo" />
+    <span>:</span>
+    <input type="number" inputmode="numeric" min="1" max="99" data-entrada="divisor" aria-label="Divisor" />
+    <button type="submit" class="boton boton-chico">Dividir</button>
+    <p class="galera-aviso" data-aviso aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  import { iniciarGalera } from '../../interactivos/galera.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="galera"]').forEach(iniciarGalera);
+</script>

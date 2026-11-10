@@ -133,6 +133,48 @@
 .cuentas-botones { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.6rem 0 0.9rem; }
 .cuentas-botones .boton:disabled { opacity: 0.45; cursor: default; }
 
+/* --- División con la galera --- */
+.galera-ejemplos { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+.galera-ejemplos .casilla { padding: 0.3rem 0.8rem; font-variant-numeric: tabular-nums; }
+.galera-ejemplos .casilla[aria-pressed='true'] { --color: var(--c-funcion); }
+.galera {
+  --ancho-cifra: 0.72em;
+  display: flex; justify-content: center; align-items: flex-start;
+  margin: 1.2rem 0 0.4rem; font-size: 1.9rem; line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 420px) { .galera { font-size: 1.6rem; } }
+.galera-izquierda { padding-right: 0.35em; }
+.galera-fila { display: grid; }
+.galera .celda { text-align: center; position: relative; border-radius: 4px; }
+.galera .celda.subrayada { border-bottom: 2px solid var(--texto-suave); border-radius: 0; }
+.galera-producto { color: var(--texto-suave); }
+.galera .celda.resaltada { background: rgba(247, 212, 107, 0.2); color: var(--c-raices); font-weight: 700; }
+/* puntito debajo de las cifras del dividendo que ya se usaron */
+.galera-dividendo .celda.usada::after {
+  content: ''; position: absolute; left: 50%; bottom: 1px; width: 5px; height: 5px; margin-left: -2.5px;
+  border-radius: 50%; background: var(--c-funcion);
+}
+.galera-derecha { min-width: 2.4em; }
+.galera-divisor { border-left: 3px solid var(--texto); border-bottom: 3px solid var(--texto); padding: 0 0.35em; }
+.galera-cociente { padding: 0 0.35em; color: var(--c-funcion); font-weight: 700; min-height: 1.35em; }
+.galera-texto { min-height: 3.2em; margin: 0.6rem 0; line-height: 1.5; }
+.galera-texto.final { color: var(--c-funcion); }
+.galera-tabla {
+  list-style: none; padding: 0; margin: 0.5rem 0 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 4px;
+  font-variant-numeric: tabular-nums; font-size: 0.95rem;
+}
+.galera-tabla li { margin: 0; padding: 0.2rem 0.5rem; border-radius: 6px; color: var(--texto-suave); }
+.galera-tabla li.elegida { background: rgba(88, 196, 221, 0.18); color: var(--texto); }
+.galera-tabla li.se-pasa { color: var(--c-negativo); text-decoration: line-through; }
+.galera-propia { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dashed var(--borde); }
+.galera-propia input {
+  width: 5.5rem; min-height: 42px; padding: 0.3rem 0.6rem;
+  background: var(--fondo); border: 1px solid var(--borde); border-radius: var(--radio-chico); font-size: 1.05rem;
+}
+.galera-aviso { flex-basis: 100%; margin: 0; color: var(--c-negativo); font-size: 0.92rem; min-height: 0; }
+
 /* --- Selector de forma (ej. polinómica / canónica) --- */
 .selector-forma {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
