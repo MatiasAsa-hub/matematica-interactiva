@@ -1,0 +1,40 @@
+---
+// Grupo de "casillas": botones que se prenden y apagan (para mostrar u ocultar
+// cosas en el gráfico). Cada una tiene una marquita con el color del concepto.
+// La lógica está en src/lib/grafico/controles.js (conectarCasillas).
+interface Casilla {
+  nombre: string;     // nombre interno
+  texto: string;      // lo que se ve
+  color?: string;     // variable de color, ej. "--c-vertice"
+  prendida?: boolean; // ¿arranca prendida?
+}
+interface Props {
+  titulo: string;
+  casillas: Casilla[];
+  extras?: Casilla[]; // segundo grupo (ej. animación y tabla)
+}
+const { titulo, casillas, extras = [] } = Astro.props;
+---
+<fieldset class="casillas" data-casillas>
+  <legend>{titulo}</legend>
+  <div class="casillas-grupo">
+    {casillas.map((c) => (
+      <button type="button" class="casilla" data-casilla={c.nombre} aria-pressed={c.prendida ? 'true' : 'false'}
+        style={c.color ? `--color: var(${c.color})` : undefined}>
+        <span class="casilla-marca" aria-hidden="true"></span>
+        <span set:html={c.texto} />
+      </button>
+    ))}
+  </div>
+  {extras.length > 0 && (
+    <div class="casillas-grupo casillas-extras">
+      {extras.map((c) => (
+        <button type="button" class="casilla" data-casilla={c.nombre} aria-pressed={c.prendida ? 'true' : 'false'}
+          style={c.color ? `--color: var(${c.color})` : undefined}>
+          <span class="casilla-marca" aria-hidden="true"></span>
+          <span set:html={c.texto} />
+        </button>
+      ))}
+    </div>
+  )}
+</fieldset>
