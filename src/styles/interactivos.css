@@ -526,3 +526,12 @@
 .lectura-partida { font-size: 1rem; }
 [data-control-corte][hidden] { display: none; }
 [data-control-corte] .boton { margin-top: 0.4rem; width: 100%; }
+
+/* Composición: dos máquinas, una debajo de la otra */
+.cadena-maquinas { display: flex; flex-direction: column; gap: 0.2rem; margin-top: 0.3rem; }
+.maquina-nombre { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-style: italic; opacity: 0.75; margin-right: 0.2rem; }
+.maquina-medio { border-color: var(--c-vertice); }
+.composicion-definiciones { margin: 0.2rem 0 0; }
+.boton-ancho { width: 100%; margin: 0.6rem 0 0.2rem; }
+/* Inversa: la fórmula de f⁻¹ en su propio renglón */
+.linea-inversa { display: block; font-size: 0.78em; white-space: normal; color: var(--c-ordenada); margin-top: 0.1rem; }

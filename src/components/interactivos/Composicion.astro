@@ -1,0 +1,52 @@
+---
+// Interactivo de la composición de funciones: dos máquinas en cadena.
+// Lógica: src/interactivos/composicion.js
+// Los ejemplos vienen del tema (campo "composiciones:" del .md), cada uno con f y g.
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+import { leerFormula } from '../../lib/formula.js';
+import { componerTexto } from '../../interactivos/composicion.js';
+
+interface Props { composiciones?: { f: string; g: string }[] }
+const { composiciones = [{ f: 'x^2', g: 'x + 1' }] } = Astro.props;
+const ejemplos = composiciones.map((e) => ({ f: String(e.f), g: String(e.g) }));
+// Se prueban al armar el sitio: si una fórmula está mal escrita, el armado avisa.
+for (const e of ejemplos) {
+  leerFormula(e.f); leerFormula(e.g);
+  leerFormula(componerTexto(e.f, e.g)); leerFormula(componerTexto(e.g, e.f));
+}
+---
+<div class="interactivo" data-interactivo="composicion" data-ejemplos={JSON.stringify(ejemplos)}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={ejemplos.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Ejemplo anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Ejemplo siguiente">›</button>
+    </div>
+    <p class="expresion-desarrollada composicion-definiciones" data-definiciones></p>
+    <div class="cadena-maquinas" data-cadena aria-live="polite"></div>
+    <p class="maquina-cuenta" data-cuentas></p>
+    <div class="expresion expresion-larga" data-formula></div>
+    <div class="grafico" data-grafico></div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Deslizador param="x" min={-4} max={4} paso={0.5} pasoBoton={1} valor={2} ayuda="el número que entra" />
+    <button type="button" class="boton boton-principal boton-ancho" data-dar-vuelta>Dar vuelta el orden</button>
+
+    <Casillas
+      titulo="Mostrar"
+      casillas={[
+        { nombre: 'orden', texto: '¿Y al revés?', color: '--c-vertice', prendida: true },
+        { nombre: 'separadas', texto: '<i>f</i> y <i>g</i> por separado', color: '--c-fantasma' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarComposicion } from '../../interactivos/composicion.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="composicion"]').forEach(iniciarComposicion);
+</script>

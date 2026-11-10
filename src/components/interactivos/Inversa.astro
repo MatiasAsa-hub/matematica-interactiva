@@ -1,0 +1,43 @@
+---
+// Interactivo de la función inversa: el espejo en la recta y = x.
+// Lógica: src/interactivos/inversa.js
+// Los ejemplos vienen del tema (campo "inversas:" del .md).
+import Casillas from '../controles/Casillas.astro';
+import { leerFormula } from '../../lib/formula.js';
+
+interface Props { inversas?: string[] }
+const { inversas = ['2x + 1'] } = Astro.props;
+const ejemplos = inversas.map(String);
+// Se prueban al armar el sitio: si una fórmula está mal escrita, el armado avisa.
+for (const e of ejemplos) leerFormula(e);
+---
+<div class="interactivo" data-interactivo="inversa" data-ejemplos={JSON.stringify(ejemplos)}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={ejemplos.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Ejemplo anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Ejemplo siguiente">›</button>
+    </div>
+    <div class="expresion expresion-larga" data-expresion aria-live="polite"></div>
+    <p class="lectura-log lectura-partida" data-lectura aria-live="polite"></p>
+    <div class="grafico" data-grafico></div>
+  </div>
+
+  <div class="interactivo-controles">
+    <p class="cartel-aviso" data-aviso hidden></p>
+    <Casillas
+      titulo="Mostrar"
+      casillas={[
+        { nombre: 'espejo', texto: 'Espejo (recta <i>y</i> = <i>x</i>)', color: '--c-fantasma', prendida: true },
+        { nombre: 'despeje', texto: 'Despeje', color: '--c-ordenada', prendida: true },
+        { nombre: 'mitad', texto: 'Quedarse con una mitad', color: '--c-negativo' },
+      ]}
+    />
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarInversa } from '../../interactivos/inversa.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="inversa"]').forEach(iniciarInversa);
+</script>

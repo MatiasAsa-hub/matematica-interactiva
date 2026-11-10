@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 4 (Laboratorio y Etapa 5: exponencial, logarítmica, trigonométricas, módulo, raíz, homográfica y partidas)_
+_Última actualización: 10/11/2026 — sesión 4 (Laboratorio y Etapa 5 completa)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -136,7 +136,7 @@ A Mati le gustó el orden de los temas de la Etapa 2. La cuadrática y la animac
   - La línea "(interactivo)" en el `.md` de una página marca dónde va el interactivo.
 - Pieza nueva: `src/lib/funcionesBase.js` (cada función base con su dominio, imagen, asíntotas, raíces y extremos; las cuentas salen exactas usando la inversa).
 
-### Etapa 5 — Otras funciones 🚧 (en curso)
+### Etapa 5 — Otras funciones ✅ (completa; falta la revisión de Mati)
 Mati pidió dejar **composición e inversa para el final** de la etapa; el resto, en el orden que convenga.
 - **Función exponencial** (`funcion-exponencial.md`): interactivo `exponencial`, f(x) = a · kˣ con deslizadores *k* (la base) y *a* (donde arranca).
   - **Saltos ×k** (prendida): escalones lilas "avanzo 1, multiplico por k", como el triángulo de la pendiente de la lineal.
@@ -176,13 +176,24 @@ Mati pidió dejar **composición e inversa para el final** de la etapa; el resto
   - Casillas: **saltos** (prendida: "salta 2" o "se pega"), fórmulas enteras (cada fórmula completa en gris), dominio. Animación (prendida) y tabla.
   - 4 ejemplos (uno es el módulo escrito como partida) y 7 ejercicios.
   - Pieza nueva: `src/lib/partidas.js` (lee las funciones partidas).
+- **Composición de funciones** (`composicion-de-funciones.md`): interactivo `composicion`.
+  - Dos **máquinas en cadena**, una debajo de la otra: 2 → [g: x + 1] → 3 y 3 → [f: x²] → 9, con las cuentas debajo.
+  - La fórmula de la compuesta se arma sola, reemplazando la x de f por toda g, con paréntesis solo donde hacen falta: (x + 1)², 2(x − 3), x² + 5.
+  - Botón **Dar vuelta el orden** (f ∘ g ↔ g ∘ f). Casilla **¿Y al revés?** (prendida): muestra que casi siempre da otra cosa. Casilla f y g por separado (en gris).
+  - Los ejemplos van en el tema (campo `composiciones:`, cada uno con f y g). 4 ejemplos y 6 ejercicios.
+- **Función inversa** (`funcion-inversa.md`): interactivo `inversa`.
+  - Un punto que se arrastra sobre f y su **espejo** sobre f⁻¹ (en rosa), unidos por una línea que cruza la recta y = x. Arriba: "f(1) = 3 → f⁻¹(3) = 1".
+  - Si f es lineal: **el despeje paso a paso** (y = 2x + 1 → y − 1 = 2x → x = (y − 1) : 2) y la fórmula de f⁻¹. Con −x + 4 avisa que es su propia inversa.
+  - Si f no es inyectiva (x²): el espejo sale rojo punteado, con los dos puntos, y "¿f⁻¹(4) es 2 o −2? No se sabe". La casilla **Quedarse con una mitad** lo arregla.
+  - Los ejemplos van en el tema (campo `inversas:`): 2x + 1, −x + 4, x³, 2ˣ (su inversa es el log₂) y x². 7 ejercicios.
+  - Color nuevo de uso: **la inversa va en rosa** (el color de la ordenada), con la etiqueta f⁻¹.
 - Pieza nueva: `src/lib/analisisFuncion.js`, con los textos de raíces, C⁺/C⁻, asíntotas, dominio, etc. que antes estaban solo en el Laboratorio. Ahora la usan el Laboratorio y los tres temas nuevos.
 - Piezas compartidas: el `Plano` acepta números propios en el eje x (`ejeX`, para 90° o π/2) y el deslizador acepta un `formato` para mostrar su valor.
 - Links nuevos en los textos: `[Laboratorio](pagina:laboratorio)` apunta a una página suelta (anotado en `COMO-EDITAR.md`).
 
 ## Falta
 - Que Mati revise las Etapas 1 a 5 y dé su devolución.
-- **Próximo:** terminar la Etapa 5 con **inversa y composición** (Mati pidió dejarlas para el final). **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
+- **Próximo:** Etapa 6, derivadas (6.a de la secante a la tangente, 6.b recorrer la curva y dibujar f'(x)).
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
