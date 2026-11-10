@@ -250,6 +250,19 @@
 .fichas-fraccion { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .fichas-raya { width: min(100%, 22rem); height: 3px; background: var(--texto); border-radius: 2px; }
 
+/* --- Distributiva (modelo de área) --- */
+.dibujo-area { width: 100%; max-width: 380px; display: block; margin: 0.4rem auto; overflow: visible; }
+.dibujo-area .pedazo-area {
+  transform: translate(calc(var(--col) * var(--sep) * 16px), calc(var(--fila) * var(--sep) * 16px));
+  transition: transform 0.7s cubic-bezier(.5, -0.2, .3, 1.3);
+}
+.svg-area { fill: var(--texto); font-size: 16px; font-weight: 700; font-family: var(--fuente); }
+.svg-lado { fill: var(--texto-suave); font-size: 15px; font-family: var(--fuente); }
+.dibujo-area i, .svg-area i { font-style: italic; }
+.expresion-distributiva .tenue { color: var(--texto-tenue); }
+.expresion-distributiva .activa { color: var(--texto); }
+.centrado-botones { justify-content: center; }
+
 /* --- Selector de forma (ej. polinómica / canónica) --- */
 .selector-forma {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4px;

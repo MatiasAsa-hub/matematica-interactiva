@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 2_
+_Última actualización: 10/11/2026 — sesión 2 (Etapa 1 completa)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -17,7 +17,13 @@ _Última actualización: 10/11/2026 — sesión 2_
   - Con a = 0 en la forma polinómica, avisa que queda una función lineal.
   - Texto más corto y en ítems. 6 ejercicios, casi todos en forma polinómica. Notas para tutores genéricas.
 
-### Etapa 1 — Básico (en curso)
+### Etapa 1 — Básico ✅ (completa; falta la revisión de Mati)
+- **Distributiva y factor común** (`distributiva-y-factor-comun.md`): interactivo `distributiva`, con el **modelo de área**.
+  - Un rectángulo que con el botón **Separar / Juntar** se separa en pedazos o se vuelve a juntar (animado). Separar es distribuir y juntar es sacar factor común: el mismo dibujo, en los dos sentidos.
+  - Tres modos: con números, con *x* (multiplica un número o *x*, con *x* · *x* = *x*²) y dos paréntesis (*x* + a)(*x* + b), que da 4 pedazos.
+  - Con a = b avisa que (*x* + a)² **no** es *x*² + a².
+  - 8 ejercicios. Subsección nueva: "Operaciones con letras".
+- `COMO-EDITAR.md`: se agregó el aviso de poner entre comillas los textos del encabezado que tengan ": ".
 - **Sumar y restar con signos** (`contenido/temas/basico/sumar-y-restar-con-signos.md`): interactivo de **recta numérica** (`recta-signos`).
   - Se arranca en *a* y se dan saltitos de a uno: verdes a la derecha y rojos punteados a la izquierda.
   - Botón Sumar / Restar. Al restar se muestra que es sumar el opuesto: 8 − (−9) = 8 + 9 = 17.
@@ -62,11 +68,9 @@ _Última actualización: 10/11/2026 — sesión 2_
 - **Listas de Temas y de Tutores en carpetas desplegables** (pedido de Mati): sección → subsección → temas. Las subsecciones se vuelven carpetas cuando una sección tiene más de una. En Tutores, "Cómo usar esta página en una clase" también va en una carpeta.
 
 ## Falta
-- Etapa 1, el resto:
-  - Fracciones (propuesta: barras).
-  - Potencias y raíces.
-  - Distributiva y factor común (propuesta: modelo de área).
-- Etapas 2 a 8, según la hoja de ruta de `CLAUDE.md`.
+- Que Mati revise la Etapa 1 completa y dé su devolución.
+- **Próximo:** Etapa 2, ecuaciones e inecuaciones (propuesta: interactivo tipo balanza para despejar).
+- Etapas 3 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
 
 ## Decisiones tomadas en la sesión 2

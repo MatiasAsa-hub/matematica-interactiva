@@ -1,0 +1,45 @@
+---
+// Interactivo: propiedad distributiva y factor común (modelo de área).
+// Lógica: src/interactivos/distributiva.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo interactivo-cuentas interactivo-distributiva" data-interactivo="distributiva">
+  <div class="selector-forma selector-3" role="radiogroup" aria-label="Qué ver">
+    <button type="button" role="radio" aria-checked="true" data-modo data-valor="numeros">Con números</button>
+    <button type="button" role="radio" aria-checked="false" data-modo data-valor="x">Con <i>x</i></button>
+    <button type="button" role="radio" aria-checked="false" data-modo data-valor="dos">Dos paréntesis</button>
+  </div>
+
+  <div class="expresion expresion-numeros expresion-potencia expresion-distributiva" data-expresion aria-live="polite"></div>
+  <div class="dibujo-potencias" data-dibujo></div>
+
+  <div class="cuentas-botones centrado-botones">
+    <button type="button" class="boton boton-principal" data-cambiar></button>
+  </div>
+  <p class="galera-texto" data-texto aria-live="polite"></p>
+
+  <div class="grupo-deslizadores" data-grupo="numeros">
+    <Deslizador param="a" min={1} max={6} paso={1} valor={3} ayuda="el que multiplica (alto)" />
+    <Deslizador param="b" min={1} max={6} paso={1} valor={4} ayuda="primer término" />
+    <Deslizador param="c" min={1} max={6} paso={1} valor={2} ayuda="segundo término" />
+  </div>
+  <div class="grupo-deslizadores" data-grupo="x" hidden>
+    <div class="selector-forma" role="radiogroup" aria-label="Qué multiplica">
+      <button type="button" role="radio" aria-checked="true" data-por data-valor="numero">Multiplica un número</button>
+      <button type="button" role="radio" aria-checked="false" data-por data-valor="x">Multiplica <i>x</i></button>
+    </div>
+    <div data-grupo-k>
+      <Deslizador param="k" min={1} max={5} paso={1} valor={2} ayuda="el que multiplica" />
+    </div>
+    <Deslizador param="cx" etiqueta="c" min={1} max={6} paso={1} valor={3} ayuda="el número del paréntesis: (x + c)" />
+  </div>
+  <div class="grupo-deslizadores" data-grupo="dos" hidden>
+    <Deslizador param="p" etiqueta="a" min={1} max={6} paso={1} valor={2} ayuda="(x + a)" />
+    <Deslizador param="q" etiqueta="b" min={1} max={6} paso={1} valor={3} ayuda="(x + b)" />
+  </div>
+</div>
+
+<script>
+  import { iniciarDistributiva } from '../../interactivos/distributiva.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="distributiva"]').forEach(iniciarDistributiva);
+</script>

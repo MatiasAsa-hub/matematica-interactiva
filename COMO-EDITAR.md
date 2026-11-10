@@ -77,6 +77,7 @@ interactivo: cuadratica
 ---
 ```
 
+- **Ojo:** si un texto de esta parte tiene **dos puntos seguidos de un espacio** (por ejemplo `resumen: Y al revés: sacar factor común`), hay que ponerlo **entre comillas**: `resumen: "Y al revés: sacar factor común"`. Si no, el armado falla.
 - `orden`: decide en qué orden aparecen los temas en la lista (más chico = más arriba).
 - `interactivo`: qué gráfico interactivo va en la parte de "Intuición". Si el tema no tiene, se borra esa línea.
 - Algunos interactivos usan datos extra. Por ejemplo, el de **orden de las operaciones** lee la lista `cuentas:`. Cada cuenta va entre comillas, con `·` para multiplicar, `:` para dividir y `^` para las potencias (`2^2` es 2²):
