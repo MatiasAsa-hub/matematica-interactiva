@@ -12,10 +12,12 @@ import Fraccion from './interactivos/Fraccion.astro';
 import FraccionesOperaciones from './interactivos/FraccionesOperaciones.astro';
 import Potencias from './interactivos/Potencias.astro';
 import Distributiva from './interactivos/Distributiva.astro';
+import McmMcd from './interactivos/McmMcd.astro';
+import Terminos from './interactivos/Terminos.astro';
 
 interface Props { nombre: string; opciones?: Record<string, any> }
 const { nombre, opciones = {} } = Astro.props;
-const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva'];
+const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva', 'mcm-mcd', 'terminos'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
 {nombre === 'recta-signos' && <RectaSignos />}
@@ -26,6 +28,8 @@ const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-
 {nombre === 'fracciones-operaciones' && <FraccionesOperaciones />}
 {nombre === 'potencias' && <Potencias />}
 {nombre === 'distributiva' && <Distributiva />}
+{nombre === 'mcm-mcd' && <McmMcd />}
+{nombre === 'terminos' && <Terminos />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}

@@ -263,6 +263,31 @@
 .expresion-distributiva .activa { color: var(--texto); }
 .centrado-botones { justify-content: center; }
 
+/* --- mcm y mcd --- */
+.grafico.grafico-recta-alta { height: 230px; }
+.listas-numeros p { margin: 0.4rem 0; line-height: 2.1; }
+.lista-nombre { font-weight: 700; margin-right: 0.3rem; }
+.numero-lista {
+  display: inline-block; min-width: 2em; text-align: center; margin: 0 2px; padding: 0 0.3em;
+  border-radius: 8px; border: 1px solid var(--borde); color: var(--texto-suave); font-variant-numeric: tabular-nums;
+}
+.numero-lista.comun { border-color: var(--c-raices); color: var(--texto); }
+.numero-lista.destacado { background: var(--c-raices); color: var(--fondo); font-weight: 700; }
+
+/* --- Términos semejantes (fichas de álgebra) --- */
+.mesa-fichas { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; justify-content: center; min-height: 120px; padding: 0.8rem 0.4rem; }
+.mesa-fichas.agrupado { flex-direction: column; align-items: center; }
+.fila-fichas { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; justify-content: center; }
+.ficha-algebra {
+  display: grid; place-items: center; border-radius: 6px; font-weight: 700; font-size: 0.85rem;
+  border: 2px solid var(--c-funcion); background: rgba(88, 196, 221, 0.2); color: var(--texto);
+  transition: opacity 0.5s 0.7s, filter 0.5s 0.7s;
+}
+.ficha-algebra.equis { width: 26px; height: 60px; }
+.ficha-algebra.uno { width: 26px; height: 26px; border-color: var(--c-raices); background: rgba(247, 212, 107, 0.2); }
+.ficha-algebra.negativa { border-style: dashed; border-color: var(--c-negativo); background: rgba(252, 98, 85, 0.15); }
+.ficha-algebra.anulada { opacity: 0.15; filter: grayscale(1); }
+
 /* --- Selector de forma (ej. polinómica / canónica) --- */
 .selector-forma {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4px;

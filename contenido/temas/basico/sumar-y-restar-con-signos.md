@@ -21,6 +21,11 @@ Después tocá **Restar**: ¿para dónde saltás ahora?
   - $2 - (-5) = 2 + 5 = 7$ (restar un negativo te lleva a la derecha).
 - Con letras pasa lo mismo: si $x = -3$, entonces $x - 5 = -3 + (-5) = -8$.
 
+## Para recordar
+
+- Sumar un positivo: a la **derecha**. Sumar un negativo: a la **izquierda**.
+- **Restar es sumar el opuesto:** $a - b = a + (-b)$.
+
 ## Ejemplo resuelto
 
 Calculá $-2 - (-7)$.
@@ -43,6 +48,8 @@ $$
 
 ## Ejercicios
 
+### Nivel: Para arrancar
+
 ### Suma con un negativo
 
 ¿Cuánto da $-4 + 7$?
@@ -63,6 +70,8 @@ pista: Sumar $-8$ es moverte 8 a la izquierda.
 
 respuesta: -9
 pista: Es lo mismo que $-3 + (-6)$.
+
+### Nivel: Para animarse
 
 ### Restar un negativo
 

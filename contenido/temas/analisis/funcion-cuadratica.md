@@ -28,6 +28,12 @@ $$
 - **Vértice:** $x_v = \dfrac{-b}{2a}$, y después $y_v = f(x_v)$.
 - **Forma canónica:** $f(x) = a(x - h)^2 + k$. Ahí el vértice se lee directo: $V = (h, k)$.
 
+## Para recordar
+
+- **Raíces:** con la resolvente, $x_{1,2} = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
+- **Vértice:** $x_v = \dfrac{-b}{2a}$, y después $y_v = f(x_v)$.
+- **Ordenada al origen:** es $c$.
+
 ## Ejemplo resuelto
 
 Para $f(x) = x^2 - 2x - 3$, encontrá las raíces, el vértice y la ordenada al origen.
@@ -54,6 +60,8 @@ $f(0) = c = -3$. El punto es $(0, -3)$.
 
 ## Ejercicios
 
+### Nivel: Para arrancar
+
 ### Raíces
 
 Encontrá las raíces de $f(x) = x^2 - 5x + 6$.
@@ -77,6 +85,8 @@ pista: No hace falta la resolvente: igualá a cero y despejá $x^2$.
 #### Resolución
 
 $2x^2 - 8 = 0 \Rightarrow x^2 = 4 \Rightarrow x = 2$ o $x = -2$.
+
+### Nivel: Para animarse
 
 ### ¿Cuántas raíces?
 

@@ -35,6 +35,12 @@ $$
 - Si el resto es $0$, la división es **exacta**.
 - Más adelante, en fracciones: $157 : 4 = 39$ y sobra $1$, o sea $39 + \frac{1}{4}$.
 
+## Para recordar
+
+- **dividendo = divisor · cociente + resto**.
+- El resto siempre es **más chico** que el divisor.
+- Si la cifra que bajás no alcanza, va un **0** en el cociente.
+
 ## Ejemplo resuelto
 
 Dividí $157 : 4$.
@@ -57,6 +63,8 @@ Cociente $39$, resto $1$: $4 \cdot 39 + 1 = 157$. ✓
 
 ## Ejercicios
 
+### Nivel: Para arrancar
+
 ### Cociente
 
 ¿Cuál es el cociente de $157 : 4$?
@@ -69,6 +77,8 @@ pista: Usá el interactivo si querés seguirlo paso a paso.
 ¿Cuál es el resto de $157 : 4$?
 
 respuesta: 1
+
+### Nivel: Para animarse
 
 ### El cero del medio
 

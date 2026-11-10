@@ -98,6 +98,10 @@ Después vienen las partes, cada una con un título que empieza con `## `. **Los
 | `## Ejercicios` | Los ejercicios autocorregibles (ver abajo). |
 | `## Para tutores` | Las notas para tutores. **No las ven los alumnos**: van en una página aparte. |
 
+### Recuadro "Para recordar"
+
+Un título `## Para recordar` (ponelo después de la explicación) se muestra como un recuadro amarillo destacado. Ahí van 2 o 3 renglones con lo más importante.
+
 ### Pasos del ejemplo resuelto
 
 ```
@@ -117,6 +121,8 @@ El vértice es $(3, -2)$.
 ---
 
 ## 5. Cómo escribir ejercicios
+
+**Niveles:** un renglón `### Nivel: Para arrancar` (o `### Nivel: Para animarse`) no es un ejercicio: es un subtítulo que agrupa los ejercicios que vienen abajo.
 
 Cada ejercicio empieza con `### ` y su título. Adentro van:
 

@@ -34,6 +34,11 @@ El orden es:
 - **Separar en términos:** los $+$ y $-$ que están **afuera** de los paréntesis cortan la cuenta en pedazos (términos). Cada término se resuelve por separado, y al final se suman o restan.
 - Ejemplo: $2 + 3 \cdot 4$ tiene dos términos, $2$ y $3 \cdot 4$. Da $2 + 12 = 14$ (no $20$).
 
+## Para recordar
+
+1. Paréntesis. 2. Potencias y raíces. 3. Multiplicaciones y divisiones. 4. Sumas y restas.
+- **Separá en términos:** los $+$ y $-$ de afuera de los paréntesis.
+
 ## Ejemplo resuelto
 
 Resolvé $3 \cdot 2^2 - (7 - 1) : 3$.
@@ -55,6 +60,8 @@ $$
 $$
 
 ## Ejercicios
+
+### Nivel: Para arrancar
 
 ### Primero la multiplicación
 
@@ -82,6 +89,8 @@ respuesta: 15
 
 respuesta: 18
 pista: Primero la potencia: $3^2 = 9$.
+
+### Nivel: Para animarse
 
 ### Con negativos
 

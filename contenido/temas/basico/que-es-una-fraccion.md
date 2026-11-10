@@ -20,6 +20,11 @@ Después prendé **Simplificar** con $\frac{6}{8}$.
 - **Simplificar:** dividir arriba y abajo por el mismo número. $\frac{6}{8} = \frac{3}{4}$ (los dos divididos por 2). Es la misma cantidad, con pedazos más grandes.
 - Al revés, **amplificar** es multiplicar arriba y abajo: $\frac{3}{4} = \frac{6}{8} = \frac{9}{12}$.
 
+## Para recordar
+
+- **Una fracción es una división:** $\frac{a}{b} = a : b$.
+- **Simplificar:** dividir arriba y abajo por el mismo número.
+
 ## Ejemplo resuelto
 
 Escribí $\frac{18}{12}$ simplificada y como número decimal.
@@ -37,6 +42,8 @@ $$
 Una fracción es una división: $3 : 2 = 1.5$.
 
 ## Ejercicios
+
+### Nivel: Para arrancar
 
 ### Como decimal
 
@@ -63,6 +70,8 @@ pista: Hacé $7 : 2$ y mirá el cociente.
 Escribí $\frac{9}{4}$ como número decimal.
 
 respuesta: 2.25
+
+### Nivel: Para animarse
 
 ### Simplificar
 

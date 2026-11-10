@@ -211,5 +211,7 @@ Transversales, a lo largo de todas las etapas: la página de notación y la secc
 
 ## 12. Ideas anotadas (para más adelante)
 
+- **Revisar el orden, la división en secciones y los nombres de los temas** (pedido de Mati, 10/11/2026). A Mati no lo convence cómo están seccionados o nombrados. **No cambiarlo todavía**: retomarlo cuando esté hecha la mayoría de los temas.
+
 - **Glosario al tocar una palabra** (idea de Mati): las palabras formales (C⁺, vértice, raíz, resolvente, intervalo…) se pueden tocar en el celular o señalar con el mouse, y aparece una descripción corta. Se puede armar a partir de la página de Notación.
 - **En el celular, al mover los deslizadores no se ve el gráfico** (quedan uno debajo del otro). Mati dice que es un detalle menor. Posible solución: gráfico "pegajoso" arriba o deslizadores flotantes.

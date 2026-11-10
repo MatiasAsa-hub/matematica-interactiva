@@ -1,0 +1,28 @@
+---
+// Interactivo: términos semejantes con fichas.
+// Lógica: src/interactivos/terminos.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo interactivo-cuentas" data-interactivo="terminos">
+  <div class="expresion expresion-numeros expresion-potencia expresion-distributiva" data-expresion aria-live="polite"></div>
+  <div class="mesa-fichas" data-mesa></div>
+  <div class="cuentas-botones centrado-botones">
+    <button type="button" class="boton boton-principal" data-agrupar>Agrupar</button>
+  </div>
+  <p class="galera-texto" data-texto aria-live="polite"></p>
+  <div class="grupo-deslizadores fracciones-deslizadores">
+    <div>
+      <Deslizador param="a" min={-4} max={5} paso={1} valor={3} ayuda="primer término con x" />
+      <Deslizador param="b" min={-4} max={5} paso={1} valor={2} ayuda="primer número" />
+    </div>
+    <div>
+      <Deslizador param="c" min={-4} max={5} paso={1} valor={2} ayuda="segundo término con x" />
+      <Deslizador param="d" min={-4} max={5} paso={1} valor={-1} ayuda="segundo número" />
+    </div>
+  </div>
+</div>
+
+<script>
+  import { iniciarTerminos } from '../../interactivos/terminos.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="terminos"]').forEach(iniciarTerminos);
+</script>

@@ -35,6 +35,12 @@ $$
 - ¿Por qué se da vuelta? Porque **una fracción es una división**: dividir por $\frac{4}{5}$ es dividir por $4$ y multiplicar por $5$.
 - Al final, siempre que se pueda, **simplificar**.
 
+## Para recordar
+
+- **Sumar y restar:** primero, denominador común.
+- **Multiplicar:** arriba por arriba y abajo por abajo.
+- **Dividir:** se da vuelta la segunda fracción y se multiplica.
+
 ## Ejemplo resuelto
 
 Calculá $\frac{5}{6} - \frac{1}{4}$.
@@ -58,6 +64,8 @@ No se puede simplificar.
 ## Ejercicios
 
 Podés escribir la respuesta como fracción (por ejemplo, 5/6) o como decimal.
+
+### Nivel: Para arrancar
 
 ### Suma
 
@@ -85,6 +93,8 @@ respuesta: 1/2
 
 respuesta: 2/5
 pista: Numerador por numerador, denominador por denominador. Después simplificá.
+
+### Nivel: Para animarse
 
 ### División
 

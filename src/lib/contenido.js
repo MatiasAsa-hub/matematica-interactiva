@@ -150,6 +150,7 @@ function tipoDeParte(titulo) {
   if (n.startsWith('intuicion')) return 'intuicion';
   if (n.startsWith('explicacion')) return 'explicacion';
   if (n.startsWith('ejemplo')) return 'ejemplo';
+  if (n.startsWith('para recordar')) return 'recordar';
   if (n.startsWith('ejercicio')) return 'ejercicios';
   if (n.includes('tutor')) return 'tutores';
   return 'otra';
@@ -190,7 +191,16 @@ function dividirEnPartes(cuerpo, ruta) {
         tipo,
         titulo: b.titulo,
         introHtml: markdownAHtml(sub[0].texto),
-        ejercicios: sub.slice(1).map((e, i) => armarEjercicio(e.titulo, e.texto, i + 1, ruta)),
+        // Un título "### Nivel: Para arrancar" no es un ejercicio: separa los ejercicios en niveles.
+        ejercicios: (() => {
+          let n = 0;
+          return sub.slice(1).map((e) => {
+            const nivel = e.titulo.match(/^nivel\s*:\s*(.*)$/i);
+            if (nivel) return { tipo: 'nivel', titulo: nivel[1], introHtml: markdownAHtml(e.texto) };
+            n++;
+            return armarEjercicio(e.titulo, e.texto, n, ruta);
+          });
+        })(),
       });
     } else {
       partes.push({ tipo, titulo: b.titulo, html: markdownAHtml(b.texto) });

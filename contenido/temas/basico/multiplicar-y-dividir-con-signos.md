@@ -28,6 +28,12 @@ Después tocá **Dividir**.
 - **No se puede dividir por 0.**
 - Ojo: la regla de los signos es para **multiplicar y dividir**. Para sumar y restar se usa la recta: $-3 + (-2) = -5$, no $+5$.
 
+## Para recordar
+
+- Signos **iguales** dan **positivo**. Signos **distintos** dan **negativo**.
+- Vale para multiplicar y dividir, **no** para sumar.
+- No se puede dividir por 0.
+
 ## Ejemplo resuelto
 
 Calculá $(-2) \cdot (-3) \cdot (-1)$.
@@ -43,6 +49,8 @@ $6 \cdot (-1) = -6$, porque los signos son distintos.
 > Un atajo: si hay una cantidad **impar** de negativos, da negativo; si es **par**, da positivo.
 
 ## Ejercicios
+
+### Nivel: Para arrancar
 
 ### Distintos signos
 
@@ -77,6 +85,8 @@ pista: ¿Qué número por 4 da $-20$?
 
 respuesta: 6
 pista: Signos iguales: da positivo.
+
+### Nivel: Para animarse
 
 ### Tres negativos
 

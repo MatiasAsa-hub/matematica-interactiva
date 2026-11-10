@@ -16,6 +16,7 @@ const sitio = datosDelSitio();
 const nombreSeccion = sitio.secciones.find((s) => s.id === tema.seccion)?.nombre ?? '';
 const partes = tema.partes.filter((p) => p.tipo !== 'tutores');
 let yaHayInteractivo = false;
+let contador = 0; // el recuadro "Para recordar" no lleva número
 ---
 <Base titulo={tema.titulo} descripcion={tema.resumen} seccion="alumnos">
   <div class="contenedor">
@@ -27,15 +28,21 @@ let yaHayInteractivo = false;
   </div>
 
   {partes.map((parte, i) => {
-    const numero = i + 1;
+    const numero = parte.tipo === 'recordar' ? 0 : ++contador;
     const conInteractivo = parte.tipo === 'intuicion' && tema.interactivo && !yaHayInteractivo;
     if (conInteractivo) yaHayInteractivo = true;
     return (
       <section class="parte" id={parte.tipo}>
         <div class="contenedor">
-          {parte.titulo && <h2><span class="paso-num">{numero}</span>{parte.titulo}</h2>}
+          {parte.tipo === 'recordar' && (
+            <aside class="para-recordar texto">
+              <p class="para-recordar-titulo">Para recordar</p>
+              <div set:html={parte.html} />
+            </aside>
+          )}
+          {parte.titulo && parte.tipo !== 'recordar' && <h2><span class="paso-num">{numero}</span>{parte.titulo}</h2>}
           {parte.tipo === 'intuicion' && <div class="consigna texto" set:html={parte.html} />}
-          {parte.tipo !== 'intuicion' && parte.html && <div class="texto" set:html={parte.html} />}
+          {parte.tipo !== 'intuicion' && parte.tipo !== 'recordar' && parte.html && <div class="texto" set:html={parte.html} />}
 
           {parte.tipo === 'ejemplo' && (
             <>
@@ -55,7 +62,9 @@ let yaHayInteractivo = false;
             <>
               <div class="texto" set:html={parte.introHtml} />
               <div class="ejercicios">
-                {parte.ejercicios.map((ej) => <Ejercicio ej={ej} />)}
+                {parte.ejercicios.map((ej) => ej.tipo === 'nivel'
+                  ? <div class="nivel-ejercicios"><h3>{ej.titulo}</h3><div class="texto texto-suave" set:html={ej.introHtml} /></div>
+                  : <Ejercicio ej={ej} />)}
               </div>
             </>
           )}

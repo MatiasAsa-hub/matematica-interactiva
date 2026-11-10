@@ -25,6 +25,12 @@ En **Propiedades → Dividir**, poné los dos exponentes iguales. ¿Qué queda? 
 - **Raíz:** es la operación inversa. $\sqrt{49} = 7$ porque $7^2 = 49$. $\sqrt[3]{8} = 2$ porque $2^3 = 8$.
 - La raíz cuadrada de un número negativo **no existe** en los reales.
 
+## Para recordar
+
+- $a^m \cdot a^n = a^{m+n}$, $a^m : a^n = a^{m-n}$, $(a^m)^n = a^{m \cdot n}$.
+- $a^0 = 1$ y $a^{-n} = \frac{1}{a^n}$.
+- $(-2)^2 = 4$, pero $-2^2 = -4$.
+
 ## Ejemplo resuelto
 
 Calculá $\dfrac{2^5 \cdot 2^2}{2^4}$.
@@ -42,6 +48,8 @@ Se restan: $2^7 : 2^4 = 2^3$.
 $2^3 = 8$.
 
 ## Ejercicios
+
+### Nivel: Para arrancar
 
 ### Una potencia
 
@@ -73,6 +81,8 @@ respuesta: -8
 ¿Cuánto da $5^0$?
 
 respuesta: 1
+
+### Nivel: Para animarse
 
 ### Producto de potencias
 

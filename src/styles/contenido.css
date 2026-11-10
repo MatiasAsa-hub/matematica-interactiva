@@ -129,6 +129,18 @@ details.subcarpeta > summary .carpeta-cuenta { margin-left: auto; }
 .texto th { background: var(--fondo-resalte); }
 .texto blockquote { margin: 1rem 0; padding: 0.4rem 1rem; border-left: 4px solid var(--borde); color: var(--texto-suave); }
 
+/* --- Recuadro "Para recordar" --- */
+.parte:has(.para-recordar) { margin-top: -1rem; }
+.para-recordar {
+  border: 2px solid var(--c-raices); border-radius: var(--radio);
+  background: rgba(247, 212, 107, 0.07); padding: 0.4rem 1.1rem 0.6rem;
+}
+.para-recordar-titulo { margin: 0.4rem 0 0.2rem; font-weight: 700; color: var(--c-raices); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; }
+
+/* --- Niveles de ejercicios --- */
+.nivel-ejercicios h3 { margin: 0.8rem 0 0; font-size: 1.05rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.05em; }
+.nivel-ejercicios .texto p { margin: 0.2rem 0 0; }
+
 /* --- Ejercicios --- */
 .ejercicios { display: grid; gap: 1rem; }
 .ejercicio { position: relative; transition: border-color 0.2s; }

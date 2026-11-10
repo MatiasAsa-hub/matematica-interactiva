@@ -1,0 +1,38 @@
+---
+// Interactivo: múltiplos y divisores (mcm y mcd).
+// Lógica: src/interactivos/mcmMcd.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo interactivo-cuentas" data-interactivo="mcm-mcd">
+  <div class="selector-forma" role="radiogroup" aria-label="Qué ver">
+    <button type="button" role="radio" aria-checked="true" data-modo data-valor="mcm">mcm <span>múltiplos</span></button>
+    <button type="button" role="radio" aria-checked="false" data-modo data-valor="mcd">mcd <span>divisores</span></button>
+  </div>
+
+  <div class="expresion expresion-numeros" data-expresion aria-live="polite"></div>
+  <div data-grupo="mcm">
+    <div class="grafico grafico-recta grafico-recta-alta" data-grafico></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir saltos
+      </button>
+    </div>
+  </div>
+  <div class="listas-numeros" data-listas></div>
+  <p class="galera-texto" data-texto aria-live="polite"></p>
+
+  <div class="grupo-deslizadores" data-grupo="mcm">
+    <Deslizador param="a" min={2} max={9} paso={1} valor={4} ayuda="primer número" />
+    <Deslizador param="b" min={2} max={9} paso={1} valor={6} ayuda="segundo número" />
+  </div>
+  <div class="grupo-deslizadores" data-grupo="mcd" hidden>
+    <Deslizador param="p" etiqueta="a" min={2} max={60} paso={1} valor={12} ayuda="primer número" />
+    <Deslizador param="q" etiqueta="b" min={2} max={60} paso={1} valor={18} ayuda="segundo número" />
+  </div>
+</div>
+
+<script>
+  import { iniciarMcmMcd } from '../../interactivos/mcmMcd.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="mcm-mcd"]').forEach(iniciarMcmMcd);
+</script>

@@ -31,6 +31,12 @@ $$
 - **Ojo:** $(x + 3)^2 \neq x^2 + 9$. Es $x^2 + 6x + 9$.
 - **Factor común:** es la distributiva al revés. Si todos los términos tienen algo en común, se saca afuera: $6x + 9 = 3 \cdot (2x + 3)$.
 
+## Para recordar
+
+- $a \cdot (b + c) = a \cdot b + a \cdot c$: el de afuera multiplica a **cada** término.
+- $(x + a)^2 = x^2 + 2ax + a^2$. **No** es $x^2 + a^2$.
+- **Factor común** es la distributiva al revés.
+
 ## Ejemplo resuelto
 
 Sacá factor común en $4x^2 + 6x$.
@@ -53,6 +59,8 @@ Comprobación: distribuyendo, $2x \cdot 2x + 2x \cdot 3 = 4x^2 + 6x$. ✓
 
 ## Ejercicios
 
+### Nivel: Para arrancar
+
 ### Con números
 
 ¿Cuánto da $5 \cdot (3 + 4)$ calculado por pedazos, $5 \cdot 3 + 5 \cdot 4$?
@@ -72,6 +80,8 @@ $-2 \cdot (x - 4) = -2x + \,?$
 
 respuesta: 8
 pista: $(-2) \cdot (-4)$.
+
+### Nivel: Para animarse
 
 ### Dos paréntesis
 

@@ -23,6 +23,11 @@ _Última actualización: 10/11/2026 — sesión 2 (Etapa 1 completa)_
   - Tres modos: con números, con *x* (multiplica un número o *x*, con *x* · *x* = *x*²) y dos paréntesis (*x* + a)(*x* + b), que da 4 pedazos.
   - Con a = b avisa que (*x* + a)² **no** es *x*² + a².
   - 8 ejercicios. Subsección nueva: "Operaciones con letras".
+- **Revisión del Básico** (pedido de Mati):
+  - **Recuadro "Para recordar"** en todos los temas: se escribe con `## Para recordar` y se muestra como un recuadro amarillo, sin número, después de la explicación.
+  - **Ejercicios en dos niveles**, "Para arrancar" y "Para animarse": se escribe con `### Nivel: Para arrancar` antes de los ejercicios de ese nivel.
+  - Tema nuevo **"Múltiplos y divisores: mcm y mcd"** (interactivo `mcm-mcd`). En el mcm se salta de a *a* por arriba y de a *b* por abajo, y se ve dónde caen los dos. En el mcd están las listas de divisores, con los comunes marcados. Va antes de fracciones.
+  - Tema nuevo **"Términos semejantes"** (interactivo `terminos`): con fichas de álgebra (barrita = *x*, cuadradito = 1, negativas rojas). "Agrupar" las hace viajar a su grupo y un positivo con un negativo se anulan. Es el puente a ecuaciones.
 - `COMO-EDITAR.md`: se agregó el aviso de poner entre comillas los textos del encabezado que tengan ": ".
 - **Sumar y restar con signos** (`contenido/temas/basico/sumar-y-restar-con-signos.md`): interactivo de **recta numérica** (`recta-signos`).
   - Se arranca en *a* y se dan saltitos de a uno: verdes a la derecha y rojos punteados a la izquierda.
