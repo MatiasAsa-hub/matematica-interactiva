@@ -13,14 +13,13 @@
 // Las cuentas (leer la ecuación y armar los pasos) están en src/lib/lineal.js.
 // ==========================================================================
 
-import { leerEcuacion, pasosEcuacion, ecuacionHtml, valorLado } from '../lib/lineal.js';
+import { leerEcuacion, pasosEcuacion, ecuacionHtml, valorLado, cuentaHtml } from '../lib/lineal.js';
 import { conectarDeslizador } from '../lib/grafico/controles.js';
 import { sinMovimiento } from '../lib/grafico/animacion.js';
 import { animarCambio } from '../lib/flip.js';
 import { num } from '../lib/numeros.js';
 
 const X = '<i>x</i>';
-const par = (v) => (v < 0 ? `(${num(v)})` : num(v));
 const TIEMPO_ACCION = 1500; // ms que se ve la acción (fichas que llegan o se anulan) antes del resultado
 
 // --------------------------------------------------------------------------
@@ -144,19 +143,7 @@ export function iniciarBalanza(raiz) {
     const probados = new Map();
     const probadosEl = $('[data-probados]');
 
-    /** "2 · 3 + 1 = 7" (cuánto pesa un lado con ese valor de x) */
-    function cuenta(lado, v) {
-      const partes = [];
-      if (lado.x !== 0) partes.push(lado.x === 1 ? par(v) : lado.x === -1 ? `−${par(v)}` : `${num(lado.x)} · ${par(v)}`);
-      if (lado.n !== 0 || partes.length === 0) {
-        if (partes.length === 0) partes.push(num(lado.n));
-        else partes.push(`${lado.n < 0 ? '−' : '+'} ${num(Math.abs(lado.n))}`);
-      }
-      const total = valorLado(lado, v);
-      // si no hay cuenta para hacer (un número solo, o una x sola), va directo el total
-      const hayCuenta = partes.length > 1 || (lado.x !== 0 && lado.x !== 1);
-      return hayCuenta ? `${partes.join(' ')} = ${num(total)}` : num(total);
-    }
+    const cuenta = cuentaHtml; // "2 · 3 + 1 = 7": cuánto pesa un lado con ese valor de x
 
     function dibujar() {
       const pi = valorLado(ec.izq, valor);

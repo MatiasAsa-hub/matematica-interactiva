@@ -437,3 +437,15 @@
 .probado { display: inline-block; padding: 0 0.5em; border-radius: 999px; border: 1px solid var(--borde); font-variant-numeric: tabular-nums; }
 .probado.si { border-color: var(--c-positivo); color: var(--c-positivo); font-weight: 700; }
 .probado.no { color: var(--texto-suave); text-decoration: line-through; text-decoration-color: var(--c-negativo); }
+
+/* --- Intervalos e inecuaciones --- */
+.intervalo-escrito { text-align: center; font-size: 1.2rem; margin: 0.6rem 0 0; color: var(--texto-suave); }
+.intervalo-nota { color: var(--c-positivo); font-size: 1.15em; font-variant-numeric: tabular-nums; }
+.explicacion-viva i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.interactivo-grafico .deslizador { margin-top: 0.6rem; }
+.signo-girado {
+  display: inline-block; color: var(--c-raices); font-weight: 700;
+  animation: signo-gira 0.8s ease-out;
+}
+@keyframes signo-gira { from { transform: rotateY(180deg) scale(1.4); } to { transform: none; } }
+.renglon.dado-vuelta { box-shadow: inset 3px 0 0 var(--c-raices); }

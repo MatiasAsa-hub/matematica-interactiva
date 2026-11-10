@@ -1,0 +1,51 @@
+---
+// Interactivo: desigualdades e intervalos en la recta numérica.
+// Lógica: src/interactivos/intervalos.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo interactivo-recta" data-interactivo="intervalos">
+  <div class="interactivo-grafico">
+    <div class="expresion expresion-numeros" data-expresion aria-live="polite"></div>
+    <div class="grafico grafico-recta" data-grafico></div>
+    <p class="intervalo-escrito" data-intervalo aria-live="polite"></p>
+  </div>
+
+  <div class="interactivo-controles">
+    <div class="selector-forma" role="radiogroup" aria-label="Tipo de desigualdad">
+      <button type="button" role="radio" aria-checked="true" data-forma="una">Una punta <span>x &gt; a</span></button>
+      <button type="button" role="radio" aria-checked="false" data-forma="dos">Entre dos números <span>a &lt; x &lt; b</span></button>
+    </div>
+
+    <div class="selector-forma selector-4" role="radiogroup" aria-label="Signo" data-signos-una>
+      <button type="button" role="radio" aria-checked="true" data-signo="&gt;">&gt;<span>mayor</span></button>
+      <button type="button" role="radio" aria-checked="false" data-signo="≥">≥<span>mayor o igual</span></button>
+      <button type="button" role="radio" aria-checked="false" data-signo="&lt;">&lt;<span>menor</span></button>
+      <button type="button" role="radio" aria-checked="false" data-signo="≤">≤<span>menor o igual</span></button>
+    </div>
+    <div class="selector-forma selector-4" role="radiogroup" aria-label="Puntas incluidas" data-signos-dos hidden>
+      <button type="button" role="radio" aria-checked="true" data-puntas="&lt;&lt;">a &lt; x &lt; b</button>
+      <button type="button" role="radio" aria-checked="false" data-puntas="≤&lt;">a ≤ x &lt; b</button>
+      <button type="button" role="radio" aria-checked="false" data-puntas="&lt;≤">a &lt; x ≤ b</button>
+      <button type="button" role="radio" aria-checked="false" data-puntas="≤≤">a ≤ x ≤ b</button>
+    </div>
+
+    <Deslizador param="a" min={-8} max={8} paso={1} valor={2} />
+    <div data-solo-dos hidden><Deslizador param="b" min={-8} max={8} paso={1} valor={5} /></div>
+
+    <p class="explicacion-viva" data-explicacion aria-live="polite"></p>
+
+    <div class="casillas-grupo">
+      <button type="button" class="casilla" data-casilla="probar" aria-pressed="false" style="--color: var(--texto)">
+        <span class="casilla-marca" aria-hidden="true"></span>
+        <span>Probar un número</span>
+      </button>
+    </div>
+    <p class="explicacion-viva" data-prueba aria-live="polite" hidden></p>
+    <p class="texto-suave chico">Podés arrastrar los puntos con el dedo.</p>
+  </div>
+</div>
+
+<script>
+  import { iniciarIntervalos } from '../../interactivos/intervalos.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="intervalos"]').forEach(iniciarIntervalos);
+</script>

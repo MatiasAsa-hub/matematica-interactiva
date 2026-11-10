@@ -110,6 +110,20 @@ export function cumple(v1, signo, v2) {
 
 export const valorLado = ({ x, n }, valorX) => x * valorX + n;
 
+/** La cuenta de un lado con un valor de x: "2 · 3 + 1 = 7" (o "7" si no hay cuenta). */
+export function cuentaHtml(lado, v) {
+  const partes = [];
+  if (lado.x !== 0) partes.push(lado.x === 1 ? par(v) : lado.x === -1 ? `−${par(v)}` : `${num(lado.x)} · ${par(v)}`);
+  if (lado.n !== 0 || partes.length === 0) {
+    if (partes.length === 0) partes.push(num(lado.n));
+    else partes.push(`${lado.n < 0 ? '−' : '+'} ${num(Math.abs(lado.n))}`);
+  }
+  const total = valorLado(lado, v);
+  // si no hay cuenta para hacer (un número solo, o una x sola), va directo el total
+  const hayCuenta = partes.length > 1 || (lado.x !== 0 && lado.x !== 1);
+  return hayCuenta ? `${partes.join(' ')} = ${num(total)}` : num(total);
+}
+
 /** Máximo común divisor (para simplificar fracciones). */
 const mcd = (a, b) => (b === 0 ? Math.abs(a) : mcd(b, a % b));
 

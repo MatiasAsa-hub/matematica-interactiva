@@ -1,0 +1,44 @@
+---
+// Interactivo: resolver inecuaciones. Se prueban números en la recta y
+// después se resuelve paso a paso (con el signo que se da vuelta).
+// Lógica: src/interactivos/inecuacion.js
+// Las inecuaciones vienen del tema (campo "inecuaciones:" del .md).
+import Deslizador from '../controles/Deslizador.astro';
+import { leerEcuacion } from '../../lib/lineal.js';
+
+interface Props { inecuaciones?: string[] }
+const { inecuaciones = ['2x − 3 > 5'] } = Astro.props;
+// Se prueban al armar el sitio: si una inecuación está mal escrita, el armado avisa.
+for (const e of inecuaciones) {
+  if (leerEcuacion(String(e)).signo === '=') throw new Error(`Esto es una ecuación, no una inecuación: "${e}"`);
+}
+---
+<div class="interactivo interactivo-recta" data-interactivo="inecuacion" data-inecuaciones={JSON.stringify(inecuaciones.map(String))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={inecuaciones.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Inecuación anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Inecuación siguiente">›</button>
+    </div>
+    <div class="expresion expresion-numeros" data-expresion aria-live="polite"></div>
+    <div class="grafico grafico-recta" data-grafico></div>
+    <Deslizador param="x" min={-10} max={10} paso={0.5} pasoBoton={1} valor={0} ayuda="probá un número" />
+    <p class="explicacion-viva" data-prueba aria-live="polite"></p>
+  </div>
+
+  <div class="interactivo-controles">
+    <ol class="renglones renglones-ecuacion" data-renglones aria-live="polite"></ol>
+    <p class="galera-texto" data-texto aria-live="polite"></p>
+    <div class="cuentas-botones">
+      <button type="button" class="boton boton-principal" data-siguiente>Resolver paso a paso</button>
+      <button type="button" class="boton" data-todo>Ver todo</button>
+      <button type="button" class="boton" data-reiniciar>Empezar de nuevo</button>
+    </div>
+    <p class="texto-suave chico">Verde con punto: el número cumple. Rojo con cruz: no cumple.</p>
+  </div>
+</div>
+
+<script>
+  import { iniciarInecuacion } from '../../interactivos/inecuacion.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="inecuacion"]').forEach(iniciarInecuacion);
+</script>

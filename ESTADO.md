@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 2 (Etapa 1 completa)_
+_Última actualización: 10/11/2026 — sesión 3 (Etapa 2 completa)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -72,9 +72,36 @@ _Última actualización: 10/11/2026 — sesión 2 (Etapa 1 completa)_
 - Arreglado: la "Tabla del divisor" (y el botón "Repetir" de la cuadrática) no se ocultaban al apagarlos.
 - **Listas de Temas y de Tutores en carpetas desplegables** (pedido de Mati): sección → subsección → temas. Las subsecciones se vuelven carpetas cuando una sección tiene más de una. En Tutores, "Cómo usar esta página en una clase" también va en una carpeta.
 
+### Etapa 2 — Ecuaciones e inecuaciones ✅ (completa; falta la revisión de Mati)
+Mati eligió: 4 temas, balanza con paso a paso automático, y recta numérica para las inecuaciones. Van en Análisis, subsección "Ecuaciones e inecuaciones" (antes de Funciones).
+- **¿Qué es una ecuación?** (`que-es-una-ecuacion.md`): interactivo `balanza` en modo `probar`.
+  - Fichas como en Términos semejantes (barrita = *x*, cuadradito = 1). Con un deslizador se elige cuánto vale *x* (cada barrita muestra su peso) y la balanza se inclina hacia el lado que pesa más.
+  - Cuando se equilibra, avisa que ese valor es la solución. Si no, dice si conviene probar un número más grande o más chico. Abajo quedan los valores probados (✓ / ✗).
+  - 6 ejercicios (verificar soluciones).
+- **Resolver ecuaciones** (`resolver-ecuaciones.md`): la misma `balanza` en modo `resolver`, paso a paso con **Siguiente paso**.
+  - Orden: juntar las *x* (del lado que tiene más), sacar el número de ese lado y repartir en grupos (dividir). Si la *x* queda a la derecha, al final se da vuelta.
+  - "Sacar" se ve como fichas negativas que llegan y se anulan con las positivas; "dividir" se ve como grupos iguales, de los que queda uno.
+  - Al costado de cada renglón se anota lo que se hizo ("+ 3 de los dos lados").
+  - Casos raros: sin solución (la balanza se desequilibra, 1 = 3) y solución no entera (x = 5/2 = 2.5).
+  - Las ecuaciones se eligen en el archivo del tema (campo `ecuaciones:`). Máximo 20 fichas por lado; si no, el armado avisa.
+  - 7 ejercicios.
+- **Desigualdades e intervalos** (`desigualdades-e-intervalos.md`): interactivo `intervalos`.
+  - "Una punta" (x > a, ≥, <, ≤) o "Entre dos números" (a < x ≤ b, etc.). Se pinta en la recta y se escribe como intervalo.
+  - Punto relleno + corchete = está; punto hueco + paréntesis = no está. Las puntas se arrastran con el dedo.
+  - Casilla **Probar un número**: un punto que dice si el número está o no.
+  - 7 ejercicios.
+- **Resolver inecuaciones** (`resolver-inecuaciones.md`): interactivo `inecuacion`.
+  - Primero se prueban números (deslizador o arrastrando): cada uno queda marcado con punto verde (cumple) o cruz roja (no cumple).
+  - **Resolver paso a paso**: igual que una ecuación, y cuando se divide por un negativo **el signo gira** (animado y resaltado). Al final se pinta la solución en la recta.
+  - Casos ℝ y ∅. Las inecuaciones se eligen en el tema (campo `inecuaciones:`).
+  - 7 ejercicios.
+- **Color nuevo de uso:** "cumple / es solución" va en **verde** (el mismo de C⁺) y "no cumple" en **rojo** con cruz. Tiene sentido: más adelante, C⁺ es justamente la solución de f(x) > 0.
+- Piezas nuevas compartidas: `src/lib/lineal.js` (lee ecuaciones e inecuaciones y arma los pasos), `src/lib/flip.js` (animación de fichas que viajan) y `src/lib/grafico/intervalo.js` (pintar intervalos en la recta).
+
 ## Falta
-- Que Mati revise la Etapa 1 completa y dé su devolución.
-- **Próximo:** Etapa 2, ecuaciones e inecuaciones (propuesta: interactivo tipo balanza para despejar).
+- Que Mati revise las Etapas 1 y 2 y dé su devolución.
+- **Próximo:** Etapa 3, funciones (qué es una función, lineal, cuadrática, animación de puntos).
+- Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 3 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
 
