@@ -11,6 +11,7 @@ import { Plano } from '../lib/grafico/plano.js';
 import { animar, sinMovimiento } from '../lib/grafico/animacion.js';
 import { conectarDeslizador } from '../lib/grafico/controles.js';
 import { num } from '../lib/numeros.js';
+import { dibujarSaltos } from '../lib/grafico/saltos.js';
 
 const MS_POR_SALTO = 260;
 
@@ -28,7 +29,7 @@ export function iniciarRectaSignos(raiz) {
   const plano = new Plano($('[data-grafico]'), {
     vista: { xMin: -7.5, xMax: 7.5 },
     soloEjeX: true,
-    separacionNumeros: 30,
+    separacionNumeros: 36,
     descripcion: 'Recta numérica',
   });
   const col = plano.colores;
@@ -43,44 +44,10 @@ export function iniciarRectaSignos(raiz) {
     const n = Math.abs(m);
     const dir = Math.sign(m);
     const color = dir >= 0 ? col.positivo : col.negativo;
-    const Y0 = p.py(0);
-    const altura = Math.max(22, Math.min(44, p.escala * 0.9));
-    const punta = Math.max(3, Math.min(5, p.escala * 0.22));
-    const ctx = p.ctx;
 
-    // saltitos
+    // saltitos (de a 1, desde a)
     const hechos = Math.min(n, saltosVisibles);
-    for (let i = 0; i < Math.ceil(hechos); i++) {
-      const fraccion = Math.min(1, hechos - i); // el último puede estar a medio camino
-      const x1 = p.px(a + dir * i);
-      const x2 = p.px(a + dir * (i + 1));
-      ctx.save();
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
-      if (dir < 0) ctx.setLineDash([7, 5]);
-      ctx.beginPath();
-      // arco: media elipse sobre el eje
-      const cx = (x1 + x2) / 2;
-      const rx = Math.abs(x2 - x1) / 2;
-      const desde = dir > 0 ? Math.PI : 0;
-      const hasta = dir > 0 ? Math.PI + Math.PI * fraccion : -Math.PI * fraccion;
-      ctx.ellipse(cx, Y0 - 2, rx, altura, 0, desde, hasta, dir < 0);
-      ctx.stroke();
-      ctx.restore();
-      // punta de flecha al terminar cada salto
-      if (fraccion >= 1) {
-        ctx.save();
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.moveTo(x2, Y0 - 3);
-        ctx.lineTo(x2 - dir * punta - punta, Y0 - 3 - punta * 2);
-        ctx.lineTo(x2 - dir * punta + punta, Y0 - 3 - punta * 2);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-      }
-    }
+    const { altura } = dibujarSaltos(p, { desde: a, paso: dir || 1, cantidad: n, visibles: saltosVisibles });
 
     // cartel arriba de los saltos: "5 a la izquierda"
     if (n > 0 && hechos >= n) {

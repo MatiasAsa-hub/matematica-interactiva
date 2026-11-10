@@ -86,6 +86,20 @@
 .explicacion-viva { margin: 0.4rem 0 0; line-height: 1.5; }
 .explicacion-viva .pos { color: var(--c-positivo); }
 .explicacion-viva .neg { color: var(--c-negativo); }
+.expresion-numeros .neg { color: var(--c-negativo); }
+
+/* Regla de los signos (se marca el caso que se está usando) */
+.regla-signos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 0.7rem; }
+@media (max-width: 420px) { .regla-signos { grid-template-columns: repeat(2, 1fr); } }
+.regla-caso {
+  display: flex; align-items: center; justify-content: center; gap: 0.35em;
+  padding: 0.35rem 0.4rem; border: 1px solid var(--borde); border-radius: var(--radio-chico);
+  font-size: 1.05rem; color: var(--texto-suave); font-variant-numeric: tabular-nums;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.regla-caso .pos { color: var(--c-positivo); }
+.regla-caso .neg { color: var(--c-negativo); }
+.regla-caso.activo { border-color: var(--texto); background: var(--fondo-resalte); color: var(--texto); font-weight: 700; }
 
 /* --- Selector de forma (ej. polinómica / canónica) --- */
 .selector-forma {

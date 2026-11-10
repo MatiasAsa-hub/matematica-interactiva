@@ -4,13 +4,15 @@
 // Cuando haya un interactivo nuevo, se agrega acá.
 import Cuadratica from './interactivos/Cuadratica.astro';
 import RectaSignos from './interactivos/RectaSignos.astro';
+import RectaMultiplicacion from './interactivos/RectaMultiplicacion.astro';
 
 interface Props { nombre: string }
 const { nombre } = Astro.props;
-const conocidos = ['cuadratica', 'recta-signos'];
+const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
 {nombre === 'recta-signos' && <RectaSignos />}
+{nombre === 'recta-multiplicacion' && <RectaMultiplicacion />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}

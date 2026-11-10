@@ -1,0 +1,56 @@
+---
+// Interactivo: multiplicar y dividir con signos en la recta numérica.
+// Lógica: src/interactivos/rectaMultiplicacion.js
+import Deslizador from '../controles/Deslizador.astro';
+
+const casos = [
+  ['++', '+', '+', '+'],
+  ['+−', '+', '−', '−'],
+  ['−+', '−', '+', '−'],
+  ['−−', '−', '−', '+'],
+];
+---
+<div class="interactivo interactivo-recta" data-interactivo="recta-multiplicacion">
+  <div class="interactivo-grafico">
+    <div class="expresion expresion-numeros" data-expresion aria-live="polite"></div>
+    <div class="grafico grafico-recta" data-grafico></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir saltos
+      </button>
+    </div>
+    <div class="regla-signos" aria-label="Regla de los signos">
+      {casos.map(([caso, x, y, r]) => (
+        <span class="regla-caso" data-caso={caso}>
+          <span class={x === '+' ? 'pos' : 'neg'}>{x}</span>
+          <span class="op">·</span>
+          <span class={y === '+' ? 'pos' : 'neg'}>{y}</span>
+          =
+          <b class={r === '+' ? 'pos' : 'neg'}>{r}</b>
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <div class="selector-forma" role="radiogroup" aria-label="Operación">
+      <button type="button" role="radio" aria-checked="true" data-modo="mult">Multiplicar <span>a · b</span></button>
+      <button type="button" role="radio" aria-checked="false" data-modo="div">Dividir <span>a : b</span></button>
+    </div>
+    <div class="grupo-deslizadores" data-grupo="mult">
+      <Deslizador param="a" min={-5} max={5} paso={1} valor={3} ayuda="cuántos saltos" />
+      <Deslizador param="b" min={-5} max={5} paso={1} valor={-2} ayuda="de qué tamaño" />
+    </div>
+    <div class="grupo-deslizadores" data-grupo="div" hidden>
+      <Deslizador param="c" etiqueta="a" min={-12} max={12} paso={1} valor={-6} ayuda="a dónde quiero llegar" />
+      <Deslizador param="d" etiqueta="b" min={-6} max={6} paso={1} valor={2} ayuda="tamaño de cada salto" />
+    </div>
+    <p class="explicacion-viva" data-explicacion aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+  import { iniciarRectaMultiplicacion } from '../../interactivos/rectaMultiplicacion.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="recta-multiplicacion"]').forEach(iniciarRectaMultiplicacion);
+</script>

@@ -23,10 +23,15 @@ _Última actualización: 10/11/2026 — sesión 2_
   - Botón Sumar / Restar. Al restar se muestra que es sumar el opuesto: 8 − (−9) = 8 + 9 = 17.
   - Los dos puntos se pueden arrastrar con el dedo.
   - 8 ejercicios, 2 de ellos con *x* (reemplazar *x* por un negativo).
+- **Multiplicar y dividir con signos** (`multiplicar-y-dividir-con-signos.md`): interactivo `recta-multiplicacion`.
+  - **Multiplicar** a · b: desde el 0 se hacen |a| saltos de tamaño b. Si a es negativo, todo se **da vuelta como en un espejo en el 0**, con animación y los saltos de antes en "fantasma". Así se ve por qué menos por menos da más.
+  - **Dividir** a : b: ¿cuántos saltos de b hacen falta para llegar a a? Si hay que saltar al revés, la cantidad es negativa. Avisa que no se puede dividir por 0.
+  - Debajo hay una tablita con la regla de los signos que marca el caso que se está usando.
+  - 9 ejercicios, 2 con *x*.
+- Los saltos de la recta ahora son una pieza compartida: `src/lib/grafico/saltos.js`.
 
 ## Falta
 - Etapa 1, el resto:
-  - Multiplicación y división (regla de los signos).
   - Orden de las operaciones.
   - Fracciones (propuesta: barras).
   - Potencias y raíces.
@@ -47,6 +52,7 @@ _Última actualización: 10/11/2026 — sesión 2_
 - **Celular:** al mover los deslizadores de la cuadrática no se ve el gráfico al mismo tiempo. Es un detalle menor; posible solución: gráfico "pegajoso" arriba.
 
 ## Decisiones pendientes
+- **Convención nueva para confirmar:** se usa **·** para multiplicar y **:** para dividir (como en la escuela). Las divisiones que no dan exacto se muestran con decimales (7 : 4 = 1.75).
 - La forma de los parámetros de los polinomios de grado ≥ 3.
 - Los detalles de la animación de la integral (7.a).
 - Si se incluyen espacios vectoriales.
