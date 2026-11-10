@@ -1,0 +1,33 @@
+---
+// Interactivo: sumar y restar con signos en la recta numérica.
+// Lógica: src/interactivos/rectaSignos.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo interactivo-recta" data-interactivo="recta-signos">
+  <div class="interactivo-grafico">
+    <div class="expresion expresion-numeros" data-expresion aria-live="polite"></div>
+    <div class="grafico grafico-recta" data-grafico></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir saltos
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <div class="selector-forma" role="radiogroup" aria-label="Operación">
+      <button type="button" role="radio" aria-checked="true" data-op="+">Sumar <span>a + b</span></button>
+      <button type="button" role="radio" aria-checked="false" data-op="−">Restar <span>a − b</span></button>
+    </div>
+    <Deslizador param="a" min={-10} max={10} paso={1} valor={3} ayuda="donde arrancás" />
+    <Deslizador param="b" min={-10} max={10} paso={1} valor={-5} ayuda="el segundo número" />
+    <p class="explicacion-viva" data-explicacion aria-live="polite"></p>
+    <p class="texto-suave chico">También podés arrastrar con el dedo el punto blanco (donde arrancás) o el azul (donde llegás).</p>
+  </div>
+</div>
+
+<script>
+  import { iniciarRectaSignos } from '../../interactivos/rectaSignos.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="recta-signos"]').forEach(iniciarRectaSignos);
+</script>

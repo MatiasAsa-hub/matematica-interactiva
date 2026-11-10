@@ -9,12 +9,13 @@ interface Props {
   paso: number;        // paso del deslizador
   pasoBoton?: number;  // cuánto suman los botones − y +
   valor: number;       // valor inicial
+  ayuda?: string;      // texto chiquito al lado del nombre (ej. "donde arrancás")
 }
-const { param, etiqueta = param, min, max, paso, pasoBoton = paso, valor } = Astro.props;
+const { param, etiqueta = param, min, max, paso, pasoBoton = paso, valor, ayuda } = Astro.props;
 const id = `desl-${param}-${Math.random().toString(36).slice(2, 7)}`;
 ---
 <div class="deslizador" data-param={param}>
-  <label for={id} class="deslizador-nombre"><i>{etiqueta}</i> = <output for={id}>{valor}</output></label>
+  <label for={id} class="deslizador-nombre"><i>{etiqueta}</i> = <output for={id}>{valor}</output>{ayuda && <span class="deslizador-ayuda">{ayuda}</span>}</label>
   <div class="deslizador-fila">
     <button type="button" class="deslizador-paso" data-delta={-pasoBoton} aria-label={`Restar ${pasoBoton} a ${etiqueta}`}>−</button>
     <input id={id} type="range" min={min} max={max} step={paso} value={valor} />

@@ -62,6 +62,11 @@ export class Plano {
   constructor(contenedor, opciones = {}) {
     this.contenedor = contenedor;
     this.vista = { xMin: -6, xMax: 6, yCentro: 0, ...(opciones.vista ?? {}) };
+    // soloEjeX: modo "recta numérica" (sin grilla ni eje y; el eje x queda fijo a esa altura, de 0 a 1)
+    this.soloEjeX = opciones.soloEjeX ?? false;
+    this.alturaEje = opciones.alturaEje ?? 0.68;
+    // separación mínima (en píxeles) entre los números de los ejes
+    this.separacionNumeros = opciones.separacionNumeros ?? 58;
     this.capas = [];
     this.arrastrables = [];
     this.colores = leerColores();
@@ -70,6 +75,7 @@ export class Plano {
     this._tocado = false; // ¿la persona ya movió la vista?
 
     contenedor.classList.add('plano');
+    if (this.soloEjeX) contenedor.classList.add('plano-recta');
     this.lienzo = document.createElement('canvas');
     this.lienzo.className = 'plano-lienzo';
     this.lienzo.setAttribute('role', 'img');
@@ -104,7 +110,29 @@ export class Plano {
     this.lienzo.style.width = ancho + 'px';
     this.lienzo.style.height = alto + 'px';
     if (!this._tocado) this._aplicarVistaInicial();
+    this._fijarEje();
     this.pedirDibujo();
+  }
+
+  /** En modo recta numérica, el eje x no se mueve de altura. */
+  _fijarEje() {
+    if (this.soloEjeX) this.cy = (this.alto * this.alturaEje - this.alto / 2) / this.escala;
+  }
+
+  /**
+   * Se asegura de que el tramo [x1, x2] se vea: si no entra, mueve la vista
+   * (y la aleja si hace falta).
+   */
+  mostrarRango(x1, x2, margen = 1) {
+    const a = Math.min(x1, x2) - margen;
+    const b = Math.max(x1, x2) + margen;
+    if (a >= this.xMin && b <= this.xMax) return;
+    this.escala = Math.max(ESCALA_MIN, Math.min(this.escala, this.ancho / (b - a)));
+    const mitad = this.ancho / 2 / this.escala;
+    if (a < this.xMin) this.cx = a + mitad;
+    if (b > this.xMax) this.cx = b - mitad;
+    this._tocado = true;
+    this._vistaCambio();
   }
 
   _aplicarVistaInicial() {
@@ -122,6 +150,7 @@ export class Plano {
   }
 
   _vistaCambio() {
+    this._fijarEje();
     this.pedirDibujo();
     for (const fn of this.alCambiarVista) fn(this);
   }
@@ -175,8 +204,12 @@ export class Plano {
     ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
     ctx.fillStyle = this.colores.fondo;
     ctx.fillRect(0, 0, this.ancho, this.alto);
-    this.dibujarGrilla();
-    this.dibujarEjes();
+    if (this.soloEjeX) {
+      this.dibujarRectaNumerica();
+    } else {
+      this.dibujarGrilla();
+      this.dibujarEjes();
+    }
     for (const capa of this.capas) {
       ctx.save();
       capa(this);
@@ -186,7 +219,36 @@ export class Plano {
 
   /** Paso entre las líneas de la grilla, según el zoom. */
   get pasoGrilla() {
-    return pasoRedondo(58 / this.escala);
+    return pasoRedondo(this.separacionNumeros / this.escala);
+  }
+
+  /** Recta numérica: el eje x con una marquita en cada entero y los números abajo. */
+  dibujarRectaNumerica() {
+    const { ctx } = this;
+    const Y0 = Math.round(this.py(0)) + 0.5;
+    ctx.strokeStyle = 'rgba(233,238,242,0.7)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, Y0); ctx.lineTo(this.ancho, Y0);
+    // marquitas: una por entero (si entran), más largas donde va número
+    const paso = this.pasoGrilla;
+    const chico = this.escala >= 9 ? 1 : paso;
+    for (let x = Math.ceil(this.xMin / chico) * chico; x <= this.xMax; x += chico) {
+      const X = Math.round(this.px(x)) + 0.5;
+      const largo = Math.abs(x / paso - Math.round(x / paso)) < 1e-6 ? 8 : 5;
+      ctx.moveTo(X, Y0 - largo); ctx.lineTo(X, Y0 + largo);
+    }
+    ctx.stroke();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    for (let x = Math.ceil(this.xMin / paso) * paso; x <= this.xMax; x += paso) {
+      const X = this.px(x);
+      if (X < 8 || X > this.ancho - 8) continue;
+      const cero = Math.abs(x) < paso / 2;
+      ctx.font = `${cero ? '700 ' : ''}15px ${this.fuente}`;
+      ctx.fillStyle = cero ? this.colores.texto : 'rgba(233,238,242,0.65)';
+      this._textoConHalo(textoNumeroEje(cero ? 0 : x, paso), X, Y0 + 12);
+    }
   }
 
   dibujarGrilla() {

@@ -3,12 +3,14 @@
 // (campo "interactivo:" al principio del archivo .md).
 // Cuando haya un interactivo nuevo, se agrega acá.
 import Cuadratica from './interactivos/Cuadratica.astro';
+import RectaSignos from './interactivos/RectaSignos.astro';
 
 interface Props { nombre: string }
 const { nombre } = Astro.props;
-const conocidos = ['cuadratica'];
+const conocidos = ['cuadratica', 'recta-signos'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
+{nombre === 'recta-signos' && <RectaSignos />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}

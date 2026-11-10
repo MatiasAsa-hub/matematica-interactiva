@@ -1,46 +1,57 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 1 (Etapa 0)_
+_Última actualización: 10/11/2026 — sesión 2_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
 
 ## Hecho
 
-### Etapa 0 — Base y prototipo (esperando la devolución de Mati)
-- Proyecto con **Astro** (sitio estático). El contenido está en `contenido/`, en Markdown, separado del código.
-- Publicación automática en **GitHub Pages** con GitHub Actions (`.github/workflows/publicar.yml`): se publica sola con cada cambio que se sube a `main`.
-- **Diseño base:** fondo gris azulado tipo pizarra, tipografía Nunito, barra de navegación abajo en el celular y arriba en la compu.
-  - Páginas: Inicio, Temas (alumnos), Tutores (con "Cómo usar esta página en una clase"), Laboratorio (por ahora vacío), Notación.
-- **Códigos de color fijos** (en `src/styles/global.css`): función = azul, derivada = naranja, integral = violeta, C⁺ = verde (zona lisa), C⁻ = rojo (zona rayada y barra punteada), C⁰/raíces = amarillo, vértice/máx/mín = lila, ordenada al origen = rosa, crece = turquesa, decrece = terracota.
-- **Módulo de graficado 2D** (`src/lib/grafico/`): plano con ejes, grilla y números; zoom y desplazamiento con dos dedos (con un dedo se mueve la página), Ctrl+rueda y botones + / − / vista inicial en la compu; curvas, zonas pintadas, puntos, rectas, etiquetas y puntos arrastrables.
-  - **Animación de puntos** compartida (`animacionPuntos.js`): primero aparecen los puntos de izquierda a derecha, después la curva, y la tabla x | f(x) opcional se llena a la par.
-  - Deslizadores con botones − y + para ajustar fino con el dedo, y casillas que se prenden y se apagan.
-- **Interactivo de la cuadrática** completo: forma canónica con *a*, *h* y *k*, la expresión en vivo (se resalta el número que estás moviendo), y casillas para mostrar vértice, eje de simetría, raíces (con la resolvente, y un aviso si no hay raíces reales), ordenada al origen, C⁺/C⁻/C⁰, crece/decrece y máximo o mínimo. Con *a* = 0 avisa que queda una recta.
-- **Tema de ejemplo:** "Función cuadrática" con intuición, explicación, ejemplo resuelto con pasos desplegables, 4 ejercicios autocorregibles (numéricos, de varias respuestas y de opción múltiple, con pista y resolución) y notas para tutores en una página aparte.
-- `COMO-EDITAR.md`: guía para cambiar textos desde la web de GitHub.
+### Etapa 0 — Base y prototipo ✅ (aprobada por Mati)
+- Proyecto Astro, contenido en `contenido/` (Markdown), publicación automática en GitHub Pages.
+- Diseño aprobado: pizarra gris azulada, Nunito, colores fijos por concepto (ver `src/styles/global.css`), navegación abajo en el celular.
+- Módulo de graficado 2D (`src/lib/grafico/`): plano, zoom con dos dedos, animación de puntos, deslizadores, casillas y puntos arrastrables. Ahora también tiene un **modo recta numérica** (`soloEjeX`) y `mostrarRango()` para que la vista siga lo que se está mostrando.
+- **Cuadrática** (después de la devolución de Mati):
+  - Botón **Polinómica / Canónica**. Arranca en la polinómica, ax² + bx + c. Al cambiar de forma, la parábola queda igual y cambian los deslizadores.
+  - Casillas prendidas por defecto: raíces, vértice y animación. El resto arranca apagado.
+  - Con a = 0 en la forma polinómica, avisa que queda una función lineal.
+  - Texto más corto y en ítems. 6 ejercicios, casi todos en forma polinómica. Notas para tutores genéricas.
 
-## Falta (próximas etapas)
-- Etapa 1: Básico (operaciones, primero con números y después con *x*).
-- Etapa 2: Ecuaciones e inecuaciones.
-- Etapa 3: Qué es una función y la función lineal (el interactivo de la lineal).
-- Etapas 4 a 8: según la hoja de ruta de `CLAUDE.md`.
-- Transversal: **guía imprimible** por tema (ejercicios con las respuestas al final). Todavía no está hecha.
+### Etapa 1 — Básico (en curso)
+- **Sumar y restar con signos** (`contenido/temas/basico/sumar-y-restar-con-signos.md`): interactivo de **recta numérica** (`recta-signos`).
+  - Se arranca en *a* y se dan saltitos de a uno: verdes a la derecha y rojos punteados a la izquierda.
+  - Botón Sumar / Restar. Al restar se muestra que es sumar el opuesto: 8 − (−9) = 8 + 9 = 17.
+  - Los dos puntos se pueden arrastrar con el dedo.
+  - 8 ejercicios, 2 de ellos con *x* (reemplazar *x* por un negativo).
 
-## Decisiones pendientes (para Mati)
-- **Estética** (fondo, colores, tipografía), ahora que hay prototipo.
-- **Nombre de la página.** Por ahora: "Matemática Interactiva" (se cambia en `contenido/sitio.md`). La dirección web usa `matematica-interactiva`; si se cambia el nombre, conviene cambiar también el del repositorio.
-- **Convenciones nuevas**, ya usadas en el interactivo y en la página de Notación, que hay que confirmar:
-  - ℝ para "todos los reales" y ∅ para "vacío" (por ejemplo, C⁻ = ∅).
-  - Los intervalos de crecimiento y decrecimiento se escriben **abiertos** en el vértice: crece en (1, +∞).
-  - Los números que no son exactos se muestran redondeados a 2 decimales con "≈" (x₁ ≈ 1.27).
-- **Tabla x | f(x):** por ahora arranca **apagada** (es opcional, con su casilla).
-- **Cantidad de puntos de la animación:** se usan solo los puntos que se ven en pantalla, con x "redondos" (de 0.5 en 0.5, de 1 en 1…). Así quedan entre 10 y 25 puntos: con la parábola inicial son 11. Si se prefieren ~20 siempre, los x quedan menos lindos (0.2, 0.25…).
+## Falta
+- Etapa 1, el resto:
+  - Multiplicación y división (regla de los signos).
+  - Orden de las operaciones.
+  - Fracciones (propuesta: barras).
+  - Potencias y raíces.
+  - Distributiva y factor común (propuesta: modelo de área).
+- Etapas 2 a 8, según la hoja de ruta de `CLAUDE.md`.
+- **Guía imprimible: al final de todo** (decisión de Mati).
+
+## Decisiones tomadas en la sesión 2
+- Convenciones confirmadas por Mati:
+  - ℝ y ∅.
+  - Intervalos de crecimiento abiertos en el vértice.
+  - "≈" con 2 decimales para lo que no es exacto.
+- La tabla x | f(x) queda opcional y apagada.
+- Los textos de alumnos y tutores van cortos y genéricos. Mati los va a escribir después.
+
+## Ideas anotadas (sin hacer)
+- **Glosario al tocar una palabra** (idea de Mati): tocar o señalar con el mouse una palabra formal (C⁺, vértice, resolvente…) y que aparezca una descripción corta.
+- **Celular:** al mover los deslizadores de la cuadrática no se ve el gráfico al mismo tiempo. Es un detalle menor; posible solución: gráfico "pegajoso" arriba.
+
+## Decisiones pendientes
 - La forma de los parámetros de los polinomios de grado ≥ 3.
 - Los detalles de la animación de la integral (7.a).
 - Si se incluyen espacios vectoriales.
 
 ## Notas técnicas
-- Para trabajar en la compu: Node.js (LTS) y GitHub CLI están instalados. `npm run dev` levanta la página en http://localhost:4321/matematica-interactiva/.
-- Los interactivos están en `src/interactivos/` (lógica) y `src/components/interactivos/` (HTML). Un interactivo nuevo se registra en `src/components/Interactivo.astro`.
-- Los temas se leen y se dividen por títulos (`## Intuición`, `## Explicación`…) en `src/lib/contenido.js`. Si un ejercicio está mal escrito, el armado falla con un mensaje claro, y la página publicada no se toca.
+- Node.js y GitHub CLI están instalados. En la terminal: `npm run dev` y abrir http://localhost:4321/matematica-interactiva/.
+- Interactivos: lógica en `src/interactivos/`, HTML en `src/components/interactivos/`. Para registrar uno nuevo, se agrega en `src/components/Interactivo.astro`.
+- Los temas se leen en `src/lib/contenido.js`. Si un ejercicio está mal escrito, el armado falla con un mensaje claro y la página publicada no se toca.

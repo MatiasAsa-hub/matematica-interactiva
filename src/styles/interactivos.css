@@ -76,6 +76,17 @@
 .tabla-valores td.nueva { background: rgba(88, 196, 221, 0.22); }
 .tabla-valores i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
 
+/* --- Recta numérica --- */
+.grafico.grafico-recta { aspect-ratio: auto; height: 200px; }
+.plano-recta .plano-botones { flex-direction: row; }
+.plano-recta .plano-boton { width: 36px; height: 36px; font-size: 1.2rem; }
+.expresion-numeros { color: var(--texto); font-size: 1.6rem; }
+.expresion-numeros .resultado { color: var(--c-funcion); }
+.deslizador-ayuda { font-size: 0.85rem; color: var(--texto-suave); margin-left: 0.5rem; }
+.explicacion-viva { margin: 0.4rem 0 0; line-height: 1.5; }
+.explicacion-viva .pos { color: var(--c-positivo); }
+.explicacion-viva .neg { color: var(--c-negativo); }
+
 /* --- Selector de forma (ej. polinómica / canónica) --- */
 .selector-forma {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
