@@ -12,7 +12,9 @@ import { num } from '../numeros.js';
  * @param {(valor:number) => void} alCambiar
  * @returns {{ valor: number, poner: (v:number) => void }}
  */
-export function conectarDeslizador(el, alCambiar, { alEmpezar = () => {}, alTerminar = () => {} } = {}) {
+export function conectarDeslizador(el, alCambiar, { alEmpezar = () => {}, alTerminar = () => {}, formato = null } = {}) {
+  // formato (opcional): (valor) => texto, para mostrar el valor de otra forma (ej. "90°" o "π/2").
+  // Si el formato cambia, se llama a control.mostrar() para actualizar el texto.
   const input = el.querySelector('input[type="range"]');
   const salida = el.querySelector('output');
   const min = Number(input.min);
@@ -40,7 +42,7 @@ export function conectarDeslizador(el, alCambiar, { alEmpezar = () => {}, alTerm
   };
 
   function mostrar() {
-    salida.textContent = num(control.valor, Math.max(decimales, 2));
+    salida.textContent = formato ? formato(control.valor) : num(control.valor, Math.max(decimales, 2));
     el.style.setProperty('--porcentaje', `${((control.valor - min) / (max - min)) * 100}%`);
   }
 
@@ -59,6 +61,7 @@ export function conectarDeslizador(el, alCambiar, { alEmpezar = () => {}, alTerm
     });
   }
 
+  control.mostrar = mostrar;
   mostrar();
   return control;
 }

@@ -67,6 +67,10 @@ export class Plano {
     this.alturaEje = opciones.alturaEje ?? 0.68;
     // separación mínima (en píxeles) entre los números de los ejes
     this.separacionNumeros = opciones.separacionNumeros ?? 58;
+    // ejeX (opcional): números propios en el eje x, por ejemplo ángulos.
+    //   { paso: cada cuánto va un número, texto: (x) => texto o null, separacion: píxeles mínimos }
+    // Si los números quedan muy juntos, se saltea uno sí y uno no.
+    this.ejeX = opciones.ejeX ?? null;
     this.capas = [];
     this.arrastrables = [];
     this.colores = leerColores();
@@ -222,6 +226,19 @@ export class Plano {
     return pasoRedondo(this.separacionNumeros / this.escala);
   }
 
+  /** Paso de los números del eje x (el de la grilla, o el propio si hay ejeX). */
+  get pasoX() {
+    if (!this.ejeX) return this.pasoGrilla;
+    let q = this.ejeX.paso;
+    while (q * this.escala < (this.ejeX.separacion ?? 40)) q *= 2;
+    return q;
+  }
+
+  /** Texto de un número del eje x. */
+  _textoEjeX(x, paso) {
+    return this.ejeX ? this.ejeX.texto(x) : textoNumeroEje(x, paso);
+  }
+
   /** Recta numérica: el eje x con una marquita en cada entero y los números abajo. */
   dibujarRectaNumerica() {
     const { ctx } = this;
@@ -255,11 +272,11 @@ export class Plano {
     const { ctx } = this;
     const paso = this.pasoGrilla;
     const sub = paso / (String(paso).startsWith('2') ? 4 : 5);
-    const dibujarLineas = (p, color) => {
+    const dibujarLineas = (p, color, pX = this.ejeX ? this.pasoX : p) => {
       ctx.strokeStyle = color;
       ctx.lineWidth = 1;
       ctx.beginPath();
-      for (let x = Math.ceil(this.xMin / p) * p; x <= this.xMax; x += p) {
+      for (let x = Math.ceil(this.xMin / pX) * pX; x <= this.xMax; x += pX) {
         const X = Math.round(this.px(x)) + 0.5;
         ctx.moveTo(X, 0); ctx.lineTo(X, this.alto);
       }
@@ -269,7 +286,7 @@ export class Plano {
       }
       ctx.stroke();
     };
-    if (sub * this.escala > 9) dibujarLineas(sub, 'rgba(255,255,255,0.025)');
+    if (sub * this.escala > 9) dibujarLineas(sub, 'rgba(255,255,255,0.025)', this.ejeX ? this.pasoX / 2 : sub);
     dibujarLineas(paso, 'rgba(255,255,255,0.07)');
   }
 
@@ -291,11 +308,14 @@ export class Plano {
     const yTexto = Math.min(Math.max(Y0 + 5, 4), this.alto - 18);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    for (let x = Math.ceil(this.xMin / paso) * paso; x <= this.xMax; x += paso) {
-      if (Math.abs(x) < paso / 2) continue;
+    const pasoX = this.pasoX;
+    for (let i = Math.ceil(this.xMin / pasoX); i * pasoX <= this.xMax; i++) {
+      const x = i * pasoX;
+      if (i === 0) continue;
       const X = this.px(x);
       if (X < 10 || X > this.ancho - 10) continue;
-      this._textoConHalo(textoNumeroEje(x, paso), X, yTexto);
+      const texto = this._textoEjeX(x, pasoX);
+      if (texto) this._textoConHalo(texto, X, yTexto);
     }
     ctx.textBaseline = 'middle';
     const pegadoIzq = X0 < 30;

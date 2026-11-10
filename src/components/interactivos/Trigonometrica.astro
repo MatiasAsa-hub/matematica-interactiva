@@ -1,0 +1,49 @@
+---
+// Interactivo de las funciones trigonométricas: seno, coseno y tangente,
+// con la circunferencia que gira y la onda que se va dibujando.
+// Lógica: src/interactivos/trigonometrica.js
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+---
+<div class="interactivo" data-interactivo="trigonometrica">
+  <div class="interactivo-grafico">
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="lectura-log" data-lectura aria-live="polite"></p>
+    <div class="grafico grafico-trig" data-grafico></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-vuelta>Dar una vuelta</button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <div class="selector-forma selector-3" role="radiogroup" aria-label="Función">
+      <button type="button" role="radio" aria-checked="true" data-modo="seno">Seno<span>sen <i>x</i></span></button>
+      <button type="button" role="radio" aria-checked="false" data-modo="coseno">Coseno<span>cos <i>x</i></span></button>
+      <button type="button" role="radio" aria-checked="false" data-modo="tangente">Tangente<span>tan <i>x</i></span></button>
+    </div>
+    <Deslizador param="x" min={0} max={360} paso={1} pasoBoton={15} valor={30} ayuda="el ángulo" />
+    <div class="selector-forma selector-unidad" role="radiogroup" aria-label="Unidad del ángulo">
+      <button type="button" role="radio" aria-checked="true" data-unidad="grados">Grados<span>90°</span></button>
+      <button type="button" role="radio" aria-checked="false" data-unidad="radianes">Radianes<span>π/2</span></button>
+    </div>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'ceros', texto: 'Ceros', color: '--c-raices', prendida: true },
+        { nombre: 'extremos', texto: 'Máximos y mínimos', color: '--c-vertice' },
+        { nombre: 'signos', texto: 'C⁺ y C⁻', color: '--c-positivo' },
+        { nombre: 'periodo', texto: 'Período', color: '--c-ordenada' },
+        { nombre: 'asintotas', texto: 'Asíntotas', color: '--texto' },
+        { nombre: 'dominio', texto: 'Dominio e imagen', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarTrigonometrica } from '../../interactivos/trigonometrica.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="trigonometrica"]').forEach(iniciarTrigonometrica);
+</script>

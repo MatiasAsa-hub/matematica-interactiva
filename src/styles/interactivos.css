@@ -500,3 +500,12 @@
 /* Logarítmica: la lectura "log₂(8) = 3 porque 2³ = 8" debajo de la fórmula */
 .lectura-log { margin: -0.3rem 0 0.5rem; text-align: center; font-size: 1.1rem; color: var(--c-funcion); min-height: 1.6em; font-variant-numeric: tabular-nums; }
 .lectura-log sup { font-size: 0.7em; }
+
+/* Trigonométricas: gráfico más ancho que alto (circunferencia + onda) */
+.grafico.grafico-trig { aspect-ratio: 16 / 10; }
+@media (min-width: 900px) { .grafico.grafico-trig { aspect-ratio: 16 / 10; } }
+.selector-unidad { margin-top: 0.4rem; }
+.selector-unidad button { min-height: 42px; }
+/* los botones de zoom van en fila, arriba a la derecha, para no tapar el final de la onda */
+.grafico-trig .plano-botones { flex-direction: row; top: 6px; right: 6px; }
+.grafico-trig .plano-boton { width: 34px; height: 34px; }

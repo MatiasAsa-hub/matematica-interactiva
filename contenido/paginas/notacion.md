@@ -29,6 +29,12 @@ Así escribimos las cosas en esta página. Puede que en tu escuela usen otra for
 - $\varnothing$: el conjunto vacío (no hay ningún número).
 - $\cup$: "unión". $(-\infty, 1) \cup (5, +\infty)$ quiere decir "los menores que 1, y también los mayores que 5".
 
+## Ángulos
+
+- Los ángulos se pueden medir en **grados** ($90°$) o en **radianes** ($\frac{\pi}{2}$). En los interactivos hay un botón para pasar de uno a otro.
+- Una vuelta entera: $360° = 2\pi$. Media vuelta: $180° = \pi$.
+- **sen** para el seno, **cos** para el coseno y **tan** para la tangente (en algunas escuelas, **tg**).
+
 ## Fórmulas
 
 - **Resolvente:** la fórmula para encontrar las raíces de una cuadrática $ax^2 + bx + c$:

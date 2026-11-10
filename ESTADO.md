@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 4 (Laboratorio, exponencial y logarítmica)_
+_Última actualización: 10/11/2026 — sesión 4 (Laboratorio, exponencial, logarítmica y trigonométricas)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -149,11 +149,21 @@ Mati pidió dejar **composición e inversa para el final** de la etapa; el resto
   - **Espejo con la exponencial**: kˣ en gris, la recta y = x y el punto espejado.
   - Casillas: raíz (prendida), C⁺ y C⁻, asíntota, crece o decrece, dominio e imagen (raya la zona x ≤ 0: "acá no hay log"). Aviso para *k* = 1.
   - 9 ejercicios.
+- **Funciones trigonométricas** (`funciones-trigonometricas.md`): interactivo `trigonometrica`. Mati eligió **un solo tema** con botón Seno / Coseno / Tangente, y un **botón Grados / Radianes** (arranca en grados).
+  - A la izquierda, una circunferencia de radio 1 con un punto que gira. A la derecha, la onda, que se va dibujando: lo recorrido fuerte y lo que falta suave.
+  - Seno = la altura del punto (línea punteada horizontal hasta la onda). Coseno = cuánto se corre a la derecha. Tangente = dónde el radio alargado corta la recta vertical de la derecha; en 90° y 270° dice "no existe".
+  - El ángulo se mueve arrastrando el punto (en la circunferencia o en la onda), con el deslizador, o con **Dar una vuelta** (animación de 7 segundos). Se pega a los ángulos lindos (30°, 45°, 60°, 90°…).
+  - Arriba se lee "x = 30° → sen(30°) = 0.5" (o con π/6 en radianes).
+  - Casillas: ceros (prendida), máximos y mínimos, C⁺ y C⁻ (en una vuelta), período (aleja la vista para ver dos vueltas), asíntotas (solo en la tangente), dominio e imagen.
+  - La onda está "apretada" a lo ancho (el ángulo se dibuja a la mitad de su tamaño en radianes) para que la circunferencia y la onda entren en el celular.
+  - 10 ejercicios. No tiene animación de puntos ni tabla: la vuelta del punto cumple ese papel.
+  - Página de Notación: sección nueva "Ángulos" (grados y radianes, sen / cos / tan).
+- Piezas compartidas: el `Plano` acepta números propios en el eje x (`ejeX`, para 90° o π/2) y el deslizador acepta un `formato` para mostrar su valor.
 - Links nuevos en los textos: `[Laboratorio](pagina:laboratorio)` apunta a una página suelta (anotado en `COMO-EDITAR.md`).
 
 ## Falta
 - Que Mati revise las Etapas 1 a 5 y dé su devolución.
-- **Próximo:** seguir la Etapa 5: trigonométricas, módulo, raíz, homográfica y partidas. **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
+- **Próximo:** seguir la Etapa 5: módulo, raíz, homográfica y partidas. **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
