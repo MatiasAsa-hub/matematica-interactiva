@@ -183,7 +183,21 @@ El vértice está arriba del eje y la parábola abre para arriba.
 
 ---
 
-## 7. Si algo sale mal
+## 7. Trabajar con Claude: sesiones nuevas
+
+Todo lo importante queda guardado en tres lugares que no dependen de la sesión: **`CLAUDE.md`** (el brief y las decisiones), **`ESTADO.md`** (qué está hecho y qué sigue) y el **historial de cambios** del repositorio.
+
+**Para arrancar una sesión nueva** (por ejemplo, al empezar una etapa):
+
+1. En la app de Claude, abrí una **sesión nueva** en la carpeta `PAGINA_MATEMATICA`.
+2. Escribí algo como: *"Leé ESTADO.md y seguimos con la Etapa 2"*.
+3. Listo: Claude lee `CLAUDE.md` solo y con `ESTADO.md` sabe dónde quedamos.
+
+**Si una sesión se llena** (la conversación es muy larga): la app resume sola lo anterior y se puede seguir. Igual conviene cerrar la etapa (que Claude actualice `ESTADO.md` y suba los cambios) y seguir en una sesión nueva.
+
+**Si una sesión se corta a la mitad de algo:** abrí una sesión nueva y escribí *"La sesión anterior se cortó mientras hacías X. Revisá `git status` y `ESTADO.md` y terminalo"*. Los archivos que se estaban cambiando quedan en la carpeta, aunque no se hayan subido.
+
+## 8. Si algo sale mal
 
 - Si en **Actions** aparece una ❌ roja, abrila: el mensaje suele decir qué falta, por ejemplo *"Falta la línea respuesta: ... en contenido/temas/analisis/funcion-cuadratica.md, ejercicio 'El vértice'"*.
 - Para volver atrás un cambio: en el archivo, tocá **"History"**, elegí la versión anterior y copiá el texto de ahí.
