@@ -1,0 +1,41 @@
+---
+// Interactivo: operaciones con fracciones, paso a paso.
+// Lógica: src/interactivos/fraccionesOperaciones.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo interactivo-cuentas interactivo-fracciones" data-interactivo="fracciones-operaciones">
+  <div class="selector-forma selector-4" role="radiogroup" aria-label="Operación">
+    <button type="button" role="radio" aria-checked="true" data-modo="+">Sumar</button>
+    <button type="button" role="radio" aria-checked="false" data-modo="−">Restar</button>
+    <button type="button" role="radio" aria-checked="false" data-modo="·">Multiplicar</button>
+    <button type="button" role="radio" aria-checked="false" data-modo=":">Dividir</button>
+  </div>
+
+  <div class="expresion expresion-numeros expresion-fracciones" data-expresion aria-live="polite"></div>
+  <div class="dibujo-fracciones" data-dibujo></div>
+  <p class="galera-texto" data-texto aria-live="polite"></p>
+
+  <div class="cuentas-botones">
+    <button type="button" class="boton boton-principal" data-siguiente>Siguiente paso</button>
+    <button type="button" class="boton" data-todo>Ver todo</button>
+    <button type="button" class="boton" data-reiniciar>Empezar de nuevo</button>
+  </div>
+
+  <div class="fracciones-deslizadores">
+    <div class="fraccion-control" style="--color-frac: var(--c-funcion)">
+      <p class="fraccion-control-titulo">Primera fracción</p>
+      <Deslizador param="a" min={1} max={9} paso={1} valor={1} ayuda="numerador" />
+      <Deslizador param="b" min={1} max={9} paso={1} valor={2} ayuda="denominador" />
+    </div>
+    <div class="fraccion-control" style="--color-frac: var(--c-vertice)">
+      <p class="fraccion-control-titulo">Segunda fracción</p>
+      <Deslizador param="c" min={1} max={9} paso={1} valor={1} ayuda="numerador" />
+      <Deslizador param="d" min={1} max={9} paso={1} valor={3} ayuda="denominador" />
+    </div>
+  </div>
+</div>
+
+<script>
+  import { iniciarFraccionesOperaciones } from '../../interactivos/fraccionesOperaciones.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="fracciones-operaciones"]').forEach(iniciarFraccionesOperaciones);
+</script>

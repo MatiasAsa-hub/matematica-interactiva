@@ -42,6 +42,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* Lo que está oculto (atributo hidden) se oculta siempre, aunque otra regla le dé display */
+[hidden] { display: none !important; }
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

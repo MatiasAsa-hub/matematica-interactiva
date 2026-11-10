@@ -1,0 +1,27 @@
+---
+// Interactivo: qué es una fracción (barras, recta y división).
+// Lógica: src/interactivos/fraccion.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo" data-interactivo="fraccion">
+  <div class="interactivo-grafico">
+    <div class="expresion expresion-numeros" data-expresion aria-live="polite"></div>
+    <div class="dibujo-fracciones" data-dibujo></div>
+  </div>
+  <div class="interactivo-controles">
+    <Deslizador param="a" min={0} max={12} paso={1} valor={3} ayuda="numerador: cuántos pinto" />
+    <Deslizador param="b" min={1} max={8} paso={1} valor={4} ayuda="denominador: en cuántos corto" />
+    <div class="casillas-grupo">
+      <button type="button" class="casilla" data-casilla="simplificar" aria-pressed="false" style="--color: var(--c-vertice)">
+        <span class="casilla-marca" aria-hidden="true"></span>
+        <span>Simplificar</span>
+      </button>
+    </div>
+    <div class="explicacion-viva" data-texto aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarFraccion } from '../../interactivos/fraccion.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="fraccion"]').forEach(iniciarFraccion);
+</script>

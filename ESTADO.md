@@ -42,6 +42,18 @@ _Última actualización: 10/11/2026 — sesión 2_
   - Casilla **Tabla del divisor**: marca el producto elegido y tacha el siguiente, que "se pasa".
   - Ejemplos elegibles (campo `divisiones:` del tema) y un formulario para probar una división propia.
   - 7 ejercicios. Va antes de fracciones.
+- **Qué es una fracción** (`que-es-una-fraccion.md`): interactivo `fraccion`.
+  - Muestra a/b con barras (cada barra es 1 entero) y en la recta numérica, y siempre recalca que **la fracción ES una división**: a/b = a : b = decimal.
+  - Si a > b, lo conecta con la galera (cociente = enteros, resto = lo que sobra).
+  - Casilla **Simplificar**: las líneas de corte se afinan y quedan las gruesas cada g pedazos.
+  - 6 ejercicios.
+- **Operaciones con fracciones** (`operaciones-con-fracciones.md`): interactivo `fracciones-operaciones`, paso a paso.
+  - **Sumar y restar:** las barras se "recortan" hasta tener pedazos del mismo tamaño (mcm) y después se juntan o se tachan. Si la resta da negativo, lo muestra.
+  - **Multiplicar:** "la parte de una parte", en un cuadrado cortado en columnas y filas; el cruce da a·c de b·d. Solo dibuja cuando las fracciones son menores que 1.
+  - **Dividir:** la segunda fracción **se da vuelta como una carta** (animación 3D) y el ":" se convierte en "·", con el porqué: la fracción es una división.
+  - Siempre termina simplificando y dando el decimal. 8 ejercicios (las respuestas se pueden escribir como fracción o como decimal).
+- Básico ahora tiene dos subsecciones (Operaciones y Fracciones), así que en la lista de Temas aparecen como subcarpetas.
+- Arreglado: la "Tabla del divisor" (y el botón "Repetir" de la cuadrática) no se ocultaban al apagarlos.
 - **Listas de Temas y de Tutores en carpetas desplegables** (pedido de Mati): sección → subsección → temas. Las subsecciones se vuelven carpetas cuando una sección tiene más de una. En Tutores, "Cómo usar esta página en una clase" también va en una carpeta.
 
 ## Falta

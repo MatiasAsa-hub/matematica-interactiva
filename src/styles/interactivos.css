@@ -175,6 +175,48 @@
 }
 .galera-aviso { flex-basis: 100%; margin: 0; color: var(--c-negativo); font-size: 0.92rem; min-height: 0; }
 
+/* --- Fracciones --- */
+.frac {
+  display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle;
+  line-height: 1.1; margin: 0 0.12em; color: var(--color-frac, inherit);
+}
+.frac-num { padding: 0 0.2em; border-bottom: 2px solid currentColor; }
+.frac-den { padding: 0 0.2em; }
+.frac-signo { margin-right: 0.05em; }
+.frac-resultado { color: var(--texto); font-weight: 700; }
+.expresion-fracciones { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.15em; min-height: 3.4em; }
+.op-frac { margin: 0 0.15em; }
+.dibujo-fracciones svg { width: 100%; max-width: 520px; display: block; margin: 0.4rem auto; }
+.dibujo-fracciones .nuevo { animation: aparece-corte 0.7s ease-out both; }
+@keyframes aparece-corte { from { opacity: 0; } to { opacity: 1; } }
+.svg-titulo { fill: var(--texto-suave); font-size: 13px; font-family: var(--fuente); }
+.svg-numero { fill: var(--texto-suave); font-size: 14px; font-family: var(--fuente); }
+
+/* la carta que se da vuelta (dividir fracciones) */
+.carta-frac { display: inline-grid; perspective: 400px; vertical-align: middle; }
+.carta-frac .cara {
+  grid-area: 1 / 1; display: inline-flex; align-items: center; justify-content: center;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  transition: transform 0.9s cubic-bezier(.5, -0.3, .4, 1.4);
+  background: var(--fondo-resalte); border: 1px solid var(--borde); border-radius: 10px; padding: 0.1em 0.25em;
+}
+.carta-frac .dorso { transform: rotateX(180deg); }
+.carta-frac.volteada .frente { transform: rotateX(-180deg); }
+.carta-frac.volteada .dorso { transform: rotateX(0deg); border-color: var(--c-vertice); }
+.op-cambia { display: inline-grid; }
+.op-cambia > span { grid-area: 1 / 1; transition: opacity 0.4s 0.45s, transform 0.4s 0.45s; }
+.op-cambia .op-nuevo { opacity: 0; transform: scale(0.3); }
+.op-cambia.cambiada .op-viejo { opacity: 0; transform: scale(0.3); }
+.op-cambia.cambiada .op-nuevo { opacity: 1; transform: none; color: var(--c-vertice); }
+
+.selector-forma.selector-4 { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 520px) { .selector-forma.selector-4 { grid-template-columns: repeat(4, 1fr); } }
+.selector-4 button { min-height: 44px; font-size: 0.92rem; }
+.fracciones-deslizadores { display: grid; gap: 1rem; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dashed var(--borde); }
+@media (min-width: 640px) { .fracciones-deslizadores { grid-template-columns: 1fr 1fr; } }
+.fraccion-control-titulo { margin: 0 0 0.2rem; font-weight: 700; color: var(--color-frac); }
+.galera-texto.final { color: var(--texto); }
+
 /* --- Selector de forma (ej. polinómica / canónica) --- */
 .selector-forma {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4px;

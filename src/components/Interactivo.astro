@@ -8,16 +8,20 @@ import RectaSignos from './interactivos/RectaSignos.astro';
 import RectaMultiplicacion from './interactivos/RectaMultiplicacion.astro';
 import OrdenOperaciones from './interactivos/OrdenOperaciones.astro';
 import Galera from './interactivos/Galera.astro';
+import Fraccion from './interactivos/Fraccion.astro';
+import FraccionesOperaciones from './interactivos/FraccionesOperaciones.astro';
 
 interface Props { nombre: string; opciones?: Record<string, any> }
 const { nombre, opciones = {} } = Astro.props;
-const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera'];
+const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
 {nombre === 'recta-signos' && <RectaSignos />}
 {nombre === 'recta-multiplicacion' && <RectaMultiplicacion />}
 {nombre === 'orden-operaciones' && <OrdenOperaciones cuentas={opciones.cuentas} />}
 {nombre === 'galera' && <Galera divisiones={opciones.divisiones} />}
+{nombre === 'fraccion' && <Fraccion />}
+{nombre === 'fracciones-operaciones' && <FraccionesOperaciones />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}
