@@ -24,19 +24,32 @@ const resolvente = katex.renderToString(
   </div>
 
   <div class="interactivo-controles">
+    <div class="selector-forma" role="radiogroup" aria-label="Forma de escribir la función" data-selector-forma>
+      <button type="button" role="radio" aria-checked="true" data-forma="polinomica">
+        Polinómica <span>a<i>x</i>² + b<i>x</i> + c</span>
+      </button>
+      <button type="button" role="radio" aria-checked="false" data-forma="canonica">
+        Canónica <span>a(<i>x</i> − h)² + k</span>
+      </button>
+    </div>
+
     <Deslizador param="a" min={-3} max={3} paso={0.1} pasoBoton={0.5} valor={1} />
-    <Deslizador param="h" min={-5} max={5} paso={0.1} pasoBoton={0.5} valor={1} />
-    <Deslizador param="k" min={-6} max={6} paso={0.1} pasoBoton={0.5} valor={-4} />
-    <p class="cartel-aviso" data-aviso-a0 hidden>
-      Con <i>a</i> = 0 desaparece la <i>x</i>²: queda <i>f</i>(<i>x</i>) = <i>k</i>, que no es una parábola sino una recta horizontal.
-    </p>
+    <div class="grupo-deslizadores" data-grupo="polinomica">
+      <Deslizador param="b" min={-8} max={8} paso={0.1} pasoBoton={0.5} valor={-2} />
+      <Deslizador param="c" min={-8} max={8} paso={0.1} pasoBoton={0.5} valor={-3} />
+    </div>
+    <div class="grupo-deslizadores" data-grupo="canonica" hidden>
+      <Deslizador param="h" min={-6} max={6} paso={0.1} pasoBoton={0.5} valor={1} />
+      <Deslizador param="k" min={-8} max={8} paso={0.1} pasoBoton={0.5} valor={-4} />
+    </div>
+    <p class="cartel-aviso" data-aviso-a0 hidden></p>
 
     <Casillas
       titulo="Mostrar en el gráfico"
       casillas={[
+        { nombre: 'raices', texto: 'Raíces', color: '--c-raices', prendida: true },
         { nombre: 'vertice', texto: 'Vértice', color: '--c-vertice', prendida: true },
         { nombre: 'eje', texto: 'Eje de simetría', color: '--c-vertice' },
-        { nombre: 'raices', texto: 'Raíces', color: '--c-raices' },
         { nombre: 'ordenada', texto: 'Ordenada al origen', color: '--c-ordenada' },
         { nombre: 'signos', texto: 'C⁺, C⁻ y C⁰', color: '--c-positivo' },
         { nombre: 'crece', texto: 'Crece y decrece', color: '--c-crece' },

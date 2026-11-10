@@ -76,6 +76,24 @@
 .tabla-valores td.nueva { background: rgba(88, 196, 221, 0.22); }
 .tabla-valores i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
 
+/* --- Selector de forma (ej. polinómica / canónica) --- */
+.selector-forma {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  padding: 4px; margin-bottom: 0.3rem;
+  background: var(--fondo); border: 1px solid var(--borde); border-radius: 12px;
+}
+.selector-forma button {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  min-height: 48px; padding: 0.3rem 0.4rem;
+  background: transparent; border: 0; border-radius: 9px;
+  color: var(--texto-suave); font-weight: 700; cursor: pointer; touch-action: manipulation;
+}
+.selector-forma button span { font-weight: 400; font-size: 0.85rem; white-space: nowrap; }
+.selector-forma button i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.selector-forma button[aria-checked='true'] { background: var(--fondo-resalte); color: var(--texto); box-shadow: inset 0 0 0 1px var(--borde); }
+.grupo-deslizadores { display: flex; flex-direction: column; gap: 0.5rem; }
+.grupo-deslizadores[hidden] { display: none; }
+
 /* --- Deslizadores --- */
 .interactivo-controles { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
 .deslizador { --porcentaje: 50%; }

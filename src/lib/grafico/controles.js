@@ -22,10 +22,16 @@ export function conectarDeslizador(el, alCambiar, { alEmpezar = () => {}, alTerm
 
   const control = {
     valor: Number(input.value),
-    poner(v, avisar = true) {
+    /**
+     * Cambia el valor. Con redondear = false se guarda el valor exacto
+     * (sirve cuando el valor viene de una cuenta, ej. al pasar de una forma a otra).
+     */
+    poner(v, avisar = true, redondear = true) {
       v = Math.min(max, Math.max(min, v));
-      v = Math.round(v / paso) * paso;
-      v = Number(v.toFixed(decimales)); // evita cosas como 0.30000000000000004
+      if (redondear) {
+        v = Math.round(v / paso) * paso;
+        v = Number(v.toFixed(decimales)); // evita cosas como 0.30000000000000004
+      }
       input.value = String(v);
       control.valor = v;
       mostrar();
@@ -34,7 +40,7 @@ export function conectarDeslizador(el, alCambiar, { alEmpezar = () => {}, alTerm
   };
 
   function mostrar() {
-    salida.textContent = num(control.valor, decimales);
+    salida.textContent = num(control.valor, Math.max(decimales, 2));
     el.style.setProperty('--porcentaje', `${((control.valor - min) / (max - min)) * 100}%`);
   }
 

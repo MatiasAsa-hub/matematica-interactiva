@@ -21,6 +21,7 @@ Una página web interactiva de matemática, gratuita y de acceso libre, para un 
 - Mantené un archivo `ESTADO.md` con qué está hecho, qué falta y las decisiones pendientes. Actualizalo al final de cada sesión.
 - Hacé commits chicos y con mensajes claros en español.
 - Mati usa Windows. Su usuario de GitHub es `MatiasAsa-hub`.
+- **Textos (alumnos y tutores): por ahora genéricos y cortos**, con ítems más que párrafos. No gastar mucho esfuerzo en redactarlos: Mati los va a escribir más adelante, con ayuda de Claude. El esfuerzo va a los interactivos y a los ejercicios.
 
 ## 3. Requisitos técnicos
 
@@ -82,6 +83,9 @@ Una página de referencia con todas las convenciones, que va creciendo. Las conv
 - **"Resolvente"** (no "Bhaskara").
 - **f'(x)** para la derivada.
 - **Intervalos:** corchete = cerrado, paréntesis = abierto. Ejemplo: [2, 5).
+- **ℝ** para "todos los reales" y **∅** para "vacío" (por ejemplo, C⁻ = ∅). Confirmado por Mati.
+- Los **intervalos de crecimiento y decrecimiento** van **abiertos** en el vértice: "crece en (1, +∞)". Confirmado.
+- Los resultados **no exactos** se muestran redondeados a 2 decimales con **≈** (x₁ ≈ 1.27). Confirmado.
 - Las convenciones nuevas que surjan, preguntáselas a Mati y sumalas.
 
 ### BÁSICO — Cómo operar
@@ -138,7 +142,8 @@ Todos se arman sobre el módulo de graficado compartido. Valen para **alumnos y 
 - Casillas para prender y apagar: ordenada al origen, raíz, pendiente (triángulo "avanzo 1, subo m"), C⁺/C⁻ pintados, creciente o decreciente.
 
 ### 3. Función cuadrática (interactivo propio)
-- **Forma canónica:** f(x) = a(x − h)² + k, con deslizadores para *a*, *h* y *k*.
+- **Dos formas, con un botón para cambiar** (y cambian los deslizadores): **forma polinómica** f(x) = ax² + bx + c (**la que aparece primero, por defecto**) y **forma canónica** f(x) = a(x − h)² + k. Al cambiar de forma, la parábola queda igual. Los ejercicios del tema van **principalmente en forma polinómica**.
+- **Casillas prendidas por defecto:** raíces, vértice y animación de puntos. El resto, apagado hasta que el usuario lo prenda (vale como criterio general para los demás interactivos).
 - Casillas: vértice, eje de simetría, raíces (con la resolvente; avisar claramente cuando no hay raíces reales), ordenada al origen, C⁺/C⁻/C⁰ pintados, intervalos de crecimiento y decrecimiento, máximo o mínimo.
 
 ### 4. Polinomios de grado 3 en adelante (interactivo propio)
@@ -186,14 +191,19 @@ Tiene que aportar algo que GeoGebra no da hecho.
 7. **Integrales.**
 8. **Álgebra** (sistemas, Gauss, matrices, vectores, planos, 3D).
 
-Transversales, a lo largo de todas las etapas: la página de notación, la sección para tutores, las guías imprimibles.
+Transversales, a lo largo de todas las etapas: la página de notación y la sección para tutores. **Las guías imprimibles quedan para el final de todo** (decisión de Mati).
 
 ## 11. Decisiones pendientes
 
 - Nombre de la página: **neutro**, ni personal ni referido a ninguna organización. Mientras tanto, usá un nombre provisorio genérico.
-- La estética final (después del prototipo).
+- ~~La estética final~~ → **aprobada** con el prototipo (pizarra gris azulada, Nunito, colores por concepto).
 - La forma de los parámetros para polinomios de grado ≥ 3.
-- Si la tabla x | f(x) acompaña la animación de puntos por defecto o solo opcional.
+- ~~La tabla x | f(x)~~ → **opcional, apagada por defecto**.
 - Los detalles de la animación de integral 7.a.
 - Las convenciones de notación nuevas que vayan apareciendo.
 - Si se incluyen espacios vectoriales y subespacios.
+
+## 12. Ideas anotadas (para más adelante)
+
+- **Glosario al tocar una palabra** (idea de Mati): las palabras formales (C⁺, vértice, raíz, resolvente, intervalo…) se pueden tocar en el celular o señalar con el mouse, y aparece una descripción corta. Se puede armar a partir de la página de Notación.
+- **En el celular, al mover los deslizadores no se ve el gráfico** (quedan uno debajo del otro). Mati dice que es un detalle menor. Posible solución: gráfico "pegajoso" arriba o deslizadores flotantes.
