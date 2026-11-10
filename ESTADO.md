@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 3 (Etapas 2 y 3 completas)_
+_Última actualización: 10/11/2026 — sesión 3 (Etapas 2 y 3, y polinómicas de la 4)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -114,11 +114,23 @@ A Mati le gustó el orden de los temas de la Etapa 2. La cuadrática y la animac
 - Piezas nuevas compartidas: `src/lib/formula.js` (lee fórmulas con *x*, las escribe lindas y hace la cuenta reemplazando; sirve para el Laboratorio) y `src/lib/grafico/signos.js` (C⁺/C⁻ y crece/decrece, ahora compartido por la cuadrática y la lineal; sirve para los polinomios).
 - Arreglados dos links viejos en la cuadrática (a "potencias" y "ecuaciones").
 
+### Etapa 4 — Polinómicas ✅ y Laboratorio (pendiente)
+- **Funciones polinómicas** (`funcion-polinomica.md`): interactivo `polinomica`. Mati eligió la forma **con las raíces**: f(x) = a(x − r₁)(x − r₂)…
+  - Se elige el **grado de 1 a 5**. Grado 1 avisa que es una lineal y grado 2 una cuadrática: son casos particulares.
+  - Las raíces se **arrastran sobre el eje x** (de a 0.5, así es fácil juntar dos) o con deslizadores. Debajo de la fórmula aparece el polinomio desarrollado.
+  - Si dos raíces coinciden: "raíz doble, toca y rebota".
+  - Casillas: raíces (prendida), ordenada, máximos y mínimos, puntos de inflexión, C⁺ y C⁻, crece y decrece. Animación (prendida) y tabla (apagada). Los extremos y las inflexiones se calculan con números.
+  - Los puntos de inflexión van en lila (como los extremos), pero con un círculo hueco en vez de rombo.
+  - Dice cómo son las puntas: según el grado y el signo de *a*, de dónde viene y a dónde va la curva.
+  - 7 ejercicios.
+- Pieza nueva compartida: `src/lib/polinomios.js` (desarrollar, evaluar, derivar, buscar dónde cambia el signo).
+- No hay botón para cambiar a "forma con coeficientes" (a₃x³ + a₂x² + …): queda para más adelante si Mati lo quiere.
+
 ## Falta
-- Que Mati revise las Etapas 1, 2 y 3 y dé su devolución.
-- **Próximo:** Etapa 4, polinómicas y Laboratorio de funciones. Antes hay que decidir con Mati la forma de los parámetros de los polinomios de grado ≥ 3.
+- Que Mati revise las Etapas 1 a 4 y dé su devolución.
+- **Próximo:** Etapa 4, segunda parte: **Laboratorio de funciones** (el "supergraficador" a·f(b(x − c)) + d, con la función base fantasma). `src/lib/formula.js` ya lee fórmulas.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
-- Etapas 3 a 8, según la hoja de ruta de `CLAUDE.md`.
+- Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
 
 ## Decisiones tomadas en la sesión 2
@@ -134,7 +146,6 @@ A Mati le gustó el orden de los temas de la Etapa 2. La cuadrática y la animac
 - **Celular:** al mover los deslizadores de la cuadrática no se ve el gráfico al mismo tiempo. Es un detalle menor; posible solución: gráfico "pegajoso" arriba.
 
 ## Decisiones pendientes
-- La forma de los parámetros de los polinomios de grado ≥ 3.
 - Los detalles de la animación de la integral (7.a).
 - Si se incluyen espacios vectoriales.
 

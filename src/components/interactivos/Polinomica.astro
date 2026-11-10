@@ -1,0 +1,68 @@
+---
+// Interactivo de las funciones polinómicas, escritas con sus raíces:
+//   f(x) = a(x − r₁)(x − r₂)…(x − rₙ)
+// Se elige el grado (1 a 5) y se arrastran las raíces sobre el eje x.
+// Lógica: src/interactivos/polinomica.js
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+
+const grados = [1, 2, 3, 4, 5];
+const subindice = ['₁', '₂', '₃', '₄', '₅'];
+---
+<div class="interactivo" data-interactivo="polinomica">
+  <div class="interactivo-grafico">
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="expresion-desarrollada" data-desarrollada></p>
+    <div class="grafico" data-grafico></div>
+    <div class="tabla-caja" data-tabla hidden></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir animación
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <p class="selector-titulo">Grado</p>
+    <div class="selector-forma selector-5" role="radiogroup" aria-label="Grado del polinomio">
+      {grados.map((g) => (
+        <button type="button" role="radio" aria-checked={g === 3 ? 'true' : 'false'} data-grado={g} aria-label={`Grado ${g}`}>{g}<span>{g === 1 ? 'recta' : g === 2 ? 'parábola' : ' '}</span></button>
+      ))}
+    </div>
+    <p class="cartel-aviso" data-aviso-grado hidden></p>
+
+    <Deslizador param="a" min={-3} max={3} paso={0.1} pasoBoton={0.5} valor={1} ayuda="el número de adelante" />
+    <div class="grupo-deslizadores">
+      {grados.map((g, i) => (
+        <div data-raiz-control={i} hidden={i >= 3}>
+          <Deslizador param={`r${i}`} etiqueta={`r${subindice[i]}`} min={-5} max={5} paso={0.5} valor={[-1, 1, 3, 1, 2][i]} ayuda={i === 0 ? 'raíces (también se arrastran)' : undefined} />
+        </div>
+      ))}
+    </div>
+    <p class="cartel-aviso" data-aviso-a0 hidden>Con <i>a</i> = 0, todo queda multiplicado por 0: <i>f</i>(<i>x</i>) = 0.</p>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'raices', texto: 'Raíces', color: '--c-raices', prendida: true },
+        { nombre: 'ordenada', texto: 'Ordenada al origen', color: '--c-ordenada' },
+        { nombre: 'extremos', texto: 'Máximos y mínimos', color: '--c-vertice' },
+        { nombre: 'inflexion', texto: 'Puntos de inflexión', color: '--c-vertice' },
+        { nombre: 'signos', texto: 'C⁺ y C⁻', color: '--c-positivo' },
+        { nombre: 'crece', texto: 'Crece y decrece', color: '--c-crece' },
+      ]}
+      extras={[
+        { nombre: 'animacion', texto: 'Animación de puntos', color: '--c-funcion', prendida: true },
+        { nombre: 'tabla', texto: 'Tabla <i>x</i> | <i>f</i>(<i>x</i>)', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarPolinomica } from '../../interactivos/polinomica.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="polinomica"]').forEach(iniciarPolinomica);
+</script>

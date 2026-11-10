@@ -154,7 +154,7 @@ Todos se arman sobre el módulo de graficado compartido. Valen para **alumnos y 
 
 ### 4. Polinomios de grado 3 en adelante (interactivo propio)
 - Se elige el grado (3, 4, 5…) y aparecen los deslizadores de los parámetros.
-- Forma de los parámetros: **decisión pendiente con Mati** (la forma canónica es propia de la cuadrática). Por defecto, coeficientes aₙ…a₀.
+- Forma de los parámetros: **con las raíces**, f(x) = a(x − r₁)(x − r₂)…, con las raíces arrastrables (decidido por Mati). El polinomio desarrollado se muestra debajo.
 - Casillas: raíces, ordenada al origen, máximos y mínimos, puntos de inflexión, C⁺/C⁻, crecimiento y decrecimiento (calculados numéricamente).
 
 ### 5. Laboratorio de funciones (el "supergraficador")
@@ -203,7 +203,7 @@ Transversales, a lo largo de todas las etapas: la página de notación y la secc
 
 - Nombre de la página: **neutro**, ni personal ni referido a ninguna organización. Mientras tanto, usá un nombre provisorio genérico.
 - ~~La estética final~~ → **aprobada** con el prototipo (pizarra gris azulada, Nunito, colores por concepto).
-- La forma de los parámetros para polinomios de grado ≥ 3.
+- ~~La forma de los parámetros para polinomios de grado ≥ 3~~ → **con las raíces**.
 - ~~La tabla x | f(x)~~ → **opcional, apagada por defecto**.
 - Los detalles de la animación de integral 7.a.
 - Las convenciones de notación nuevas que vayan apareciendo.

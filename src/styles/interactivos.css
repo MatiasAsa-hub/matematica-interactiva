@@ -472,3 +472,12 @@
 .maquina-cuenta i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
 .maquina-cuenta .neg, .explicacion-viva .neg { color: var(--c-negativo); }
 @media (max-width: 420px) { .maquina { font-size: 1.05rem; } }
+
+/* --- Polinómicas --- */
+.selector-forma.selector-5 { grid-template-columns: repeat(5, 1fr); }
+.selector-forma.selector-5 button { font-size: 1.2rem; }
+.selector-forma.selector-5 button span { font-size: 0.72rem; }
+.selector-titulo { margin: 0; font-size: 0.85rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.05em; }
+.expresion-desarrollada { margin: -0.4rem 0 0.5rem; text-align: center; color: var(--texto-suave); font-variant-numeric: tabular-nums; overflow-x: auto; white-space: nowrap; }
+.expresion-desarrollada i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.expresion.expresion-larga { font-size: 1.15rem; }
