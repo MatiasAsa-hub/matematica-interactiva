@@ -1,0 +1,86 @@
+---
+// Interactivo para las funciones con la forma a · f(x − h) + k:
+// módulo, raíz y homográfica (se elige con "familia").
+// Lógica: src/interactivos/familia.js
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+
+interface Props { familia: 'modulo' | 'raiz' | 'homografica' }
+const { familia = 'modulo' } = Astro.props;
+
+// valores iniciales: que ya se vea algo interesante y con raíces "lindas"
+const inicial = {
+  modulo: { a: 1, h: 2, k: -1 },
+  raiz: { a: 1, h: -2, k: -1 },
+  homografica: { a: 2, h: 1, k: 1 },
+}[familia];
+
+const ayudas = {
+  modulo: { a: 'abre o cierra la V (y la da vuelta)', h: 'corre a los costados', k: 'sube o baja' },
+  raiz: { a: 'estira (y la da vuelta)', h: 'corre a los costados', k: 'sube o baja' },
+  homografica: { a: 'qué tan lejos pasa de las asíntotas', h: 'corre la asíntota vertical', k: 'corre la asíntota horizontal' },
+}[familia];
+
+const propias = {
+  modulo: [
+    { nombre: 'raices', texto: 'Raíces', color: '--c-raices', prendida: true },
+    { nombre: 'extremos', texto: 'Vértice', color: '--c-vertice', prendida: true },
+    { nombre: 'espejo', texto: 'Sin el módulo', color: '--c-fantasma' },
+  ],
+  raiz: [
+    { nombre: 'raices', texto: 'Raíces', color: '--c-raices', prendida: true },
+    { nombre: 'arranque', texto: 'Punto de arranque', color: '--c-vertice', prendida: true },
+    { nombre: 'acostada', texto: 'Parábola acostada', color: '--c-fantasma' },
+  ],
+  homografica: [
+    { nombre: 'asintotas', texto: 'Asíntotas', color: '--texto', prendida: true },
+    { nombre: 'raices', texto: 'Raíces', color: '--c-raices', prendida: true },
+  ],
+}[familia];
+const comunes = [
+  { nombre: 'ordenada', texto: 'Ordenada al origen', color: '--c-ordenada' },
+  { nombre: 'signos', texto: 'C⁺ y C⁻', color: '--c-positivo' },
+  { nombre: 'crece', texto: 'Crece y decrece', color: '--c-crece' },
+  { nombre: 'dominio', texto: 'Dominio e imagen', color: '--c-funcion' },
+];
+---
+<div class="interactivo" data-interactivo="familia" data-familia={familia}>
+  <div class="interactivo-grafico">
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    {familia === 'homografica' && <p class="expresion-desarrollada" data-desarrollada></p>}
+    <p class="lectura-log" data-lectura aria-live="polite"></p>
+    <div class="grafico" data-grafico></div>
+    <div class="tabla-caja" data-tabla hidden></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir animación
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <div class="grupo-deslizadores">
+      <Deslizador param="a" min={-3} max={3} paso={0.5} valor={inicial.a} ayuda={ayudas.a} />
+      <Deslizador param="h" min={-5} max={5} paso={0.5} valor={inicial.h} ayuda={ayudas.h} />
+      <Deslizador param="k" min={-5} max={5} paso={0.5} valor={inicial.k} ayuda={ayudas.k} />
+    </div>
+    <p class="cartel-aviso" data-aviso hidden></p>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[...propias, ...comunes]}
+      extras={[
+        { nombre: 'animacion', texto: 'Animación de puntos', color: '--c-funcion', prendida: true },
+        { nombre: 'tabla', texto: 'Tabla <i>x</i> | <i>f</i>(<i>x</i>)', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarFamilia } from '../../interactivos/familia.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="familia"]').forEach(iniciarFamilia);
+</script>

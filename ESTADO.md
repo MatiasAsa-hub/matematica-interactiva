@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 4 (Laboratorio, exponencial, logarítmica y trigonométricas)_
+_Última actualización: 10/11/2026 — sesión 4 (Laboratorio y Etapa 5: exponencial, logarítmica, trigonométricas, módulo, raíz y homográfica)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -158,12 +158,22 @@ Mati pidió dejar **composición e inversa para el final** de la etapa; el resto
   - La onda está "apretada" a lo ancho (el ángulo se dibuja a la mitad de su tamaño en radianes) para que la circunferencia y la onda entren en el celular.
   - 10 ejercicios. No tiene animación de puntos ni tabla: la vuelta del punto cumple ese papel.
   - Página de Notación: sección nueva "Ángulos" (grados y radianes, sen / cos / tan).
+- **Módulo, raíz y homográfica**: tres temas (`funcion-modulo.md`, `funcion-raiz.md`, `funcion-homografica.md`) con **un interactivo común**, `familia`. Cada tema elige el suyo con el campo `familia:` (modulo, raiz u homografica).
+  - Forma a · f(x − h) + k, con deslizadores *a*, *h* y *k*, como la forma canónica de la cuadrática: |x − h|, √(x − h) y a / (x − h).
+  - **Un punto que se arrastra** sobre la curva y arriba muestra la cuenta: "|−1 − 2| = |−3| = 3", "√(2 + 2) = √4 = 2", "2 : (1.2 − 1) = 10". Avisa cuando no existe (raíz de un negativo, dividir por 0).
+  - Lo propio de cada una:
+    - Módulo: casilla **Sin el módulo** (la recta, con flechas que muestran cómo "rebota") y el vértice prendido.
+    - Raíz: **Punto de arranque** (prendido), **Parábola acostada** (la otra mitad en gris) y la zona sin raíz rayada.
+    - Homográfica: asíntotas prendidas, la forma "(x + 1) / (x − 1)" debajo de la fórmula, y una explicación de por qué aparecen las asíntotas.
+  - Casillas comunes: raíces, ordenada, C⁺ y C⁻, crece y decrece, dominio e imagen. Animación (prendida) y tabla.
+  - 7, 7 y 7 ejercicios.
+- Pieza nueva: `src/lib/analisisFuncion.js`, con los textos de raíces, C⁺/C⁻, asíntotas, dominio, etc. que antes estaban solo en el Laboratorio. Ahora la usan el Laboratorio y los tres temas nuevos.
 - Piezas compartidas: el `Plano` acepta números propios en el eje x (`ejeX`, para 90° o π/2) y el deslizador acepta un `formato` para mostrar su valor.
 - Links nuevos en los textos: `[Laboratorio](pagina:laboratorio)` apunta a una página suelta (anotado en `COMO-EDITAR.md`).
 
 ## Falta
 - Que Mati revise las Etapas 1 a 5 y dé su devolución.
-- **Próximo:** seguir la Etapa 5: módulo, raíz, homográfica y partidas. **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
+- **Próximo:** seguir la Etapa 5: funciones partidas. **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
