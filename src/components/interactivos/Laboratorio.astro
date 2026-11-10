@@ -1,0 +1,72 @@
+---
+// Laboratorio de funciones: se elige una función base y se transforma con
+//   a · f(b(x − c)) + d
+// Lógica: src/interactivos/laboratorio.js
+// Las funciones base (y cómo se escriben) están en src/lib/funcionesBase.js.
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+import { BASES, ORDEN_BASES } from '../../lib/funcionesBase.js';
+---
+<div class="interactivo" data-interactivo="laboratorio">
+  <div class="interactivo-grafico">
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="expresion-desarrollada" data-original></p>
+    <div class="grafico" data-grafico></div>
+    <div class="tabla-caja" data-tabla hidden></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir animación
+      </button>
+      <button type="button" class="boton boton-chico" data-reiniciar>Volver a la original</button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <p class="selector-titulo">Función base: <span class="texto-suave" data-nombre-base></span></p>
+    <div class="selector-forma selector-base" role="radiogroup" aria-label="Función base">
+      {ORDEN_BASES.map((nombre) => (
+        <button type="button" role="radio" aria-checked={nombre === 'cuadratica' ? 'true' : 'false'} data-base={nombre}
+          aria-label={BASES[nombre].nombre}><span class="base-etiqueta" set:html={BASES[nombre].boton} /></button>
+      ))}
+    </div>
+    <div data-control-k hidden>
+      <Deslizador param="k" min={0.2} max={5} paso={0.1} pasoBoton={0.5} valor={2} ayuda="la base" />
+    </div>
+
+    <p class="formula-general"><i>a</i> · <i>f</i>(<i>b</i>(<i>x</i> − <i>c</i>)) + <i>d</i></p>
+    <p class="efecto" data-efecto aria-live="polite"></p>
+    <div class="grupo-deslizadores">
+      <Deslizador param="a" min={-3} max={3} paso={0.1} pasoBoton={0.5} valor={1} ayuda="estira o da vuelta (arriba-abajo)" />
+      <Deslizador param="b" min={-3} max={3} paso={0.1} pasoBoton={0.5} valor={1} ayuda="angosta o ancha (a los costados)" />
+      <Deslizador param="c" min={-5} max={5} paso={0.5} valor={2} ayuda="corre a los costados" />
+      <Deslizador param="d" min={-5} max={5} paso={0.5} valor={-1} ayuda="sube o baja" />
+    </div>
+    <p class="cartel-aviso" data-aviso hidden></p>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'raices', texto: 'Raíces', color: '--c-raices', prendida: true },
+        { nombre: 'ordenada', texto: 'Ordenada al origen', color: '--c-ordenada' },
+        { nombre: 'extremos', texto: 'Máximos y mínimos', color: '--c-vertice' },
+        { nombre: 'signos', texto: 'C⁺ y C⁻', color: '--c-positivo' },
+        { nombre: 'crece', texto: 'Crece y decrece', color: '--c-crece' },
+        { nombre: 'asintotas', texto: 'Asíntotas', color: '--texto' },
+        { nombre: 'dominio', texto: 'Dominio e imagen', color: '--c-funcion' },
+      ]}
+      extras={[
+        { nombre: 'fantasma', texto: 'Original (gris)', color: '--c-fantasma', prendida: true },
+        { nombre: 'animacion', texto: 'Animación de puntos', color: '--c-funcion', prendida: true },
+        { nombre: 'tabla', texto: 'Tabla <i>x</i> | <i>f</i>(<i>x</i>)', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarLaboratorio } from '../../interactivos/laboratorio.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="laboratorio"]').forEach(iniciarLaboratorio);
+</script>

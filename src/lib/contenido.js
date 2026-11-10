@@ -86,7 +86,9 @@ export function obtenerPagina(nombre) {
   const crudo = archivos[`/contenido/paginas/${nombre}.md`];
   if (!crudo) throw new Error(`Falta el archivo contenido/paginas/${nombre}.md`);
   const { data, content } = matter(crudo);
-  return { datos: data, html: markdownAHtml(content) };
+  // Una línea que dice solo "(interactivo)" marca dónde va el interactivo de la página
+  const partes = content.split(/^\(interactivo\)[ \t]*$/m).map((p) => markdownAHtml(p));
+  return { datos: data, html: markdownAHtml(content), partes };
 }
 
 // --------------------------------------------------------------------------

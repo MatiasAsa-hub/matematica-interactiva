@@ -25,8 +25,11 @@ export class AnimacionPuntos {
    *   f: (x) => y   la función (puede cambiar: se lee cada vez)
    *   color: color de la curva y los puntos
    *   tabla: elemento donde va la tabla x | f(x) (opcional)
+   *   dibujarCurva: (hasta) => void, para dibujar la curva a mano (opcional;
+   *     sirve para las funciones con cortes, como la raíz o la tangente)
    */
-  constructor(plano, { f, color, tabla = null }) {
+  constructor(plano, { f, color, tabla = null, dibujarCurva = null }) {
+    this.dibujarCurvaPropia = dibujarCurva;
     this.plano = plano;
     this.f = f;
     this.color = color ?? plano.colores.funcion;
@@ -125,7 +128,8 @@ export class AnimacionPuntos {
   }
 
   _dibujarCurva() {
-    this.plano.curva(this.f, { color: this.color, ancho: 3.5, hasta: this.hastaX });
+    if (this.dibujarCurvaPropia) this.dibujarCurvaPropia(this.hastaX);
+    else this.plano.curva(this.f, { color: this.color, ancho: 3.5, hasta: this.hastaX });
   }
 
   _dibujarPuntos() {

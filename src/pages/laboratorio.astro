@@ -1,11 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
+import Interactivo from '../components/Interactivo.astro';
 import { obtenerPagina } from '../lib/contenido.js';
 const pagina = obtenerPagina('laboratorio');
+// el texto de antes del interactivo y el de después (separados por la línea "(interactivo)")
+const [antes, ...despues] = pagina.partes;
 ---
 <Base titulo={pagina.datos.titulo} seccion="laboratorio">
   <div class="contenedor">
     <h1 style="margin-top:1.4rem">{pagina.datos.titulo}</h1>
-    <div class="texto" set:html={pagina.html} />
+    <div class="consigna texto" set:html={antes} />
   </div>
+  <div class="contenedor-ancho">
+    <Interactivo nombre="laboratorio" />
+  </div>
+  {despues.length > 0 && (
+    <div class="contenedor">
+      <div class="texto" set:html={despues.join('')} />
+    </div>
+  )}
 </Base>

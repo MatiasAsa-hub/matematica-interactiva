@@ -114,7 +114,7 @@ A Mati le gustó el orden de los temas de la Etapa 2. La cuadrática y la animac
 - Piezas nuevas compartidas: `src/lib/formula.js` (lee fórmulas con *x*, las escribe lindas y hace la cuenta reemplazando; sirve para el Laboratorio) y `src/lib/grafico/signos.js` (C⁺/C⁻ y crece/decrece, ahora compartido por la cuadrática y la lineal; sirve para los polinomios).
 - Arreglados dos links viejos en la cuadrática (a "potencias" y "ecuaciones").
 
-### Etapa 4 — Polinómicas ✅ y Laboratorio (pendiente)
+### Etapa 4 — Polinómicas y Laboratorio ✅ (completa; falta la revisión de Mati)
 - **Funciones polinómicas** (`funcion-polinomica.md`): interactivo `polinomica`. Mati eligió la forma **con las raíces**: f(x) = a(x − r₁)(x − r₂)…
   - Se elige el **grado de 1 a 5**. Grado 1 avisa que es una lineal y grado 2 una cuadrática: son casos particulares.
   - Las raíces se **arrastran sobre el eje x** (de a 0.5, así es fácil juntar dos) o con deslizadores. Debajo de la fórmula aparece el polinomio desarrollado.
@@ -125,10 +125,20 @@ A Mati le gustó el orden de los temas de la Etapa 2. La cuadrática y la animac
   - 7 ejercicios.
 - Pieza nueva compartida: `src/lib/polinomios.js` (desarrollar, evaluar, derivar, buscar dónde cambia el signo).
 - No hay botón para cambiar a "forma con coeficientes" (a₃x³ + a₂x² + …): queda para más adelante si Mati lo quiere.
+- **Laboratorio de funciones** ✅ (página `laboratorio/`, texto en `contenido/paginas/laboratorio.md`): interactivo `laboratorio`.
+  - 13 funciones base: *x*, x², x³, |x|, √x, 1/x, sen, cos, tan, eˣ, kˣ, ln, logₖ. La base de kˣ y logₖ se llama **k** (no *a*, porque *a* ya es un deslizador); tiene su propio deslizador.
+  - Transformación a · f(b(x − c)) + d con 4 deslizadores. Arranca en (x − 2)² − 1 para que ya se vea algo.
+  - La original queda en gris punteada (casilla "Original", prendida).
+  - Debajo de la fórmula dice qué le pasó comparada con la original ("corrida 2 a la derecha y bajada 1").
+  - Casillas: raíces (prendida), ordenada, máximos y mínimos, C⁺ y C⁻, crece y decrece, **asíntotas** y **dominio e imagen** (estas dos son nuevas, porque estas funciones las tienen).
+  - En las que se repiten (sen, cos, tan) los intervalos se escriben con "… ∪ … ∪ …" y "se repiten cada …".
+  - Botón "Volver a la original". Avisos para b = 0 y base 1.
+  - La línea "(interactivo)" en el `.md` de una página marca dónde va el interactivo.
+- Pieza nueva: `src/lib/funcionesBase.js` (cada función base con su dominio, imagen, asíntotas, raíces y extremos; las cuentas salen exactas usando la inversa).
 
 ## Falta
 - Que Mati revise las Etapas 1 a 4 y dé su devolución.
-- **Próximo:** Etapa 4, segunda parte: **Laboratorio de funciones** (el "supergraficador" a·f(b(x − c)) + d, con la función base fantasma). `src/lib/formula.js` ya lee fórmulas.
+- **Próximo:** Etapa 5, otras funciones (trigonométricas, exponencial, logarítmica, módulo, raíz, homográfica, partidas, inversa y composición). El Laboratorio ya sabe dibujar casi todas.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).

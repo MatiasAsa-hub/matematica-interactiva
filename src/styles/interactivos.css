@@ -481,3 +481,18 @@
 .expresion-desarrollada { margin: -0.4rem 0 0.5rem; text-align: center; color: var(--texto-suave); font-variant-numeric: tabular-nums; overflow-x: auto; white-space: nowrap; }
 .expresion-desarrollada i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
 .expresion.expresion-larga { font-size: 1.15rem; }
+
+/* --- Laboratorio de funciones --- */
+.selector-forma.selector-base { grid-template-columns: repeat(5, 1fr); }
+.selector-forma.selector-base button { min-height: 44px; justify-content: center; font-size: 1.05rem; padding: 0.2rem; }
+.selector-forma.selector-base button .base-etiqueta { font-size: inherit; font-weight: 700; white-space: nowrap; }
+.selector-forma.selector-base button i { font-size: 1.1em; }
+.selector-forma.selector-base sup, .selector-forma.selector-base sub { font-size: 0.7em; }
+.radicando { border-top: 2px solid currentColor; padding: 0 0.1em; margin-left: 0.04em; }
+.texto-fantasma { color: var(--c-fantasma); font-weight: 700; }
+.formula-general { margin: 0.9rem 0 0.1rem; text-align: center; font-size: 1.15rem; color: var(--texto-suave); }
+.formula-general i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.efecto { margin: 0 0 0.6rem; min-height: 2.6em; font-size: 0.95rem; text-align: center; color: var(--texto-suave); }
+.efecto b { color: var(--texto); }
+.expresion sup { font-size: 0.65em; }
+.expresion .frac { font-size: 0.9em; }

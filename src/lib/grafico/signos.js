@@ -49,7 +49,7 @@ export function dibujarBarrasDeSigno(p, f, raices) {
     const x1 = cortes[i];
     const x2 = cortes[i + 1];
     const y = f((x1 + x2) / 2);
-    if (Math.abs(y) < EPS) continue;
+    if (!Number.isFinite(y) || Math.abs(y) < EPS) continue; // sin barra donde vale 0 o donde la función no existe
     const positivo = y > 0;
     const ctx = p.ctx;
     ctx.save();
