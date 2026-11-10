@@ -52,7 +52,12 @@ _Última actualización: 10/11/2026 — sesión 2_
   - **Multiplicar:** "la parte de una parte", en un cuadrado cortado en columnas y filas; el cruce da a·c de b·d. Solo dibuja cuando las fracciones son menores que 1.
   - **Dividir:** la segunda fracción **se da vuelta como una carta** (animación 3D) y el ":" se convierte en "·", con el porqué: la fracción es una división.
   - Siempre termina simplificando y dando el decimal. 8 ejercicios (las respuestas se pueden escribir como fracción o como decimal).
-- Básico ahora tiene dos subsecciones (Operaciones y Fracciones), así que en la lista de Temas aparecen como subcarpetas.
+- **Potencias y raíces** (`potencias-y-raices.md`): interactivo `potencias`, con tres modos.
+  - **Qué es:** aⁿ con fichas que aparecen de a una. Para n = 2 dibuja el cuadrado (de ahí "al cuadrado") y para n = 3 el cubo (de ahí "al cubo"). Con base negativa explica par/impar, y la casilla "¿Y sin paréntesis?" muestra la trampa −2⁴ ≠ (−2)⁴. Para 0⁰ avisa que no está definido.
+  - **Propiedades:** con fichas *a*. Al multiplicar se juntan (los exponentes se suman); al dividir se tachan de a pares, y de ahí salen **a⁰ = 1** y los **exponentes negativos**; la potencia de potencia se ve como grupos.
+  - **Raíces:** la raíz cuadrada es el lado de un cuadrado de área dada, sobre una cuadrícula. Si no da justo, dice entre qué números está.
+  - 11 ejercicios.
+- Básico ahora tiene tres subsecciones (Operaciones, Fracciones, Potencias y raíces), así que en la lista de Temas aparecen como subcarpetas.
 - Arreglado: la "Tabla del divisor" (y el botón "Repetir" de la cuadrática) no se ocultaban al apagarlos.
 - **Listas de Temas y de Tutores en carpetas desplegables** (pedido de Mati): sección → subsección → temas. Las subsecciones se vuelven carpetas cuando una sección tiene más de una. En Tutores, "Cómo usar esta página en una clase" también va en una carpeta.
 

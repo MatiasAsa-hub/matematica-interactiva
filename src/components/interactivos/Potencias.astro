@@ -1,0 +1,45 @@
+---
+// Interactivo: potencias (qué es, propiedades) y raíces.
+// Lógica: src/interactivos/potencias.js
+import Deslizador from '../controles/Deslizador.astro';
+---
+<div class="interactivo interactivo-cuentas interactivo-potencias" data-interactivo="potencias">
+  <div class="selector-forma selector-3" role="radiogroup" aria-label="Qué ver">
+    <button type="button" role="radio" aria-checked="true" data-modo data-valor="que">Qué es</button>
+    <button type="button" role="radio" aria-checked="false" data-modo data-valor="prop">Propiedades</button>
+    <button type="button" role="radio" aria-checked="false" data-modo data-valor="raiz">Raíces</button>
+  </div>
+
+  <div class="selector-forma selector-3 selector-chico" role="radiogroup" aria-label="Propiedad" data-grupo="prop">
+    <button type="button" role="radio" aria-checked="true" data-prop data-valor="producto">Multiplicar <span><i>a</i>ᵐ · <i>a</i>ⁿ</span></button>
+    <button type="button" role="radio" aria-checked="false" data-prop data-valor="cociente">Dividir <span><i>a</i>ᵐ : <i>a</i>ⁿ</span></button>
+    <button type="button" role="radio" aria-checked="false" data-prop data-valor="potencia">Potencia de potencia <span>(<i>a</i>ᵐ)ⁿ</span></button>
+  </div>
+
+  <div class="expresion expresion-numeros expresion-potencia" data-expresion aria-live="polite"></div>
+  <div class="dibujo-potencias" data-dibujo></div>
+  <p class="galera-texto" data-texto aria-live="polite"></p>
+
+  <div class="grupo-deslizadores" data-grupo="que">
+    <Deslizador param="a" min={-6} max={10} paso={1} valor={2} ayuda="base" />
+    <Deslizador param="n" min={0} max={6} paso={1} valor={3} ayuda="exponente" />
+    <div class="casillas-grupo">
+      <button type="button" class="casilla" data-casilla="trampa" aria-pressed="false" hidden style="--color: var(--c-negativo)">
+        <span class="casilla-marca" aria-hidden="true"></span>
+        <span>¿Y sin paréntesis?</span>
+      </button>
+    </div>
+  </div>
+  <div class="grupo-deslizadores" data-grupo="prop" hidden>
+    <Deslizador param="m" etiqueta="m" min={0} max={6} paso={1} valor={3} ayuda="primer exponente" />
+    <Deslizador param="k" etiqueta="n" min={0} max={6} paso={1} valor={2} ayuda="segundo exponente" />
+  </div>
+  <div class="grupo-deslizadores" data-grupo="raiz" hidden>
+    <Deslizador param="area" etiqueta="área" min={0} max={100} paso={1} valor={49} ayuda="del cuadrado" />
+  </div>
+</div>
+
+<script>
+  import { iniciarPotencias } from '../../interactivos/potencias.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="potencias"]').forEach(iniciarPotencias);
+</script>
