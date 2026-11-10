@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 3 (Etapas 2 y 3, y polinómicas de la 4)_
+_Última actualización: 10/11/2026 — sesión 4 (Laboratorio, exponencial y logarítmica)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -136,9 +136,24 @@ A Mati le gustó el orden de los temas de la Etapa 2. La cuadrática y la animac
   - La línea "(interactivo)" en el `.md` de una página marca dónde va el interactivo.
 - Pieza nueva: `src/lib/funcionesBase.js` (cada función base con su dominio, imagen, asíntotas, raíces y extremos; las cuentas salen exactas usando la inversa).
 
+### Etapa 5 — Otras funciones 🚧 (en curso)
+Mati pidió dejar **composición e inversa para el final** de la etapa; el resto, en el orden que convenga.
+- **Función exponencial** (`funcion-exponencial.md`): interactivo `exponencial`, f(x) = a · kˣ con deslizadores *k* (la base) y *a* (donde arranca).
+  - **Saltos ×k** (prendida): escalones lilas "avanzo 1, multiplico por k", como el triángulo de la pendiente de la lineal.
+  - **Comparar con una lineal**: la recta que arranca igual y pasa por el mismo (1, f(1)), en gris punteado. La lineal suma, la exponencial multiplica.
+  - Casillas: ordenada (prendida), asíntota, crece o decrece, dominio e imagen. Avisos para *k* = 1 y *a* = 0.
+  - 8 ejercicios.
+- **Función logarítmica** (`funcion-logaritmica.md`): interactivo `logaritmica`, f(x) = logₖ(x) con deslizador *k*.
+  - **Un punto que se arrastra** sobre la curva y arriba se lee "log₂(8) = 3 porque 2³ = 8". Se "pega" a las potencias justas de *k*.
+  - **Saltos** (prendida): ×k en *x* → +1 en *y* (la exponencial al revés).
+  - **Espejo con la exponencial**: kˣ en gris, la recta y = x y el punto espejado.
+  - Casillas: raíz (prendida), C⁺ y C⁻, asíntota, crece o decrece, dominio e imagen (raya la zona x ≤ 0: "acá no hay log"). Aviso para *k* = 1.
+  - 9 ejercicios.
+- Links nuevos en los textos: `[Laboratorio](pagina:laboratorio)` apunta a una página suelta (anotado en `COMO-EDITAR.md`).
+
 ## Falta
-- Que Mati revise las Etapas 1 a 4 y dé su devolución.
-- **Próximo:** Etapa 5, otras funciones (trigonométricas, exponencial, logarítmica, módulo, raíz, homográfica, partidas, inversa y composición). El Laboratorio ya sabe dibujar casi todas.
+- Que Mati revise las Etapas 1 a 5 y dé su devolución.
+- **Próximo:** seguir la Etapa 5: trigonométricas, módulo, raíz, homográfica y partidas. **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).

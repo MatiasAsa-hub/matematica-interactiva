@@ -42,6 +42,7 @@ Cuando guardás un cambio en GitHub, la página se vuelve a publicar sola en uno
 | `1. algo` | lista numerada |
 | `[texto](https://...)` | un link |
 | `[función lineal](tema:funcion-lineal)` | link a otro tema de la página (si el tema todavía no existe, aparece "(próximamente)") |
+| `[Laboratorio](pagina:laboratorio)` | link a una página suelta: `laboratorio`, `notacion` |
 | `> texto` | un recuadro de nota |
 
 Un renglón vacío separa párrafos.

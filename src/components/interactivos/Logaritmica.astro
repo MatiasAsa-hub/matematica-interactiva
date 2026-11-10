@@ -1,0 +1,49 @@
+---
+// Interactivo de la función logarítmica f(x) = logₖ(x).
+// Lógica: src/interactivos/logaritmica.js
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+---
+<div class="interactivo" data-interactivo="logaritmica">
+  <div class="interactivo-grafico">
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="lectura-log" data-lectura aria-live="polite"></p>
+    <div class="grafico" data-grafico></div>
+    <div class="tabla-caja" data-tabla hidden></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir animación
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Deslizador param="k" min={0.2} max={5} paso={0.1} pasoBoton={0.5} valor={2} ayuda="la base" />
+    <p class="cartel-aviso" data-aviso hidden>No hay logaritmo de base 1: 1 elevado a cualquier número da 1, así que nunca llega a otro número.</p>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'saltos', texto: 'Saltos ×<i>k</i> → +1', color: '--c-vertice', prendida: true },
+        { nombre: 'raiz', texto: 'Raíz', color: '--c-raices', prendida: true },
+        { nombre: 'espejo', texto: 'Espejo con la exponencial', color: '--c-fantasma' },
+        { nombre: 'signos', texto: 'C⁺ y C⁻', color: '--c-positivo' },
+        { nombre: 'asintotas', texto: 'Asíntota', color: '--texto' },
+        { nombre: 'crece', texto: 'Crece o decrece', color: '--c-crece' },
+        { nombre: 'dominio', texto: 'Dominio e imagen', color: '--c-funcion' },
+      ]}
+      extras={[
+        { nombre: 'animacion', texto: 'Animación de puntos', color: '--c-funcion', prendida: true },
+        { nombre: 'tabla', texto: 'Tabla <i>x</i> | <i>f</i>(<i>x</i>)', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarLogaritmica } from '../../interactivos/logaritmica.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="logaritmica"]').forEach(iniciarLogaritmica);
+</script>

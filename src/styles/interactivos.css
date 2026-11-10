@@ -496,3 +496,7 @@
 .efecto b { color: var(--texto); }
 .expresion sup { font-size: 0.65em; }
 .expresion .frac { font-size: 0.9em; }
+
+/* Logarítmica: la lectura "log₂(8) = 3 porque 2³ = 8" debajo de la fórmula */
+.lectura-log { margin: -0.3rem 0 0.5rem; text-align: center; font-size: 1.1rem; color: var(--c-funcion); min-height: 1.6em; font-variant-numeric: tabular-nums; }
+.lectura-log sup { font-size: 0.7em; }

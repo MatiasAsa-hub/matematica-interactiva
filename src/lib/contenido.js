@@ -104,6 +104,8 @@ function rehypeLinksATemas() {
       nodo.children = nodo.children.map((hijo) => {
         if (hijo.type === 'element' && hijo.tagName === 'a') {
           const href = String(hijo.properties?.href ?? '');
+          // [texto](pagina:laboratorio) apunta a una página suelta (laboratorio, notacion…)
+          if (href.startsWith('pagina:')) hijo.properties.href = url(`${href.slice(7).replace(/\/$/, '')}/`);
           if (href.startsWith('tema:')) {
             const slug = href.slice(5).replace(/\/$/, '');
             if (slugsDeTemas.has(slug)) {
