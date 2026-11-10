@@ -1,0 +1,30 @@
+---
+// Sección para tutores: "Cómo usar esta página en una clase" + notas por tema.
+import Base from '../../layouts/Base.astro';
+import { listaDeTemas, obtenerTema, obtenerPagina } from '../../lib/contenido.js';
+import { url } from '../../lib/rutas.js';
+
+const pagina = obtenerPagina('como-usar');
+const conNotas = listaDeTemas().filter((t) => obtenerTema(t.slug).tieneTutores);
+---
+<Base titulo="Para tutores" seccion="tutores">
+  <div class="contenedor">
+    <p class="sobretitulo">Para tutores</p>
+    <h1>{pagina.datos.titulo}</h1>
+    <div class="texto" set:html={pagina.html} />
+
+    <section class="grupo-temas">
+      <h2>Notas por tema</h2>
+      <ul class="lista-temas">
+        {conNotas.map((t) => (
+          <li>
+            <a href={url(`tutores/${t.slug}/`)}>
+              <strong>{t.titulo}</strong>
+              <span>Objetivo, errores típicos, cómo explicarlo en el pizarrón.</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</Base>

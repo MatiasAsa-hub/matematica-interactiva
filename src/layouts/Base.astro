@@ -1,0 +1,80 @@
+---
+// Marco común a todas las páginas: encabezado, navegación y pie.
+// En el celular la navegación va abajo (cómoda para el pulgar);
+// en la compu, arriba.
+import '@fontsource/nunito/latin-400.css';
+import '@fontsource/nunito/latin-700.css';
+import '@fontsource/nunito/latin-400-italic.css';
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+import '../styles/contenido.css';
+import '../styles/interactivos.css';
+import { datosDelSitio } from '../lib/contenido.js';
+import { url } from '../lib/rutas.js';
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+  seccion?: 'inicio' | 'alumnos' | 'tutores' | 'laboratorio' | 'notacion';
+}
+const { titulo, descripcion, seccion = 'inicio' } = Astro.props;
+const sitio = datosDelSitio();
+const tituloCompleto = titulo ? `${titulo} · ${sitio.nombre}` : sitio.nombre;
+
+const enlaces = [
+  { id: 'inicio', texto: 'Inicio', href: url(''), icono: 'M3 11.5 12 4l9 7.5M5.5 9.5V20h5v-5.5h3V20h5V9.5' },
+  { id: 'alumnos', texto: 'Temas', href: url('alumnos/'), icono: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 21H20' },
+  { id: 'tutores', texto: 'Tutores', href: url('tutores/'), icono: 'M3 5h18v11H3zM8 20h8M12 16v4M7 9h6M7 12h9' },
+  { id: 'laboratorio', texto: 'Laboratorio', href: url('laboratorio/'), icono: 'M3 20c3-9 6-13 9-8s6 1 9-8M3 4v16h18' },
+  { id: 'notacion', texto: 'Notación', href: url('notacion/'), icono: 'M5 4h14M9 4v16M15 4c0 6 0 11 3 16M5 20h7' },
+];
+---
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1e2a36" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion ?? sitio.descripcion} />
+    <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="saltar" href="#principal">Ir al contenido</a>
+    <header class="encabezado">
+      <div class="encabezado-interior contenedor-ancho">
+        <a class="marca" href={url('')}>
+          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+            <path d="M3 27 H29 M16 3 V29" stroke="currentColor" stroke-opacity=".35" stroke-width="2" />
+            <path d="M5 6 C 10 30, 22 30, 27 6" fill="none" stroke="var(--c-funcion)" stroke-width="3" stroke-linecap="round" />
+          </svg>
+          <span>{sitio.nombre}</span>
+        </a>
+        <nav class="nav-arriba" aria-label="Secciones">
+          {enlaces.slice(1).map((e) => (
+            <a href={e.href} aria-current={seccion === e.id ? 'page' : undefined}>{e.texto}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main id="principal">
+      <slot />
+    </main>
+
+    <footer class="pie contenedor">
+      <p>{sitio.pie}</p>
+    </footer>
+
+    <nav class="nav-abajo" aria-label="Secciones">
+      {enlaces.map((e) => (
+        <a href={e.href} aria-current={seccion === e.id ? 'page' : undefined}>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d={e.icono} fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>{e.texto}</span>
+        </a>
+      ))}
+    </nav>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+---
+// Página de un tema para alumnos: intuición (con el interactivo),
+// explicación, ejemplo resuelto y ejercicios.
+import Base from '../../layouts/Base.astro';
+import Interactivo from '../../components/Interactivo.astro';
+import Ejercicio from '../../components/Ejercicio.astro';
+import { listaDeTemas, obtenerTema, datosDelSitio } from '../../lib/contenido.js';
+import { url } from '../../lib/rutas.js';
+
+export function getStaticPaths() {
+  return listaDeTemas().map((t) => ({ params: { tema: t.slug } }));
+}
+
+const tema = obtenerTema(Astro.params.tema);
+const sitio = datosDelSitio();
+const nombreSeccion = sitio.secciones.find((s) => s.id === tema.seccion)?.nombre ?? '';
+const partes = tema.partes.filter((p) => p.tipo !== 'tutores');
+let yaHayInteractivo = false;
+---
+<Base titulo={tema.titulo} descripcion={tema.resumen} seccion="alumnos">
+  <div class="contenedor">
+    <header class="tema-cabecera">
+      <p class="sobretitulo">{nombreSeccion}{tema.subseccion && ` · ${tema.subseccion}`}</p>
+      <h1>{tema.titulo}</h1>
+      {tema.resumen && <p class="bajada">{tema.resumen}</p>}
+    </header>
+  </div>
+
+  {partes.map((parte, i) => {
+    const numero = i + 1;
+    const conInteractivo = parte.tipo === 'intuicion' && tema.interactivo && !yaHayInteractivo;
+    if (conInteractivo) yaHayInteractivo = true;
+    return (
+      <section class="parte" id={parte.tipo}>
+        <div class="contenedor">
+          {parte.titulo && <h2><span class="paso-num">{numero}</span>{parte.titulo}</h2>}
+          {parte.tipo === 'intuicion' && <div class="consigna texto" set:html={parte.html} />}
+          {parte.tipo !== 'intuicion' && parte.html && <div class="texto" set:html={parte.html} />}
+
+          {parte.tipo === 'ejemplo' && (
+            <>
+              <div class="texto ejemplo-enunciado" set:html={parte.enunciadoHtml} />
+              <div class="pasos-ejemplo">
+                {parte.pasos.map((paso) => (
+                  <details>
+                    <summary>{paso.titulo}</summary>
+                    <div class="desplegado texto" set:html={paso.html} />
+                  </details>
+                ))}
+              </div>
+            </>
+          )}
+
+          {parte.tipo === 'ejercicios' && (
+            <>
+              <div class="texto" set:html={parte.introHtml} />
+              <div class="ejercicios">
+                {parte.ejercicios.map((ej) => <Ejercicio ej={ej} />)}
+              </div>
+            </>
+          )}
+        </div>
+        {conInteractivo && (
+          <div class="contenedor-ancho">
+            <Interactivo nombre={tema.interactivo} />
+          </div>
+        )}
+      </section>
+    );
+  })}
+
+  {tema.tieneTutores && (
+    <div class="contenedor">
+      <div class="aviso-tutores tarjeta">
+        <p><strong>¿Sos tutor o tutora?</strong><br /><span class="texto-suave">Mirá cómo explicar este tema en clase.</span></p>
+        <a class="boton" href={url(`tutores/${tema.slug}/`)}>Notas para tutores →</a>
+      </div>
+    </div>
+  )}
+</Base>

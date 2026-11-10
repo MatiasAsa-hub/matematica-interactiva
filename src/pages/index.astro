@@ -1,0 +1,48 @@
+---
+// Página de inicio
+import Base from '../layouts/Base.astro';
+import { datosDelSitio, obtenerPagina } from '../lib/contenido.js';
+import { url } from '../lib/rutas.js';
+
+const sitio = datosDelSitio();
+const inicio = obtenerPagina('inicio');
+const t = inicio.datos.tarjetas;
+
+const tarjetas = [
+  { href: url('alumnos/'), color: 'var(--c-funcion)', ...t.alumnos, icono: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 21H20' },
+  { href: url('tutores/'), color: 'var(--c-raices)', ...t.tutores, icono: 'M3 5h18v11H3zM8 20h8M12 16v4M7 9h6M7 12h9' },
+  { href: url('laboratorio/'), color: 'var(--c-positivo)', ...t.laboratorio, icono: 'M3 20c3-9 6-13 9-8s6 1 9-8M3 4v16h18' },
+  { href: url('notacion/'), color: 'var(--c-vertice)', ...t.notacion, icono: 'M5 4h14M9 4v16M15 4c0 6 0 11 3 16M5 20h7' },
+];
+---
+<Base seccion="inicio">
+  <div class="contenedor">
+    <section class="portada">
+      <h1>{sitio.nombre}</h1>
+      <p class="bajada">{sitio.descripcion}</p>
+      <svg class="portada-grafico" viewBox="0 0 320 90" aria-hidden="true">
+        <path d="M0 70 H320" stroke="currentColor" stroke-opacity=".5" />
+        <path d="M20 8 C 70 120, 130 120, 180 8" fill="none" stroke="var(--c-funcion)" stroke-width="3" stroke-linecap="round" />
+        <path d="M150 85 C 200 -25, 260 -25, 310 85" fill="none" stroke="var(--c-derivada)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9" />
+        <circle cx="45.5" cy="70" r="5" fill="var(--c-raices)" />
+        <circle cx="154.5" cy="70" r="5" fill="var(--c-raices)" />
+      </svg>
+    </section>
+
+    <div class="texto" set:html={inicio.html} />
+
+    <nav class="secciones" aria-label="Secciones">
+      {tarjetas.map((c) => (
+        <a class="seccion-tarjeta" href={c.href} style={`--color: ${c.color}`}>
+          <span class="icono">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+              <path d={c.icono} fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <strong>{c.titulo}</strong>
+          <span class="texto-suave">{c.texto}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+</Base>

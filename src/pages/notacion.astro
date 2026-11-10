@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { obtenerPagina } from '../lib/contenido.js';
+const pagina = obtenerPagina('notacion');
+---
+<Base titulo={pagina.datos.titulo} seccion="notacion">
+  <div class="contenedor">
+    <h1 style="margin-top:1.4rem">{pagina.datos.titulo}</h1>
+    <div class="texto" set:html={pagina.html} />
+  </div>
+</Base>

@@ -1,0 +1,40 @@
+---
+// Notas para tutores de un tema. El interactivo es el mismo que ven los alumnos.
+import Base from '../../layouts/Base.astro';
+import Interactivo from '../../components/Interactivo.astro';
+import { listaDeTemas, obtenerTema, datosDelSitio } from '../../lib/contenido.js';
+import { url } from '../../lib/rutas.js';
+
+export function getStaticPaths() {
+  return listaDeTemas()
+    .filter((t) => obtenerTema(t.slug).tieneTutores)
+    .map((t) => ({ params: { tema: t.slug } }));
+}
+
+const tema = obtenerTema(Astro.params.tema);
+const sitio = datosDelSitio();
+const nombreSeccion = sitio.secciones.find((s) => s.id === tema.seccion)?.nombre ?? '';
+const notas = tema.partes.find((p) => p.tipo === 'tutores');
+---
+<Base titulo={`Tutores: ${tema.titulo}`} seccion="tutores">
+  <div class="contenedor">
+    <header class="tema-cabecera">
+      <p class="sobretitulo">Para tutores · {nombreSeccion}</p>
+      <h1>{tema.titulo}</h1>
+      <p class="bajada">Notas para preparar la clase. <a href={url(`temas/${tema.slug}/`)}>Ver la página del alumno</a>.</p>
+    </header>
+    <section class="parte notas-tutor texto" set:html={notas?.html} />
+  </div>
+
+  {tema.interactivo && (
+    <section class="parte">
+      <div class="contenedor">
+        <h2>El interactivo</h2>
+        <p class="texto-suave">Es el mismo que ven los alumnos. Probalo antes de la clase.</p>
+      </div>
+      <div class="contenedor-ancho">
+        <Interactivo nombre={tema.interactivo} />
+      </div>
+    </section>
+  )}
+</Base>

@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Estilos de los interactivos: gráfico, deslizadores, casillas e
+   información. Los usan todos los interactivos.
+   ========================================================================== */
+
+.interactivo {
+  display: grid; gap: 1rem;
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 0.75rem;
+  /* que en el celular el gráfico pueda usar casi todo el ancho */
+  margin: 0 -8px;
+}
+/* sin esto, una tabla ancha "empuja" y agranda todo el interactivo */
+.interactivo > * { min-width: 0; }
+@media (min-width: 900px) {
+  .interactivo { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); padding: 1rem; gap: 1.4rem; margin: 0; }
+}
+
+/* --- La fórmula en vivo --- */
+.expresion {
+  font-size: 1.45rem; text-align: center;
+  padding: 0.2rem 0 0.6rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap; overflow-x: auto;
+  color: var(--c-funcion);
+}
+.expresion i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.12em; }
+.expresion .valor { color: var(--texto); border-radius: 6px; padding: 0 2px; transition: background 0.15s, color 0.15s; }
+.expresion .valor.activo { background: var(--texto); color: var(--fondo); }
+
+/* --- El gráfico --- */
+.grafico {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 72vh;
+  border-radius: var(--radio-chico);
+  overflow: hidden;
+  background: var(--fondo-grafico);
+}
+@media (min-width: 900px) { .grafico { aspect-ratio: 5 / 4; } }
+.plano-lienzo { position: absolute; inset: 0; touch-action: pan-x pan-y; user-select: none; -webkit-user-select: none; }
+.plano-lienzo.arrastrando { cursor: grabbing; }
+
+.plano-botones { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 6px; }
+.plano-boton {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  font-size: 1.35rem; line-height: 1;
+  background: rgba(37, 51, 65, 0.88); border: 1px solid var(--borde); border-radius: 10px;
+  cursor: pointer; touch-action: manipulation;
+}
+.plano-boton:hover { border-color: var(--texto-suave); }
+
+.plano-aviso {
+  position: absolute; left: 50%; bottom: 14px; transform: translate(-50%, 8px);
+  max-width: calc(100% - 24px); text-align: center;
+  background: rgba(15, 22, 30, 0.9); color: var(--texto);
+  padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.92rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+}
+.plano-aviso.visible { opacity: 1; transform: translate(-50%, 0); }
+
+.interactivo-acciones { display: flex; justify-content: flex-start; gap: 0.5rem; margin-top: 0.6rem; }
+.boton-chico { min-height: 40px; font-size: 0.95rem; padding: 0.3em 0.9em; }
+
+/* --- Tabla x | f(x) --- */
+.tabla-caja { overflow-x: auto; margin-top: 0.6rem; border-radius: var(--radio-chico); border: 1px solid var(--borde); scroll-behavior: smooth; }
+.tabla-valores { border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.95rem; }
+.tabla-valores th, .tabla-valores td { padding: 0.3rem 0.55rem; border-right: 1px solid var(--borde); text-align: center; white-space: nowrap; min-width: 2.9rem; }
+.tabla-valores tr:first-child > * { border-bottom: 1px solid var(--borde); }
+.tabla-valores th { position: sticky; left: 0; background: var(--fondo-resalte); z-index: 1; font-weight: 400; }
+.tabla-valores td { transition: opacity 0.2s, background 0.3s; }
+.tabla-valores td.oculta { opacity: 0; }
+.tabla-valores td.nueva { background: rgba(88, 196, 221, 0.22); }
+.tabla-valores i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+
+/* --- Deslizadores --- */
+.interactivo-controles { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.deslizador { --porcentaje: 50%; }
+.deslizador-nombre { display: block; font-size: 1.15rem; font-variant-numeric: tabular-nums; padding-left: 0.2rem; }
+.deslizador-nombre i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.15em; }
+.deslizador-nombre output { font-weight: 700; }
+.deslizador-fila { display: flex; align-items: center; gap: 0.5rem; }
+.deslizador-paso {
+  flex: none; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--fondo-resalte); border: 1px solid var(--borde);
+  font-size: 1.3rem; line-height: 1; cursor: pointer; touch-action: manipulation;
+}
+.deslizador-paso:hover { border-color: var(--texto-suave); }
+
+.deslizador input[type='range'] {
+  -webkit-appearance: none; appearance: none;
+  flex: 1; min-width: 0; height: 44px; margin: 0;
+  background: transparent; cursor: pointer; touch-action: pan-y;
+}
+.deslizador input[type='range']::-webkit-slider-runnable-track {
+  height: 6px; border-radius: 3px;
+  background: linear-gradient(to right, var(--texto-suave) var(--porcentaje), var(--borde) var(--porcentaje));
+}
+.deslizador input[type='range']::-moz-range-track { height: 6px; border-radius: 3px; background: var(--borde); }
+.deslizador input[type='range']::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--texto-suave); }
+.deslizador input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 28px; height: 28px; margin-top: -11px; border-radius: 50%;
+  background: var(--texto); border: 3px solid var(--fondo-tarjeta);
+  box-shadow: 0 0 0 1px var(--texto-suave);
+}
+.deslizador input[type='range']::-moz-range-thumb {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--texto); border: 3px solid var(--fondo-tarjeta);
+}
+.deslizador input[type='range']:focus-visible { outline: none; }
+.deslizador input[type='range']:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--c-funcion); }
+
+/* --- Casillas (botones que se prenden y apagan) --- */
+.casillas { border: 0; padding: 0; margin: 0.5rem 0 0; min-width: 0; }
+.casillas legend { font-size: 0.85rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; padding: 0; }
+.casillas-grupo { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.casillas-extras { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px dashed var(--borde); }
+.casilla {
+  --color: var(--texto);
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  min-height: 40px; padding: 0.3rem 0.8rem 0.3rem 0.55rem;
+  background: transparent; border: 1px solid var(--borde); border-radius: 999px;
+  color: var(--texto-suave); font-size: 0.95rem; cursor: pointer; touch-action: manipulation;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.casilla-marca {
+  width: 16px; height: 16px; border-radius: 5px; flex: none;
+  border: 2px solid var(--color); position: relative;
+}
+.casilla[aria-pressed='true'] { color: var(--texto); border-color: var(--color); background: color-mix(in srgb, var(--color) 14%, transparent); }
+.casilla[aria-pressed='true'] .casilla-marca { background: var(--color); }
+.casilla[aria-pressed='true'] .casilla-marca::after {
+  content: ''; position: absolute; left: 3.5px; top: 0px; width: 4px; height: 8px;
+  border: solid var(--fondo); border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+.casilla i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+
+/* --- Información que acompaña al gráfico --- */
+.info { margin-top: 0.3rem; font-variant-numeric: tabular-nums; }
+.info-lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+.info-lista li { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0; line-height: 1.45; }
+.info-marca { width: 12px; height: 12px; border-radius: 50%; background: var(--color); flex: none; margin-top: 0.4em; }
+.info-lista p { margin: 0.3em 0; }
+.info-larga > div { min-width: 0; }
+.info-formula .katex-display { margin: 0.3em 0; }
+.info-resultado { color: var(--c-raices); }
+.info i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+
+.cartel-aviso {
+  border: 1px solid var(--c-raices);
+  background: rgba(247, 212, 107, 0.09);
+  border-radius: var(--radio-chico);
+  padding: 0.55rem 0.8rem;
+  margin: 0.4rem 0;
+}

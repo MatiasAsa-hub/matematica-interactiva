@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Estilos generales de toda la página.
+   Los colores están todos acá arriba, como "variables". Si se cambia un
+   color acá, cambia en toda la página (incluidos los gráficos).
+   ========================================================================== */
+
+:root {
+  /* --- Fondo y texto (pizarra gris azulada) --- */
+  --fondo: #1e2a36;
+  --fondo-tarjeta: #253341;
+  --fondo-grafico: #1a2531;
+  --fondo-resalte: #2d3d4d;
+  --borde: #3a4b5d;
+  --texto: #e9eef2;
+  --texto-suave: #a9b7c4;
+  --texto-tenue: #7d8c9b;
+
+  /* --- Códigos de color de los conceptos (fijos en toda la página) --- */
+  --c-funcion: #58c4dd;     /* la función f: azul */
+  --c-derivada: #f4a259;    /* la derivada f': naranja (etapa 6) */
+  --c-integral: #a88beb;    /* áreas e integrales: violeta (etapa 7) */
+  --c-positivo: #83c167;    /* C⁺: verde */
+  --c-negativo: #fc6255;    /* C⁻: rojo */
+  --c-raices: #f7d46b;      /* C⁰ y raíces: amarillo */
+  --c-vertice: #c39bf5;     /* vértice, eje de simetría, máximos y mínimos: lila */
+  --c-ordenada: #f28fb5;    /* ordenada al origen: rosa */
+  --c-crece: #5fd3c7;       /* crece: turquesa */
+  --c-decrece: #e8896b;     /* decrece: terracota */
+  --c-fantasma: #8796a6;    /* función de referencia ("fantasma"): gris */
+
+  /* --- Medidas --- */
+  --radio: 14px;
+  --radio-chico: 9px;
+  --ancho-texto: 46rem;
+  --ancho-interactivo: 72rem;
+  --alto-nav-abajo: 64px;
+
+  --fuente: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  /* espacio para la barra de navegación de abajo en el celular */
+  padding-bottom: calc(var(--alto-nav-abajo) + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 900px) {
+  body { padding-bottom: 0; font-size: 1.125rem; }
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+
+a { color: var(--texto); text-decoration-color: var(--c-funcion); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+a:hover { text-decoration-color: var(--texto); }
+
+h1, h2, h3, h4 { line-height: 1.25; margin: 1.6em 0 0.5em; font-weight: 700; }
+h1 { font-size: 1.85rem; margin-top: 0.4em; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.15rem; }
+p { margin: 0.6em 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 0.25em 0; }
+strong { color: #fff; }
+
+button, input, select { font: inherit; color: inherit; }
+
+:focus-visible { outline: 3px solid var(--c-funcion); outline-offset: 2px; }
+
+/* Fórmulas de KaTeX: un poco más grandes y que nunca rompan el ancho del celular */
+.katex { font-size: 1.08em; white-space: nowrap; } /* que una fórmula corta no se parta en dos renglones */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.3em 0; }
+
+/* --- Contenedores --- */
+.contenedor { width: 100%; max-width: var(--ancho-texto); margin: 0 auto; padding: 0 16px; }
+.contenedor-ancho { width: 100%; max-width: var(--ancho-interactivo); margin: 0 auto; padding: 0 16px; }
+
+.tarjeta {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1rem 1.1rem;
+}
+
+.texto-suave { color: var(--texto-suave); }
+.chico { font-size: 0.9em; }
+
+/* Etiqueta chiquita arriba de los títulos (ej.: "Análisis · Funciones") */
+.sobretitulo {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin: 1.6rem 0 0;
+}
+
+/* --- Botones genéricos --- */
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4em;
+  min-height: 44px; padding: 0.4em 1em;
+  background: var(--fondo-resalte);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+.boton:hover { border-color: var(--texto-suave); }
+.boton:active { transform: translateY(1px); }
+
+/* --- Desplegables (pasos, pistas, resoluciones) --- */
+details {
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-chico);
+  background: var(--fondo-tarjeta);
+  margin: 0.6rem 0;
+}
+details > summary {
+  cursor: pointer;
+  padding: 0.65rem 0.9rem;
+  min-height: 44px;
+  list-style: none;
+  display: flex; align-items: center; gap: 0.6em;
+  font-weight: 700;
+}
+details > summary::-webkit-details-marker { display: none; }
+details > summary::before {
+  content: '';
+  width: 0.55em; height: 0.55em; flex: none;
+  border-right: 2px solid var(--texto-suave);
+  border-bottom: 2px solid var(--texto-suave);
+  transform: rotate(-45deg);
+  transition: transform 0.2s;
+}
+details[open] > summary::before { transform: rotate(45deg); }
+details > .desplegado { padding: 0 0.9rem 0.7rem; border-top: 1px solid var(--borde); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
