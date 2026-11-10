@@ -8,7 +8,7 @@
 
 import { conectarDeslizador } from '../lib/grafico/controles.js';
 import { num } from '../lib/numeros.js';
-import { sinMovimiento } from '../lib/grafico/animacion.js';
+import { animarCambio } from '../lib/flip.js';
 
 const X = '<i>x</i>';
 const par = (n) => (n < 0 ? `(${num(n)})` : num(n));
@@ -79,22 +79,6 @@ export function iniciarTerminos(raiz) {
     mesaEl.innerHTML = fila(true) + fila(false);
   }
 
-  // Animación "FLIP": se mide dónde estaba cada ficha, se cambia el orden y se la hace viajar
-  function cambiarConAnimacion(cambio) {
-    const antes = new Map([...mesaEl.querySelectorAll('[data-id]')].map((el) => [el.dataset.id, el.getBoundingClientRect()]));
-    cambio();
-    if (sinMovimiento()) return;
-    for (const el of mesaEl.querySelectorAll('[data-id]')) {
-      const r0 = antes.get(el.dataset.id);
-      if (!r0) continue;
-      const r1 = el.getBoundingClientRect();
-      el.animate(
-        [{ transform: `translate(${r0.left - r1.left}px, ${r0.top - r1.top}px)` }, { transform: 'none' }],
-        { duration: 700, easing: 'cubic-bezier(.5,-0.2,.3,1.3)' },
-      );
-    }
-  }
-
   function textos() {
     const { a, b, c, d, agrupado } = estado;
     const original = expresion([{ coef: a, x: true }, { coef: b, x: false }, { coef: c, x: true }, { coef: d, x: false }]);
@@ -116,7 +100,7 @@ export function iniciarTerminos(raiz) {
   }
 
   function dibujar(animar = false) {
-    if (animar) cambiarConAnimacion(armarMesa); else armarMesa();
+    if (animar) animarCambio(mesaEl, armarMesa); else armarMesa();
     textos();
   }
 

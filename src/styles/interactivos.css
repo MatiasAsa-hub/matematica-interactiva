@@ -387,3 +387,53 @@
   padding: 0.55rem 0.8rem;
   margin: 0.4rem 0;
 }
+
+/* --- Balanza (ecuaciones) --- */
+.balanza { position: relative; height: 250px; max-width: 34rem; margin: 0.4rem auto 0.6rem; }
+.balanza-pie {
+  position: absolute; left: 50%; bottom: 0; width: 64px; height: 58px; transform: translateX(-50%);
+  background: var(--borde); clip-path: polygon(50% 0, 100% 100%, 0 100%); border-radius: 4px;
+}
+.balanza-brazo {
+  position: absolute; left: 25%; right: 25%; bottom: 54px; height: 7px; border-radius: 4px;
+  background: var(--texto-suave); transform-origin: 50% 50%;
+  transition: transform 0.9s cubic-bezier(.3, 1.5, .5, 1);
+}
+.balanza-plato {
+  position: absolute; bottom: 61px; width: 46%;
+  transition: transform 0.9s cubic-bezier(.3, 1.5, .5, 1);
+}
+.balanza-plato.izq { left: 2%; }
+.balanza-plato.der { right: 2%; }
+.plato-poste { width: 5px; height: 26px; margin: 0 auto; background: var(--texto-suave); }
+/* el plato: una "fuente" chata; las fichas se apilan arriba, de abajo hacia arriba */
+.plato-fichas {
+  position: relative; min-height: 14px; padding: 4px 4px 7px;
+  display: flex; flex-wrap: wrap-reverse; justify-content: center; align-items: flex-end; gap: 4px;
+  border-bottom: 5px solid var(--texto-suave); border-radius: 0 0 40% 40% / 0 0 10px 10px;
+}
+.balanza .ficha-algebra { font-size: 0.68rem; border-radius: 4px; }
+.balanza .ficha-algebra.equis { width: 19px; height: 44px; }
+.balanza .ficha-algebra.uno { width: 19px; height: 19px; }
+.ficha-algebra.bloque { width: auto; min-width: 34px; height: 26px; padding: 0 6px; font-size: 0.9rem; border-color: var(--c-raices); background: rgba(247, 212, 107, 0.2); white-space: nowrap; }
+.ficha-algebra.nueva { animation: ficha-aparece 0.35s ease-out both; animation-delay: calc(var(--i) * 25ms); box-shadow: 0 0 0 2px rgba(233, 238, 242, 0.5); }
+.grupo-plato {
+  display: inline-flex; flex-wrap: wrap-reverse; align-items: flex-end; justify-content: center; gap: 3px;
+  padding: 3px; border: 2px dashed var(--c-vertice); border-radius: 8px; max-width: 100%;
+  transition: opacity 0.5s 0.8s;
+}
+.grupo-plato.tenue { opacity: 0.25; }
+@media (min-width: 600px) {
+  .balanza .ficha-algebra.equis { width: 22px; height: 52px; }
+  .balanza .ficha-algebra.uno { width: 22px; height: 22px; }
+}
+.balanza.desequilibrada .balanza-brazo { background: var(--c-negativo); }
+.renglones-ecuacion .renglon { flex-wrap: wrap; align-items: center; }
+.renglon-nota { margin-left: auto; padding-left: 0.6rem; font-size: 0.62em; color: var(--c-vertice); white-space: nowrap; }
+.renglon-nota i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.galera-texto i, .probados i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.galera-texto .pos { color: var(--c-positivo); }
+.probados { margin: 0.3rem 0 0; color: var(--texto-suave); line-height: 2; }
+.probado { display: inline-block; padding: 0 0.5em; border-radius: 999px; border: 1px solid var(--borde); font-variant-numeric: tabular-nums; }
+.probado.si { border-color: var(--c-positivo); color: var(--c-positivo); font-weight: 700; }
+.probado.no { color: var(--texto-suave); text-decoration: line-through; text-decoration-color: var(--c-negativo); }

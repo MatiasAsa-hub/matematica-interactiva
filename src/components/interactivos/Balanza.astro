@@ -1,0 +1,76 @@
+---
+// Interactivo: la balanza de las ecuaciones, con fichas.
+// Lógica: src/interactivos/balanza.js
+// Dos modos (campo "modo:" del tema):
+//   probar   → se mueve un deslizador con el valor de x y la balanza se inclina
+//              hasta que se equilibra (eso es la solución).
+//   resolver → se despeja paso a paso, haciendo lo mismo de los dos lados.
+// Las ecuaciones vienen del tema (campo "ecuaciones:" del .md).
+import Deslizador from '../controles/Deslizador.astro';
+import { leerEcuacion, pasosEcuacion } from '../../lib/lineal.js';
+
+interface Props { ecuaciones?: string[]; modo?: string }
+const { ecuaciones = ['3x + 1 = x + 7'], modo = 'resolver' } = Astro.props;
+
+// Se prueban al armar el sitio: si una ecuación está mal escrita, el armado avisa.
+const MAX_FICHAS = 20;
+for (const e of ecuaciones) {
+  const ec = leerEcuacion(String(e));
+  if (ec.signo !== '=') throw new Error(`La balanza es para ecuaciones (con =): "${e}"`);
+  if (modo === 'probar') {
+    const k = ec.izq.x - ec.der.x;
+    const sol = k === 0 ? NaN : (ec.der.n - ec.izq.n) / k;
+    if (!Number.isInteger(sol) || sol < 0 || sol > 10) {
+      throw new Error(`En el modo "probar", la solución tiene que ser un número entero de 0 a 10: "${e}"`);
+    }
+  }
+  for (const p of pasosEcuacion(ec)) {
+    for (const lado of [p.izq, p.der]) {
+      if (Math.abs(lado.x) > MAX_FICHAS || (Number.isInteger(lado.n) && Math.abs(lado.n) > MAX_FICHAS)) {
+        throw new Error(`"${e}" tiene números muy grandes para la balanza (máximo ${MAX_FICHAS} fichas por lado)`);
+      }
+    }
+  }
+}
+const esProbar = modo === 'probar';
+---
+<div class="interactivo interactivo-cuentas" data-interactivo="balanza" data-modo={esProbar ? 'probar' : 'resolver'} data-ecuaciones={JSON.stringify(ecuaciones.map(String))}>
+  <div class="cuentas-cabecera" hidden={ecuaciones.length < 2}>
+    <button type="button" class="plano-boton" data-anterior aria-label="Ecuación anterior">‹</button>
+    <span data-contador></span>
+    <button type="button" class="plano-boton" data-proxima aria-label="Ecuación siguiente">›</button>
+  </div>
+
+  <div class="expresion expresion-numeros" data-expresion aria-live="polite"></div>
+
+  <div class="balanza" data-balanza role="img" aria-label="Balanza de dos platos">
+    <div class="balanza-pie" aria-hidden="true"></div>
+    <div class="balanza-brazo" data-brazo aria-hidden="true"></div>
+    <div class="balanza-plato izq" data-plato="izq"><div class="plato-fichas" data-fichas></div><div class="plato-poste"></div></div>
+    <div class="balanza-plato der" data-plato="der"><div class="plato-fichas" data-fichas></div><div class="plato-poste"></div></div>
+  </div>
+
+  {esProbar ? (
+    <div class="balanza-probar">
+      <Deslizador param="x" min={0} max={10} paso={1} valor={0} ayuda="probá un valor para x" />
+      <p class="galera-texto" data-texto aria-live="polite"></p>
+      <p class="probados" data-probados></p>
+    </div>
+  ) : (
+    <div>
+      <ol class="renglones renglones-ecuacion" data-renglones aria-live="polite"></ol>
+      <p class="galera-texto" data-texto aria-live="polite"></p>
+      <div class="cuentas-botones">
+        <button type="button" class="boton boton-principal" data-siguiente>Siguiente paso</button>
+        <button type="button" class="boton" data-todo>Ver todo</button>
+        <button type="button" class="boton" data-reiniciar>Empezar de nuevo</button>
+      </div>
+    </div>
+  )}
+  <p class="texto-suave chico">Una barrita es una <i>x</i> y un cuadradito es un 1. Las rojas punteadas son negativas: una positiva y una negativa se anulan.</p>
+</div>
+
+<script>
+  import { iniciarBalanza } from '../../interactivos/balanza.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="balanza"]').forEach(iniciarBalanza);
+</script>
