@@ -1,0 +1,48 @@
+---
+// Interactivo: qué es una función. Una "máquina": entra un x, la regla hace
+// la cuenta y sale f(x). Cada número que se prueba va a la tabla y al gráfico
+// como un punto (x, f(x)). Al final se unen los puntos: el gráfico.
+// Lógica: src/interactivos/funcion.js
+// Las funciones vienen del tema (campo "funciones:" del .md).
+import Deslizador from '../controles/Deslizador.astro';
+import { leerFormula } from '../../lib/formula.js';
+
+interface Props { funciones?: string[] }
+const { funciones = ['2x + 1'] } = Astro.props;
+// Se prueban al armar el sitio: si una fórmula está mal escrita, el armado avisa.
+for (const f of funciones) leerFormula(String(f));
+---
+<div class="interactivo" data-interactivo="funcion" data-funciones={JSON.stringify(funciones.map(String))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={funciones.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Función anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Función siguiente">›</button>
+    </div>
+    <div class="maquina" data-maquina aria-live="polite">
+      <span class="maquina-entra" data-entra></span>
+      <span class="maquina-flecha" aria-hidden="true">→</span>
+      <span class="maquina-caja" data-regla></span>
+      <span class="maquina-flecha" aria-hidden="true">→</span>
+      <span class="maquina-sale" data-sale></span>
+    </div>
+    <p class="maquina-cuenta" data-cuenta></p>
+    <div class="grafico" data-grafico></div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Deslizador param="x" min={-4} max={4} paso={1} valor={1} ayuda="el número que entra" />
+    <div class="tabla-caja" data-tabla></div>
+    <div class="cuentas-botones">
+      <button type="button" class="boton boton-principal" data-unir>Unir los puntos</button>
+      <button type="button" class="boton" data-todos>Probar todos</button>
+      <button type="button" class="boton" data-borrar>Borrar</button>
+    </div>
+    <p class="explicacion-viva" data-texto aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+  import { iniciarFuncion } from '../../interactivos/funcion.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="funcion"]').forEach(iniciarFuncion);
+</script>

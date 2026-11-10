@@ -1,0 +1,47 @@
+---
+// Interactivo de la función lineal f(x) = m·x + b.
+// Lógica: src/interactivos/lineal.js
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+---
+<div class="interactivo" data-interactivo="lineal">
+  <div class="interactivo-grafico">
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <div class="grafico" data-grafico></div>
+    <div class="tabla-caja" data-tabla hidden></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir animación
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Deslizador param="m" min={-4} max={4} paso={0.1} pasoBoton={0.5} valor={2} ayuda="pendiente" />
+    <Deslizador param="b" min={-6} max={6} paso={0.1} pasoBoton={0.5} valor={-4} ayuda="ordenada al origen" />
+    <p class="cartel-aviso" data-aviso-m0 hidden>Con <i>m</i> = 0 la recta queda <b>horizontal</b>: <i>f</i>(<i>x</i>) = <i>b</i> vale lo mismo para todos los <i>x</i>. Es una función <b>constante</b>.</p>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'raiz', texto: 'Raíz', color: '--c-raices', prendida: true },
+        { nombre: 'ordenada', texto: 'Ordenada al origen', color: '--c-ordenada' },
+        { nombre: 'pendiente', texto: 'Pendiente', color: '--c-vertice' },
+        { nombre: 'signos', texto: 'C⁺ y C⁻', color: '--c-positivo' },
+        { nombre: 'crece', texto: 'Crece o decrece', color: '--c-crece' },
+      ]}
+      extras={[
+        { nombre: 'animacion', texto: 'Animación de puntos', color: '--c-funcion', prendida: true },
+        { nombre: 'tabla', texto: 'Tabla <i>x</i> | <i>f</i>(<i>x</i>)', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarLineal } from '../../interactivos/lineal.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="lineal"]').forEach(iniciarLineal);
+</script>

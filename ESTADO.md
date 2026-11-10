@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 3 (Etapa 2 completa)_
+_Última actualización: 10/11/2026 — sesión 3 (Etapas 2 y 3 completas)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -98,9 +98,25 @@ Mati eligió: 4 temas, balanza con paso a paso automático, y recta numérica pa
 - **Color nuevo de uso:** "cumple / es solución" va en **verde** (el mismo de C⁺) y "no cumple" en **rojo** con cruz. Tiene sentido: más adelante, C⁺ es justamente la solución de f(x) > 0.
 - Piezas nuevas compartidas: `src/lib/lineal.js` (lee ecuaciones e inecuaciones y arma los pasos), `src/lib/flip.js` (animación de fichas que viajan) y `src/lib/grafico/intervalo.js` (pintar intervalos en la recta).
 
+### Etapa 3 — Funciones ✅ (completa; falta la revisión de Mati)
+A Mati le gustó el orden de los temas de la Etapa 2. La cuadrática y la animación de puntos ya estaban de la Etapa 0; esta etapa sumó dos temas, en la subsección "Funciones" (antes de la cuadrática).
+- **¿Qué es una función?** (`que-es-una-funcion.md`): interactivo `funcion`, "la máquina".
+  - Entra un *x* (deslizador o arrastrando el punto), la regla hace la cuenta y sale *f*(*x*): se ve "f(1) = 2 · 1 + 1 = 3 → punto (1, 3)".
+  - Cada número probado va a la tabla y queda como punto en el gráfico. **Probar todos** llena de −4 a 4. **Unir los puntos** dibuja la curva: "si probáramos con todos los números…".
+  - Con 6 : *x* y *x* = 0: "no se puede, el 0 no está en el dominio", y la curva se corta en el 0.
+  - Las funciones se eligen en el tema (campo `funciones:`), escritas como "2x + 1", "x^2", "6 : x".
+  - 6 ejercicios. La explicación incluye dominio e imagen.
+- **Función lineal** (`funcion-lineal.md`): interactivo `lineal`, f(x) = mx + b con deslizadores *m* y *b*.
+  - Casillas: raíz (prendida), ordenada al origen, pendiente (triángulo "avanzo 1, subo m"), C⁺ y C⁻, crece o decrece. Animación de puntos (prendida) y tabla (apagada), igual que la cuadrática.
+  - La raíz se muestra **despejando la ecuación** (2x − 4 = 0 → 2x = 4 → x = 2) y C⁺ como la inecuación f(x) > 0: conecta con la Etapa 2.
+  - Con *m* = 0 avisa que es una función constante.
+  - 7 ejercicios.
+- Piezas nuevas compartidas: `src/lib/formula.js` (lee fórmulas con *x*, las escribe lindas y hace la cuenta reemplazando; sirve para el Laboratorio) y `src/lib/grafico/signos.js` (C⁺/C⁻ y crece/decrece, ahora compartido por la cuadrática y la lineal; sirve para los polinomios).
+- Arreglados dos links viejos en la cuadrática (a "potencias" y "ecuaciones").
+
 ## Falta
-- Que Mati revise las Etapas 1 y 2 y dé su devolución.
-- **Próximo:** Etapa 3, funciones (qué es una función, lineal, cuadrática, animación de puntos).
+- Que Mati revise las Etapas 1, 2 y 3 y dé su devolución.
+- **Próximo:** Etapa 4, polinómicas y Laboratorio de funciones. Antes hay que decidir con Mati la forma de los parámetros de los polinomios de grado ≥ 3.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 3 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).

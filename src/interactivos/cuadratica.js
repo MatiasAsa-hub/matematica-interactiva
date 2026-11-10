@@ -10,6 +10,7 @@ import { Plano } from '../lib/grafico/plano.js';
 import { AnimacionPuntos } from '../lib/grafico/animacionPuntos.js';
 import { conectarDeslizador, conectarCasillas } from '../lib/grafico/controles.js';
 import { num, numAprox, igual } from '../lib/numeros.js';
+import { conjuntos, dibujarBarrasDeSigno, tramoCrecimiento, intervaloAbierto, Y_CRECIMIENTO } from '../lib/grafico/signos.js';
 
 const EPS = 1e-9;
 
@@ -62,31 +63,7 @@ function canonica(a, h, k) {
   return s;
 }
 
-/** Intervalo abierto escrito con la convención de la página. */
-const intervalo = (desde, hasta) => `(${num(desde)}, ${num(hasta)})`;
-
-/**
- * C⁺, C⁻ y C⁰ como texto, para cualquier función continua con esas raíces:
- * se prueba el signo en cada tramo entre raíces.
- */
-function conjuntos(f, raices, todoCero) {
-  if (todoCero) return { pos: '∅', neg: '∅', cero: 'ℝ' };
-  const cortes = [-Infinity, ...raices, Infinity];
-  const pos = [];
-  const neg = [];
-  for (let i = 0; i < cortes.length - 1; i++) {
-    const a = cortes[i];
-    const b = cortes[i + 1];
-    const medio = !Number.isFinite(a) && !Number.isFinite(b) ? 0 : !Number.isFinite(a) ? b - 1 : !Number.isFinite(b) ? a + 1 : (a + b) / 2;
-    const y = f(medio);
-    const texto = !Number.isFinite(a) && !Number.isFinite(b) ? 'ℝ' : intervalo(a, b);
-    if (y > EPS) pos.push(texto);
-    else if (y < -EPS) neg.push(texto);
-  }
-  const unir = (l) => (l.length ? l.join(' ∪ ') : '∅');
-  const cero = raices.length ? `{${raices.map((r) => numAprox(r).replace('≈ ', '≈')).join(', ')}}` : '∅';
-  return { pos: unir(pos), neg: unir(neg), cero };
-}
+const intervalo = intervaloAbierto;
 
 // --------------------------------------------------------------------------
 // El interactivo
@@ -129,7 +106,7 @@ export function iniciarCuadratica(raiz) {
     if (!casillas.signos) return;
     p.zonaSigno(f, +1, { color: col.positivo, alfa: 0.16 });
     p.zonaSigno(f, -1, { color: col.negativo, alfa: 0.14, rayado: true });
-    dibujarBarrasDeSigno(p);
+    dibujarBarrasDeSigno(p, f, datos().raices);
   });
 
   // --- Capa 2: rectas auxiliares (eje de simetría, máximo o mínimo) ---
@@ -195,61 +172,12 @@ export function iniciarCuadratica(raiz) {
     if (casillas.crece && !(Math.abs(a) < EPS && Math.abs(b) < EPS)) dibujarCrecimiento(p);
   });
 
-  // Barras sobre el eje x que muestran C⁺ (lisa) y C⁻ (punteada)
-  function dibujarBarrasDeSigno(p) {
-    const d = datos();
-    const cortes = [p.xMin, ...d.raices.filter((r) => r > p.xMin && r < p.xMax), p.xMax];
-    const Y0 = p.py(0);
-    if (Y0 < -10 || Y0 > p.alto + 10) return;
-    for (let i = 0; i < cortes.length - 1; i++) {
-      const x1 = cortes[i];
-      const x2 = cortes[i + 1];
-      const y = f((x1 + x2) / 2);
-      if (Math.abs(y) < EPS) continue;
-      const positivo = y > 0;
-      const ctx = p.ctx;
-      ctx.save();
-      ctx.strokeStyle = positivo ? col.positivo : col.negativo;
-      ctx.lineWidth = 5;
-      ctx.lineCap = 'butt';
-      if (!positivo) ctx.setLineDash([9, 6]);
-      ctx.beginPath();
-      ctx.moveTo(p.px(x1) + 3, Y0);
-      ctx.lineTo(p.px(x2) - 3, Y0);
-      ctx.stroke();
-      ctx.restore();
-      if (p.px(x2) - p.px(x1) > 46) {
-        // la etiqueta va adentro de la zona pintada, a media altura
-        // (sin meterse debajo de los botones de zoom)
-        const xm = (x1 + Math.min(x2, p.mx(p.ancho - 60))) / 2;
-        const ym = Math.max(p.yMin, Math.min(p.yMax, f(xm))) / 2;
-        p.etiqueta(positivo ? 'C⁺' : 'C⁻', xm, ym, {
-          color: positivo ? col.positivo : col.negativo,
-          dx: 0, dy: 0, alinear: 'center', tamano: 18,
-        });
-      }
-    }
-  }
-
   // Franja arriba del gráfico (sin pisar los botones de zoom de la derecha)
   function dibujarCrecimiento(p) {
     const { a, b, h } = estado;
-    const Y = 30;
+    const Y = Y_CRECIMIENTO;
     const derecha = p.ancho - 56;
-    const tramo = (X1, X2, crece) => {
-      if (X2 - X1 < 30) return;
-      const color = crece ? col.crece : col.decrece;
-      const m = 5; // inclinación de la flecha
-      p.flechaPx(X1 + 8, crece ? Y + m : Y - m, X2 - 8, crece ? Y - m : Y + m, { color, ancho: 3 });
-      const ctx = p.ctx;
-      ctx.save();
-      ctx.font = `700 14px ${p.fuente}`;
-      ctx.fillStyle = color;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'bottom';
-      p._textoConHalo(crece ? 'crece' : 'decrece', (X1 + X2) / 2, Y - 9);
-      ctx.restore();
-    };
+    const tramo = (X1, X2, crece) => tramoCrecimiento(p, X1, X2, crece);
     if (!esCuadratica()) { tramo(0, derecha, b > 0); return; } // recta
     const Xh = Math.min(Math.max(p.px(h), 0), derecha);
     tramo(0, Xh, a < 0);

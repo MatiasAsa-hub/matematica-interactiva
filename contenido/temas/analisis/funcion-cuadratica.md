@@ -144,8 +144,8 @@ En $a(x - h)^2 + k$ va un menos adelante de $h$. Como $(x + 2) = (x - (-2))$, $h
 
 ### Antes tiene que saber
 
-- [Potencias](tema:potencias) y [números con signo](tema:sumar-y-restar-con-signos).
-- [Despejar ecuaciones](tema:ecuaciones).
+- [Potencias](tema:potencias-y-raices) y [números con signo](tema:sumar-y-restar-con-signos).
+- [Resolver ecuaciones](tema:resolver-ecuaciones) y [función lineal](tema:funcion-lineal).
 
 ### Errores típicos
 

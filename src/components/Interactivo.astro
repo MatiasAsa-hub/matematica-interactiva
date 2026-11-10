@@ -17,10 +17,12 @@ import Terminos from './interactivos/Terminos.astro';
 import Balanza from './interactivos/Balanza.astro';
 import Intervalos from './interactivos/Intervalos.astro';
 import Inecuacion from './interactivos/Inecuacion.astro';
+import Lineal from './interactivos/Lineal.astro';
+import Funcion from './interactivos/Funcion.astro';
 
 interface Props { nombre: string; opciones?: Record<string, any> }
 const { nombre, opciones = {} } = Astro.props;
-const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva', 'mcm-mcd', 'terminos', 'balanza', 'intervalos', 'inecuacion'];
+const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva', 'mcm-mcd', 'terminos', 'balanza', 'intervalos', 'inecuacion', 'lineal', 'funcion'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
 {nombre === 'recta-signos' && <RectaSignos />}
@@ -36,6 +38,8 @@ const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-
 {nombre === 'balanza' && <Balanza ecuaciones={opciones.ecuaciones} modo={opciones.modo} />}
 {nombre === 'intervalos' && <Intervalos />}
 {nombre === 'inecuacion' && <Inecuacion inecuaciones={opciones.inecuaciones} />}
+{nombre === 'lineal' && <Lineal />}
+{nombre === 'funcion' && <Funcion funciones={opciones.funciones} />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}

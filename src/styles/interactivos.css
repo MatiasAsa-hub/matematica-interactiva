@@ -449,3 +449,26 @@
 }
 @keyframes signo-gira { from { transform: rotateY(180deg) scale(1.4); } to { transform: none; } }
 .renglon.dado-vuelta { box-shadow: inset 3px 0 0 var(--c-raices); }
+
+/* --- Qué es una función (la máquina) --- */
+.maquina {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.35rem;
+  font-size: 1.2rem; font-variant-numeric: tabular-nums; margin: 0.3rem 0 0.2rem;
+}
+.maquina i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1em; }
+.maquina-entra, .maquina-sale {
+  padding: 0.2rem 0.6rem; border-radius: 999px; border: 2px solid var(--borde); background: var(--fondo); white-space: nowrap;
+}
+.maquina-caja {
+  padding: 0.35rem 0.8rem; border-radius: 10px; border: 2px solid var(--c-funcion);
+  background: rgba(88, 196, 221, 0.12); color: var(--c-funcion); white-space: nowrap;
+}
+.maquina-sale { border-color: var(--c-funcion); }
+.maquina-sale.error { border-color: var(--c-negativo); color: var(--c-negativo); }
+.maquina-sale.pulso { animation: maquina-pulso 0.45s ease-out; }
+@keyframes maquina-pulso { from { transform: scale(1.3); background: rgba(88, 196, 221, 0.35); } to { transform: none; } }
+.maquina-flecha { color: var(--texto-tenue); }
+.maquina-cuenta { text-align: center; margin: 0.2rem 0 0.6rem; color: var(--texto-suave); font-variant-numeric: tabular-nums; }
+.maquina-cuenta i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.maquina-cuenta .neg, .explicacion-viva .neg { color: var(--c-negativo); }
+@media (max-width: 420px) { .maquina { font-size: 1.05rem; } }
