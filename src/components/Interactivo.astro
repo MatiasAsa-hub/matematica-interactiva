@@ -1,0 +1,14 @@
+---
+// Elige qué interactivo mostrar según el nombre que figura en el tema
+// (campo "interactivo:" al principio del archivo .md).
+// Cuando haya un interactivo nuevo, se agrega acá.
+import Cuadratica from './interactivos/Cuadratica.astro';
+
+interface Props { nombre: string }
+const { nombre } = Astro.props;
+const conocidos = ['cuadratica'];
+---
+{nombre === 'cuadratica' && <Cuadratica />}
+{!conocidos.includes(nombre) && (
+  <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
+)}

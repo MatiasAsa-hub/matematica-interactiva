@@ -1,0 +1,59 @@
+---
+// Interactivo de la función cuadrática (forma canónica).
+// Lógica: src/interactivos/cuadratica.js
+import katex from 'katex';
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+
+const resolvente = katex.renderToString(
+  'x_{1,2} = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
+  { displayMode: true },
+);
+---
+<div class="interactivo" data-interactivo="cuadratica">
+  <div class="interactivo-grafico">
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <div class="grafico" data-grafico></div>
+    <div class="tabla-caja" data-tabla hidden></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir animación
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Deslizador param="a" min={-3} max={3} paso={0.1} pasoBoton={0.5} valor={1} />
+    <Deslizador param="h" min={-5} max={5} paso={0.1} pasoBoton={0.5} valor={1} />
+    <Deslizador param="k" min={-6} max={6} paso={0.1} pasoBoton={0.5} valor={-4} />
+    <p class="cartel-aviso" data-aviso-a0 hidden>
+      Con <i>a</i> = 0 desaparece la <i>x</i>²: queda <i>f</i>(<i>x</i>) = <i>k</i>, que no es una parábola sino una recta horizontal.
+    </p>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'vertice', texto: 'Vértice', color: '--c-vertice', prendida: true },
+        { nombre: 'eje', texto: 'Eje de simetría', color: '--c-vertice' },
+        { nombre: 'raices', texto: 'Raíces', color: '--c-raices' },
+        { nombre: 'ordenada', texto: 'Ordenada al origen', color: '--c-ordenada' },
+        { nombre: 'signos', texto: 'C⁺, C⁻ y C⁰', color: '--c-positivo' },
+        { nombre: 'crece', texto: 'Crece y decrece', color: '--c-crece' },
+        { nombre: 'extremo', texto: 'Máximo o mínimo', color: '--c-vertice' },
+      ]}
+      extras={[
+        { nombre: 'animacion', texto: 'Animación de puntos', color: '--c-funcion', prendida: true },
+        { nombre: 'tabla', texto: 'Tabla <i>x</i> | <i>f</i>(<i>x</i>)', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+    <template data-resolvente><div class="info-formula" set:html={resolvente} /></template>
+  </div>
+</div>
+
+<script>
+  import { iniciarCuadratica } from '../../interactivos/cuadratica.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="cuadratica"]').forEach(iniciarCuadratica);
+</script>

@@ -1,0 +1,106 @@
+---
+// Un ejercicio autocorregible (número u opción múltiple), con pista y
+// resolución desplegables. Los datos salen de src/lib/contenido.js.
+interface Props { ej: any }
+const { ej } = Astro.props;
+const varias = ej.tipo === 'numero' && ej.respuestas.length > 1;
+---
+<article class="ejercicio tarjeta" data-ejercicio data-tipo={ej.tipo}
+  data-respuestas={JSON.stringify(ej.respuestas)} data-tolerancia={ej.tolerancia}>
+  <h3 class="ejercicio-titulo"><span class="ejercicio-numero">{ej.numero}</span> {ej.titulo}</h3>
+  <div class="ejercicio-enunciado" set:html={ej.enunciadoHtml} />
+
+  {ej.tipo === 'numero' && (
+    <form class="ejercicio-respuesta" data-formulario>
+      {ej.respuestas.map((_: number, i: number) => (
+        <label class="ejercicio-campo">
+          <span class="sr-only">Respuesta {varias ? i + 1 : ''}</span>
+          <input type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
+            placeholder={varias ? `Respuesta ${i + 1}` : 'Tu respuesta'} />
+        </label>
+      ))}
+      <button type="submit" class="boton boton-principal">Comprobar</button>
+    </form>
+  )}
+  {varias && <p class="texto-suave chico">Hay {ej.respuestas.length} respuestas: podés ponerlas en cualquier orden.</p>}
+
+  {ej.tipo === 'opciones' && (
+    <div class="ejercicio-opciones" role="group" aria-label="Opciones">
+      {ej.opciones.map((o: any) => (
+        <button type="button" class="opcion" data-correcta={o.correcta ? 'si' : 'no'} set:html={o.html} />
+      ))}
+    </div>
+  )}
+
+  <p class="ejercicio-devolucion" data-devolucion aria-live="polite"></p>
+
+  {ej.pistaHtml && (
+    <details class="desplegable-pista">
+      <summary>Pista</summary>
+      <div class="desplegado"><p set:html={ej.pistaHtml} /></div>
+    </details>
+  )}
+  {ej.resolucionHtml && (
+    <details class="desplegable-resolucion">
+      <summary>Ver la resolución</summary>
+      <div class="desplegado" set:html={ej.resolucionHtml} />
+    </details>
+  )}
+</article>
+
+<script>
+  import { leerNumero } from '../lib/numeros.js';
+
+  const BIEN = ['¡Bien! Es correcto.', '¡Eso! Está bien.', '¡Muy bien!'];
+  const azar = (lista: string[]) => lista[Math.floor(Math.random() * lista.length)];
+
+  for (const ej of document.querySelectorAll<HTMLElement>('[data-ejercicio]')) {
+    const devolucion = ej.querySelector<HTMLElement>('[data-devolucion]')!;
+    const decir = (texto: string, bien: boolean) => {
+      devolucion.textContent = texto;
+      devolucion.classList.toggle('bien', bien);
+      devolucion.classList.toggle('mal', !bien);
+      ej.classList.toggle('resuelto', bien);
+    };
+
+    if (ej.dataset.tipo === 'numero') {
+      const correctas: number[] = JSON.parse(ej.dataset.respuestas ?? '[]');
+      const tol = Number(ej.dataset.tolerancia ?? 0.01);
+      const form = ej.querySelector('form')!;
+      const campos = [...form.querySelectorAll('input')];
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const valores = campos.map((c) => leerNumero(c.value));
+        if (valores.some((v) => Number.isNaN(v))) {
+          decir('Escribí un número (por ejemplo: 3, −2.5 o 1/2).', false);
+          return;
+        }
+        // Se comparan sin importar el orden
+        const pendientes = [...correctas];
+        let aciertos = 0;
+        for (const v of valores) {
+          const i = pendientes.findIndex((c) => Math.abs(c - v) <= tol + 1e-9);
+          if (i >= 0) { aciertos++; pendientes.splice(i, 1); }
+        }
+        if (aciertos === correctas.length) decir(azar(BIEN), true);
+        else if (correctas.length > 1 && aciertos > 0) decir(`Tenés ${aciertos} de ${correctas.length} bien. Revisá la otra.`, false);
+        else decir('Todavía no. Revisá la cuenta, o abrí la pista.', false);
+      });
+    } else {
+      const opciones = [...ej.querySelectorAll<HTMLButtonElement>('.opcion')];
+      for (const op of opciones) {
+        op.addEventListener('click', () => {
+          const bien = op.dataset.correcta === 'si';
+          op.classList.add(bien ? 'elegida-bien' : 'elegida-mal');
+          if (bien) {
+            opciones.forEach((o) => { if (o !== op) o.disabled = true; });
+            decir(azar(BIEN), true);
+          } else {
+            op.disabled = true;
+            decir('No es esa. Probá con otra.', false);
+          }
+        });
+      }
+    }
+  }
+</script>
