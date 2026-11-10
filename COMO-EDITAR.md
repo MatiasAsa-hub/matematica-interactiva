@@ -79,6 +79,13 @@ interactivo: cuadratica
 
 - `orden`: decide en qué orden aparecen los temas en la lista (más chico = más arriba).
 - `interactivo`: qué gráfico interactivo va en la parte de "Intuición". Si el tema no tiene, se borra esa línea.
+- Algunos interactivos usan datos extra. Por ejemplo, el de **orden de las operaciones** lee la lista `cuentas:`. Cada cuenta va entre comillas, con `·` para multiplicar, `:` para dividir y `^` para las potencias (`2^2` es 2²):
+
+```
+cuentas:
+  - "2 + 3 · 4"
+  - "(5 − 8) · 2 + 10"
+```
 
 Después vienen las partes, cada una con un título que empieza con `## `. **Los títulos tienen que ser estos** (la página los reconoce por el nombre):
 

@@ -1,0 +1,39 @@
+---
+// Interactivo: orden de las operaciones, paso a paso.
+// Lógica: src/interactivos/ordenOperaciones.js
+// Las cuentas vienen del tema (campo "cuentas:" del .md).
+import { pasosDe } from '../../lib/expresiones.js';
+
+interface Props { cuentas?: string[] }
+const { cuentas = ['2 + 3 · 4'] } = Astro.props;
+// Se prueban al armar el sitio: si una cuenta está mal escrita, el armado avisa.
+for (const c of cuentas) pasosDe(String(c));
+---
+<div class="interactivo interactivo-cuentas" data-interactivo="orden-operaciones" data-cuentas={JSON.stringify(cuentas.map(String))}>
+  <div class="cuentas-cabecera">
+    <button type="button" class="plano-boton" data-anterior aria-label="Cuenta anterior">‹</button>
+    <span data-contador></span>
+    <button type="button" class="plano-boton" data-proxima aria-label="Cuenta siguiente">›</button>
+  </div>
+
+  <ol class="renglones" data-renglones aria-live="polite"></ol>
+  <p class="regla-actual" data-regla></p>
+
+  <div class="cuentas-botones">
+    <button type="button" class="boton boton-principal" data-siguiente>Siguiente paso</button>
+    <button type="button" class="boton" data-todo>Ver todo</button>
+    <button type="button" class="boton" data-reiniciar>Empezar de nuevo</button>
+  </div>
+
+  <div class="casillas-grupo">
+    <button type="button" class="casilla" data-casilla="terminos" aria-pressed="false" style="--color: var(--c-vertice)">
+      <span class="casilla-marca" aria-hidden="true"></span>
+      <span>Separar en términos</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  import { iniciarOrdenOperaciones } from '../../interactivos/ordenOperaciones.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="orden-operaciones"]').forEach(iniciarOrdenOperaciones);
+</script>

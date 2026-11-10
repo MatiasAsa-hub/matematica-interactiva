@@ -86,6 +86,7 @@ Una página de referencia con todas las convenciones, que va creciendo. Las conv
 - **ℝ** para "todos los reales" y **∅** para "vacío" (por ejemplo, C⁻ = ∅). Confirmado por Mati.
 - Los **intervalos de crecimiento y decrecimiento** van **abiertos** en el vértice: "crece en (1, +∞)". Confirmado.
 - Los resultados **no exactos** se muestran redondeados a 2 decimales con **≈** (x₁ ≈ 1.27). Confirmado.
+- **·** para multiplicar y **:** para dividir (como en la escuela). Los números negativos que van después de una operación llevan paréntesis: 3 · (−2). Confirmado.
 - Las convenciones nuevas que surjan, preguntáselas a Mati y sumalas.
 
 ### BÁSICO — Cómo operar

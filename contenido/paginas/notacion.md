@@ -8,6 +8,8 @@ Así escribimos las cosas en esta página. Puede que en tu escuela usen otra for
 
 - **Punto decimal:** escribimos $2.5$ (y no 2,5).
 - **Signo menos:** $-3$ es "menos tres".
+- **Multiplicar:** con un punto, $3 \cdot 4$. **Dividir:** con dos puntos, $12 : 4$.
+- Un número negativo que va después de una operación lleva **paréntesis**: $3 \cdot (-2)$, $5 - (-1)$.
 
 ## Conjuntos de una función
 

@@ -2,17 +2,20 @@
 // Elige qué interactivo mostrar según el nombre que figura en el tema
 // (campo "interactivo:" al principio del archivo .md).
 // Cuando haya un interactivo nuevo, se agrega acá.
+// "opciones" son los demás datos del principio del .md (por ejemplo, "cuentas:").
 import Cuadratica from './interactivos/Cuadratica.astro';
 import RectaSignos from './interactivos/RectaSignos.astro';
 import RectaMultiplicacion from './interactivos/RectaMultiplicacion.astro';
+import OrdenOperaciones from './interactivos/OrdenOperaciones.astro';
 
-interface Props { nombre: string }
-const { nombre } = Astro.props;
-const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion'];
+interface Props { nombre: string; opciones?: Record<string, any> }
+const { nombre, opciones = {} } = Astro.props;
+const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
 {nombre === 'recta-signos' && <RectaSignos />}
 {nombre === 'recta-multiplicacion' && <RectaMultiplicacion />}
+{nombre === 'orden-operaciones' && <OrdenOperaciones cuentas={opciones.cuentas} />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}

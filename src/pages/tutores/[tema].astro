@@ -33,7 +33,7 @@ const notas = tema.partes.find((p) => p.tipo === 'tutores');
         <p class="texto-suave">Es el mismo que ven los alumnos. Probalo antes de la clase.</p>
       </div>
       <div class="contenedor-ancho">
-        <Interactivo nombre={tema.interactivo} />
+        <Interactivo nombre={tema.interactivo} opciones={tema.opciones} />
       </div>
     </section>
   )}

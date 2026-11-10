@@ -101,6 +101,38 @@
 .regla-caso .neg { color: var(--c-negativo); }
 .regla-caso.activo { border-color: var(--texto); background: var(--fondo-resalte); color: var(--texto); font-weight: 700; }
 
+/* --- Cuentas paso a paso (orden de las operaciones) --- */
+.interactivo.interactivo-cuentas { display: block; max-width: var(--ancho-texto); margin-left: auto; margin-right: auto; }
+.cuentas-cabecera { display: flex; align-items: center; justify-content: center; gap: 1rem; color: var(--texto-suave); }
+.cuentas-cabecera .plano-boton { font-size: 1.6rem; }
+.renglones { list-style: none; padding: 0; margin: 1rem 0 0.5rem; font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+@media (max-width: 420px) { .renglones { font-size: 1.22rem; } }
+.renglon { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.25rem 0.4rem; border-radius: var(--radio-chico); color: var(--texto-suave); }
+.renglon.actual { color: var(--texto); background: var(--fondo-resalte); }
+.renglon.final .renglon-cuenta { color: var(--c-funcion); font-weight: 700; }
+.renglon.nuevo { animation: renglon-aparece 0.35s ease-out; }
+@keyframes renglon-aparece { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.renglon-igual { width: 1rem; flex: none; color: var(--texto-tenue); }
+.renglon-cuenta { overflow-x: auto; white-space: nowrap; padding: 0.15rem 0.1rem; }
+.renglon-cuenta sup { font-size: 0.65em; }
+.cuenta-op { margin: 0 0.05em; }
+.cuenta-marcada {
+  border-bottom: 3px solid var(--c-raices);
+  background: rgba(247, 212, 107, 0.13);
+  border-radius: 4px; padding: 0 0.12em;
+}
+.cuenta-num.recien { color: var(--c-raices); font-weight: 700; animation: recien 0.6s ease-out; }
+@keyframes recien { from { background: rgba(247, 212, 107, 0.4); } to { background: transparent; } }
+.cuenta-termino {
+  display: inline-block; padding: 0 0.25em; margin: 0.1em 0;
+  border: 2px dashed var(--c-vertice); border-radius: 8px;
+}
+.regla-actual { min-height: 1.6em; margin: 0.6rem 0; font-weight: 700; color: var(--c-raices); }
+.regla-actual.listo { color: var(--c-funcion); }
+.regla-num { display: inline-block; margin-right: 0.4em; padding: 0.05em 0.5em; border-radius: 999px; background: var(--fondo-resalte); color: var(--texto-suave); font-size: 0.85em; }
+.cuentas-botones { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.6rem 0 0.9rem; }
+.cuentas-botones .boton:disabled { opacity: 0.45; cursor: default; }
+
 /* --- Selector de forma (ej. polinómica / canónica) --- */
 .selector-forma {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4px;

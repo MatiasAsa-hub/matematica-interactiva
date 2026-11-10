@@ -29,10 +29,16 @@ _Última actualización: 10/11/2026 — sesión 2_
   - Debajo hay una tablita con la regla de los signos que marca el caso que se está usando.
   - 9 ejercicios, 2 con *x*.
 - Los saltos de la recta ahora son una pieza compartida: `src/lib/grafico/saltos.js`.
+- **Orden de las operaciones** (`orden-de-las-operaciones.md`): interactivo `orden-operaciones`.
+  - Se resuelve una cuenta de a un paso, renglón por renglón como en el pizarrón. En cada paso se marca la operación que toca y la regla que se usa.
+  - Casilla **Separar en términos**: encierra cada término en una cajita.
+  - **Las cuentas se eligen en el archivo del tema** (campo `cuentas:`), así que Mati puede agregar o cambiar las suyas.
+  - El motor que lee y resuelve las cuentas (`src/lib/expresiones.js`) sirve para temas futuros, por ejemplo la distributiva.
+  - 9 ejercicios.
+- Convención confirmada: **·** para multiplicar y **:** para dividir. Ya está en la página de Notación.
 
 ## Falta
 - Etapa 1, el resto:
-  - Orden de las operaciones.
   - Fracciones (propuesta: barras).
   - Potencias y raíces.
   - Distributiva y factor común (propuesta: modelo de área).
@@ -52,7 +58,6 @@ _Última actualización: 10/11/2026 — sesión 2_
 - **Celular:** al mover los deslizadores de la cuadrática no se ve el gráfico al mismo tiempo. Es un detalle menor; posible solución: gráfico "pegajoso" arriba.
 
 ## Decisiones pendientes
-- **Convención nueva para confirmar:** se usa **·** para multiplicar y **:** para dividir (como en la escuela). Las divisiones que no dan exacto se muestran con decimales (7 : 4 = 1.75).
 - La forma de los parámetros de los polinomios de grado ≥ 3.
 - Los detalles de la animación de la integral (7.a).
 - Si se incluyen espacios vectoriales.

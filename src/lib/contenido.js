@@ -73,6 +73,7 @@ export function obtenerTema(slug) {
     resumen: t.datos.resumen ?? '',
     subseccion: t.datos.subseccion ?? '',
     interactivo: t.datos.interactivo ?? null,
+    opciones: t.datos,
     partes,
     tieneTutores: partes.some((p) => p.tipo === 'tutores'),
   };
