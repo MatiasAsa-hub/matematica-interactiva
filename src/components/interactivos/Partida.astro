@@ -1,0 +1,60 @@
+---
+// Interactivo de las funciones partidas (por tramos).
+// Lógica: src/interactivos/partida.js
+// Los ejemplos vienen del tema (campo "partidas:" del .md), escritos como
+// "x + 2 si x < 1 ; 3 si x >= 1".
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+import { leerPartida } from '../../lib/partidas.js';
+
+interface Props { partidas?: string[] }
+const { partidas = ['x + 2 si x < 1 ; 3 si x >= 1'] } = Astro.props;
+// Se prueban al armar el sitio: si una está mal escrita, el armado avisa.
+for (const p of partidas) leerPartida(String(p));
+---
+<div class="interactivo" data-interactivo="partida" data-partidas={JSON.stringify(partidas.map(String))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={partidas.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Función anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Función siguiente">›</button>
+    </div>
+    <div class="expresion expresion-llave" data-llave aria-live="polite"></div>
+    <p class="lectura-log lectura-partida" data-lectura aria-live="polite"></p>
+    <div class="grafico" data-grafico></div>
+    <div class="tabla-caja" data-tabla hidden></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-repetir>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Repetir animación
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <div data-control-corte>
+      <Deslizador param="c" etiqueta="corte" min={-4} max={4} paso={0.5} valor={1} ayuda="dónde cambia de tramo" />
+      <button type="button" class="boton boton-chico" data-cambiar-lado>Cambiar de qué lado va el punto del corte</button>
+    </div>
+
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'saltos', texto: 'Saltos', color: '--c-vertice', prendida: true },
+        { nombre: 'enteras', texto: 'Fórmulas enteras', color: '--c-fantasma' },
+        { nombre: 'dominio', texto: 'Dominio', color: '--c-funcion' },
+      ]}
+      extras={[
+        { nombre: 'animacion', texto: 'Animación de puntos', color: '--c-funcion', prendida: true },
+        { nombre: 'tabla', texto: 'Tabla <i>x</i> | <i>f</i>(<i>x</i>)', color: '--c-funcion' },
+      ]}
+    />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarPartida } from '../../interactivos/partida.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="partida"]').forEach(iniciarPartida);
+</script>

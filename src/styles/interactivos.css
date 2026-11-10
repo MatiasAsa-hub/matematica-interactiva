@@ -509,3 +509,20 @@
 /* los botones de zoom van en fila, arriba a la derecha, para no tapar el final de la onda */
 .grafico-trig .plano-botones { flex-direction: row; top: 6px; right: 6px; }
 .grafico-trig .plano-boton { width: 34px; height: 34px; }
+
+/* Funciones partidas: la llave con los tramos */
+.expresion-llave { display: flex; align-items: center; justify-content: center; gap: 0.3rem; flex-wrap: nowrap; }
+.llave-nombre { white-space: nowrap; }
+.llave { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.15rem 0 0.15rem 0.7rem; position: relative; font-size: 0.82em; text-align: left; }
+.llave::before {
+  /* la llave "{" dibujada con bordes redondeados */
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0.45rem;
+  border: 2px solid currentColor; border-right: 0; border-radius: 0.5rem 0 0 0.5rem;
+}
+.llave-fila { display: flex; gap: 0.7rem; align-items: baseline; padding: 0.05rem 0.4rem; border-radius: 6px; transition: background 0.15s; }
+.llave-fila.activo { background: var(--fondo-resalte); box-shadow: inset 0 0 0 1px var(--borde); }
+.llave-formula { min-width: 3.5em; white-space: nowrap; }
+.llave-si { color: var(--texto-suave); font-size: 0.85em; white-space: nowrap; }
+.lectura-partida { font-size: 1rem; }
+[data-control-corte][hidden] { display: none; }
+[data-control-corte] .boton { margin-top: 0.4rem; width: 100%; }

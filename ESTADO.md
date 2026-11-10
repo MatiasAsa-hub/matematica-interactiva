@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 4 (Laboratorio y Etapa 5: exponencial, logarítmica, trigonométricas, módulo, raíz y homográfica)_
+_Última actualización: 10/11/2026 — sesión 4 (Laboratorio y Etapa 5: exponencial, logarítmica, trigonométricas, módulo, raíz, homográfica y partidas)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -167,13 +167,22 @@ Mati pidió dejar **composición e inversa para el final** de la etapa; el resto
     - Homográfica: asíntotas prendidas, la forma "(x + 1) / (x − 1)" debajo de la fórmula, y una explicación de por qué aparecen las asíntotas.
   - Casillas comunes: raíces, ordenada, C⁺ y C⁻, crece y decrece, dominio e imagen. Animación (prendida) y tabla.
   - 7, 7 y 7 ejercicios.
+- **Funciones partidas** (`funciones-partidas.md`): interactivo `partida`.
+  - Los ejemplos se escriben en el tema (campo `partidas:`) casi como en el pizarrón: `"x + 2 si x < 1 ; 3 si x >= 1"`. Se pueden usar 2 o 3 tramos (o más), con condiciones como x < 1, x >= 1 o -2 <= x < 2. Si uno está mal escrito, el armado avisa. Las flechitas ‹ › pasan de un ejemplo a otro.
+  - La fórmula se muestra con la **llave**, y se resalta el renglón que se está usando.
+  - **Un punto que se arrastra** y arriba dice: "x = −2: como −2 < 1, uso x + 2 → f(−2) = −2 + 2 = 0".
+  - En los cortes: punto **lleno** si el extremo está incluido, **hueco** si no (como corchete y paréntesis).
+  - Con dos tramos: un deslizador **mueve el corte** ("¿dónde tiene que estar para que no salte?") y un botón **cambia de qué lado va el punto del corte** (≤ / <).
+  - Casillas: **saltos** (prendida: "salta 2" o "se pega"), fórmulas enteras (cada fórmula completa en gris), dominio. Animación (prendida) y tabla.
+  - 4 ejemplos (uno es el módulo escrito como partida) y 7 ejercicios.
+  - Pieza nueva: `src/lib/partidas.js` (lee las funciones partidas).
 - Pieza nueva: `src/lib/analisisFuncion.js`, con los textos de raíces, C⁺/C⁻, asíntotas, dominio, etc. que antes estaban solo en el Laboratorio. Ahora la usan el Laboratorio y los tres temas nuevos.
 - Piezas compartidas: el `Plano` acepta números propios en el eje x (`ejeX`, para 90° o π/2) y el deslizador acepta un `formato` para mostrar su valor.
 - Links nuevos en los textos: `[Laboratorio](pagina:laboratorio)` apunta a una página suelta (anotado en `COMO-EDITAR.md`).
 
 ## Falta
 - Que Mati revise las Etapas 1 a 5 y dé su devolución.
-- **Próximo:** seguir la Etapa 5: funciones partidas. **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
+- **Próximo:** terminar la Etapa 5 con **inversa y composición** (Mati pidió dejarlas para el final). **Al final**, inversa y composición (pedido de Mati). El Laboratorio ya sabe dibujar casi todas.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
