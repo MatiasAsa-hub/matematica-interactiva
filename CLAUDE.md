@@ -205,7 +205,7 @@ Transversales, a lo largo de todas las etapas: la página de notación y la secc
 - ~~La estética final~~ → **aprobada** con el prototipo (pizarra gris azulada, Nunito, colores por concepto).
 - ~~La forma de los parámetros para polinomios de grado ≥ 3~~ → **con las raíces**.
 - ~~La tabla x | f(x)~~ → **opcional, apagada por defecto**.
-- Los detalles de la animación de integral 7.a.
+- ~~Los detalles de la animación de integral 7.a~~ → **dx a la mitad, animado, altura a la izquierda con botón, lo de abajo del eje en rojo y resta**.
 - Las convenciones de notación nuevas que vayan apareciendo.
 - Si se incluyen espacios vectoriales y subespacios.
 
