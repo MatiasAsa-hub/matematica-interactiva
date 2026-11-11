@@ -2,22 +2,22 @@
 // Interactivo 6.a: de la secante a la tangente.
 // Lógica: src/interactivos/secante.js
 // Las funciones vienen del tema (campo "funciones:" del .md), por ejemplo
-// "x^2", "x^3 - 3x", "sen(x)". Con "conH: true" se prende la casilla
-// "Con h en la cuenta" (para el tema "Derivada por definición").
+// "x^2", "x^3 - 3x", "sen(x)". La casilla "Con h en la cuenta" (apagada)
+// muestra la pendiente escrita con h, para pasar de números a letras.
 import Deslizador from '../controles/Deslizador.astro';
 import Casillas from '../controles/Casillas.astro';
 import { leerDerivable } from '../../lib/derivadas.js';
 
-interface Props { funciones?: string[]; conH?: boolean }
-const { funciones = ['x^2', 'x^3 - 3x', 'sen(x)'], conH = false } = Astro.props;
+interface Props { funciones?: string[] }
+const { funciones = ['x^2', 'x^3 - 3x', 'sen(x)'] } = Astro.props;
 // Se prueban al armar el sitio: si una está mal escrita, el armado avisa.
 for (const f of funciones) leerDerivable(String(f));
 
 const casillas = [
   { nombre: 'triangulo', texto: 'Triángulo <i>h</i> y lo que sube', color: '--c-vertice', prendida: true },
   { nombre: 'tangente', texto: 'Recta tangente', color: '--c-derivada' },
+  { nombre: 'conH', texto: 'Con <i>h</i> en la cuenta', color: '--c-funcion' },
 ];
-if (conH) casillas.push({ nombre: 'conH', texto: 'Con <i>h</i> en la cuenta', color: '--c-funcion', prendida: true });
 ---
 <div class="interactivo" data-interactivo="secante" data-funciones={JSON.stringify(funciones.map(String))}>
   <div class="interactivo-grafico">

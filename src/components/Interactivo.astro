@@ -60,7 +60,7 @@ const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-
 {nombre === 'partida' && <Partida partidas={opciones.partidas} />}
 {nombre === 'composicion' && <Composicion composiciones={opciones.composiciones} />}
 {nombre === 'inversa' && <Inversa inversas={opciones.inversas} />}
-{nombre === 'secante' && <Secante funciones={opciones.funciones} conH={opciones.conH} />}
+{nombre === 'secante' && <Secante funciones={opciones.funciones} />}
 {nombre === 'recorrer' && <Recorrer funciones={opciones.funciones} formula={opciones.formula} />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>

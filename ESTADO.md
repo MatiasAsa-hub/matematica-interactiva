@@ -197,15 +197,14 @@ Mati pidió dejar **composición e inversa para el final** de la etapa; el resto
 - **Estética: más adelante la pareja de Mati va a armar un sistema de diseño en Figma** y se va a cambiar el diseño. Conviene seguir usando los colores de `global.css` (variables) para que el cambio sea fácil.
 
 ### Etapa 6 — Derivadas ✅ (completa; falta la revisión de Mati)
-Mati aprobó todas las propuestas. Subsección nueva "Derivadas" en Análisis, con 4 temas:
-- **¿Qué es la derivada?** (`que-es-la-derivada.md`): interactivo `secante` (6.a).
+Mati aprobó todas las propuestas. Subsección nueva "Derivadas" en Análisis, con 3 temas. (Primero eran 4; Mati pidió **unir "¿Qué es la derivada?" con "Derivada por definición"**.)
+- **¿Qué es la derivada?** (`que-es-la-derivada.md`): interactivo `secante` (6.a). Incluye la parte "Por definición" (el límite, primero con números y después con *x*).
   - Punto azul (x, f(x)) y punto blanco (x + h, f(x + h)), con la secante. Los dos se arrastran (el blanco cambia *h*). Deslizadores *x* y *h*; *h* puede ser negativo.
   - Arriba: "pendiente de la secante = (f(x + h) − f(x)) : h" con los números puestos.
   - Botón **Achicar h**: *h* va hacia 0 (10 veces más chico cada 2 segundos, hasta 0.001). Con *h* ≤ 0.01 la secante se pinta naranja: "¡ya casi es la tangente!".
   - Tablita h | pendiente (1, 0.5, 0.1, 0.01, 0.001) que se va llenando, y "Se acerca a 2: esa es la derivada".
-  - Casillas: triángulo *h* y lo que sube (prendida), recta tangente.
-  - 7 ejercicios.
-- **Derivada por definición** (`derivada-por-definicion.md`): el mismo `secante` con `conH: true`: la casilla **Con h en la cuenta** muestra la pendiente escrita con *h* ("2 + h") y qué queda al achicar *h*. 7 ejercicios.
+  - Casillas: triángulo *h* y lo que sube (prendida), recta tangente, **Con h en la cuenta** (apagada: muestra la pendiente escrita con *h*, "2 + h", y qué queda al achicar *h*).
+  - 10 ejercicios.
 - **La gráfica de f'(x)** (`grafica-de-la-derivada.md`): interactivo `recorrer` (6.b).
   - Arriba la curva con un punto que se arrastra y una **flechita de largo 1** en la dirección de la tangente: turquesa si crece, terracota si decrece, lila si está acostada (se "pega" en los puntos con f' = 0).
   - Abajo, con el mismo eje x, se dibuja f' **desde el borde izquierdo hasta el punto** (si el punto vuelve, se borra). Los dos gráficos se mueven y hacen zoom juntos.

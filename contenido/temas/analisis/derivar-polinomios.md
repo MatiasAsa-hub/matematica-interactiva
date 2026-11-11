@@ -37,7 +37,7 @@ $$
   - $(k)' = 0$: una constante no sube ni baja.
 - **Una suma se deriva término a término:**
   - $(x^3 - 3x + 5)' = 3x^2 - 3 + 0 = 3x^2 - 3$.
-- Todo esto sale de la [derivada por definición](tema:derivada-por-definicion). Para no hacer la cuenta larga cada vez, se usa la regla.
+- Todo esto sale de la [derivada por definición](tema:que-es-la-derivada). Para no hacer la cuenta larga cada vez, se usa la regla.
 - **Tabla de derivadas** (otras funciones que ya vimos):
 
 | $f(x)$ | $f'(x)$ |
@@ -161,7 +161,7 @@ pista: Mirá la tabla: la derivada del seno es el coseno.
 
 ### Antes tiene que saber
 
-- [Potencias](tema:potencias-y-raices) y [derivada por definición](tema:derivada-por-definicion) (para saber de dónde sale la regla).
+- [Potencias](tema:potencias-y-raices) y [derivada por definición](tema:que-es-la-derivada) (para saber de dónde sale la regla).
 
 ### Errores típicos
 
