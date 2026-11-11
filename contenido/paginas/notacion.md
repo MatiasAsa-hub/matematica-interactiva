@@ -44,3 +44,13 @@ x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
 
 - **Derivada:** la derivada de $f$ se escribe $f'(x)$.
+
+## Sistemas de ecuaciones
+
+- Cada ecuación del sistema tiene un **número y un color**: la 1 azul, la 2 naranja y la 3 rosa (en el gráfico es su recta o su plano).
+- La clasificación:
+  - **Compatible determinado (CD):** una sola solución.
+  - **Compatible indeterminado (CI):** infinitas soluciones.
+  - **Incompatible (I):** no tiene solución.
+- Las filas de la matriz se llaman $F_1$, $F_2$, $F_3$. Una operación de filas se escribe con la cuenta primero y una flecha hacia la fila donde queda: $F_2 - 2 \cdot F_1 \to F_2$ ("a la fila 2 le resto 2 veces la fila 1, y eso queda en la fila 2").
+- $F_1 \leftrightarrow F_2$: cambiar de lugar las filas 1 y 2.
