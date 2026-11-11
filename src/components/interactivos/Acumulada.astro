@@ -1,0 +1,50 @@
+---
+// Interactivo 7.b: la integral acumulada F(x), el espejo de "La gráfica de f'(x)".
+// Lógica: src/interactivos/acumulada.js
+// Los ejemplos vienen del tema (campo "integrales:" del .md), por ejemplo
+// "x^2 - 1 ; desde 0" (si no se dice "desde", arranca en 0).
+import Casillas from '../controles/Casillas.astro';
+import { leerIntegral } from '../../lib/integrales.js';
+
+interface Props { integrales?: string[] }
+const { integrales = ['2', 'x', 'x^2 - 1', 'cos(x)'] } = Astro.props;
+for (const t of integrales) leerIntegral(String(t));
+---
+<div class="interactivo" data-interactivo="acumulada" data-integrales={JSON.stringify(integrales.map(String))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={integrales.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Función anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Función siguiente">›</button>
+    </div>
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="expresion-desarrollada linea-integral" data-primitiva hidden></p>
+    <p class="lectura-log lectura-recorrer" data-lectura aria-live="polite"></p>
+    <div class="grafico grafico-f" data-grafico></div>
+    <p class="titulo-integral"><i>F</i>(<i>x</i>): el área acumulada desde <i>a</i> hasta <i>x</i></p>
+    <div class="grafico grafico-derivada" data-grafico-acumulada></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-recorrer>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Recorrer solo
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'pendiente', texto: 'Pendiente de <i>F</i>', color: '--c-funcion' },
+        { nombre: 'formula', texto: 'Fórmula de <i>F</i>', color: '--c-integral' },
+        { nombre: 'entera', texto: '<i>F</i> entera (para comprobar)', color: '--c-fantasma' },
+      ]}
+    />
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarAcumulada } from '../../interactivos/acumulada.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="acumulada"]').forEach(iniciarAcumulada);
+</script>

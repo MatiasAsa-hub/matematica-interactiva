@@ -19,11 +19,14 @@ import { evaluar, derivar, polinomioHtml } from './polinomios.js';
 
 const X = '<i>x</i>';
 
-/** Las funciones que no son polinomios y sabemos derivar. */
+/**
+ * Las funciones que no son polinomios y sabemos derivar.
+ * prim / primHtml: una primitiva (una función cuya derivada es f), para las integrales.
+ */
 const ESPECIALES = {
-  sen: { f: Math.sin, d: Math.cos, html: `sen(${X})`, derivadaHtml: `cos(${X})` },
-  cos: { f: Math.cos, d: (x) => -Math.sin(x), html: `cos(${X})`, derivadaHtml: `−sen(${X})` },
-  exp: { f: Math.exp, d: Math.exp, html: `<i>e</i><sup>${X}</sup>`, derivadaHtml: `<i>e</i><sup>${X}</sup>` },
+  sen: { f: Math.sin, d: Math.cos, html: `sen(${X})`, derivadaHtml: `cos(${X})`, prim: (x) => -Math.cos(x), primHtml: `−cos(${X})` },
+  cos: { f: Math.cos, d: (x) => -Math.sin(x), html: `cos(${X})`, derivadaHtml: `−sen(${X})`, prim: Math.sin, primHtml: `sen(${X})` },
+  exp: { f: Math.exp, d: Math.exp, html: `<i>e</i><sup>${X}</sup>`, derivadaHtml: `<i>e</i><sup>${X}</sup>`, prim: Math.exp, primHtml: `<i>e</i><sup>${X}</sup>` },
 };
 
 function especialDe(texto) {

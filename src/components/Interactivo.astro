@@ -30,10 +30,12 @@ import Composicion from './interactivos/Composicion.astro';
 import Inversa from './interactivos/Inversa.astro';
 import Secante from './interactivos/Secante.astro';
 import Recorrer from './interactivos/Recorrer.astro';
+import Integral from './interactivos/Integral.astro';
+import Acumulada from './interactivos/Acumulada.astro';
 
 interface Props { nombre: string; opciones?: Record<string, any> }
 const { nombre, opciones = {} } = Astro.props;
-const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva', 'mcm-mcd', 'terminos', 'balanza', 'intervalos', 'inecuacion', 'lineal', 'funcion', 'polinomica', 'laboratorio', 'exponencial', 'logaritmica', 'trigonometrica', 'familia', 'partida', 'composicion', 'inversa', 'secante', 'recorrer'];
+const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva', 'mcm-mcd', 'terminos', 'balanza', 'intervalos', 'inecuacion', 'lineal', 'funcion', 'polinomica', 'laboratorio', 'exponencial', 'logaritmica', 'trigonometrica', 'familia', 'partida', 'composicion', 'inversa', 'secante', 'recorrer', 'integral', 'acumulada'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
 {nombre === 'recta-signos' && <RectaSignos />}
@@ -62,6 +64,8 @@ const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-
 {nombre === 'inversa' && <Inversa inversas={opciones.inversas} />}
 {nombre === 'secante' && <Secante funciones={opciones.funciones} />}
 {nombre === 'recorrer' && <Recorrer funciones={opciones.funciones} formula={opciones.formula} />}
+{nombre === 'integral' && <Integral integrales={opciones.integrales} barrow={opciones.barrow} />}
+{nombre === 'acumulada' && <Acumulada integrales={opciones.integrales} />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}
