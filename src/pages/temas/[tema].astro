@@ -74,6 +74,12 @@ let contador = 0; // el recuadro "Para recordar" no lleva número
             <Interactivo nombre={tema.interactivo} opciones={tema.opciones} />
           </div>
         )}
+        {/* un segundo interactivo (opcional), al final de la explicación: campo "interactivo2:" del tema */}
+        {parte.tipo === 'explicacion' && tema.opciones.interactivo2 && (
+          <div class="contenedor-ancho">
+            <Interactivo nombre={tema.opciones.interactivo2} opciones={tema.opciones} />
+          </div>
+        )}
       </section>
     );
   })}

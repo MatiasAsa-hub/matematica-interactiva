@@ -18,7 +18,7 @@
 import {
   WebGLRenderer, Scene, PerspectiveCamera, Group, Mesh, MeshBasicMaterial,
   BufferGeometry, Float32BufferAttribute, DoubleSide, Vector3, Color,
-  SphereGeometry,
+  SphereGeometry, ConeGeometry, Quaternion,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { LineSegments2 } from 'three/examples/jsm/lines/LineSegments2.js';
@@ -366,6 +366,48 @@ export class Espacio {
       mostrar(si) {
         h.visible = si;
         if (linea) linea.visible = si;
+        yo.pedirDibujo();
+      },
+    };
+    return h;
+  }
+
+  /** Una flecha (segmento con punta). Devuelve { poner(desde, hasta) | poner(null), mostrar }. */
+  flecha({ color, ancho = 3.5, punta = 0.45 }) {
+    const mat = this._material(color, ancho);
+    const cono = new Mesh(new ConeGeometry(punta * 0.42, punta, 18), new MeshBasicMaterial({ color: new Color(color) }));
+    cono.visible = false;
+    cono.renderOrder = 3;
+    this.mundo.add(cono);
+    let linea = null;
+    const yo = this;
+    const h = {
+      visible: true,
+      poner(desde, hasta) {
+        if (linea) { yo.mundo.remove(linea); linea.geometry.dispose(); linea = null; }
+        cono.visible = false;
+        if (desde && hasta) {
+          const d = [hasta[0] - desde[0], hasta[1] - desde[1], hasta[2] - desde[2]];
+          const L = largo(d);
+          if (L > 1e-9) {
+            const u = d.map((x) => x / L);
+            // la línea termina donde empieza la punta
+            const fin = hasta.map((x, i) => x - u[i] * punta * 0.9);
+            linea = yo._segmentos([[desde, fin]], mat);
+            linea.visible = h.visible;
+            linea.renderOrder = 3;
+            yo.mundo.add(linea);
+            cono.position.set(hasta[0] - u[0] * punta / 2, hasta[1] - u[1] * punta / 2, hasta[2] - u[2] * punta / 2);
+            cono.quaternion.copy(new Quaternion().setFromUnitVectors(new Vector3(0, 1, 0), new Vector3(...u)));
+            cono.visible = h.visible;
+          }
+        }
+        yo.pedirDibujo();
+      },
+      mostrar(si) {
+        h.visible = si;
+        if (linea) linea.visible = si;
+        cono.visible = si && !!linea;
         yo.pedirDibujo();
       },
     };

@@ -1,0 +1,36 @@
+---
+// Interactivo: vectores en el plano. Dos flechas (u azul, v naranja) que se
+// arrastran, y cuatro operaciones: suma, resta, por un número y producto escalar.
+// Lógica: src/interactivos/vectores.js
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+
+const casillas = [
+  { nombre: 'componentes', texto: 'Componentes (cuánto en <i>x</i>, cuánto en <i>y</i>)', color: '--c-ec1' },
+  { nombre: 'modulo', texto: 'Módulo (el largo)', color: '--c-vertice' },
+];
+---
+<div class="interactivo" data-interactivo="vectores">
+  <div class="interactivo-grafico">
+    <div class="selector-forma selector-4" role="radiogroup" aria-label="Operación">
+      <button type="button" role="radio" aria-checked="true" data-operacion="suma">Suma<span><i>u</i> + <i>v</i></span></button>
+      <button type="button" role="radio" aria-checked="false" data-operacion="resta">Resta<span><i>u</i> − <i>v</i></span></button>
+      <button type="button" role="radio" aria-checked="false" data-operacion="escalar">Por un número<span><i>k</i> · <i>u</i></span></button>
+      <button type="button" role="radio" aria-checked="false" data-operacion="punto">Producto escalar<span><i>u</i> · <i>v</i></span></button>
+    </div>
+    <p class="vec-lectura" data-lectura aria-live="polite"></p>
+    <div data-caja-k hidden>
+      <Deslizador param="k" min={-3} max={3} paso={0.5} valor={2} ayuda="el número" />
+    </div>
+    <div class="grafico" data-grafico></div>
+  </div>
+  <div class="interactivo-controles">
+    <Casillas titulo="Mostrar" casillas={casillas} />
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarVectores } from '../../interactivos/vectores.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="vectores"]').forEach(iniciarVectores);
+</script>

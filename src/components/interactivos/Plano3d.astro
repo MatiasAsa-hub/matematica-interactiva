@@ -1,0 +1,50 @@
+---
+// Interactivo: la ecuación del plano a·x + b·y + c·z = d, en 3D, con su
+// vector normal (a, b, c). Cuatro deslizadores, uno por número.
+// Lógica: src/interactivos/plano3d.js
+// Los ejemplos vienen del tema (campo "planos:" del .md), por ejemplo "x + y + 2z = 4".
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+import { leerEcuacion3 } from '../../lib/sistemas.js';
+
+interface Props { planos?: string[] }
+const { planos = ['x + y + 2z = 4'] } = Astro.props;
+for (const p of planos) {
+  const [a, b, c, d] = leerEcuacion3(String(p));
+  if ([a, b, c].some((v) => !Number.isInteger(v) || Math.abs(v) > 3) || !Number.isInteger(d) || Math.abs(d) > 8) {
+    throw new Error(`En "${p}", los números de adelante tienen que ser enteros de −3 a 3, y el resultado de −8 a 8`);
+  }
+}
+const [a0, b0, c0, d0] = leerEcuacion3(String(planos[0]));
+
+const casillas = [
+  { nombre: 'normal', texto: 'Vector normal', color: '--c-vertice', prendida: true },
+  { nombre: 'ejes', texto: 'Cortes con los ejes', color: '--c-raices' },
+];
+---
+<div class="interactivo" data-interactivo="plano3d" data-planos={JSON.stringify(planos.map(String))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={planos.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Plano anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Plano siguiente">›</button>
+    </div>
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <div class="grafico grafico-3d" data-espacio></div>
+    <div class="plano3d-deslizadores">
+      <Deslizador param="a" min={-3} max={3} paso={1} valor={a0} ayuda="con x" />
+      <Deslizador param="b" min={-3} max={3} paso={1} valor={b0} ayuda="con y" />
+      <Deslizador param="c" min={-3} max={3} paso={1} valor={c0} ayuda="con z" />
+      <Deslizador param="d" min={-8} max={8} paso={1} valor={d0} ayuda="el resultado" />
+    </div>
+  </div>
+  <div class="interactivo-controles">
+    <Casillas titulo="Mostrar" casillas={casillas} />
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarPlano3d } from '../../interactivos/plano3d.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="plano3d"]').forEach(iniciarPlano3d);
+</script>

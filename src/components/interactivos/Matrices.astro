@@ -1,0 +1,40 @@
+---
+// Interactivo: cuentas con matrices paso a paso (suma, resta, producto por
+// un número, producto fila por columna y determinante por Sarrus o por la
+// primera fila).
+// Lógica: src/interactivos/matrices.js
+// Las cuentas vienen del tema (campo "cuentas:" del .md), por ejemplo
+//   "(1 2 ; 3 4) · (2 0 ; 1 -1)"   o   "det(2 1 3 ; 0 -1 2 ; 1 4 1)"
+import { leerCuenta } from '../../lib/matrices.js';
+
+interface Props { cuentas?: string[] }
+const { cuentas = ['(1 2 ; 3 4) · (2 0 ; 1 -1)'] } = Astro.props;
+// Se prueban al armar el sitio: si una está mal escrita, el armado avisa.
+for (const c of cuentas) leerCuenta(String(c));
+---
+<div class="interactivo interactivo-cuentas" data-interactivo="matrices" data-cuentas={JSON.stringify(cuentas.map(String))}>
+  <div class="cuentas-cabecera" hidden={cuentas.length < 2}>
+    <button type="button" class="plano-boton" data-anterior aria-label="Cuenta anterior">‹</button>
+    <span data-contador></span>
+    <button type="button" class="plano-boton" data-proxima aria-label="Cuenta siguiente">›</button>
+  </div>
+
+  <div class="selector-forma" role="radiogroup" aria-label="Cómo calcular el determinante" data-formas hidden>
+    <button type="button" role="radio" aria-checked="true" data-forma="sarrus">Sarrus<span>diagonales</span></button>
+    <button type="button" role="radio" aria-checked="false" data-forma="fila">Por la primera fila<span>con determinantes 2×2</span></button>
+  </div>
+
+  <div class="mat-cuenta" data-cuenta aria-live="polite"></div>
+  <div class="mat-paso" data-paso aria-live="polite"></div>
+
+  <div class="interactivo-acciones mat-botones">
+    <button type="button" class="boton boton-chico" data-paso-anterior>‹ Anterior</button>
+    <button type="button" class="boton boton-chico boton-principal" data-paso-siguiente>Siguiente ›</button>
+    <button type="button" class="boton boton-chico" data-todo>Todo junto</button>
+  </div>
+</div>
+
+<script>
+  import { iniciarMatrices } from '../../interactivos/matrices.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="matrices"]').forEach(iniciarMatrices);
+</script>

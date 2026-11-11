@@ -636,3 +636,61 @@
 /* si dos planos casi coinciden, que sus números no se pisen */
 .espacio-etiqueta.plano-2 { margin-top: -10px; }
 .espacio-etiqueta.plano-3 { margin-top: 10px; }
+
+/* Matrices (etapa 8, parte 2) */
+.selector-forma[hidden] { display: none; }
+.mat-cuenta { overflow-x: auto; padding: 0.6rem 0 0.3rem; }
+.mat-fila { display: flex; align-items: center; justify-content: center; gap: 0.45rem; width: max-content; min-width: 100%; margin: 0 auto; }
+.mat-op { font-size: 1.4rem; color: var(--texto-suave); }
+.mat-op.mat-k { color: var(--texto); border-radius: 6px; padding: 0 0.2rem; }
+.mat { border-collapse: separate; border-spacing: 0; font-size: 1.2rem; font-variant-numeric: tabular-nums; }
+.mat td { padding: 0.2rem 0.45rem; min-width: 2.1rem; text-align: center; transition: background 0.25s, opacity 0.25s; }
+.mat td:first-child { border-left: 2px solid var(--texto-suave); }
+.mat td:last-child { border-right: 2px solid var(--texto-suave); }
+.mat tr:first-child td:first-child { border-top-left-radius: 8px; }
+.mat tr:last-child td:first-child { border-bottom-left-radius: 8px; }
+.mat tr:first-child td:last-child { border-top-right-radius: 8px; }
+.mat tr:last-child td:last-child { border-bottom-right-radius: 8px; }
+.mat td.repetida { color: var(--texto-tenue); }
+/* Sarrus: las dos columnas repetidas quedan afuera del corchete */
+.mat td.fin-real { border-right: 2px solid var(--texto-suave); }
+.mat td.repetida:last-child { border-right: 0; }
+.mat td.vacia { color: var(--texto-tenue); }
+.mat td.resalta-a { background: color-mix(in srgb, var(--c-ec1) 28%, transparent); }
+.mat td.resalta-b { background: color-mix(in srgb, var(--c-ec2) 28%, transparent); }
+.mat td.resalta-r { background: color-mix(in srgb, var(--c-raices) 30%, transparent); color: var(--c-raices); font-weight: 700; }
+.mat td.resalta-mas { background: color-mix(in srgb, var(--c-positivo) 32%, transparent); color: var(--texto); font-weight: 700; }
+.mat td.resalta-menos { background: color-mix(in srgb, var(--c-negativo) 32%, transparent); color: var(--texto); font-weight: 700; }
+.mat td.tachada { opacity: 0.25; text-decoration: line-through; }
+.mat td.menor { background: color-mix(in srgb, var(--c-vertice) 22%, transparent); }
+.mat-op.resalta-k { background: color-mix(in srgb, var(--c-ec1) 28%, transparent); }
+.mat-tamanos { display: flex; justify-content: center; gap: 1.2rem; color: var(--texto-tenue); font-size: 0.85rem; margin-top: 0.3rem; }
+.mat-nombre i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1rem; color: var(--texto-suave); }
+.mat-nombre small { margin-left: 0.3rem; }
+.mat-paso { text-align: center; min-height: 4.6em; }
+.mat-paso p { margin: 0.4rem 0; line-height: 1.5; }
+.mat-final { font-size: 1.12rem; font-variant-numeric: tabular-nums; }
+.mat-paso .mas, .mat-productos .mas b { color: var(--c-positivo); }
+.mat-paso .menos, .mat-productos .menos b { color: var(--c-negativo); }
+.color-a { color: var(--c-ec1); }
+.color-b { color: var(--c-ec2); }
+.mat-productos { list-style: none; padding: 0; margin: 0.3rem auto 0; width: max-content; max-width: 100%; font-variant-numeric: tabular-nums; }
+.mat-productos li { margin: 0.1rem 0; }
+.mat-productos li.nuevo { color: var(--texto); font-weight: 700; }
+.mat-botones { justify-content: center; flex-wrap: wrap; }
+.mat-botones .boton:disabled { opacity: 0.4; cursor: default; }
+.det-expresion { padding-top: 0; }
+.det-expresion .mas { color: var(--c-positivo); }
+.det-expresion .menos { color: var(--c-negativo); }
+.det-lectura { text-align: center; margin: 0.2rem 0 0.6rem; min-height: 3em; }
+/* Vectores */
+.vec-lectura { text-align: center; line-height: 1.6; margin: 0.3rem 0 0.5rem; min-height: 4.8em; font-variant-numeric: tabular-nums; }
+.vec-lectura i, .det-lectura i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1em; }
+[data-caja-k][hidden] { display: none; }
+/* Ecuación del plano */
+.plano3d-deslizadores { display: grid; gap: 0.2rem; margin-top: 0.6rem; }
+@media (min-width: 600px) { .plano3d-deslizadores { grid-template-columns: 1fr 1fr; column-gap: 1rem; } }
+.espacio-etiqueta-chica { font-size: 0.85rem; }
+.expresion .fr { font-size: 0.6em; }
+.interactivo-segundo { margin-top: 1.2rem; }
+.mat-titulo { text-align: center; color: var(--texto-suave); font-weight: 700; margin: 0 0 0.5rem; }

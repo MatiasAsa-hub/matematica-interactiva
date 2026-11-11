@@ -474,3 +474,10 @@ export function leerGauss(ej) {
   }
   return { sistema, filas, ...pasosGauss(filas) };
 }
+
+/** Lee una sola ecuación con x, y, z (sin k): "2x + y - z = 4" → [2, 1, -1, 4]. */
+export function leerEcuacion3(texto) {
+  const s = leerSistema(`${texto} ; x = 0 ; y = 0`);
+  if (s.conK) throw new Error(`La ecuación no puede tener k: "${texto}"`);
+  return filasCon(s)[0].map(valor);
+}

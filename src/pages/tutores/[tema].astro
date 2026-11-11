@@ -35,6 +35,11 @@ const notas = tema.partes.find((p) => p.tipo === 'tutores');
       <div class="contenedor-ancho">
         <Interactivo nombre={tema.interactivo} opciones={tema.opciones} />
       </div>
+      {tema.opciones.interactivo2 && (
+        <div class="contenedor-ancho interactivo-segundo">
+          <Interactivo nombre={tema.opciones.interactivo2} opciones={tema.opciones} />
+        </div>
+      )}
     </section>
   )}
 </Base>

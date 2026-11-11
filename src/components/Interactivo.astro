@@ -33,10 +33,14 @@ import Recorrer from './interactivos/Recorrer.astro';
 import Integral from './interactivos/Integral.astro';
 import Acumulada from './interactivos/Acumulada.astro';
 import Sistema from './interactivos/Sistema.astro';
+import Matrices from './interactivos/Matrices.astro';
+import Determinante from './interactivos/Determinante.astro';
+import Vectores from './interactivos/Vectores.astro';
+import Plano3d from './interactivos/Plano3d.astro';
 
 interface Props { nombre: string; opciones?: Record<string, any> }
 const { nombre, opciones = {} } = Astro.props;
-const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva', 'mcm-mcd', 'terminos', 'balanza', 'intervalos', 'inecuacion', 'lineal', 'funcion', 'polinomica', 'laboratorio', 'exponencial', 'logaritmica', 'trigonometrica', 'familia', 'partida', 'composicion', 'inversa', 'secante', 'recorrer', 'integral', 'acumulada', 'sistema'];
+const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-operaciones', 'galera', 'fraccion', 'fracciones-operaciones', 'potencias', 'distributiva', 'mcm-mcd', 'terminos', 'balanza', 'intervalos', 'inecuacion', 'lineal', 'funcion', 'polinomica', 'laboratorio', 'exponencial', 'logaritmica', 'trigonometrica', 'familia', 'partida', 'composicion', 'inversa', 'secante', 'recorrer', 'integral', 'acumulada', 'sistema', 'matrices', 'determinante', 'vectores', 'plano3d'];
 ---
 {nombre === 'cuadratica' && <Cuadratica />}
 {nombre === 'recta-signos' && <RectaSignos />}
@@ -68,6 +72,10 @@ const conocidos = ['cuadratica', 'recta-signos', 'recta-multiplicacion', 'orden-
 {nombre === 'integral' && <Integral integrales={opciones.integrales} barrow={opciones.barrow} />}
 {nombre === 'acumulada' && <Acumulada integrales={opciones.integrales} />}
 {nombre === 'sistema' && <Sistema sistemas={opciones.sistemas} modo={opciones.modo} k={opciones.k} />}
+{nombre === 'matrices' && <Matrices cuentas={opciones.cuentas} />}
+{nombre === 'determinante' && <Determinante />}
+{nombre === 'vectores' && <Vectores />}
+{nombre === 'plano3d' && <Plano3d planos={opciones.planos} />}
 {!conocidos.includes(nombre) && (
   <p class="cartel-aviso">Acá va el interactivo "{nombre}", que todavía no está hecho.</p>
 )}

@@ -1,0 +1,27 @@
+---
+// Interactivo: el determinante 2×2 como el área del paralelogramo que
+// forman las dos filas (como vectores). Las puntas se arrastran.
+// Lógica: src/interactivos/determinante.js
+import Casillas from '../controles/Casillas.astro';
+
+const casillas = [
+  { nombre: 'coordenadas', texto: 'Coordenadas de las puntas', color: '--texto', prendida: true },
+  { nombre: 'rectangulo', texto: 'Rectángulo menos triángulos', color: '--c-vertice' },
+];
+---
+<div class="interactivo" data-interactivo="determinante">
+  <div class="interactivo-grafico">
+    <div class="mat-cuenta det-expresion" data-expresion aria-live="polite"></div>
+    <p class="det-lectura" data-lectura aria-live="polite"></p>
+    <div class="grafico" data-grafico></div>
+  </div>
+  <div class="interactivo-controles">
+    <Casillas titulo="Mostrar" casillas={casillas} />
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarDeterminante } from '../../interactivos/determinante.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="determinante"]').forEach(iniciarDeterminante);
+</script>
