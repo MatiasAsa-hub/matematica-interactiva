@@ -185,7 +185,7 @@ export function iniciarCuadratica(raiz) {
     if (Xh > 0 && Xh < derecha) {
       p.ctx.save();
       p.ctx.strokeStyle = col.vertice;
-      p.ctx.lineWidth = 2;
+      p.ctx.lineWidth = p.grosor(2);
       p.ctx.beginPath();
       p.ctx.moveTo(Xh, Y - 10);
       p.ctx.lineTo(Xh, Y + 10);

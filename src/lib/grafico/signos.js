@@ -54,7 +54,7 @@ export function dibujarBarrasDeSigno(p, f, raices) {
     const ctx = p.ctx;
     ctx.save();
     ctx.strokeStyle = positivo ? col.positivo : col.negativo;
-    ctx.lineWidth = 5;
+    ctx.lineWidth = p.grosor(5);
     ctx.lineCap = 'butt';
     if (!positivo) ctx.setLineDash([9, 6]);
     ctx.beginPath();

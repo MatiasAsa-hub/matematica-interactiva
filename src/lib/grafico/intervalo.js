@@ -28,7 +28,7 @@ export function dibujarIntervalo(p, { desde, hasta, cerradoDesde = false, cerrad
   ctx.fillRect(X1, Y0 - 34, X2 - X1, 34);
   ctx.globalAlpha = alfa;
   ctx.strokeStyle = color;
-  ctx.lineWidth = 6;
+  ctx.lineWidth = p.grosor(6);
   ctx.lineCap = 'butt';
   ctx.beginPath();
   ctx.moveTo(Math.max(X1, -10), Y0);
@@ -53,7 +53,7 @@ export function dibujarCruz(p, x, { color, tamano = 6, alfa = 1 } = {}) {
   ctx.save();
   ctx.globalAlpha = alfa;
   ctx.strokeStyle = color;
-  ctx.lineWidth = 3;
+  ctx.lineWidth = p.grosor(3);
   ctx.lineCap = 'round';
   ctx.beginPath();
   ctx.moveTo(X - tamano, Y - tamano); ctx.lineTo(X + tamano, Y + tamano);

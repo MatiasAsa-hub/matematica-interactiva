@@ -65,7 +65,7 @@ export function iniciarInversa(raiz) {
     const ctx = p.ctx;
     ctx.save();
     ctx.strokeStyle = color;
-    ctx.lineWidth = ancho;
+    ctx.lineWidth = p.grosor(ancho);
     ctx.lineJoin = 'round';
     if (guiones) ctx.setLineDash(guiones);
     ctx.beginPath();

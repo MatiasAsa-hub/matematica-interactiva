@@ -43,7 +43,7 @@ export function dibujarSaltos(p, { desde = 0, paso = 1, cantidad = 0, visibles =
     ctx.save();
     ctx.globalAlpha = alfa;
     ctx.strokeStyle = color;
-    ctx.lineWidth = 3;
+    ctx.lineWidth = p.grosor(3);
     ctx.lineCap = 'round';
     if (dir < 0 && !colorFijo) ctx.setLineDash([7, 5]);
     ctx.beginPath();

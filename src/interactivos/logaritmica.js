@@ -56,7 +56,7 @@ export function iniciarLogaritmica(raiz) {
       ctx.fillRect(0, 0, X0, p.alto);
       ctx.globalAlpha = 0.3;
       ctx.strokeStyle = col.fantasma;
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = p.grosor(1.5);
       ctx.beginPath();
       for (let d = -p.alto; d < X0; d += 14) { ctx.moveTo(d, p.alto); ctx.lineTo(d + p.alto, 0); }
       ctx.stroke();

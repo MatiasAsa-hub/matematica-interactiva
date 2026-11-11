@@ -123,7 +123,7 @@ export function iniciarTrigonometrica(raiz) {
     ctx.save();
     ctx.strokeStyle = col.texto;
     ctx.globalAlpha = 0.55;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = p.grosor(2);
     ctx.beginPath();
     ctx.arc(p.px(CENTRO), p.py(0), p.escala, 0, Math.PI * 2);
     ctx.stroke();
@@ -139,7 +139,7 @@ export function iniciarTrigonometrica(raiz) {
     // el ángulo (arco lila) y el radio
     ctx.save();
     ctx.strokeStyle = col.vertice;
-    ctx.lineWidth = 3;
+    ctx.lineWidth = p.grosor(3);
     ctx.beginPath();
     ctx.arc(p.px(CENTRO), p.py(0), p.escala * 0.28, 0, -a, true);
     ctx.stroke();

@@ -71,6 +71,14 @@ export class Plano {
     //   { paso: cada cuánto va un número, texto: (x) => texto o null, separacion: píxeles mínimos }
     // Si los números quedan muy juntos, se saltea uno sí y uno no.
     this.ejeX = opciones.ejeX ?? null;
+    // factorGrosor: cuánto se afinan las líneas y los puntos (1 = sin cambios).
+    // En los gráficos de funciones van más finos, para que no se vea
+    // sobrecargado cuando se prenden muchas casillas (pedido de Mati).
+    // relacionY: cuánto más apretado (o estirado) va el eje y que el x.
+    // 1 = la misma escala en los dos ejes (lo normal). 0.5 = una unidad de y
+    // ocupa la mitad que una de x. Sirve, por ejemplo, para el gráfico de f'.
+    this.relacionY = opciones.relacionY ?? 1;
+    this.factorGrosor = opciones.factorGrosor ?? (this.soloEjeX ? 1 : 0.65);
     this.capas = [];
     this.arrastrables = [];
     this.colores = leerColores();
@@ -161,17 +169,19 @@ export class Plano {
 
   get xMin() { return this.cx - this.ancho / 2 / this.escala; }
   get xMax() { return this.cx + this.ancho / 2 / this.escala; }
-  get yMin() { return this.cy - this.alto / 2 / this.escala; }
-  get yMax() { return this.cy + this.alto / 2 / this.escala; }
+  get yMin() { return this.cy - this.alto / 2 / this.escalaY; }
+  get yMax() { return this.cy + this.alto / 2 / this.escalaY; }
+  /** Píxeles por unidad en el eje y. */
+  get escalaY() { return this.escala * this.relacionY; }
 
   /** Coordenada x matemática → píxel horizontal */
   px(x) { return this.ancho / 2 + (x - this.cx) * this.escala; }
   /** Coordenada y matemática → píxel vertical */
-  py(y) { return this.alto / 2 - (y - this.cy) * this.escala; }
+  py(y) { return this.alto / 2 - (y - this.cy) * this.escalaY; }
   /** Píxel horizontal → x matemática */
   mx(px) { return this.cx + (px - this.ancho / 2) / this.escala; }
   /** Píxel vertical → y matemática */
-  my(py) { return this.cy + (this.alto / 2 - py) / this.escala; }
+  my(py) { return this.cy + (this.alto / 2 - py) / this.escalaY; }
 
   /** Zoom manteniendo fijo el punto de la pantalla (px, py). */
   zoom(factor, px = this.ancho / 2, py = this.alto / 2) {
@@ -179,12 +189,22 @@ export class Plano {
     const y = this.my(py);
     this.escala = Math.min(ESCALA_MAX, Math.max(ESCALA_MIN, this.escala * factor));
     this.cx = x - (px - this.ancho / 2) / this.escala;
-    this.cy = y - (this.alto / 2 - py) / this.escala;
+    this.cy = y - (this.alto / 2 - py) / this.escalaY;
     this._tocado = true;
     this._vistaCambio();
   }
 
   // ---------------------------------------------------------------- dibujo
+
+  /** Grosor real de una línea: el pedido, afinado según factorGrosor. */
+  grosor(ancho) {
+    return Math.max(1, ancho * this.factorGrosor);
+  }
+
+  /** Tamaño real de un punto (se achica menos que las líneas). */
+  radioPunto(radio) {
+    return radio * Math.sqrt(this.factorGrosor);
+  }
 
   /** Agrega una función que dibuja algo. Se llama en orden, cada vez que se redibuja. */
   agregarCapa(fn) {
@@ -224,6 +244,11 @@ export class Plano {
   /** Paso entre las líneas de la grilla, según el zoom. */
   get pasoGrilla() {
     return pasoRedondo(this.separacionNumeros / this.escala);
+  }
+
+  /** Paso de la grilla en el eje y (es otro si relacionY no es 1). */
+  get pasoY() {
+    return this.relacionY === 1 ? this.pasoGrilla : pasoRedondo(this.separacionNumeros / this.escalaY);
   }
 
   /** Paso de los números del eje x (el de la grilla, o el propio si hay ejeX). */
@@ -272,7 +297,9 @@ export class Plano {
     const { ctx } = this;
     const paso = this.pasoGrilla;
     const sub = paso / (String(paso).startsWith('2') ? 4 : 5);
-    const dibujarLineas = (p, color, pX = this.ejeX ? this.pasoX : p) => {
+    const pasoY = this.pasoY;
+    const subY = pasoY / (String(pasoY).startsWith('2') ? 4 : 5);
+    const dibujarLineas = (p, color, pX = this.ejeX ? this.pasoX : p, pY = p) => {
       ctx.strokeStyle = color;
       ctx.lineWidth = 1;
       ctx.beginPath();
@@ -280,14 +307,14 @@ export class Plano {
         const X = Math.round(this.px(x)) + 0.5;
         ctx.moveTo(X, 0); ctx.lineTo(X, this.alto);
       }
-      for (let y = Math.ceil(this.yMin / p) * p; y <= this.yMax; y += p) {
+      for (let y = Math.ceil(this.yMin / pY) * pY; y <= this.yMax; y += pY) {
         const Y = Math.round(this.py(y)) + 0.5;
         ctx.moveTo(0, Y); ctx.lineTo(this.ancho, Y);
       }
       ctx.stroke();
     };
-    if (sub * this.escala > 9) dibujarLineas(sub, 'rgba(255,255,255,0.025)', this.ejeX ? this.pasoX / 2 : sub);
-    dibujarLineas(paso, 'rgba(255,255,255,0.07)');
+    if (sub * this.escala > 9) dibujarLineas(sub, 'rgba(255,255,255,0.025)', this.ejeX ? this.pasoX / 2 : sub, subY);
+    dibujarLineas(paso, 'rgba(255,255,255,0.07)', undefined, pasoY);
   }
 
   dibujarEjes() {
@@ -321,11 +348,12 @@ export class Plano {
     const pegadoIzq = X0 < 30;
     const xTexto = Math.min(Math.max(X0 - 6, 30), this.ancho - 4);
     ctx.textAlign = pegadoIzq ? 'left' : 'right';
-    for (let y = Math.ceil(this.yMin / paso) * paso; y <= this.yMax; y += paso) {
-      if (Math.abs(y) < paso / 2) continue;
+    const pasoY = this.pasoY;
+    for (let y = Math.ceil(this.yMin / pasoY) * pasoY; y <= this.yMax; y += pasoY) {
+      if (Math.abs(y) < pasoY / 2) continue;
       const Y = this.py(y);
       if (Y < 10 || Y > this.alto - 10) continue;
-      this._textoConHalo(textoNumeroEje(y, paso), pegadoIzq ? 4 : xTexto, Y);
+      this._textoConHalo(textoNumeroEje(y, pasoY), pegadoIzq ? 4 : xTexto, Y);
     }
     // nombres de los ejes
     ctx.font = `italic 15px ${this.fuente}`;
@@ -364,7 +392,7 @@ export class Plano {
     ctx.save();
     ctx.globalAlpha = alfa;
     ctx.strokeStyle = color;
-    ctx.lineWidth = ancho;
+    ctx.lineWidth = this.grosor(ancho);
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     if (guiones) ctx.setLineDash(guiones);
@@ -418,7 +446,7 @@ export class Plano {
       ctx.clip();
       ctx.globalAlpha = 0.35;
       ctx.strokeStyle = color;
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = this.grosor(1.5);
       ctx.beginPath();
       for (let d = -this.alto; d < this.ancho; d += 12) {
         ctx.moveTo(d, this.alto); ctx.lineTo(d + this.alto, 0);
@@ -433,6 +461,7 @@ export class Plano {
     const { ctx } = this;
     const X = this.px(x);
     const Y = this.py(y);
+    radio = this.radioPunto(radio);
     ctx.save();
     ctx.globalAlpha = alfa;
     ctx.beginPath();
@@ -444,7 +473,7 @@ export class Plano {
     } else {
       ctx.arc(X, Y, radio, 0, Math.PI * 2);
     }
-    ctx.lineWidth = 2.5;
+    ctx.lineWidth = this.grosor(2.5);
     ctx.strokeStyle = hueco ? color : this.colores.fondo;
     if (!hueco) { ctx.fillStyle = color; ctx.fill(); }
     else { ctx.fillStyle = this.colores.fondo; ctx.fill(); }
@@ -489,7 +518,7 @@ export class Plano {
     ctx.save();
     ctx.globalAlpha = alfa;
     ctx.strokeStyle = color;
-    ctx.lineWidth = ancho;
+    ctx.lineWidth = this.grosor(ancho);
     ctx.lineCap = 'round';
     if (guiones) ctx.setLineDash(guiones);
     ctx.beginPath();
@@ -506,7 +535,8 @@ export class Plano {
     ctx.save();
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
-    ctx.lineWidth = ancho;
+    ctx.lineWidth = this.grosor(ancho);
+    punta *= Math.sqrt(this.factorGrosor);
     ctx.lineCap = 'round';
     ctx.beginPath();
     ctx.moveTo(X1, Y1);
@@ -615,7 +645,7 @@ export class Plano {
         arrastre.a.mover(this.mx(X), this.my(Y));
       } else {
         this.cx -= (X - arrastre.X) / this.escala;
-        this.cy += (Y - arrastre.Y) / this.escala;
+        this.cy += (Y - arrastre.Y) / this.escalaY;
         arrastre.X = X; arrastre.Y = Y;
         this._tocado = true;
         this._vistaCambio();
@@ -684,7 +714,7 @@ export class Plano {
         const dd = datosDosDedos(e.touches);
         this.escala = Math.min(ESCALA_MAX, Math.max(ESCALA_MIN, toque.escala0 * (dd.d / toque.d0)));
         this.cx = toque.x - (dd.X - this.ancho / 2) / this.escala;
-        this.cy = toque.y - (this.alto / 2 - dd.Y) / this.escala;
+        this.cy = toque.y - (this.alto / 2 - dd.Y) / this.escalaY;
         this._tocado = true;
         this._vistaCambio();
       } else if (toque.tipo === 'un-dedo') {
