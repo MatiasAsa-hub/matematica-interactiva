@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 11/11/2026 — sesión 5 (devolución de las Etapas 1 a 5 y Etapa 6 completa)_
+_Última actualización: 11/11/2026 — sesión 5 (devolución de las Etapas 1 a 5, Etapas 6 y 7 completas)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -216,11 +216,28 @@ Mati aprobó todas las propuestas. Subsección nueva "Derivadas" en Análisis, c
 - Color: **la derivada va en naranja** (ya estaba reservado en `global.css`).
 - Piezas nuevas: `src/lib/derivadas.js`; el `Plano` acepta `relacionY` (eje y con otra escala) y `factorGrosor`.
 
+### Etapa 7 — Integrales ✅ (completa; falta la revisión de Mati)
+Mati eligió: altura de las tiras a la izquierda con botón para cambiar, dx que se achica **a la mitad, animado**, tiras de abajo del eje **rojas y que restan**, y 4 temas. Subsección nueva "Integrales" en Análisis.
+- **¿Qué es la integral?** (`que-es-la-integral.md`): interactivo `integral` (7.a).
+  - Tiras entre *a* y *b* (rombos violetas que se arrastran, de a 1). Arriba: "dx = 0.25 → 12 tiras" y "Σ f(x) · dx = 7.91".
+  - **Achicar dx**: cada tira se parte en dos (animado), dx = 1, 0.5, 0.25… hasta 1/32, y al final las tiras **se funden** en el área: "∫₀³ f(x) dx = 9".
+  - Botones **Izquierda / Medio / Derecha** para la altura de las tiras (puntitos blancos). Tablita dx | suma.
+  - Verde arriba del eje (suma), rojo abajo (resta).
+  - 7 ejercicios.
+- **La integral acumulada** (`integral-acumulada.md`): interactivo `acumulada` (7.b), espejo de "La gráfica de f'(x)".
+  - Arriba se pinta el área desde *a* hasta el punto; abajo se dibuja F(x) en violeta. Casillas: pendiente de F (muestra que F' = f), fórmula de F, F entera. Botón Recorrer solo.
+  - 7 ejercicios.
+- **Regla de Barrow y primitivas** (`regla-de-barrow.md`): el mismo `integral` con `barrow: true` (casilla con la cuenta F(b) − F(a), con fracciones apiladas). Tabla de primitivas. 7 ejercicios.
+- **Área entre dos curvas** (`area-entre-curvas.md`): el mismo `integral`, con ejemplos "x + 2 ; abajo: x^2 ; de -1 a 2". Las tiras van de *g* (rosa) a *f* (azul); si se cruzan, las tiras rojas avisan. 6 ejercicios.
+- Cómo se escriben los ejemplos (campo `integrales:`): `"x^2 ; de 0 a 3"`, `"x + 2 ; abajo: x^2 ; de -1 a 2"` o `"x^2 - 1 ; desde 0"` (para la acumulada). Los extremos, enteros.
+- Color: **la integral va en violeta** (ya reservado en `global.css`).
+- Pieza nueva: `src/lib/integrales.js` (leer ejemplos, primitivas, fracciones lindas, Simpson).
+
 ## Falta
-- Que Mati revise la Etapa 6.
-- **Próximo:** Etapa 7, integrales. Antes, definir con Mati los detalles de la animación 7.a (dx que se achica).
+- Que Mati revise las Etapas 6 y 7.
+- **Próximo:** Etapa 8, álgebra (sistemas 2×2 y 3×3, Gauss animado, sistema con parámetro k, matrices, vectores, planos en 3D). Antes, preguntarle a Mati las decisiones de diseño.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
-- Etapas 7 y 8, según la hoja de ruta de `CLAUDE.md`.
+- Etapa 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
 
 ## Decisiones tomadas en la sesión 2
@@ -236,7 +253,6 @@ Mati aprobó todas las propuestas. Subsección nueva "Derivadas" en Análisis, c
 - **Celular:** al mover los deslizadores de la cuadrática no se ve el gráfico al mismo tiempo. Es un detalle menor; posible solución: gráfico "pegajoso" arriba.
 
 ## Decisiones pendientes
-- Los detalles de la animación de la integral (7.a).
 - Si se incluyen espacios vectoriales.
 
 ## Notas técnicas
