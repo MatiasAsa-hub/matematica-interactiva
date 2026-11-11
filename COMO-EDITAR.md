@@ -9,7 +9,7 @@ Cuando guardás un cambio en GitHub, la página se vuelve a publicar sola en uno
 ## 1. Editar desde la web de GitHub (lo más fácil)
 
 1. Entrá a **https://github.com/MatiasAsa-hub/matematica-interactiva**.
-2. Abrí la carpeta **`contenido`** y después el archivo que quieras cambiar (por ejemplo `temas` → `analisis` → `funcion-cuadratica.md`).
+2. Abrí la carpeta **`contenido`** y después el archivo que quieras cambiar (por ejemplo `temas` → `funciones` → `funcion-cuadratica.md`).
 3. Arriba a la derecha del archivo, tocá el **lápiz** ✏️ ("Edit this file").
 4. Cambiá el texto.
 5. Tocá el botón verde **"Commit changes…"**. En el cuadrito escribí qué cambiaste (por ejemplo: "Corrijo la pista del ejercicio 2") y confirmá con **"Commit changes"**.
@@ -23,12 +23,14 @@ Cuando guardás un cambio en GitHub, la página se vuelve a publicar sola en uno
 
 | Qué querés cambiar | Archivo |
 |---|---|
-| Nombre de la página, frase de presentación, secciones | `contenido/sitio.md` |
+| Nombre de la página, frase de presentación, etapas y unidades | `contenido/sitio.md` |
 | Textos de la página de inicio | `contenido/paginas/inicio.md` |
 | Página de notación y convenciones | `contenido/paginas/notacion.md` |
 | "Cómo usar esta página en una clase" (tutores) | `contenido/paginas/como-usar.md` |
 | Laboratorio de funciones | `contenido/paginas/laboratorio.md` |
-| Un tema (explicación, ejemplo, ejercicios, notas para tutores) | `contenido/temas/<sección>/<tema>.md` |
+| Texto de arriba de la lista de Temas | `contenido/paginas/alumnos.md` |
+| Texto de arriba de la sección Interactivos | `contenido/paginas/interactivos.md` |
+| Un tema (explicación, ejemplo, ejercicios, notas para tutores) | `contenido/temas/<unidad>/<tema>.md` |
 
 ---
 
@@ -79,8 +81,10 @@ interactivo: cuadratica
 ```
 
 - **Ojo:** si un texto de esta parte tiene **dos puntos seguidos de un espacio** (por ejemplo `resumen: Y al revés: sacar factor común`), hay que ponerlo **entre comillas**: `resumen: "Y al revés: sacar factor común"`. Si no, el armado falla.
-- `orden`: decide en qué orden aparecen los temas en la lista (más chico = más arriba).
-- `interactivo`: qué gráfico interactivo va en la parte de "Intuición". Si el tema no tiene, se borra esa línea.
+- `orden`: decide en qué orden aparecen los temas **dentro de su unidad** (más chico = más arriba). También decide cuál es el "tema siguiente" y el "tema anterior" de los botones del final.
+- La **unidad** de un tema es la carpeta donde está el archivo (`contenido/temas/funciones/`, `contenido/temas/derivadas/`…). Para pasar un tema a otra unidad, se mueve el archivo de carpeta. Los nombres, el orden y las descripciones de las unidades están en `contenido/sitio.md`.
+- `subseccion`: solo se usa en las unidades largas (más de 6 temas), para separar los temas con subtítulos.
+- `interactivo`: qué gráfico interactivo va en la parte de "Intuición" (a los alumnos ese título se les muestra como **"Para probar"**). Si el tema no tiene, se borra esa línea.
 - Algunos interactivos usan datos extra. Por ejemplo, el de **orden de las operaciones** lee la lista `cuentas:`. Cada cuenta va entre comillas, con `·` para multiplicar, `:` para dividir y `^` para las potencias (`2^2` es 2²):
 
 ```
@@ -176,11 +180,26 @@ El vértice está arriba del eje y la parábola abre para arriba.
 
 ## 6. Agregar un tema nuevo
 
-1. En GitHub, entrá a la carpeta de la sección (`contenido/temas/basico`, `analisis` o `algebra`).
+1. En GitHub, entrá a la carpeta de la unidad donde va el tema (por ejemplo `contenido/temas/funciones`). Las unidades y su orden están en `contenido/sitio.md`.
 2. Tocá **"Add file" → "Create new file"**.
 3. Poné el nombre en minúsculas, sin acentos y con guiones, terminado en `.md`. Por ejemplo: `funcion-lineal.md`. Ese nombre es el que va en la dirección de la página y en los links `tema:funcion-lineal`.
 4. Lo más fácil: copiá el contenido de `funcion-cuadratica.md`, pegalo y cambiá los textos.
 5. Si el tema todavía no tiene interactivo, borrá la línea `interactivo:`.
+
+---
+
+## 6 bis. La página de Notación
+
+Está en `contenido/paginas/notacion.md`. Cada título `## ...` es una sección (y aparece sola en el índice de arriba). Dentro de una sección, cada renglón es una ficha: **lo que se escribe, en negrita**, después una raya y qué quiere decir.
+
+```
+## Intervalos y conjuntos
+
+- **$[2, 5)$** — Con el 2, sin el 5.
+- **CD** — Compatible determinado: una sola solución.
+```
+
+Los colores de la leyenda del final están arriba de todo del archivo, en la lista `colores:`.
 
 ---
 
@@ -200,6 +219,6 @@ Todo lo importante queda guardado en tres lugares que no dependen de la sesión:
 
 ## 8. Si algo sale mal
 
-- Si en **Actions** aparece una ❌ roja, abrila: el mensaje suele decir qué falta, por ejemplo *"Falta la línea respuesta: ... en contenido/temas/analisis/funcion-cuadratica.md, ejercicio 'El vértice'"*.
+- Si en **Actions** aparece una ❌ roja, abrila: el mensaje suele decir qué falta, por ejemplo *"Falta la línea respuesta: ... en contenido/temas/funciones/funcion-cuadratica.md, ejercicio 'El vértice'"*.
 - Para volver atrás un cambio: en el archivo, tocá **"History"**, elegí la versión anterior y copiá el texto de ahí.
 - Cualquier duda, pedíselo a Claude en una sesión: "corregí tal cosa en tal tema".

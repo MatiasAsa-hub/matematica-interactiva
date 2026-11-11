@@ -92,7 +92,10 @@ Una página de referencia con todas las convenciones, que va creciendo. Las conv
 
 ### Organización de las listas (pedido de Mati)
 
-- La lista de **Temas** y la de **Tutores** se organizan en **carpetas desplegables**: sección (Básico, Análisis, Álgebra) → subsección (Operaciones, Funciones…) → temas. Así se ve solo lo principal y se abre lo que interesa.
+- **Desde la revisión general (11/11/2026):** la lista de **Temas** y la de **Tutores** se organizan en **9 unidades cortas** que se abren con un toque, agrupadas en 3 etapas (Para arrancar, Funciones, Para 4.º y 5.º año). Las unidades: Números y operaciones · Fracciones y potencias · Letras y ecuaciones · Funciones: las primeras · Más funciones · Combinar funciones · Derivadas · Integrales · Sistemas, matrices y vectores. Están definidas en `contenido/sitio.md` y cada una es una carpeta de `contenido/temas/`.
+- Los títulos BÁSICO / ANÁLISIS / ÁLGEBRA de más abajo quedan como lista del contenido, no como secciones de la página.
+- Hay una sección **Interactivos** con todos los interactivos de cada unidad en una misma página (sin subsecciones). El Laboratorio vive ahí adentro.
+- Cada tema tiene arriba un botón para **volver** a su unidad y abajo los botones de **tema siguiente** y **anterior**.
 
 ### BÁSICO — Cómo operar
 
@@ -202,8 +205,8 @@ Transversales, a lo largo de todas las etapas: la página de notación y la secc
 
 ## 11. Decisiones pendientes
 
-- Nombre de la página: **neutro**, ni personal ni referido a ninguna organización. Mientras tanto, usá un nombre provisorio genérico.
-- ~~La estética final~~ → **aprobada** con el prototipo (pizarra gris azulada, Nunito, colores por concepto).
+- ~~Nombre de la página~~ → **"Matemática para todos"**, con el logo de la **∀ ("para todo") y un punto amarillo** en la punta (decidido por Mati, 11/11/2026).
+- ~~La estética final~~ → diseño **"Carpeta"** (elegido por Mati, 11/11/2026): hoja color hueso para leer, interactivos como **pizarrones oscuros**, títulos en Fraunces y texto en Atkinson Hyperlegible, colores por concepto (versión "tinta" en la hoja y "tiza" en el pizarrón). Sigue siendo provisoria hasta que llegue el sistema de diseño de Figma.
 - ~~La forma de los parámetros para polinomios de grado ≥ 3~~ → **con las raíces**.
 - ~~La tabla x | f(x)~~ → **opcional, apagada por defecto**.
 - ~~Los detalles de la animación de integral 7.a~~ → **dx a la mitad, animado, altura a la izquierda con botón, lo de abajo del eje en rojo y resta**.
@@ -214,7 +217,8 @@ Transversales, a lo largo de todas las etapas: la página de notación y la secc
 
 ## 12. Ideas anotadas (para más adelante)
 
-- **Revisar el orden, la división en secciones y los nombres de los temas** (pedido de Mati, 10/11/2026). A Mati no lo convence cómo están seccionados o nombrados. **No cambiarlo todavía**: retomarlo cuando esté hecha la mayoría de los temas.
+- ~~Revisar el orden, la división en secciones y los nombres de los temas~~ → hecho en la revisión general del 11/11/2026 (9 unidades). Los **nombres de cada tema** no se tocaron.
+- Propuestas de la revisión general, **sin hacer** (esperan el visto bueno de Mati): índice chiquito dentro de cada tema (Para probar · Explicación · Ejemplo · Ejercicios), botón para compartir un tema por WhatsApp, buscador de temas.
 
 - **Glosario al tocar una palabra** (idea de Mati): las palabras formales (C⁺, vértice, raíz, resolvente, intervalo…) se pueden tocar en el celular o señalar con el mouse, y aparece una descripción corta. Se puede armar a partir de la página de Notación.
 - **En el celular, al mover los deslizadores no se ve el gráfico** (quedan uno debajo del otro). Mati dice que es un detalle menor. Posible solución: gráfico "pegajoso" arriba o deslizadores flotantes.
