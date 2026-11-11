@@ -208,7 +208,9 @@ Transversales, a lo largo de todas las etapas: la página de notación y la secc
 - ~~La tabla x | f(x)~~ → **opcional, apagada por defecto**.
 - ~~Los detalles de la animación de integral 7.a~~ → **dx a la mitad, animado, altura a la izquierda con botón, lo de abajo del eje en rojo y resta**.
 - Las convenciones de notación nuevas que vayan apareciendo.
-- Si se incluyen espacios vectoriales y subespacios.
+- ~~Si se incluyen espacios vectoriales y subespacios~~ → **no, por ahora**.
+- ~~Determinante 3×3~~ → **Sarrus y por la primera fila** (las dos).
+- ~~Interactivo del producto de matrices~~ → **fila por columna, paso a paso**.
 
 ## 12. Ideas anotadas (para más adelante)
 

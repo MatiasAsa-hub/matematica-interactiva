@@ -243,9 +243,21 @@ Mati aprobó las Etapas 6 y 7 ("muy bien") y eligió: los **4 métodos** para 2�
 - Colores nuevos: **ecuación 1 azul, 2 naranja, 3 rosa** (`--c-ec1/2/3`), con su número al lado.
 - Piezas nuevas: `src/lib/sistemas.js` (leer sistemas, fracciones exactas, pasos de Gauss, clasificación) y `src/lib/grafico/espacio.js` (gráficos 3D con **Three.js**: planos recortados en una caja, rectas, puntos, etiquetas; se gira con un dedo y se acerca con dos). Three.js pesa unos 130 KB y **solo se descarga en las páginas con 3×3**.
 
+### Etapa 8, parte 2 — Matrices, vectores y planos ✅ (completa; falta la revisión de Mati)
+Mati eligió: **4 temas**, **sin espacios vectoriales** (por ahora), determinante 3×3 **por Sarrus y por la primera fila**, y el producto **fila por columna, paso a paso**. Subsecciones nuevas en Álgebra: "Matrices" y "Vectores y planos".
+- **Matrices y sus operaciones** (`matrices.md`): interactivo `matrices`. Cuentas paso a paso (Siguiente / Anterior / Todo junto): suma y resta casillero por casillero, producto por un número, y producto con la fila de A (azul) y la columna de B (naranja) resaltadas. Muestra los tamaños (2×3 · 3×2 → 2×2). 6 ejercicios.
+- **Determinante** (`determinante.md`): dos interactivos.
+  - Arriba, `determinante`: las filas son dos flechas que se arrastran y el paralelogramo es verde (det > 0) o rojo (det < 0); con det = 0 se aplasta. Casilla "Rectángulo menos triángulos".
+  - Al final de la explicación, `matrices` con cuentas `det(...)`: 2×2 con las dos diagonales; 3×3 con un selector **Sarrus / Por la primera fila** (diagonales verdes que suman y rojas que restan; o el número, su fila y columna tachadas y el 2×2 que queda).
+  - 5 ejercicios.
+- **Vectores** (`vectores.md`): interactivo `vectores`. Dos flechas (u azul, v naranja) que se arrastran, con cuatro operaciones: suma (una a continuación de la otra), resta, por un número (deslizador k) y producto escalar (con el ángulo; si da 0, marca el ángulo recto). Casillas: componentes y módulo. El espacio (3 componentes) va en el texto. 6 ejercicios.
+- **Ecuación del plano** (`ecuacion-del-plano.md`): interactivo `plano3d`. El plano en 3D con deslizadores a, b, c, d (enteros), el vector normal (lila) y la casilla "Cortes con los ejes". Ejemplos en el campo `planos:`. 5 ejercicios.
+- Nuevo: un tema puede tener **un segundo interactivo** al final de la explicación (campo `interactivo2:` del tema). También se muestra en la página de tutores.
+- Piezas nuevas: `src/lib/matrices.js` (leer cuentas y armar los pasos); `Espacio` ahora también dibuja flechas en 3D.
+
 ## Falta
-- Que Mati revise la Etapa 8, parte 1 (sistemas).
-- **Próximo:** Etapa 8, parte 2: matrices (suma, producto, determinante; propuesta: determinante 2×2 como área del paralelogramo), vectores en el plano y en el espacio, planos. Antes, preguntarle a Mati las decisiones de diseño (y si van espacios vectoriales).
+- Que Mati revise la Etapa 8 (partes 1 y 2). **Con esto, la hoja de ruta de `CLAUDE.md` está completa.**
+- Lo que queda anotado para después: revisar el orden, las secciones y los nombres de los temas; el glosario al tocar una palabra; el gráfico "pegajoso" en el celular; las guías imprimibles (al final de todo); y quizás espacios vectoriales.
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
 - **Guía imprimible: al final de todo** (decisión de Mati).
 
@@ -262,7 +274,7 @@ Mati aprobó las Etapas 6 y 7 ("muy bien") y eligió: los **4 métodos** para 2�
 - **Celular:** al mover los deslizadores de la cuadrática no se ve el gráfico al mismo tiempo. Es un detalle menor; posible solución: gráfico "pegajoso" arriba.
 
 ## Decisiones pendientes
-- Si se incluyen espacios vectoriales.
+- ~~Si se incluyen espacios vectoriales~~ → **no, por ahora** (Mati, sesión de la Etapa 8).
 
 ## Notas técnicas
 - Node.js y GitHub CLI están instalados. En la terminal: `npm run dev` y abrir http://localhost:4321/matematica-interactiva/.
