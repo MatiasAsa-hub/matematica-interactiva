@@ -233,11 +233,20 @@ Mati eligió: altura de las tiras a la izquierda con botón para cambiar, dx que
 - Color: **la integral va en violeta** (ya reservado en `global.css`).
 - Pieza nueva: `src/lib/integrales.js` (leer ejemplos, primitivas, fracciones lindas, Simpson).
 
+### Etapa 8, parte 1 — Sistemas de ecuaciones ✅ (completa; falta la revisión de Mati)
+Mati aprobó las Etapas 6 y 7 ("muy bien") y eligió: los **4 métodos** para 2×2 (sustitución, igualación, reducción y determinantes), Gauss **hasta escalonada y después pasos opcionales hasta los planos "derechos"**, la notación **F₂ − 2·F₁ → F₂** (ya en la página de Notación) y **5 temas**. Subsección nueva "Sistemas de ecuaciones" en Álgebra.
+- Un solo interactivo, `sistema`, con tres modos (campo `modo:` del tema). Los 2×2 se dibujan con rectas (gráfico 2D de siempre) y los 3×3 con planos en 3D.
+  - `explorar`: rectas o planos, el punto solución (amarillo) y un cartel con la clasificación (CD verde, CI amarillo, I rojo, siempre con el nombre escrito). En los 2×2, las rectas se mueven arrastrando dos puntitos huecos (de a números enteros). Casillas: la solución, despejar *y* (2×2), rectas de corte y plano 1/2/3 (3×3).
+  - `gauss` (8.a): matriz ampliada y botones Anterior / **Siguiente paso** / Empezar de nuevo. En cada paso la recta o el plano que cambia **gira** (queda la posición anterior en gris punteado) y la solución no se mueve. Avisa cuando queda escalonada, cuando aparece 0 = 0 o 0 = 5, y al final ("los planos quedaron derechos"). Los pasos los elige la página sola (sin fracciones: si hace falta, multiplica) o se escriben en el tema.
+  - `parametro` (8.b): deslizador de *k* arriba del gráfico, con imán en los valores especiales (donde el determinante da 0). El cartel cambia solo.
+- Temas: **Sistemas 2×2: dos rectas** (los 4 métodos en el ejemplo resuelto), **Clasificación de sistemas**, **Sistemas 3×3: tres planos**, **Método de Gauss**, **Sistemas con parámetro k**. Entre 4 y 6 ejercicios cada uno.
+- Colores nuevos: **ecuación 1 azul, 2 naranja, 3 rosa** (`--c-ec1/2/3`), con su número al lado.
+- Piezas nuevas: `src/lib/sistemas.js` (leer sistemas, fracciones exactas, pasos de Gauss, clasificación) y `src/lib/grafico/espacio.js` (gráficos 3D con **Three.js**: planos recortados en una caja, rectas, puntos, etiquetas; se gira con un dedo y se acerca con dos). Three.js pesa unos 130 KB y **solo se descarga en las páginas con 3×3**.
+
 ## Falta
-- Que Mati revise las Etapas 6 y 7.
-- **Próximo:** Etapa 8, álgebra (sistemas 2×2 y 3×3, Gauss animado, sistema con parámetro k, matrices, vectores, planos en 3D). Antes, preguntarle a Mati las decisiones de diseño.
+- Que Mati revise la Etapa 8, parte 1 (sistemas).
+- **Próximo:** Etapa 8, parte 2: matrices (suma, producto, determinante; propuesta: determinante 2×2 como área del paralelogramo), vectores en el plano y en el espacio, planos. Antes, preguntarle a Mati las decisiones de diseño (y si van espacios vectoriales).
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
-- Etapa 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
 
 ## Decisiones tomadas en la sesión 2

@@ -87,6 +87,7 @@ Una página de referencia con todas las convenciones, que va creciendo. Las conv
 - Los **intervalos de crecimiento y decrecimiento** van **abiertos** en el vértice: "crece en (1, +∞)". Confirmado.
 - Los resultados **no exactos** se muestran redondeados a 2 decimales con **≈** (x₁ ≈ 1.27). Confirmado.
 - **·** para multiplicar y **:** para dividir (como en la escuela). Los números negativos que van después de una operación llevan paréntesis: 3 · (−2). Confirmado.
+- **Operaciones de filas:** primero la cuenta y después a dónde va: F₂ − 2·F₁ → F₂. Cambiar filas: F₁ ↔ F₂. Confirmado.
 - Las convenciones nuevas que surjan, preguntáselas a Mati y sumalas.
 
 ### Organización de las listas (pedido de Mati)
