@@ -101,7 +101,7 @@ Después vienen las partes, cada una con un título que empieza con `## `. **Los
 | `## Explicación` | La explicación. |
 | `## Ejemplo resuelto` | Un ejemplo. Cada paso empieza con `### ` y aparece como desplegable. |
 | `## Ejercicios` | Los ejercicios autocorregibles (ver abajo). |
-| `## Para tutores` | Las notas para tutores. **No las ven los alumnos**: van en una página aparte. |
+| `## Para tutores` | Las notas para tutores. **No las ven los alumnos**: van en una página aparte. Adentro llevan seis apartados con `### `: Objetivo, Antes tiene que saber, Errores típicos, Cómo destrabarlo, En el pizarrón y Preguntas para el alumno. |
 
 ### Recuadro "Para recordar"
 

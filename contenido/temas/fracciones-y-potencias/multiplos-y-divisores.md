@@ -106,15 +106,29 @@ Los dos tienen un $3$ y una $x$: el mayor factor común es $3x$. Es lo mismo que
 - Encontrar mcm y mcd de números chicos.
 - Usarlos para el denominador común y para simplificar.
 
+### Antes tiene que saber
+
+- Las tablas de multiplicar y la [división con cociente y resto](tema:division-cociente-y-resto).
+
 ### Errores típicos
 
 - Confundir mcm con mcd.
 - Creer que el denominador común siempre es la multiplicación de los denominadores (sirve, pero no siempre es el más chico).
 
+### Cómo destrabarlo
+
+- Para no confundirlos: los **múltiplos** son iguales o más grandes que el número; los **divisores**, iguales o más chicos.
+- mcm: escribir las dos tablas, una debajo de la otra, y buscar el primer número que se repite.
+- mcd: hacer las dos listas de divisores y marcar los que están en las dos.
+
 ### En el pizarrón
 
-- _(para completar)_
+- Dos renglones: los múltiplos de 4 y los de 6. Redondear los que se repiten (12, 24…): el primero es el mcm.
+- Dos listas: los divisores de 12 y los de 18. Redondear los comunes (1, 2, 3, 6): el más grande es el mcd.
+- Conectar con lo que viene: el mcm sirve para sumar fracciones; el mcd, para simplificar.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Puede el mcm de dos números ser más chico que uno de ellos? ¿Y el mcd, más grande?
+- ¿Cuál es el mcm de 3 y 5? ¿Por qué justo da $3 \cdot 5$?
+- ¿Cuál es el mcd de 7 y 10? ¿Qué quiere decir eso?

@@ -126,14 +126,23 @@ pista: $\sqrt{4 + 9 + 36}$.
 - Pensar que el producto escalar da un vector.
 - Olvidarse de los paréntesis con los negativos: $3 \cdot (-2)$.
 
+### Cómo destrabarlo
+
+- Un vector es una flecha: importan el largo y hacia dónde apunta, no dónde está dibujada. Dibujar la misma flecha en dos lugares.
+- Sumar y restar: componente con componente.
+- El producto escalar da un **número**: se multiplican las componentes de a pares y se suma todo.
+- El módulo sale con Pitágoras; no es sumar las componentes.
+
 ### En el pizarrón
 
 - Dibujar en una cuadrícula: la suma como "una flecha a continuación de la otra".
 - Para el módulo, marcar el triángulo rectángulo con los catetos (las componentes).
-- _(para completar)_
+- La resta $u - v$ como "sumar el opuesto de $v$".
+- Un producto escalar que dé 0, con las dos flechas dibujadas: se ve el ángulo recto.
 
 ### Preguntas para el alumno
 
 - ¿Qué le pasa a una flecha si la multiplicás por −1?
 - ¿Cómo te das cuenta de que dos vectores son perpendiculares sin dibujarlos?
-- _(para completar)_
+- ¿Cuánto mide el vector $(3, 4)$?
+- ¿Qué vector hay que sumarle a $(2, -1)$ para volver al origen?

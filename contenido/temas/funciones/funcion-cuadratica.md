@@ -154,10 +154,24 @@ En $a(x - h)^2 + k$ va un menos adelante de $h$. Como $(x + 2) = (x - (-2))$, $h
 - Creer que siempre hay dos raíces.
 - El signo de $h$ en la forma canónica.
 
+### Cómo destrabarlo
+
+- Antes de la resolvente, escribir aparte $a$, $b$ y $c$ con sus signos.
+- Reemplazar con paréntesis: si $b = -2$, entonces $-b = -(-2) = 2$.
+- La raya de fracción es larga: **todo** lo de arriba se divide por $2a$.
+- Si adentro de la raíz queda un número negativo, no hay raíces: mostrarlo en el interactivo con una parábola que no toca el eje.
+- Forma canónica: en $(x - h)^2$ el signo "está al revés". $(x - 1)^2$ tiene el vértice en $x = 1$.
+
 ### En el pizarrón
 
-- _(para completar)_
+- Tabla de $x^2 - 2x - 3$ con $x$ de $-2$ a 4, marcar los puntos y unirlos.
+- Señalar en el dibujo las raíces, el vértice y la ordenada al origen.
+- La resolvente en un recuadro y la cuenta en renglones separados: primero $b^2 - 4ac$, después las dos raíces.
+- El vértice: $x_v$ queda justo en el medio de las dos raíces.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Qué cambia en la parábola si $a$ es negativo?
+- ¿Cuántas raíces puede tener una cuadrática? ¿De qué depende?
+- Si las raíces son $-1$ y 3, ¿dónde está el eje de simetría?
+- ¿Cómo sacás la ordenada al origen sin hacer cuentas?

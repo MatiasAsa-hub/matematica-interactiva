@@ -140,14 +140,22 @@ En cada corte $f'$ cambia de signo, así que $f$ pasa de subir a bajar o al rev�
 - Pensar que $f'$ tiene que tener la misma forma que $f$.
 - Buscar los extremos donde $f = 0$ en vez de donde $f' = 0$.
 
+### Cómo destrabarlo
+
+- $f'$ no dice dónde está la curva: dice **cuán inclinada** está. Una curva puede estar bien arriba y estar bajando.
+- Usar la mano como tangente apoyada sobre la curva: ¿sube, baja o está acostada?
+- En los máximos y mínimos de $f$ la tangente está acostada: ahí $f'$ vale 0. Son los primeros puntos que se marcan.
+- $f'$ casi nunca se parece a $f$: la derivada de una parábola es una recta.
+
 ### En el pizarrón
 
 - Dibujar $f$ arriba y un eje abajo, con las mismas marcas en $x$.
 - Marcar primero los puntos donde la tangente está acostada (ahí $f' = 0$), después poner + o − en cada tramo, y recién ahí dibujar $f'$.
-- _(para completar)_
+- Empezar con $x^2$ (su derivada es una recta) y después pasar a una cúbica.
 
 ### Preguntas para el alumno
 
 - Si $f$ sube cada vez más empinada, ¿qué hace $f'$?
 - ¿Puede $f$ ser negativa y $f'$ positiva en el mismo punto? Dibujá un ejemplo.
-- _(para completar)_
+- Si $f'$ es positiva en todo un tramo, ¿qué hace $f$ ahí?
+- ¿En qué puntos de $f$ la gráfica de $f'$ corta al eje $x$?

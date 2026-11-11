@@ -145,14 +145,23 @@ $2 \cdot (-1) - 1 \cdot 1 = -2 - 1 = -3$. (Y con eso sale $x = 3$, $y = 1$.)
 - Errores de signo al reemplazar: $x - (5 - x)$ no es $x - 5 - x$.
 - No comprobar al final.
 
+### Cómo destrabarlo
+
+- La solución es un par $(x, y)$ que cumple **las dos** ecuaciones: el punto tiene dos coordenadas, así que faltan las dos.
+- En sustitución, reemplazar con paréntesis: $x - (5 - x)$.
+- En reducción, escribir la resta en columna y cuidar el signo de **todos** los términos.
+- Verificar siempre en las dos ecuaciones.
+
 ### En el pizarrón
 
 - Dibujar las dos rectas con una tablita de 2 o 3 puntos cada una y marcar el cruce.
 - Resolver con un solo método primero; los otros, después.
-- _(para completar)_
+- Escribir las dos ecuaciones con una llave y numerarlas (1) y (2).
+- Cerrar con la verificación en las dos.
 
 ### Preguntas para el alumno
 
 - ¿Cómo sabés si un punto es solución?
 - ¿Qué método te resulta más cómodo? ¿Por qué?
-- _(para completar)_
+- En el dibujo, ¿qué quiere decir resolver el sistema?
+- Si un punto cumple solo una de las ecuaciones, ¿dónde está?

@@ -147,14 +147,23 @@ $F_2 - 2 \cdot F_1 \to F_2$ da $(0 \;\; -5 \mid -10)$, o sea $-5y = -10 \Rightar
 - Errores de signo al restar filas: conviene escribir la fila que se resta abajo, como una cuenta de restar.
 - Multiplicar una fila por 0.
 
+### Cómo destrabarlo
+
+- Una fila es una ecuación completa: la cuenta se hace con **todos** sus números, también con el que está después de la raya.
+- Cada paso busca "fabricar un 0" debajo de la diagonal. Decir cuál 0 se busca antes de hacer la cuenta.
+- Solo cambia la fila que está después de la flecha; las otras se copian igual.
+- Al final se despeja de abajo hacia arriba.
+
 ### En el pizarrón
 
 - Escribir la matriz grande y, al lado de cada flecha, la operación ($F_2 - 2 \cdot F_1 \to F_2$).
 - Hacer la resta fila por fila, como una cuenta en columna.
-- _(para completar)_
+- Marcar con un círculo los lugares donde tienen que quedar los 0 (el triángulo de abajo a la izquierda).
+- Al terminar, volver a escribir las ecuaciones y despejar $z$, después $y$ y después $x$.
 
 ### Preguntas para el alumno
 
 - ¿Por qué se puede restar una ecuación a otra sin cambiar la solución?
 - ¿Cómo te das cuenta de que ya está escalonada?
-- _(para completar)_
+- ¿Qué fila cambia con $F_3 - 2 \cdot F_1 \to F_3$?
+- Si una fila queda con todos 0 y un 5 después de la raya, ¿qué quiere decir?

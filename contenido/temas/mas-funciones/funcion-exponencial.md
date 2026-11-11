@@ -149,14 +149,22 @@ Arranca en 4 y cada paso se multiplica por 3 ($4 \cdot 3 = 12$, $12 \cdot 3 = 36
 - Creer que $2^{-1}$ es negativo.
 - Pensar que la curva "termina tocando" el eje $x$.
 
+### Cómo destrabarlo
+
+- $2^x$ contra $2x$: hacer las dos tablas, una al lado de la otra. Una suma 2 en cada paso; la otra multiplica por 2.
+- Exponentes negativos: seguir la tabla para atrás dividiendo por 2: $1$, $\frac{1}{2}$, $\frac{1}{4}$. Se achica, pero nunca es negativo.
+- Tampoco llega a 0: la mitad de algo siempre es algo.
+- Con $k$ entre 0 y 1, decrece: multiplicar por $\frac{1}{2}$ es achicar.
+
 ### En el pizarrón
 
 - Hacer una tabla $x$ | $2^x$ de $-2$ a $4$ y marcar "×2" entre cada fila.
 - Marcar los puntos y unirlos. Al lado, la recta $1 + x$ para comparar.
-- _(para completar)_
+- Marcar la asíntota: la curva se pega al eje $x$ pero no lo toca.
 
 ### Preguntas para el alumno
 
 - Si cada día se duplica, ¿cuánto hay después de 10 días?
 - ¿Puede $2^x$ dar 0? ¿Y negativo?
-- _(para completar)_
+- ¿Por qué punto pasan todas las $k^x$? ¿Por qué?
+- A la larga, ¿qué crece más rápido: $100x$ o $2^x$?

@@ -135,14 +135,22 @@ $|x|$ nunca es negativo, así que $|x| + 3$ es siempre 3 o más: nunca llega a 0
 - Quedarse con una sola raíz.
 - Confundir el signo de $h$: el vértice de $|x - 3|$ está en 3, no en −3.
 
+### Cómo destrabarlo
+
+- Módulo = distancia al 0, y una distancia nunca es negativa.
+- $|x - 3|$ es la distancia entre $x$ y 3: no se le cambia el signo "a cada cosa". Probar con $x = 5$: $|5 - 3| = 2$, y $5 + 3 = 8$.
+- El vértice está donde lo de adentro da 0.
+- $|x| = 3$ tiene dos soluciones: marcar en la recta los dos números que están a distancia 3 del 0.
+
 ### En el pizarrón
 
 - Tabla de $x$ y $|x|$ de −3 a 3, marcar los puntos: aparece la V.
 - Dibujar la recta $y = x$ y "doblar" la parte de abajo hacia arriba.
-- _(para completar)_
+- Correr la V: tabla de $|x - 2|$. El pico pasa a $x = 2$.
 
 ### Preguntas para el alumno
 
 - ¿Puede el módulo dar negativo?
 - ¿Qué números están a distancia 2 del 5?
-- _(para completar)_
+- ¿Dónde está el pico de $|x + 1| - 3$?
+- ¿Cuántas soluciones tiene $|x| = -2$?

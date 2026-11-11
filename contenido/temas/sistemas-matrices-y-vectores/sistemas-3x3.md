@@ -112,13 +112,21 @@ De abajo hacia arriba: $z = 3$; $y + 3 = 5 \Rightarrow y = 2$; $x + 2 + 3 = 6 \R
 - Pensar que $x + y + z = 6$ es una recta (como en 2D).
 - Comprobar en dos ecuaciones y no en las tres.
 
+### Cómo destrabarlo
+
+- Con tres letras, cada ecuación es un plano y no una recta: en el espacio hace falta una "pared" para cumplir una sola condición.
+- Ir de a poco: dos planos se cortan en una recta, y el tercero corta a esa recta en un punto.
+- La solución tiene tres números: verificar en las tres ecuaciones.
+
 ### En el pizarrón
 
 - Usar la esquina del aula como ejes: el piso es $z = 0$ y cada pared es otro plano. Las tres se cortan en un punto (la esquina).
 - Con hojas o carpetas se pueden mostrar los casos: tres hojas que se cortan en un punto, que comparten una recta (como un libro abierto) o una "carpa".
-- _(para completar)_
+- No intentar dibujar los tres planos: escribir el sistema y la terna solución, y verificar reemplazando.
+- Un esquema simple de los casos: un punto en común, una recta en común, nada en común.
 
 ### Preguntas para el alumno
 
 - ¿En qué se parecen y en qué se diferencian un sistema 2×2 y uno 3×3?
-- _(para completar)_
+- ¿Cuántos números tiene la solución? ¿Qué es en el dibujo?
+- ¿Pueden tres planos no tener ningún punto en común aunque no sean paralelos?

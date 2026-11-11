@@ -152,12 +152,23 @@ $f(2) = 2 \cdot (2 - 1) \cdot (2 + 2) = 2 \cdot 1 \cdot 4 = 8$.
 - Creer que el grado es el exponente del primer término.
 - Pensar que siempre hay tantas raíces como el grado.
 
+### Cómo destrabarlo
+
+- Para cada paréntesis, preguntar "¿qué $x$ hace que esto dé 0?": en $(x - 3)$ es 3 y en $(x + 4)$ es $-4$.
+- El grado es el exponente más grande, esté donde esté. En la forma con raíces, se cuentan los paréntesis.
+- Puede haber menos raíces que el grado: $x^2 + 1$ no tiene ninguna.
+- Para el signo en cada tramo, probar un número fácil y mirar solo el signo de cada factor.
+
 ### En el pizarrón
 
 - Marcar las raíces en el eje, probar un número en cada tramo y dibujar la curva pasando por arriba o por abajo.
-- _(para completar)_
+- Escribir el producto, por ejemplo $(x + 2)(x - 1)(x - 3)$, y debajo de cada factor su raíz.
+- Hacer una tira con los tramos y el signo de $f$ en cada uno.
+- Mirar las puntas: con $a$ positivo y grado impar, viene de abajo y se va para arriba.
 
 ### Preguntas para el alumno
 
 - ¿Por qué $x = 3$ es raíz de $(x - 3)(x + 1)$?
-- _(para completar)_
+- ¿Cuántas raíces puede tener, como mucho, un polinomio de grado 4?
+- ¿Qué le pasa al gráfico si dos raíces se juntan?
+- ¿Por qué la lineal y la cuadrática también son polinomios?

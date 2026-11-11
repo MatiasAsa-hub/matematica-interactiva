@@ -169,14 +169,22 @@ pista: Mirá la tabla: la derivada del seno es el coseno.
 - Pensar que la derivada de una constante es la misma constante.
 - $(2x)' = 2x$ en vez de $2$.
 
+### Cómo destrabarlo
+
+- Dos pasos, siempre en el mismo orden: "el exponente baja multiplicando, y al exponente le resto 1".
+- La derivada de un número suelto es 0: una constante no sube ni baja.
+- La de $x$ es 1: escribir el exponente escondido, $x^1$. Por eso $(2x)' = 2$.
+- Los coeficientes acompañan: $5x^3$ pasa a $5 \cdot 3x^2 = 15x^2$.
+
 ### En el pizarrón
 
 - Escribir la regla grande arriba y derivar un polinomio con una flechita debajo de cada término.
 - Comprobar una vez con la definición, para que vean que no es magia.
-- _(para completar)_
+- Una tablita con $x^2$, $x^3$ y $x^4$ y sus derivadas, para que se vea el patrón.
 
 ### Preguntas para el alumno
 
 - ¿Qué grado tiene la derivada de un polinomio de grado 3?
 - ¿Por qué la derivada de una recta es un número?
-- _(para completar)_
+- ¿Cuál es la derivada de 7? ¿Y la de $7x$?
+- ¿En qué $x$ la derivada de $x^2 - 4x$ vale 0? ¿Qué hay ahí en el gráfico?

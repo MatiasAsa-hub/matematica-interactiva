@@ -131,6 +131,10 @@ respuesta: 6
 - Calcular potencias (también con base negativa) y usar sus propiedades.
 - Ver la raíz como la operación inversa.
 
+### Antes tiene que saber
+
+- [Multiplicar y dividir con signos](tema:multiplicar-y-dividir-con-signos).
+
 ### Errores típicos
 
 - $2^3 = 6$ (multiplicar base por exponente).
@@ -138,10 +142,22 @@ respuesta: 6
 - $a^m \cdot a^n = a^{m \cdot n}$ (multiplicar exponentes en vez de sumar).
 - $(a + b)^2 = a^2 + b^2$ (se ve en distributiva).
 
+### Cómo destrabarlo
+
+- Escribir siempre la potencia "desarmada": $2^3 = 2 \cdot 2 \cdot 2$. Con eso se van casi todos los errores.
+- Para las propiedades, desarmar y contar: $a^2 \cdot a^3 = (a \cdot a) \cdot (a \cdot a \cdot a) = a^5$.
+- $-3^2$ contra $(-3)^2$: preguntar "¿qué número está elevado: el 3 o el $-3$?".
+- La raíz, como pregunta: "¿qué número al cuadrado da 49?".
+
 ### En el pizarrón
 
-- _(para completar)_
+- $2^1$, $2^2$, $2^3$, $2^4$ en columna, desarmadas y con el resultado.
+- Un cuadrado de 3 por 3 puntitos ("3 al cuadrado") y, al lado, $\sqrt{9} = 3$: el lado del cuadrado.
+- $(-2)^2$, $(-2)^3$, $(-2)^4$: marcar el signo de cada una y buscar la regla (par o impar).
+- Las tres propiedades, cada una con un ejemplo con números.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Cuánto es $5^0$? ¿De dónde sale?
+- ¿$(-1)^{100}$ es positivo o negativo?
+- ¿Entre qué dos números enteros está $\sqrt{20}$?

@@ -158,14 +158,22 @@ $0 + 1 + 2 + 3 = 6$. La integral (un triángulo de base 4 y altura 4) vale 8.
 - Confundir $dx$ con un número fijo: es el ancho de las tiras, y se achica.
 - Sumar las alturas sin multiplicar por $dx$.
 
+### Cómo destrabarlo
+
+- Área de cada tira = base por altura = $dx \cdot f(x)$. Calcular dos o tres a mano antes de mirar la suma.
+- Lo que queda abajo del eje cuenta negativo: la integral puede dar 0, o negativa, aunque haya dibujo.
+- El símbolo $\int$ es una S estirada, de "suma", y $dx$ es el ancho de cada tira.
+
 ### En el pizarrón
 
 - Dibujar la curva y 3 o 4 tiras grandes; sumar sus áreas.
 - Redibujar con el doble de tiras (otro color) y comparar: cada vez tapa mejor.
-- _(para completar)_
+- Usar una función fácil, $f(x) = x$ de 0 a 4: el área exacta es un triángulo (vale 8) y se puede comparar con la suma de las tiras.
+- Escribir el pasaje: $\Sigma\, f(x) \cdot \Delta x \;\to\; \int f(x)\,dx$.
 
 ### Preguntas para el alumno
 
 - ¿Por qué las tiras más finas tapan mejor?
 - ¿Qué pasa con la suma si la curva está debajo del eje?
-- _(para completar)_
+- En una función que crece, con las alturas a la izquierda, ¿la suma queda de más o de menos?
+- ¿Cuánto vale $\int_0^3 2\,dx$? ¿Qué figura es?

@@ -128,16 +128,31 @@ $4 - (-2) = 4 + 2 = 6$.
 - Sumar y restar con negativos usando la recta numérica.
 - Entender que restar es sumar el opuesto.
 
+### Antes tiene que saber
+
+- Ubicar números en una recta y contar para adelante y para atrás.
+
 ### Errores típicos
 
 - $2 - (-5) = -3$: no cambian el signo al restar un negativo.
 - Confundir la regla de la suma con la "regla de los signos" de la multiplicación ("menos y menos da más").
 - Al reemplazar $x$ por un negativo, olvidarse el paréntesis.
 
+### Cómo destrabarlo
+
+- Volver a la recta: "arranco en el primer número; si sumo voy a la derecha, si resto voy a la izquierda".
+- Usar plata o temperatura: deber 5 y pagar 2 es $-5 + 2 = -3$.
+- Para $2 - (-5)$: "que te saquen una deuda es lo mismo que ganar". Escribir siempre el paso del medio: $2 + 5$.
+
 ### En el pizarrón
 
-- _(para completar)_
+- Dibujar una recta de $-6$ a $6$ con el 0 bien marcado.
+- Hacer $3 - 5$ con saltitos de a uno hacia la izquierda y contar dónde cae.
+- Debajo, la misma cuenta escrita: $3 - 5 = -2$. Después $-2 - 3$ y $-4 + 6$.
+- Al final, $2 - (-5)$ en dos pasos: $2 - (-5) = 2 + 5 = 7$.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- Si estoy en el $-3$ y sumo 5, ¿dónde caigo? ¿Para qué lado fui?
+- ¿Cuál es más grande: $-8$ o $-2$? ¿Cuál está más a la derecha?
+- ¿Por qué $4 - (-1)$ da más que 4?

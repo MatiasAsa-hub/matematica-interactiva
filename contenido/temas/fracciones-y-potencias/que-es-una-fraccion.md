@@ -99,15 +99,30 @@ pista: $\frac{x}{3}$ es $x : 3$. ¿Qué número dividido 3 da 4?
 - Ver la fracción como pedazos, como punto en la recta y como división.
 - Simplificar.
 
+### Antes tiene que saber
+
+- [División: cociente y resto](tema:division-cociente-y-resto) y [múltiplos y divisores](tema:multiplos-y-divisores) (para simplificar).
+
 ### Errores típicos
 
 - Creer que $\frac{a}{b}$ siempre es menor que 1.
 - Simplificar restando en vez de dividiendo.
 
+### Cómo destrabarlo
+
+- Decirlo siempre con palabras: "el de abajo dice en cuántos pedazos corto; el de arriba, cuántos agarro".
+- Si $\frac{5}{4}$ les parece imposible: dibujar dos barras, porque con una no alcanza.
+- Simplificar es agrupar pedazos: se **divide** arriba y abajo por el mismo número.
+
 ### En el pizarrón
 
-- _(para completar)_
+- Una barra cortada en 4 con 3 pedazos pintados: $\frac{3}{4}$.
+- Debajo, una recta de 0 a 2 con el mismo $\frac{3}{4}$ marcado, y la cuenta $3 : 4 = 0.75$.
+- $\frac{5}{4}$ con dos barras: un entero y un cuarto.
+- $\frac{2}{4}$ y $\frac{1}{2}$, una barra debajo de la otra: pintan lo mismo.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Cuál es más grande: $\frac{1}{3}$ o $\frac{1}{5}$? ¿Por qué, si 5 es más que 3?
+- ¿Cómo te das cuenta de que una fracción es mayor que 1?
+- Decime otra fracción que valga lo mismo que $\frac{2}{3}$.

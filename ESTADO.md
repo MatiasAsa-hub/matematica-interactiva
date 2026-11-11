@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 11/11/2026 — sesión 6 (revisión general: unidades, diseño Carpeta, nombre y logo, Interactivos, notación)_
+_Última actualización: 11/11/2026 — sesión 6 (revisión general y sección de tutores completa)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -21,7 +21,7 @@ Hecho y publicado:
 
 Falta de esta revisión:
 - La devolución de Mati sobre lo publicado.
-- **Completar la sección de tutores** (los "(para completar)" de "En el pizarrón" y "Preguntas para el alumno" en los 43 temas, y ampliar "Cómo usar esta página en una clase").
+- **Sección de tutores completa (publicada):** los 43 temas tienen los seis apartados (Objetivo, Antes tiene que saber, Errores típicos, **Cómo destrabarlo** —nuevo—, En el pizarrón, Preguntas para el alumno), sin ningún "(para completar)". "Cómo usar esta página en una clase" (`contenido/paginas/como-usar.md`) quedó ampliada. Falta que Mati lea las notas y las corrija a su gusto.
 - Revisar con calma cada interactivo en el celular con el diseño nuevo (se probaron cuadrática, lineal, balanza, sistemas 3×3 y la galería de la unidad 9, sin errores).
 - Ideas propuestas, sin hacer: índice dentro del tema, botón "compartir por WhatsApp", buscador de temas, gráfico pegajoso, glosario al tocar.
 

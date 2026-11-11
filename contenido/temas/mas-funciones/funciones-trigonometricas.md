@@ -157,14 +157,23 @@ $\tan(90°) = \text{sen}(90°) : \cos(90°) = 1 : 0$, y no se puede dividir por 
 - Confundir seno con coseno (cuál es la altura).
 - Usar la calculadora en radianes cuando el ángulo está en grados (o al revés).
 
+### Cómo destrabarlo
+
+- Seno = altura del punto; coseno = cuánto está a la derecha. Repetirlo con el dedo sobre la circunferencia.
+- El radio mide 1, así que el punto nunca puede estar a más de 1 de altura.
+- Grados y radianes: anotar solo cuatro equivalencias ($90° = \frac{\pi}{2}$, $180° = \pi$, $270° = \frac{3\pi}{2}$, $360° = 2\pi$) y sacar el resto de ahí.
+- Con la calculadora: probar $\text{sen}(90)$. Si no da 1, está en radianes.
+
 ### En el pizarrón
 
 - Dibujar una circunferencia chica a la izquierda y los ejes de la onda a la derecha, a la misma altura.
 - Marcar 0°, 90°, 180°, 270° y 360° en los dos dibujos y pasar las alturas con líneas horizontales.
-- _(para completar)_
+- Para el coseno, repetir mirando la distancia horizontal en vez de la altura.
+- Marcar el período en la onda: de 0° a 360°, y vuelve a empezar.
 
 ### Preguntas para el alumno
 
 - ¿En qué ángulos el seno vale 0? ¿Y el coseno?
 - ¿Por qué el seno nunca da 2?
-- _(para completar)_
+- ¿Cuánto vale el seno de 450°? ¿Por qué no hace falta calculadora?
+- ¿En qué cuadrantes el seno es negativo?

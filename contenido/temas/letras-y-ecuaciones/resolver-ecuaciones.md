@@ -154,13 +154,23 @@ Restamos $3x$ de los dos lados y queda $1 = 5$, que es falso. No hay ningún nú
 - En $3x = 12$, restar 3 en vez de dividir por 3.
 - En $-x = 5$, dar $x = 5$.
 
+### Cómo destrabarlo
+
+- Volver a la balanza: "si saco de un solo plato, se desequilibra".
+- Al principio no decir "pasa": escribir la operación de los dos lados. El "pasa restando" llega después, como atajo.
+- Para $-x = 5$: "¿qué número, con el signo cambiado, da 5?". O multiplicar los dos lados por $-1$.
+- Verificar siempre reemplazando en la ecuación del principio.
+
 ### En el pizarrón
 
 - Escribir la ecuación y, al costado de cada renglón, la operación que se hace a los dos lados (por ejemplo, "$-3$").
-- _(para completar)_
+- Resolver $2x + 3 = 11$ en tres renglones, con los signos $=$ uno debajo del otro.
+- Después, una con $x$ de los dos lados ($3x + 1 = x + 7$): primero se juntan las $x$.
+- Cerrar con la verificación en un recuadro.
 
 ### Preguntas para el alumno
 
 - ¿Por qué se puede restar 3 de los dos lados?
 - ¿Cómo sabés que tu respuesta está bien?
-- _(para completar)_
+- ¿Qué harías primero en $5x - 2 = 13$? ¿Por qué?
+- Si al final queda $1 = 3$, ¿qué quiere decir?

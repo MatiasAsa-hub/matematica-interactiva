@@ -139,14 +139,23 @@ En $x^2$, el 9 sale del 3 y del −3: al volver no se sabe cuál elegir.
 - Despejar mal: cambiar el orden de las operaciones al deshacer.
 - Pensar que cualquier función tiene inversa.
 
+### Cómo destrabarlo
+
+- $f^{-1}$ no es $\frac{1}{f}$: acá el $-1$ quiere decir "al revés".
+- Para despejar, deshacer en orden inverso: lo último que hizo $f$ es lo primero que se deshace (como sacarse primero las zapatillas y después las medias).
+- Comprobar: meter un número en $f$ y el resultado en $f^{-1}$. Tiene que volver el número del principio.
+- Si dos $x$ distintos dan el mismo resultado, no se puede volver para atrás: no hay inversa (salvo que nos quedemos con una mitad).
+
 ### En el pizarrón
 
 - Dibujar la recta $y = x$ y doblar el pizarrón "con la mente": cada punto se refleja.
 - Con la máquina: "entra 2, sale 5" y al revés "entra 5, sale 2".
-- _(para completar)_
+- Despejar $y = 2x + 1$ paso a paso y escribir $f^{-1}(x) = (x - 1) : 2$.
+- La tabla de $f$ y, al lado, la misma tabla con las columnas cambiadas de lugar.
 
 ### Preguntas para el alumno
 
 - Si $f$ suma 3, ¿qué hace $f^{-1}$? ¿Y si $f$ multiplica por 2?
 - ¿Por qué $x^2$ no tiene inversa?
-- _(para completar)_
+- Si $f(4) = 9$, ¿cuánto vale $f^{-1}(9)$?
+- Mirando el gráfico, ¿cómo te das cuenta de que una función no tiene inversa?

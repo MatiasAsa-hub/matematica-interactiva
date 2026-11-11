@@ -128,16 +128,31 @@ pista: $x^2 = x \cdot x = (-2) \cdot (-2)$.
 - Usar la regla de los signos para multiplicar y dividir.
 - No mezclarla con la suma.
 
+### Antes tiene que saber
+
+- [Sumar y restar con signos](tema:sumar-y-restar-con-signos) y las tablas de multiplicar.
+
 ### Errores típicos
 
 - Usar "menos por menos da más" en una suma: $-3 - 2 = 5$.
 - Con varios factores, aplicar la regla solo a los dos primeros.
 - $(-2)^2$ contra $-2^2$ (se ve en potencias).
 
+### Cómo destrabarlo
+
+- Separar en dos pasos: primero el signo (con la tablita), después la cuenta con los números sin signo.
+- Para "menos por menos", mostrar el patrón: $3 \cdot (-2) = -6$, $2 \cdot (-2) = -4$, $1 \cdot (-2) = -2$, $0 \cdot (-2) = 0$. Cada vez sube 2, así que $(-1) \cdot (-2) = 2$.
+- Si la mezcla con la suma: antes de hacer nada, preguntar "¿esto es una suma o una multiplicación?".
+
 ### En el pizarrón
 
-- _(para completar)_
+- La tablita de la regla de los signos en un rincón, y dejarla toda la clase.
+- $3 \cdot (-2)$ como 3 saltos de $-2$ en la recta, desde el 0.
+- $(-3) \cdot (-2)$: los mismos saltos, pero dados vuelta para el otro lado del 0.
+- Una división, $(-12) : 3$, y comprobarla multiplicando: $(-4) \cdot 3 = -12$.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Qué signo tiene $(-2) \cdot (-3) \cdot (-1)$? ¿Cómo lo sabés sin hacer la cuenta?
+- ¿Cuánto es $-3 - 2$? ¿Y $(-3) \cdot (-2)$? ¿Por qué no dan lo mismo?
+- Si $a : b$ da negativo, ¿qué podés decir de los signos de $a$ y de $b$?

@@ -135,16 +135,32 @@ respuesta: 3/4
 - Sumar y restar con denominador común; multiplicar y dividir.
 - Entender el "dar vuelta" como consecuencia de que la fracción es una división.
 
+### Antes tiene que saber
+
+- [Qué es una fracción](tema:que-es-una-fraccion) y [mcm y mcd](tema:multiplos-y-divisores).
+
 ### Errores típicos
 
 - Sumar numeradores y denominadores: $\frac{1}{2} + \frac{1}{3} = \frac{2}{5}$.
 - Dar vuelta la primera fracción en vez de la segunda.
 - Buscar denominador común para multiplicar (no hace falta).
 
+### Cómo destrabarlo
+
+- Para la suma: "medio más un tercio no puede dar dos quintos, porque dos quintos es menos que medio".
+- Insistir en que solo se suman pedazos del mismo tamaño; para eso se busca el denominador común.
+- Multiplicar es "la parte de una parte": la mitad de un tercio.
+- Dividir es preguntar "¿cuántas veces entra?": $\frac{1}{2} : \frac{1}{4}$ es cuántos cuartos entran en un medio.
+
 ### En el pizarrón
 
-- _(para completar)_
+- $\frac{1}{2} + \frac{1}{3}$ con dos barras: cortar las dos en sextos y contar: $\frac{3}{6} + \frac{2}{6} = \frac{5}{6}$.
+- La multiplicación con un cuadrado: columnas para una fracción, filas para la otra, y pintar el cruce.
+- La división en un renglón: se da vuelta la segunda y se multiplica.
+- Simplificar siempre el resultado.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Por qué no hace falta denominador común para multiplicar?
+- ¿$\frac{1}{2} \cdot \frac{1}{2}$ da más o menos que $\frac{1}{2}$? ¿Por qué?
+- ¿Cuántos cuartos entran en 2 enteros? Escribilo como una división.

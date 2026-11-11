@@ -136,13 +136,22 @@ pista: Las columnas de la primera (3) tienen que ser tantas como las filas de la
 - Pensar que $A \cdot B = B \cdot A$.
 - Errores de signo en los productos.
 
+### Cómo destrabarlo
+
+- El tamaño se dice "filas por columnas", y las filas son las acostadas.
+- Sumar: casillero con casillero, y solo si tienen el mismo tamaño.
+- El producto es fila por columna: recorrer la fila con un dedo y la columna con el otro.
+- El orden importa: hacer $A \cdot B$ y $B \cdot A$ con dos matrices chicas y comparar.
+- Con negativos, cada producto entre paréntesis.
+
 ### En el pizarrón
 
 - Para el producto: marcar con una flecha horizontal la fila de la primera y con una vertical la columna de la segunda, y escribir la cuenta al costado.
-- _(para completar)_
+- Escribir los tamaños debajo de cada matriz ($2 \times 3$ y $3 \times 2$) y unir con un arquito los números del medio: tienen que ser iguales.
+- Hacer un producto de $2 \times 2$ completo, un casillero por vez.
 
 ### Preguntas para el alumno
 
 - ¿Cuándo se pueden sumar dos matrices? ¿Y multiplicar?
 - ¿De qué tamaño queda el resultado?
-- _(para completar)_
+- ¿Se puede multiplicar una matriz de $2 \times 3$ por otra de $2 \times 3$?

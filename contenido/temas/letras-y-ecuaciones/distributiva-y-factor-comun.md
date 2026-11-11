@@ -128,16 +128,32 @@ pista: $3 \cdot 6$. (Y $x^2 + 5x + 4$ con $x = 2$ da lo mismo.)
 - Distribuir (también con signos y con dos paréntesis).
 - Sacar factor común como la operación inversa.
 
+### Antes tiene que saber
+
+- [Términos semejantes](tema:terminos-semejantes) y [multiplicar con signos](tema:multiplicar-y-dividir-con-signos).
+
 ### Errores típicos
 
 - Multiplicar solo el primer término: $3(x + 5) = 3x + 5$.
 - $(x + 3)^2 = x^2 + 9$.
 - Signos: $-2(x - 4) = -2x - 8$.
 
+### Cómo destrabarlo
+
+- Antes de escribir nada, dibujar las flechitas desde el número de afuera hacia **cada** término de adentro.
+- Con signos: decir en voz alta "menos por menos…" en cada flechita.
+- Para $(x + 3)^2$: escribirlo como $(x + 3)(x + 3)$ y hacer las cuatro multiplicaciones.
+- Comprobar con un número: con $x = 1$, $3(x + 5)$ da 18. ¿Y lo que escribiste?
+
 ### En el pizarrón
 
-- _(para completar)_
+- Primero con números: un rectángulo de 3 por $(4 + 2)$, partido en dos. $3 \cdot 6 = 3 \cdot 4 + 3 \cdot 2$.
+- El mismo rectángulo con $x$: $3(x + 2) = 3x + 6$.
+- Un rectángulo en cuatro pedazos para $(x + 2)(x + 3)$.
+- Factor común: el mismo dibujo leído al revés, de $3x + 6$ a $3(x + 2)$.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Qué tienen en común $6x$ y $9$? ¿Cómo queda si lo sacás afuera?
+- ¿Cómo comprobás que sacaste bien el factor común?
+- ¿Por qué $(x + 3)^2$ no es $x^2 + 9$? ¿Qué pedazos faltan en el dibujo?

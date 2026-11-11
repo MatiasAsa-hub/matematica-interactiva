@@ -131,14 +131,21 @@ En $(f \circ g)(x)$, ¿qué función se aplica primero?
 - Multiplicar $f(x) \cdot g(x)$ en vez de componer.
 - Olvidar los paréntesis al reemplazar: $x - 3$ elevado al cuadrado no es $x - 3^2$.
 
+### Cómo destrabarlo
+
+- $f \circ g$ se lee de derecha a izquierda: primero actúa $g$. Escribirlo como $f(g(x))$ ayuda: lo de más adentro va primero.
+- Al reemplazar, poner **toda** $g$ entre paréntesis en el lugar de la $x$.
+- No es multiplicar: comprobarlo con un número.
+
 ### En el pizarrón
 
 - Dibujar dos cajitas en fila con flechas: "entra → g → f → sale".
 - Hacer la cuenta con un número antes de buscar la fórmula.
-- _(para completar)_
+- Armar la fórmula en dos renglones: primero $f$ con un casillero vacío en lugar de la $x$, después el casillero lleno con $g(x)$.
+- Hacer $f \circ g$ y $g \circ f$ con las mismas dos funciones y comparar.
 
 ### Preguntas para el alumno
 
 - ¿Qué sale si cambio el orden de las máquinas?
 - ¿Qué hay que poner en lugar de la $x$ de $f$?
-- _(para completar)_
+- Con $f(x) = x^2$ y $g(x) = x + 1$, ¿cuánto vale $(f \circ g)(2)$? ¿Y $(g \circ f)(2)$?

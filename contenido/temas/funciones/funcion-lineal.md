@@ -132,12 +132,23 @@ $2x - 6 > 0 \Rightarrow 2x > 6 \Rightarrow x > 3$. C⁺ $= (3, +\infty)$.
 - Creer que la raíz es $b$.
 - Con $m$ negativo, avanzar 1 y subir en vez de bajar.
 
+### Cómo destrabarlo
+
+- $m$ y $b$: "$b$ es dónde arranca (en $x = 0$) y $m$ es cuánto cambia por cada paso". En $5 + 2x$, buscar primero quién acompaña a la $x$.
+- La raíz no es $b$: es donde la recta corta al eje $x$, y sale de resolver $mx + b = 0$ como en [resolver ecuaciones](tema:resolver-ecuaciones).
+- Pendiente negativa: "avanzo 1 y bajo".
+- Si no saben graficar: tabla con $x = 0$ y $x = 1$. Con dos puntos alcanza.
+
 ### En el pizarrón
 
 - Marcar $(0, b)$ y dibujar el triangulito "avanzo 1, subo $m$" dos o tres veces.
-- _(para completar)_
+- Graficar $f(x) = 2x - 4$: primero el punto $(0, -4)$ y después los escalones.
+- Marcar dónde corta al eje $x$ y calcularlo despejando.
+- Al lado, una recta con pendiente negativa para comparar.
 
 ### Preguntas para el alumno
 
 - ¿Qué cambia en la recta si cambio $b$? ¿Y si cambio $m$?
-- _(para completar)_
+- ¿Cómo es la recta si $m = 0$?
+- Sin graficar: ¿$f(x) = -3x + 1$ sube o baja? ¿Dónde corta al eje $y$?
+- ¿Qué recta pasa por $(0, 2)$ y sube 3 por cada paso?

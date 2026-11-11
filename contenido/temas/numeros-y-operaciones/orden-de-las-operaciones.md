@@ -147,16 +147,31 @@ $2 \cdot 3^2 - 3 = 2 \cdot 9 - 3 = 18 - 3 = 15$.
 - Resolver cuentas combinadas en el orden correcto.
 - Separar en términos.
 
+### Antes tiene que saber
+
+- [Multiplicar y dividir con signos](tema:multiplicar-y-dividir-con-signos). Para las cuentas con potencias, [potencias y raíces](tema:potencias-y-raices).
+
 ### Errores típicos
 
 - Resolver de izquierda a derecha sin mirar el orden: $2 + 3 \cdot 4 = 20$.
 - En $2x^2$, multiplicar antes de elevar.
 - Separar en términos con un $-$ que está adentro de un paréntesis.
 
+### Cómo destrabarlo
+
+- Antes de calcular, separar en términos: una rayita en cada $+$ y $-$ que esté fuera de los paréntesis.
+- Resolver cada término por separado y recién al final sumar y restar.
+- Un solo paso por renglón, copiando todo lo que todavía no se tocó.
+
 ### En el pizarrón
 
-- _(para completar)_
+- Escribir $2 + 3 \cdot 4$ y preguntar cuánto da. Anotar las dos respuestas (20 y 14) y discutir cuál es.
+- Marcar los términos con arquitos por arriba.
+- Resolver una cuenta larga renglón por renglón, subrayando lo que se hace en cada paso.
+- Dejar el orden escrito en un rincón: paréntesis, potencias, · y :, + y −.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Cuántos términos tiene $5 - 2 \cdot 3 + 8 : 4$?
+- ¿Dónde hay que poner paréntesis para que $2 + 3 \cdot 4$ dé 20?
+- En $2 \cdot 3^2$, ¿qué se hace primero?

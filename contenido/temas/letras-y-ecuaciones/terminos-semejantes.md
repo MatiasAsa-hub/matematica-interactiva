@@ -109,16 +109,31 @@ Las $x^2$ se juntan entre ellas: $x^2 + 3x^2 = 4x^2$. La $2x$ queda aparte.
 - Reconocer términos semejantes y reducir expresiones.
 - Es la base para despejar en ecuaciones.
 
+### Antes tiene que saber
+
+- [Sumar y restar con signos](tema:sumar-y-restar-con-signos) y [orden de las operaciones](tema:orden-de-las-operaciones).
+
 ### Errores típicos
 
 - $3x + 2 = 5x$.
 - $x + x = x^2$ (confundir sumar con multiplicar).
 - Olvidar que $x$ es $1x$.
 
+### Cómo destrabarlo
+
+- Cambiar la $x$ por un objeto: "3 manzanas más 2 no son 5 manzanas".
+- Subrayar de una forma los términos con $x$ (línea llena) y de otra los números sueltos (línea punteada).
+- Si aparece $x + x = x^2$: probar con $x = 3$. $3 + 3 = 6$, pero $3^2 = 9$.
+
 ### En el pizarrón
 
-- _(para completar)_
+- Dibujar barritas ($x$) y cuadraditos (1) para $2x + 3 + x + 1$ y agruparlos.
+- La misma cuenta escrita, subrayando distinto las $x$ y los números: queda $3x + 4$.
+- Un ejemplo con resta, tachando de a pares: $5x - 2x$.
+- Uno con $x^2$, para ver que $x^2$ y $x$ no se juntan.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Por qué $3x + 2$ no se puede achicar más?
+- ¿Cuánto es $x + x + x$? ¿Y $x \cdot x \cdot x$?
+- ¿$4x - 4x$ da $x$, da 0 o da otra cosa?

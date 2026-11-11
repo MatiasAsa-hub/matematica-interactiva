@@ -147,14 +147,21 @@ El primer tramo llega a $2 \cdot 3 = 6$. Para que se pegue, $k = 6$.
 - En el corte, no saber qué tramo usar (mirar el igual).
 - Dibujar cada fórmula entera en vez de solo su pedazo.
 
+### Cómo destrabarlo
+
+- Antes de calcular, una sola pregunta: "¿en qué tramo cae este $x$?". Recién después se elige la fórmula.
+- En el corte, mirar quién tiene el $\leq$ o el $\geq$: ese tramo se queda con el punto.
+- Al dibujar, tapar con la mano el lado que no le toca a esa fórmula.
+
 ### En el pizarrón
 
 - Marcar el corte con una línea vertical suave y dibujar cada tramo de su lado.
 - Primero los puntos del corte (lleno o hueco), después el resto.
-- _(para completar)_
+- Escribir la función con la llave y, debajo de cada renglón, una tablita de 2 o 3 puntos de ese tramo.
 
 ### Preguntas para el alumno
 
 - ¿Cuánto vale $f$ justo en el corte? ¿Por qué?
 - ¿Se puede dibujar sin levantar el lápiz?
-- _(para completar)_
+- ¿Qué fórmula usás para calcular $f(0)$? ¿Y $f(5)$?
+- ¿Cómo tendría que ser el segundo tramo para que no haya salto?

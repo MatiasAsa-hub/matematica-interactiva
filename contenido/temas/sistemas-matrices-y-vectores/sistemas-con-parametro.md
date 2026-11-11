@@ -121,14 +121,20 @@ pista: Hacé los mismos pasos que en el ejemplo resuelto: ahora la última fila 
 - Dividir por $k - 5$ sin aclarar que tiene que ser $k \neq 5$.
 - Encontrar el valor especial y no revisar si da CI o I.
 
+### Cómo destrabarlo
+
+- $k$ no es una incógnita: es un número que todavía no elegimos. Probar con $k = 1$ y con $k = 2$ para ver dos sistemas concretos.
+- Antes de dividir por algo que tiene $k$, preguntarse cuándo vale 0: ese es justo el caso especial.
+- En el valor especial, reemplazar $k$ y volver a mirar la última fila: si queda $0 = 0$ es CI; si queda $0 =$ otro número, es I.
+
 ### En el pizarrón
 
 - Hacer Gauss con la $k$ como si fuera un número, y recuadrar la última fila.
 - Hacer un cuadrito: "$k \neq 5$: CD" y "$k = 5$: CI (o I)".
-- _(para completar)_
+- Antes de Gauss, escribir el sistema con dos valores de $k$, para ver que son sistemas distintos.
 
 ### Preguntas para el alumno
 
 - ¿Por qué en casi todos los valores de $k$ el sistema tiene una sola solución?
 - ¿Cómo distinguís CI de I en el valor especial?
-- _(para completar)_
+- ¿Qué ves en el interactivo cuando $k$ pasa por el valor especial?

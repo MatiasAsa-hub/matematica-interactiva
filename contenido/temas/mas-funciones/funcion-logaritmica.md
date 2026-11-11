@@ -157,14 +157,22 @@ $2$ elevado a cualquier número da positivo. Ningún exponente da $-4$: el $-4$ 
 - Pensar que $\log(0) = 0$.
 - Confundir la raíz ($x = 1$) con la ordenada al origen (que no existe: $x = 0$ no está en el dominio).
 
+### Cómo destrabarlo
+
+- Leer $\log_2(8)$ como una pregunta: "¿a qué número hay que elevar el 2 para que dé 8?".
+- Escribir siempre las dos formas juntas: $\log_2(8) = 3$ porque $2^3 = 8$.
+- El dominio: $2^x$ nunca da 0 ni un número negativo; por eso no hay logaritmo de esos números.
+- La raíz está en $x = 1$ porque $k^0 = 1$. No hay ordenada al origen: la curva nunca llega a $x = 0$.
+
 ### En el pizarrón
 
 - Arriba, una tabla de $2^x$: $x$ = 0, 1, 2, 3 y $2^x$ = 1, 2, 4, 8. Abajo, la misma tabla dada vuelta: esa es $\log_2$.
 - Dibujar las dos curvas y la recta $y = x$ en el medio.
-- _(para completar)_
+- Marcar el punto $(1, 0)$: está en todos los logaritmos.
 
 ### Preguntas para el alumno
 
 - ¿Cuánto vale $\log_2(16)$? ¿Y $\log_2(1)$?
 - ¿Por qué no existe $\log_2(0)$?
-- _(para completar)_
+- ¿Entre qué números enteros está $\log_2(10)$?
+- Si $x$ se multiplica por 2, ¿cuánto cambia $\log_2(x)$?

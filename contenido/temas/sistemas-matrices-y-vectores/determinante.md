@@ -123,14 +123,21 @@ Sarrus: las que bajan, $1 \cdot 1 \cdot 1 + 0 \cdot 0 \cdot 0 + 2 \cdot 3 \cdot 
 - En Sarrus, olvidarse de que las diagonales que suben **restan**.
 - En "por la primera fila", olvidarse del signo menos del medio.
 
+### Cómo destrabarlo
+
+- En el $2 \times 2$: diagonal principal menos la otra, en ese orden: $ad - bc$.
+- Con negativos, cada producto entre paréntesis.
+- En Sarrus, tres productos suman y tres restan: hacerlos en dos renglones separados y restar al final.
+- "Por la primera fila": escribir los signos $+\;-\;+$ arriba de la fila antes de empezar.
+
 ### En el pizarrón
 
 - 2×2: dibujar las dos flechas en una cuadrícula y contar los cuadraditos del paralelogramo.
 - Sarrus: copiar las dos primeras columnas al costado y marcar las diagonales con dos colores (o con línea llena y punteada).
-- _(para completar)_
+- Un ejemplo con determinante 0: las dos flechas quedan en la misma línea y el paralelogramo se aplasta.
 
 ### Preguntas para el alumno
 
 - ¿Qué quiere decir que el determinante dé 0?
 - ¿Por qué dan lo mismo Sarrus y "por la primera fila"?
-- _(para completar)_
+- ¿Qué pasa con el determinante si cambiás de lugar las dos filas?

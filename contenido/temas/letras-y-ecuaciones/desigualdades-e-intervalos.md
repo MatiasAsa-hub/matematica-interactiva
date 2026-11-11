@@ -136,13 +136,23 @@ pista: Pensá en la recta: a la izquierda del −1.
 - Poner corchete en el infinito.
 - Con negativos: creer que $-5 > -2$.
 
+### Cómo destrabarlo
+
+- Para $>$ y $<$: "la boca abierta mira al más grande".
+- Con negativos, ir a la recta: el que está más a la derecha es el mayor.
+- $x > 2$ no es un número: pedir tres ejemplos, y alguno con decimales (2.5, 2.01).
+- Al infinito no se llega nunca: por eso siempre lleva paréntesis.
+
 ### En el pizarrón
 
 - Dibujar la recta, el punto (hueco o relleno) y pintar hacia el lado que corresponde.
-- _(para completar)_
+- Tres renglones para decir lo mismo: con palabras ("los mayores que 2"), en la recta y como intervalo $(2, +\infty)$.
+- Repetir con $x \leq 5$ y con $-1 \leq x < 3$.
+- Hacer un cuadrito: punto relleno, corchete, $\leq$ o $\geq$ van juntos; punto hueco, paréntesis, $<$ o $>$ van juntos.
 
 ### Preguntas para el alumno
 
 - ¿El 2 está en $(2, 5]$? ¿Y el 5?
 - Nombrá tres números que cumplan $x \leq 0$.
-- _(para completar)_
+- ¿Cuál es el número más chico que cumple $x > 2$? (No hay: sirve para charlar.)
+- Escribí como intervalo "los números entre $-3$ y 0, incluidos los dos".

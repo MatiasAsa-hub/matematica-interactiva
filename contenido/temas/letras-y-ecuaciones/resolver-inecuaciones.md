@@ -153,13 +153,22 @@ Restamos 7: $-x < -3$. Dividimos por $-1$ (se da vuelta): $x > 3$.
 - Darlo vuelta cuando se **resta** un número (no hace falta).
 - Dar un solo número como respuesta.
 
+### Cómo destrabarlo
+
+- Probar con números: elegir uno de la respuesta y uno de afuera, y ver si cumplen la inecuación del principio.
+- Para el signo que gira: partir de $2 < 3$, multiplicar los dos por $-1$ y mirar la recta: $-2 > -3$.
+- Si dan un solo número como respuesta: "¿y el 10 cumple? ¿y el 100?".
+
 ### En el pizarrón
 
 - Mostrar $2 < 3$ y $-2 > -3$ en una recta, para ver por qué se da vuelta.
-- _(para completar)_
+- Resolver $2x + 1 > 7$ igual que una ecuación y pintar la solución en la recta.
+- Resolver $-2x > 8$ marcando con un círculo el momento en que gira el signo.
+- Escribir la respuesta de tres formas: $x < -4$, en la recta y $(-\infty, -4)$.
 
 ### Preguntas para el alumno
 
 - ¿Por qué en $-2x > 8$ cambia el signo y en $x - 2 > 8$ no?
 - Decime un número que cumpla y uno que no.
-- _(para completar)_
+- Si la solución es $x \geq 3$, ¿el 3 cumple? ¿Cómo lo comprobás?
+- ¿Qué pasa si al final queda $0 < 5$? ¿Y si queda $0 > 5$?

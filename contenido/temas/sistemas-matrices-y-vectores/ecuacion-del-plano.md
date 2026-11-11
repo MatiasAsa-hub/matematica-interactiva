@@ -128,13 +128,21 @@ pista: Los vectores normales tienen que ser uno múltiplo del otro.
 - Poner el $d$ dentro del vector normal.
 - Errores de signo al reemplazar el punto.
 
+### Cómo destrabarlo
+
+- El vector normal no está "en" el plano: sale parado, como un poste en el piso.
+- Se lee directo de los números que acompañan a $x$, $y$, $z$: $(a, b, c)$. El $d$ queda afuera: solo corre el plano sin inclinarlo.
+- Para saber si un punto está en el plano: reemplazar $x$, $y$, $z$ (con paréntesis si son negativos) y ver si se cumple la igualdad.
+- Los cortes con los ejes: poner en 0 las otras dos letras y despejar.
+
 ### En el pizarrón
 
 - Usar una carpeta como plano y un lápiz parado encima como vector normal: si se inclina la carpeta, el lápiz se inclina con ella.
-- _(para completar)_
+- Escribir $2x + y + z = 4$, sacar los tres cortes con los ejes y unirlos: queda un triángulo que muestra el plano.
+- Anotar al lado el vector normal $(2, 1, 1)$.
 
 ### Preguntas para el alumno
 
 - ¿Qué cambia en el plano si cambiás $d$? ¿Y si cambiás el vector normal?
 - ¿Cómo sabés si dos planos son paralelos?
-- _(para completar)_
+- ¿El punto $(1, 1, 1)$ está en el plano $2x + y + z = 4$?

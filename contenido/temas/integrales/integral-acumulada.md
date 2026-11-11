@@ -151,14 +151,21 @@ $f(x) = F'(x) = 3x^2 - 3$, así que $f(2) = 12 - 3 = 9$.
 - Confundir "$f$ es negativa" con "$F$ es negativa" ($F$ puede ser positiva y estar bajando).
 - Pensar que $F$ arranca en cualquier lado: en $x = a$ siempre vale 0.
 
+### Cómo destrabarlo
+
+- $F(x)$ no es la altura de $f$: es cuánta área se juntó hasta $x$.
+- Donde $f$ es positiva, $F$ sube; donde $f$ es negativa, $F$ baja (aunque $F$ todavía sea positiva); donde $f$ vale 0, $F$ tiene un máximo o un mínimo.
+- En el punto de partida todavía no se juntó nada: por eso $F(a) = 0$.
+- Es el espejo de [la gráfica de la derivada](tema:grafica-de-la-derivada): allá se pasaba de una función a su pendiente; acá, al revés.
+
 ### En el pizarrón
 
 - Dibujar $f$ arriba y un eje abajo con las mismas marcas en $x$.
 - Ir moviendo un dedo (o una regla vertical) de izquierda a derecha y anotar abajo cuánta área se juntó.
-- _(para completar)_
+- Empezar con una $f$ constante, $f(x) = 2$: el área crece parejo y $F$ es una recta de pendiente 2.
 
 ### Preguntas para el alumno
 
 - Si $f$ es constante, ¿qué forma tiene $F$? ¿Por qué?
 - ¿Dónde tiene $F$ sus máximos y mínimos?
-- _(para completar)_
+- Si $F$ sube cada vez más rápido, ¿cómo es $f$?

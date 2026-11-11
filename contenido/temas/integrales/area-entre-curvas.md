@@ -145,14 +145,23 @@ $\int_0^2 (2x - x^2)\, dx = \left(4 - \frac{8}{3}\right) - 0 = \frac{4}{3} \appr
 - No buscar los cruces e integrar en cualquier intervalo.
 - No separar en tramos cuando las curvas se cruzan en el medio.
 
+### Cómo destrabarlo
+
+- Los extremos de la integral son los cruces: se encuentran igualando las dos fórmulas.
+- Para saber cuál va arriba, probar un número que esté entre los cruces.
+- Restar primero las fórmulas (arriba menos abajo) y simplificar, antes de integrar.
+- Un área nunca da negativa: si da negativa, están restadas al revés.
+- Si se cruzan en el medio, se parte en dos integrales, una por tramo.
+
 ### En el pizarrón
 
 - Dibujar las dos curvas, marcar los cruces y rayar el área.
 - Dibujar una tira y preguntar: ¿cuánto mide de alto? (arriba menos abajo).
-- _(para completar)_
+- Escribir los tres pasos numerados: 1) los cruces, 2) arriba menos abajo, 3) Barrow.
 
 ### Preguntas para el alumno
 
 - ¿Cómo sabés cuál de las dos va arriba?
 - ¿Qué pasa si las curvas se cruzan en el medio del intervalo?
-- _(para completar)_
+- ¿Por qué no importa si parte del área está debajo del eje $x$?
+- ¿Dónde se cruzan $x^2$ y $x + 2$?

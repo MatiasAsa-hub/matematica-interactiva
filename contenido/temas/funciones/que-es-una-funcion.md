@@ -131,12 +131,23 @@ Si $x = 2$, queda $10 : 0$, que no se puede hacer. Todos los demás números sí
 - Escribir $-2^2$ en lugar de $(-2)^2$ al reemplazar.
 - Dar vuelta el punto: $(f(x), x)$ en vez de $(x, f(x))$.
 
+### Cómo destrabarlo
+
+- $f(3)$ no es "f por 3": leerlo siempre "f de 3", lo que sale cuando entra el 3.
+- Al reemplazar por un negativo, escribir el paréntesis antes de hacer la cuenta: $(-2)^2$.
+- Para el punto: primero camino en $x$ (lo que entra) y después subo o bajo $f(x)$ (lo que sale).
+- Dominio: "¿qué números puedo meter en la máquina sin que se rompa?".
+
 ### En el pizarrón
 
 - Dibujar la máquina (entra $x$ → regla → sale $f(x)$), al lado la tabla y al lado los ejes.
-- _(para completar)_
+- Llenar la tabla con 4 o 5 valores de $x$ (alguno negativo) para $f(x) = 2x + 1$.
+- Pasar cada renglón de la tabla a un punto y unirlos.
+- Repetir rápido con $6 : x$ y frenar en $x = 0$: no se puede.
 
 ### Preguntas para el alumno
 
 - ¿Qué quiere decir $f(5) = 2$? ¿Qué punto es?
-- _(para completar)_
+- Si $f(x) = x^2$, ¿cuánto vale $f(-3)$?
+- ¿Puede haber dos $x$ distintos con el mismo resultado? ¿Y un $x$ con dos resultados?
+- ¿Qué número no se puede usar en $6 : x$? ¿Por qué?

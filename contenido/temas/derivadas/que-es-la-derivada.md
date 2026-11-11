@@ -214,16 +214,24 @@ $(x + h)^3 - x^3 = 3x^2h + 3xh^2 + h^3$. Dividido $h$: $3x^2 + 3xh + h^2$. Achic
 - $(x + h)^2 = x^2 + h^2$ (se olvida el $2xh$).
 - No restar todo $f(x)$: olvidar el paréntesis en $-(2x + 1)$.
 
+### Cómo destrabarlo
+
+- Pendiente = "lo que sube dividido lo que avanza". Repasarlo con dos puntos de una recta antes de arrancar.
+- $f(x + h)$ no es $f(x) + h$: calcularlo primero con números, por ejemplo $f(3.1)$, y después con letras.
+- $(x + h)^2$: escribirlo como $(x + h)(x + h)$ y hacer las cuatro multiplicaciones.
+- No se puede poner $h = 0$ de entrada, porque queda $0 : 0$. Primero se simplifica la $h$ y después se achica.
+- Al restar $f(x)$, ponerla entre paréntesis.
+
 ### En el pizarrón
 
 - Dibujar una parábola, marcar un punto y otro más a la derecha, y la secante que los une.
 - Ir corriendo el segundo punto hacia el primero (con otro color cada vez) y anotar las pendientes en una tablita.
 - Después, la fórmula del límite arriba y la cuenta en renglones: primero con $x = 3$ y después con $x$.
-- _(para completar)_
+- Dejar a la vista el triángulo de la secante: la base mide $h$ y la altura, $f(x + h) - f(x)$.
 
 ### Preguntas para el alumno
 
 - ¿Qué pasa con la secante cuando $h$ se achica?
 - ¿Por qué hay que simplificar antes de achicar $h$?
 - Con $f'(x) = 2x$, ¿cuánto vale la pendiente en $x = -1$? ¿Sube o baja?
-- _(para completar)_
+- ¿Qué signo tiene la derivada donde la función baja?

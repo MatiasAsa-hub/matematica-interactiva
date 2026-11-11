@@ -134,16 +134,32 @@ $x = 5 \cdot 12 + 3 = 60 + 3 = 63$.
 - Hacer la división con la galera y entender cociente y resto.
 - Saber comprobarla: dividendo = divisor · cociente + resto.
 
+### Antes tiene que saber
+
+- Las tablas de multiplicar y restar números de dos y tres cifras.
+
 ### Errores típicos
 
 - Olvidarse el $0$ en el cociente cuando la cifra bajada no alcanza.
 - Dejar un resto más grande que el divisor.
 - Bajar dos cifras de golpe.
 
+### Cómo destrabarlo
+
+- Antes de empezar, escribir al costado la tabla del divisor (por 1, por 2… hasta por 9): evita adivinar.
+- En cada paso, la misma pregunta: "¿cuántas veces entra sin pasarme?".
+- Si el resto quedó más grande que el divisor: "entraba una vez más".
+- Hacer siempre la comprobación al final.
+
 ### En el pizarrón
 
-- _(para completar)_
+- Dibujar la galera con una división de dos pasos, por ejemplo $85 : 4$.
+- Hacerla despacio, diciendo en voz alta: tomo, entra, multiplico, resto, bajo.
+- Después, una donde aparezca el 0 en el cociente, por ejemplo $612 : 6$.
+- Cerrar con la comprobación: $4 \cdot 21 + 1 = 85$.
 
 ### Preguntas para el alumno
 
-- _(para completar)_
+- ¿Qué quiere decir el resto? ¿Puede ser más grande que el divisor?
+- Si el resto es 0, ¿qué podés decir de los dos números?
+- Sin hacer la cuenta: ¿$250 : 5$ da más o menos que 100?

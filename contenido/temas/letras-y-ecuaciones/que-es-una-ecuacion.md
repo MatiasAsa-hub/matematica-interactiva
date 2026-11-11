@@ -137,12 +137,21 @@ pista: ¿5 por qué número da 35?
 - Al reemplazar, escribir $23$ en vez de $2 \cdot 3$.
 - Olvidar los paréntesis al reemplazar por un negativo.
 
+### Cómo destrabarlo
+
+- Leer el $=$ como "pesa lo mismo que", no como "da".
+- Para verificar, hacer dos cuentas separadas (lado izquierdo y lado derecho) y comparar.
+- Al reemplazar, escribir el punto y los paréntesis: $2x$ con $x = 3$ es $2 \cdot 3$; con $x = -3$ es $2 \cdot (-3)$.
+
 ### En el pizarrón
 
 - Dibujar una balanza simple con barritas ($x$) y cuadraditos (1).
-- _(para completar)_
+- Escribir la ecuación debajo de la balanza, cada lado debajo de su plato.
+- Hacer una tablita: valor de $x$ | lado izquierdo | lado derecho | ¿son iguales? Probar tres o cuatro números.
+- Redondear el renglón donde los dos lados coinciden: esa es la solución.
 
 ### Preguntas para el alumno
 
 - ¿Qué quiere decir que $x = 3$ es solución?
-- _(para completar)_
+- ¿Cómo comprobás si $x = 5$ es solución de $2x + 1 = 11$?
+- Inventá una ecuación cuya solución sea $x = 2$.

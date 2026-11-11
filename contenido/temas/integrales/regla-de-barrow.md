@@ -173,14 +173,22 @@ $\text{sen}(\pi/2) - \text{sen}(0) = 1 - 0 = 1$.
 - Restar al revés: $F(a) - F(b)$.
 - Con un $F(a)$ negativo, olvidar el paréntesis al restar.
 
+### Cómo destrabarlo
+
+- Para la primitiva: "le sumo 1 al exponente y divido por el exponente nuevo". Comprobar derivando: tiene que volver la función.
+- Si derivaron en vez de integrar, el exponente bajó en lugar de subir: es la señal para darse cuenta.
+- El orden de la resta: siempre $F(b) - F(a)$, el de arriba menos el de abajo.
+- Calcular $F(b)$ y $F(a)$ en renglones separados y restar al final, con paréntesis si alguno es negativo.
+
 ### En el pizarrón
 
 - Escribir la tabla de derivadas y, al lado, la misma tabla con las flechas al revés.
 - Resolver en tres renglones: primitiva, $F(b)$ y $F(a)$, resta.
-- _(para completar)_
+- Hacer $\int_0^3 x^2\,dx$ completo y compararlo con lo que daban las tiras en el interactivo.
 
 ### Preguntas para el alumno
 
 - ¿Cómo comprobás que una primitiva está bien?
 - ¿Por qué no importa el $+ C$ en Barrow?
-- _(para completar)_
+- ¿Cuál es una primitiva de $2x$? ¿Hay una sola?
+- ¿Cuánto da $\int_{-1}^{1} x\,dx$? Miralo en el gráfico antes de hacer la cuenta.

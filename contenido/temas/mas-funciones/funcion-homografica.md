@@ -136,14 +136,22 @@ pista: ¿Qué valor nunca llega a tomar? Mirá la asíntota horizontal.
 - Creer que la curva "toca" la asíntota.
 - Pensar que $\frac{1}{0} = 0$.
 
+### Cómo destrabarlo
+
+- La asíntota vertical está donde el denominador da 0: resolver esa ecuación ($x - 2 = 0$) en vez de mirar el signo.
+- "No existe" no es "vale 0": probar con 1.9 y 2.1 en la calculadora y ver qué números enormes salen.
+- Para la horizontal: probar con $x = 1000$ y ver a qué número se parece el resultado.
+- La curva se acerca todo lo que quiera a la asíntota, pero no la toca: $\frac{1}{x}$ nunca da 0.
+
 ### En el pizarrón
 
 - Tabla de $\frac{1}{x}$ con $x$ = 1, 0.5, 0.1, 0.01 y con 10, 100: se ve que crece mucho y que se achica.
 - Dibujar primero las dos asíntotas punteadas y después las dos ramas.
-- _(para completar)_
+- Marcar un punto de cada rama, para saber de qué lado va cada una.
 
 ### Preguntas para el alumno
 
 - ¿Cuánto da 1 : 0.001? ¿Y 1 : 1000?
 - ¿Por qué la curva nunca toca la recta $y = k$?
-- _(para completar)_
+- ¿Dónde está la asíntota vertical de $\frac{2}{x - 3}$? ¿Y la horizontal?
+- ¿Cuál es el dominio? ¿Y la imagen?

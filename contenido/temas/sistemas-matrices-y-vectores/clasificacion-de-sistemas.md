@@ -118,12 +118,21 @@ pista: Las rectas tienen distinta inclinación.
 - Pensar que $0 = 0$ quiere decir "la solución es 0".
 - Confundir "incompatible" con "me equivoqué en las cuentas".
 
+### Cómo destrabarlo
+
+- Asociar cada nombre a un dibujo y a un final de cuenta: se cruzan y sale un número; son paralelas y queda algo falso ($0 = 5$); son la misma recta y queda algo siempre cierto ($0 = 0$).
+- "Compatible" quiere decir que tiene solución. "Determinado", que tiene una sola.
+- $0 = 0$ no dice nada de $x$: dice que la segunda ecuación no agregó información.
+- Si queda $0 = 5$, no es un error de cuentas: es la forma en que el sistema avisa que no tiene solución. Conviene revisar una vez y después confiar.
+
 ### En el pizarrón
 
 - Dibujar los tres casos uno al lado del otro: rectas que se cruzan, paralelas y una encima de la otra.
-- _(para completar)_
+- Debajo de cada dibujo, un sistema de ejemplo y cómo termina la cuenta.
+- En las paralelas, despejar $y$ en las dos ecuaciones: tienen la misma pendiente.
 
 ### Preguntas para el alumno
 
 - ¿Cómo te das cuenta mirando los números de que dos rectas son paralelas?
-- _(para completar)_
+- ¿Puede un sistema de dos rectas tener exactamente dos soluciones? ¿Por qué?
+- Si al resolver llegás a $0 = 3$, ¿cómo son las rectas?
