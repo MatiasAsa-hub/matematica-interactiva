@@ -1,0 +1,50 @@
+---
+// Interactivo de límites: dos puntos que se acercan a "a", uno por la
+// izquierda y otro por la derecha, y una tablita con los valores de f(x).
+// Lógica: src/interactivos/limite.js
+// Los ejemplos vienen del tema (campo "limites:" del .md), escritos como
+//   { f: "(x^2 - 1) : (x - 1)", a: 1 }
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+import { leerLimite } from '../../lib/limites.js';
+
+interface Props { limites?: any[] }
+const { limites = [{ f: '(x^2 - 1) : (x - 1)', a: 1 }] } = Astro.props;
+// Se prueban al armar el sitio: si uno está mal escrito, el armado avisa.
+for (const l of limites) leerLimite(l);
+
+const casillas = [
+  { nombre: 'tabla', texto: 'Tabla de valores', color: '--c-funcion', prendida: true },
+  { nombre: 'enA', texto: 'Qué pasa justo en <i>a</i>', color: '--c-raices' },
+];
+---
+<div class="interactivo" data-interactivo="limite" data-limites={JSON.stringify(limites)}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={limites.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Ejemplo anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Ejemplo siguiente">›</button>
+    </div>
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="lectura-log lectura-limite" data-lectura aria-live="polite"></p>
+    <div class="grafico" data-grafico></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-acercar>Acercarse a <i>a</i></button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Deslizador param="d" min={0.001} max={2} paso={0.001} pasoBoton={0.1} valor={1} ayuda="qué tan lejos de a" />
+
+    <div class="tabla-caja tabla-h" data-tabla></div>
+
+    <Casillas titulo="Mostrar" casillas={casillas} />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarLimite } from '../../interactivos/limite.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="limite"]').forEach(iniciarLimite);
+</script>

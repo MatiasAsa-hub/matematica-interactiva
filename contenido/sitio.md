@@ -47,8 +47,8 @@ unidades:
     descripcion: Funciones partidas, composición e inversa.
   - id: derivadas
     etapa: avanzado
-    nombre: Derivadas
-    descripcion: La pendiente en cada punto y cómo calcularla.
+    nombre: Límites y derivadas
+    descripcion: A qué se acerca una función, la pendiente en cada punto y cómo calcularla.
   - id: integrales
     etapa: avanzado
     nombre: Integrales

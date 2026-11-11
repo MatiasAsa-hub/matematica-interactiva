@@ -25,6 +25,14 @@ Falta de esta revisión:
 - Revisar con calma cada interactivo en el celular con el diseño nuevo (se probaron cuadrática, lineal, balanza, sistemas 3×3 y la galería de la unidad 9, sin errores).
 - Ideas propuestas, sin hacer: índice dentro del tema, botón "compartir por WhatsApp", buscador de temas, gráfico pegajoso, glosario al tocar.
 
+### Tema nuevo: Límites (sesión 7, 12/11/2026) — falta publicar y la revisión de Mati
+- Pedido de Mati: un tema de límites antes de derivadas. Va primero en la unidad 7, que pasó a llamarse **"Límites y derivadas"** (`contenido/temas/derivadas/limites.md`).
+- Interactivo nuevo `limite`: dos puntos (lila por izquierda, rosa por derecha) que se acercan a *a* con **Acercarse a a** (d = 1, 0.1, 0.01, 0.001, animado). Tablita x | f(x) con *a* en el medio, que se llena desde las puntas. Dice si el límite existe y por qué: **hueco** (0 : 0), **continua**, **salto** o **infinito** (asíntota vertical). Casilla "Qué pasa justo en a".
+- Ejemplos en el campo `limites:` del tema, como `{ f: "(x^2 - 1) : (x - 1)", a: 1 }` (también partidas).
+- 10 ejercicios en dos niveles (reemplazar, tabla, salto; 0 : 0 con factor común y diferencia de cuadrados; infinito; x → ∞). Notas para tutores completas.
+- "¿Qué es la derivada?" ahora enlaza a límites. Notación: sumados lím y los límites laterales.
+- Pieza nueva: `src/lib/limites.js`.
+
 ## Hecho
 
 ### Etapa 0 — Base y prototipo ✅ (aprobada por Mati)

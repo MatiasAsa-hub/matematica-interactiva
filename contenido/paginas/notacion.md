@@ -56,8 +56,10 @@ Puede que en tu escuela escriban algo de otra forma. No pasa nada: lo importante
 - **$\frac{\pi}{2}$** — Radianes. Una vuelta entera son $2\pi$; media vuelta, $\pi = 180°$. En los interactivos hay un botón para pasar de grados a radianes.
 - **sen, cos, tan** — Seno, coseno y tangente (en algunas escuelas, tg).
 
-## Derivadas e integrales
+## Límites, derivadas e integrales
 
+- **$\lim_{x \to a} f(x)$** — Límite: a qué número se acerca $f(x)$ cuando $x$ se acerca a $a$ (sin llegar nunca).
+- **$x \to a^-$, $x \to a^+$** — Acercarse a $a$ por la izquierda (con números más chicos) o por la derecha (con números más grandes).
 - **$f'(x)$** — La derivada de $f$: la pendiente del gráfico en cada punto.
 - **$h$** — Un pasito en $x$. Para la derivada lo hacemos cada vez más chico.
 - **$\int_a^b f(x)\,dx$** — La integral: el área entre el gráfico y el eje $x$, desde $a$ hasta $b$. Lo que queda abajo del eje resta.

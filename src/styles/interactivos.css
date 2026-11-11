@@ -694,3 +694,14 @@
 .expresion .fr { font-size: 0.6em; }
 .interactivo-segundo { margin-top: 1.2rem; }
 .mat-titulo { text-align: center; color: var(--texto-suave); font-weight: 700; margin: 0 0 0.5rem; }
+
+/* --- Límites --- */
+.lectura-limite { font-size: 1rem; line-height: 1.5; color: var(--texto); }
+.lectura-limite > span { display: block; }
+.lectura-limite b { color: var(--texto-fuerte); }
+.lim { white-space: nowrap; }
+.lim sub { font-size: 0.72em; }
+.tabla-limite td.col-a { background: var(--fondo-resalte); color: var(--c-raices); }
+.tabla-limite td.col-izq { color: var(--c-vertice); }
+.tabla-limite td.col-der { color: var(--c-ordenada); }
+.color-raices { color: var(--c-raices); }

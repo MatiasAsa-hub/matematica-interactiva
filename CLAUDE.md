@@ -92,7 +92,7 @@ Una página de referencia con todas las convenciones, que va creciendo. Las conv
 
 ### Organización de las listas (pedido de Mati)
 
-- **Desde la revisión general (11/11/2026):** la lista de **Temas** y la de **Tutores** se organizan en **9 unidades cortas** que se abren con un toque, agrupadas en 3 etapas (Para arrancar, Funciones, Para 4.º y 5.º año). Las unidades: Números y operaciones · Fracciones y potencias · Letras y ecuaciones · Funciones: las primeras · Más funciones · Combinar funciones · Derivadas · Integrales · Sistemas, matrices y vectores. Están definidas en `contenido/sitio.md` y cada una es una carpeta de `contenido/temas/`.
+- **Desde la revisión general (11/11/2026):** la lista de **Temas** y la de **Tutores** se organizan en **9 unidades cortas** que se abren con un toque, agrupadas en 3 etapas (Para arrancar, Funciones, Para 4.º y 5.º año). Las unidades: Números y operaciones · Fracciones y potencias · Letras y ecuaciones · Funciones: las primeras · Más funciones · Combinar funciones · Límites y derivadas · Integrales · Sistemas, matrices y vectores. Están definidas en `contenido/sitio.md` y cada una es una carpeta de `contenido/temas/`.
 - Los títulos BÁSICO / ANÁLISIS / ÁLGEBRA de más abajo quedan como lista del contenido, no como secciones de la página.
 - Hay una sección **Interactivos** con todos los interactivos de cada unidad en una misma página (sin subsecciones). El Laboratorio vive ahí adentro.
 - Cada tema tiene arriba un botón para **volver** a su unidad y abajo los botones de **tema siguiente** y **anterior**.
@@ -117,6 +117,10 @@ Primero con números y después con *x*:
 - Qué es una función (tabla, regla, gráfico). Dominio e imagen.
 - Función lineal, cuadrática y polinómica. Grado de un polinomio. Ceros o raíces (qué significan), resolvente, C⁺, C⁻ y C⁰, cómo graficar.
 - Funciones en general: trigonométricas, exponencial, logarítmica, valor absoluto, raíz, homográfica, partidas, inversa y composición.
+
+**Límites** (agregado por pedido de Mati, 12/11/2026; va antes de derivadas, en la unidad "Límites y derivadas")
+- Idea de límite (acercarse sin llegar), límites laterales, cuándo existe, continuidad.
+- Cómo calcular: reemplazar; si da 0 : 0, factorizar y simplificar; número : 0 da infinito (asíntota vertical). Una mirada a x → ∞.
 
 **Derivadas**
 - Demostración gráfica e intuitiva con *x* y *x+h*, con *h* chico.

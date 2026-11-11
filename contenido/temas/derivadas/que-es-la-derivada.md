@@ -42,7 +42,7 @@ $$
 
 ### Por definición
 
-- $h$ nunca llega a 0 (quedaría $0 : 0$): se achica todo lo que queramos y se mira **a qué número se acerca** la cuenta. Eso se escribe con un **límite**:
+- $h$ nunca llega a 0 (quedaría $0 : 0$): se achica todo lo que queramos y se mira **a qué número se acerca** la cuenta. Eso se escribe con un **[límite](tema:limites)**:
 
 $$
 f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
@@ -206,6 +206,7 @@ $(x + h)^3 - x^3 = 3x^2h + 3xh^2 + h^3$. Dividido $h$: $3x^2 + 3xh + h^2$. Achic
 ### Antes tiene que saber
 
 - [Función lineal](tema:funcion-lineal) (pendiente), [qué es una función](tema:que-es-una-funcion) (calcular $f$ de un número) y [distributiva y factor común](tema:distributiva-y-factor-comun).
+- [Límites](tema:limites): qué quiere decir que algo "se acerca" y qué hacer con $0 : 0$.
 
 ### Errores típicos
 
