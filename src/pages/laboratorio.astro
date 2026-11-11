@@ -1,14 +1,20 @@
 ---
+// El Laboratorio de funciones. Vive dentro de la sección Interactivos.
 import Base from '../layouts/Base.astro';
 import Interactivo from '../components/Interactivo.astro';
+import Volver from '../components/Volver.astro';
 import { obtenerPagina } from '../lib/contenido.js';
+import { url } from '../lib/rutas.js';
 const pagina = obtenerPagina('laboratorio');
 // el texto de antes del interactivo y el de después (separados por la línea "(interactivo)")
 const [antes, ...despues] = pagina.partes;
 ---
-<Base titulo={pagina.datos.titulo} seccion="laboratorio">
+<Base titulo={pagina.datos.titulo} seccion="interactivos">
   <div class="contenedor">
-    <h1 style="margin-top:1.4rem">{pagina.datos.titulo}</h1>
+    <header class="pagina-cabecera">
+      <Volver href={url('interactivos/')} texto="Interactivos" />
+      <h1>{pagina.datos.titulo}</h1>
+    </header>
     <div class="consigna texto" set:html={antes} />
   </div>
   <div class="contenedor-ancho">

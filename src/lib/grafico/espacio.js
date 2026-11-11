@@ -126,7 +126,7 @@ export class Espacio {
   constructor(contenedor, opciones = {}) {
     this.contenedor = contenedor;
     this.L = opciones.limite ?? 5;
-    const css = getComputedStyle(document.documentElement);
+    const css = getComputedStyle(contenedor); // los colores del pizarrón donde está el gráfico
     this.css = (n) => css.getPropertyValue(n).trim();
     contenedor.classList.add('espacio');
 

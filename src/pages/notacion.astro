@@ -1,11 +1,42 @@
 ---
+// Página de Notación: un índice arriba y, por sección, fichas con
+// "lo que se escribe" a la izquierda y "qué quiere decir" a la derecha.
+// El texto está en contenido/paginas/notacion.md.
 import Base from '../layouts/Base.astro';
-import { obtenerPagina } from '../lib/contenido.js';
-const pagina = obtenerPagina('notacion');
+import { obtenerPaginaEnSecciones } from '../lib/contenido.js';
+const pagina = obtenerPaginaEnSecciones('notacion');
+const colores = pagina.datos.colores ?? [];
 ---
 <Base titulo={pagina.datos.titulo} seccion="notacion">
   <div class="contenedor">
-    <h1 style="margin-top:1.4rem">{pagina.datos.titulo}</h1>
-    <div class="texto" set:html={pagina.html} />
+    <header class="pagina-cabecera">
+      <h1>{pagina.datos.titulo}</h1>
+      {pagina.datos.bajada && <p class="bajada">{pagina.datos.bajada}</p>}
+    </header>
+    <div class="texto texto-suave" set:html={pagina.introHtml} />
+
+    <nav class="indice-pagina" aria-label="Secciones de esta página">
+      {pagina.secciones.map((s) => <a href={`#${s.id}`}>{s.titulo}</a>)}
+      {colores.length > 0 && <a href="#colores">Colores</a>}
+    </nav>
+
+    {pagina.secciones.map((s) => (
+      <section class="seccion-notacion" id={s.id}>
+        <h2>{s.titulo}</h2>
+        <div class="texto" set:html={s.html} />
+      </section>
+    ))}
+
+    {colores.length > 0 && (
+      <section class="seccion-notacion" id="colores">
+        <h2>Colores</h2>
+        <p class="texto-suave">En todos los gráficos, cada cosa tiene siempre el mismo color.</p>
+        <ul class="pizarron leyenda-colores">
+          {colores.map((c) => (
+            <li><span class="leyenda-punto" style={`background: var(--${c.color})`}></span>{c.nombre}</li>
+          ))}
+        </ul>
+      </section>
+    )}
   </div>
 </Base>

@@ -1,0 +1,34 @@
+---
+// Al final de cada tema: botones para ir al tema siguiente y al anterior.
+// Si el vecino es de otra unidad, se avisa con el nombre de la unidad.
+import { url } from '../lib/rutas.js';
+interface Props {
+  anterior: any;
+  siguiente: any;
+  destino: 'temas' | 'tutores';
+  unidadActual: string; // id de la unidad del tema que se está viendo
+}
+const { anterior, siguiente, destino, unidadActual } = Astro.props;
+const rotulo = (t: any, texto: string) =>
+  t.unidad && t.unidad.id !== unidadActual ? `${texto} · ${t.unidad.nombre}` : texto;
+---
+<nav class="anterior-siguiente" aria-label="Otros temas">
+  {siguiente && (
+    <a class="vecino vecino-siguiente" href={url(`${destino}/${siguiente.slug}/`)}>
+      <span class="vecino-textos">
+        <span class="vecino-rotulo">{rotulo(siguiente, 'Siguiente tema')}</span>
+        <strong>{siguiente.titulo}</strong>
+      </span>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </a>
+  )}
+  {anterior && (
+    <a class="vecino vecino-anterior" href={url(`${destino}/${anterior.slug}/`)}>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="vecino-textos">
+        <span class="vecino-rotulo">{rotulo(anterior, 'Tema anterior')}</span>
+        <strong>{anterior.titulo}</strong>
+      </span>
+    </a>
+  )}
+</nav>

@@ -2,35 +2,42 @@
    Estilos generales de toda la página.
    Los colores están todos acá arriba, como "variables". Si se cambia un
    color acá, cambia en toda la página (incluidos los gráficos).
+
+   El diseño se llama "Carpeta" y tiene dos mundos:
+     - LA HOJA: el fondo claro color hueso donde se lee (textos, ejercicios).
+     - EL PIZARRÓN: los recuadros oscuros de los interactivos, donde se toca.
+   Cada mundo tiene su juego de colores. Los nombres de las variables son
+   los mismos en los dos; lo que cambia es el valor.
    ========================================================================== */
 
 :root {
-  /* --- Fondo y texto (pizarra gris azulada) --- */
-  --fondo: #1e2a36;
-  --fondo-tarjeta: #253341;
-  --fondo-grafico: #1a2531;
-  --fondo-resalte: #2d3d4d;
-  --borde: #3a4b5d;
-  --texto: #e9eef2;
-  --texto-suave: #a9b7c4;
-  --texto-tenue: #7d8c9b;
+  /* --- LA HOJA: fondo y texto --- */
+  --fondo: #f4f0e6;
+  --fondo-tarjeta: #fbf9f3;
+  --fondo-resalte: #e9e3d3;
+  --borde: #d8d0bd;
+  --texto: #1d2740;
+  --texto-fuerte: #0f1830;
+  --texto-suave: #556079;
+  --texto-tenue: #7f8799;
+  --acento: #2468a8;        /* links, botón de volver, lo que se puede tocar */
+  --marca-punto: #e3a400;   /* el punto amarillo del logo */
 
-  /* --- Códigos de color de los conceptos (fijos en toda la página) --- */
-  --c-funcion: #58c4dd;     /* la función f: azul */
-  --c-derivada: #f4a259;    /* la derivada f': naranja (etapa 6) */
-  --c-integral: #a88beb;    /* áreas e integrales: violeta (etapa 7) */
-  --c-positivo: #83c167;    /* C⁺: verde */
-  --c-negativo: #fc6255;    /* C⁻: rojo */
-  --c-raices: #f7d46b;      /* C⁰ y raíces: amarillo */
-  --c-vertice: #c39bf5;     /* vértice, eje de simetría, máximos y mínimos: lila */
-  --c-ordenada: #f28fb5;    /* ordenada al origen: rosa */
-  --c-crece: #5fd3c7;       /* crece: turquesa */
-  --c-decrece: #e8896b;     /* decrece: terracota */
-  --c-fantasma: #8796a6;    /* función de referencia ("fantasma"): gris */
-  /* álgebra (etapa 8): cada ecuación de un sistema tiene su color (y su número) */
-  --c-ec1: #58c4dd;         /* ecuación 1: azul */
-  --c-ec2: #f4a259;         /* ecuación 2: naranja */
-  --c-ec3: #f28fb5;         /* ecuación 3: rosa */
+  /* --- Colores de los conceptos, en su versión "tinta" (para la hoja) --- */
+  --c-funcion: #1f78a8;     /* la función f: azul */
+  --c-derivada: #bf6a14;    /* la derivada f': naranja */
+  --c-integral: #6c4fc2;    /* áreas e integrales: violeta */
+  --c-positivo: #3b8523;    /* C⁺: verde */
+  --c-negativo: #c93a2d;    /* C⁻: rojo */
+  --c-raices: #a87600;      /* C⁰ y raíces: amarillo */
+  --c-vertice: #7f52cc;     /* vértice, eje de simetría, máximos y mínimos: lila */
+  --c-ordenada: #bd447b;    /* ordenada al origen: rosa */
+  --c-crece: #17877a;       /* crece: turquesa */
+  --c-decrece: #b95a3a;     /* decrece: terracota */
+  --c-fantasma: #7a8696;    /* función de referencia ("fantasma"): gris */
+  --c-ec1: #1f78a8;         /* ecuación 1: azul */
+  --c-ec2: #bf6a14;         /* ecuación 2: naranja */
+  --c-ec3: #bd447b;         /* ecuación 3: rosa */
 
   /* --- Medidas --- */
   --radio: 14px;
@@ -39,8 +46,43 @@
   --ancho-interactivo: 72rem;
   --alto-nav-abajo: 64px;
 
-  --fuente: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fuente: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fuente-titulos: 'Fraunces', Georgia, 'Times New Roman', serif;
 
+  color-scheme: light;
+}
+
+/* --- EL PIZARRÓN: dentro de un interactivo valen estos colores --- */
+.interactivo, .pizarron {
+  --fondo: #1e2a36;
+  --fondo-tarjeta: #253341;
+  --fondo-grafico: #1a2531;
+  --fondo-resalte: #2d3d4d;
+  --borde: #3a4b5d;
+  --texto: #e9eef2;
+  --texto-fuerte: #ffffff;
+  --texto-suave: #a9b7c4;
+  --texto-tenue: #7d8c9b;
+  --acento: #58c4dd;
+  --marca-punto: #f7d46b;
+
+  /* los mismos conceptos, en su versión "tiza" (más clara) */
+  --c-funcion: #58c4dd;
+  --c-derivada: #f4a259;
+  --c-integral: #a88beb;
+  --c-positivo: #83c167;
+  --c-negativo: #fc6255;
+  --c-raices: #f7d46b;
+  --c-vertice: #c39bf5;
+  --c-ordenada: #f28fb5;
+  --c-crece: #5fd3c7;
+  --c-decrece: #e8896b;
+  --c-fantasma: #8796a6;
+  --c-ec1: #58c4dd;
+  --c-ec2: #f4a259;
+  --c-ec3: #f28fb5;
+
+  color: var(--texto);
   color-scheme: dark;
 }
 
@@ -72,21 +114,22 @@ body {
 
 img, svg, canvas { display: block; max-width: 100%; }
 
-a { color: var(--texto); text-decoration-color: var(--c-funcion); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+a { color: var(--texto); text-decoration-color: var(--acento); text-underline-offset: 3px; text-decoration-thickness: 2px; }
 a:hover { text-decoration-color: var(--texto); }
 
-h1, h2, h3, h4 { line-height: 1.25; margin: 1.6em 0 0.5em; font-weight: 700; }
-h1 { font-size: 1.85rem; margin-top: 0.4em; }
-h2 { font-size: 1.4rem; }
-h3 { font-size: 1.15rem; }
+h1, h2, h3, h4 { line-height: 1.25; margin: 1.6em 0 0.5em; font-weight: 700; color: var(--texto-fuerte); }
+h1, h2 { font-family: var(--fuente-titulos); font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.95rem; margin-top: 0.4em; line-height: 1.15; }
+h2 { font-size: 1.45rem; }
+h3 { font-size: 1.12rem; }
 p { margin: 0.6em 0; }
 ul, ol { padding-left: 1.4em; }
 li { margin: 0.25em 0; }
-strong { color: #fff; }
+strong { color: var(--texto-fuerte); }
 
 button, input, select { font: inherit; color: inherit; }
 
-:focus-visible { outline: 3px solid var(--c-funcion); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
 
 /* Fórmulas de KaTeX: un poco más grandes y que nunca rompan el ancho del celular */
 .katex { font-size: 1.08em; white-space: nowrap; } /* que una fórmula corta no se parta en dos renglones */

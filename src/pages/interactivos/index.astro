@@ -1,0 +1,56 @@
+---
+// Sección "Interactivos": todos los interactivos de la página, juntos.
+// Acá se elige la unidad; adentro están todos los de esa unidad, uno debajo del otro.
+// El Laboratorio de funciones va destacado arriba.
+import Base from '../../layouts/Base.astro';
+import { datosDelSitio, listaDeUnidades, obtenerPagina } from '../../lib/contenido.js';
+import { url } from '../../lib/rutas.js';
+
+const sitio = datosDelSitio();
+const pagina = obtenerPagina('interactivos');
+const unidades = listaDeUnidades()
+  .map((u) => ({ ...u, temas: u.temas.filter((t) => t.interactivo) }))
+  .filter((u) => u.temas.length > 0);
+---
+<Base titulo={pagina.datos.titulo} seccion="interactivos">
+  <div class="contenedor">
+    <header class="pagina-cabecera">
+      <h1>{pagina.datos.titulo}</h1>
+      <div class="bajada" set:html={pagina.html} />
+    </header>
+
+    <a class="pizarron destacado" href={url('laboratorio/')}>
+      <svg viewBox="0 0 120 60" width="120" height="60" aria-hidden="true">
+        <path d="M0 42H120" stroke="var(--texto-tenue)" />
+        <path d="M6 8C22 70 40 70 56 8" fill="none" stroke="var(--c-fantasma)" stroke-width="2" stroke-dasharray="3 5" stroke-linecap="round" />
+        <path d="M50 52C66 -10 90 -10 112 52" fill="none" stroke="var(--c-funcion)" stroke-width="2.6" stroke-linecap="round" />
+      </svg>
+      <span class="destacado-textos">
+        <strong>{pagina.datos.laboratorio.titulo}</strong>
+        <span>{pagina.datos.laboratorio.texto}</span>
+      </span>
+    </a>
+
+    <div class="arbol-temas">
+      {sitio.etapas.map((etapa: any) => {
+        const deEsta = unidades.filter((u) => u.etapa === etapa.id);
+        if (deEsta.length === 0) return null;
+        return (
+          <section class="etapa">
+            <h2 class="etapa-titulo">{etapa.nombre}</h2>
+            {deEsta.map((u) => (
+              <a class="unidad unidad-link" href={url(`interactivos/${u.id}/`)}>
+                <span class="unidad-numero">{u.numero}</span>
+                <span class="unidad-textos">
+                  <span class="unidad-nombre">{u.nombre}</span>
+                  <span class="unidad-descripcion">{u.temas.map((t) => t.titulo).join(' · ')}</span>
+                </span>
+                <span class="unidad-cuenta">{u.temas.length}</span>
+              </a>
+            ))}
+          </section>
+        );
+      })}
+    </div>
+  </div>
+</Base>

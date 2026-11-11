@@ -1,24 +1,26 @@
 ---
-// Sección para tutores: "Cómo usar esta página en una clase" + notas por tema,
-// todo en carpetas desplegables.
+// Sección para tutores: la guía "Cómo usar esta página en una clase" y las
+// notas de cada tema, agrupadas por unidad igual que la lista de temas.
 import Base from '../../layouts/Base.astro';
 import ArbolDeTemas from '../../components/ArbolDeTemas.astro';
-import { listaDeTemas, obtenerTema, obtenerPagina } from '../../lib/contenido.js';
+import { obtenerTema, obtenerPagina } from '../../lib/contenido.js';
 
 const pagina = obtenerPagina('como-usar');
-const conNotas = listaDeTemas().filter((t) => obtenerTema(t.slug).tieneTutores);
+const conNotas = (t) => obtenerTema(t.slug).tieneTutores;
 ---
 <Base titulo="Para tutores" seccion="tutores">
   <div class="contenedor">
-    <p class="sobretitulo">Para tutores</p>
-    <h1>Notas para preparar la clase</h1>
-    <p class="texto-suave">Abrí una carpeta para ver los temas. Cada tema tiene sus notas y el mismo interactivo que ven los alumnos.</p>
+    <header class="pagina-cabecera">
+      <p class="sello-tutores">Para tutores</p>
+      <h1>Preparar la clase</h1>
+      <p class="bajada">Cada tema tiene sus notas: qué tiene que llevarse el alumno, los errores típicos, qué dibujar en el pizarrón y qué preguntar.</p>
+    </header>
 
-    <details class="carpeta carpeta-guia">
-      <summary><span class="carpeta-titulo">{pagina.datos.titulo}</span></summary>
+    <details class="guia-clase">
+      <summary>{pagina.datos.titulo}</summary>
       <div class="desplegado texto" set:html={pagina.html} />
     </details>
 
-    <ArbolDeTemas temas={conNotas} destino="tutores" />
+    <ArbolDeTemas destino="tutores" filtro={conNotas} />
   </div>
 </Base>

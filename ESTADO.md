@@ -5,6 +5,27 @@ _Última actualización: 11/11/2026 — sesión 5 (devolución de las Etapas 1 a
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
 
+## Revisión general (sesión 6, 11/11/2026) — en curso, SIN PUBLICAR todavía
+
+Decisiones de Mati: diseño **"Carpeta"** (hoja color hueso para leer + interactivos como pizarrones oscuros), nombre **"Matemática para todos"** con logo **∀ con un punto amarillo**, **9 unidades** en vez de Básico / Análisis / Álgebra, y sección **Interactivos** con todos los de una unidad en la misma página.
+
+Hecho (guardado en un commit local, falta publicar y que Mati lo revise):
+- **9 unidades** (carpetas nuevas en `contenido/temas/`, definidas en `contenido/sitio.md` junto con las 3 etapas: Para arrancar, Funciones, Para 4.º y 5.º año). Los links de los temas no cambiaron.
+- **Lista de Temas nueva**: etapas → unidades que se abren con un toque (`ArbolDeTemas.astro`). `alumnos/#unidad` abre esa unidad.
+- **Botón de volver** arriba de cada tema (`Volver.astro`) y **siguiente / anterior** al final (`AnteriorSiguiente.astro`), también en las notas de tutores.
+- **Diseño Carpeta**: colores en `global.css` (la hoja en `:root`, el pizarrón en `.interactivo, .pizarron`), tipografías Fraunces (títulos) y Atkinson Hyperlegible (texto). Los gráficos leen los colores del pizarrón donde están.
+- **Inicio nuevo** (`index.astro`, textos en `contenido/paginas/inicio.md`), **logo** (`Logo.astro`, `public/favicon.svg`).
+- **Sección Interactivos** (`src/pages/interactivos/`, texto en `contenido/paginas/interactivos.md`). El Laboratorio vive ahí adentro; la barra queda Inicio · Temas · Interactivos · Tutores · Notación.
+- **Notación** rehecha: índice arriba, fichas "símbolo | qué quiere decir" y leyenda de colores (`contenido/paginas/notacion.md`). En el .md, un renglón de lista que empieza con **negrita** se vuelve ficha.
+- A los alumnos, la parte "Intuición" se les muestra como **"Para probar"** (el .md sigue diciendo `## Intuición`).
+
+Falta de esta revisión:
+- **Publicar** (git push) cuando Mati lo confirme, y su devolución.
+- **Completar la sección de tutores** (los "(para completar)" de "En el pizarrón" y "Preguntas para el alumno" en los 43 temas, y ampliar "Cómo usar esta página en una clase").
+- Actualizar `COMO-EDITAR.md` (todavía nombra las carpetas `basico`, `analisis`, `algebra`) y las secciones 8, 11 y 12 de `CLAUDE.md` (unidades, nombre, diseño).
+- Revisar con calma cada interactivo en el celular con el diseño nuevo (se probaron cuadrática, lineal, balanza, sistemas 3×3 y la galería de la unidad 9, sin errores).
+- Ideas propuestas, sin hacer: índice dentro del tema, botón "compartir por WhatsApp", buscador de temas, gráfico pegajoso, glosario al tocar.
+
 ## Hecho
 
 ### Etapa 0 — Base y prototipo ✅ (aprobada por Mati)

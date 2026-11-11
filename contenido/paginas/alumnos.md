@@ -2,4 +2,4 @@
 titulo: Temas
 ---
 
-Cada tema empieza con un gráfico para jugar. Después viene una explicación corta, un ejemplo resuelto paso a paso y ejercicios que se corrigen solos.
+Tocá una unidad para ver sus temas. Cada tema arranca con algo para probar; después vienen la explicación, un ejemplo y ejercicios.

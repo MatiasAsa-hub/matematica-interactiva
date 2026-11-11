@@ -1,15 +1,17 @@
 ---
-// Lista de temas, en carpetas desplegables por sección y subsección.
+// Lista de temas: las unidades agrupadas por etapa. Cada unidad se abre con un toque.
 import Base from '../../layouts/Base.astro';
 import ArbolDeTemas from '../../components/ArbolDeTemas.astro';
-import { listaDeTemas, obtenerPagina } from '../../lib/contenido.js';
+import { obtenerPagina } from '../../lib/contenido.js';
 
 const pagina = obtenerPagina('alumnos');
 ---
 <Base titulo="Temas" seccion="alumnos">
   <div class="contenedor">
-    <h1 style="margin-top:1.4rem">{pagina.datos.titulo}</h1>
-    <div class="texto" set:html={pagina.html} />
-    <ArbolDeTemas temas={listaDeTemas()} destino="temas" />
+    <header class="pagina-cabecera">
+      <h1>{pagina.datos.titulo}</h1>
+      <div class="bajada" set:html={pagina.html} />
+    </header>
+    <ArbolDeTemas destino="temas" />
   </div>
 </Base>

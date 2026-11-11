@@ -1,10 +1,13 @@
 ---
-// Página de un tema para alumnos: intuición (con el interactivo),
-// explicación, ejemplo resuelto y ejercicios.
+// Página de un tema para alumnos: para probar (con el interactivo),
+// explicación, ejemplo resuelto y ejercicios. Arriba, el botón para volver
+// a la unidad; abajo, los botones de tema siguiente y anterior.
 import Base from '../../layouts/Base.astro';
 import Interactivo from '../../components/Interactivo.astro';
 import Ejercicio from '../../components/Ejercicio.astro';
-import { listaDeTemas, obtenerTema, datosDelSitio } from '../../lib/contenido.js';
+import Volver from '../../components/Volver.astro';
+import AnteriorSiguiente from '../../components/AnteriorSiguiente.astro';
+import { listaDeTemas, obtenerTema, unidadDe, vecinosDe } from '../../lib/contenido.js';
 import { url } from '../../lib/rutas.js';
 
 export function getStaticPaths() {
@@ -12,27 +15,29 @@ export function getStaticPaths() {
 }
 
 const tema = obtenerTema(Astro.params.tema);
-const sitio = datosDelSitio();
-const nombreSeccion = sitio.secciones.find((s) => s.id === tema.seccion)?.nombre ?? '';
+const unidad = unidadDe(tema.slug);
+const { anterior, siguiente } = vecinosDe(tema.slug);
 const partes = tema.partes.filter((p) => p.tipo !== 'tutores');
 let yaHayInteractivo = false;
 let contador = 0; // el recuadro "Para recordar" no lleva número
+// La primera parte se llama "Intuición" en los archivos; a los alumnos se les muestra como "Para probar".
+const tituloDe = (parte) => (parte.tipo === 'intuicion' ? 'Para probar' : parte.titulo);
 ---
 <Base titulo={tema.titulo} descripcion={tema.resumen} seccion="alumnos">
   <div class="contenedor">
     <header class="tema-cabecera">
-      <p class="sobretitulo">{nombreSeccion}{tema.subseccion && ` · ${tema.subseccion}`}</p>
+      <Volver href={url(`alumnos/#${unidad?.id ?? ''}`)} texto={unidad?.nombre ?? 'Temas'} />
       <h1>{tema.titulo}</h1>
       {tema.resumen && <p class="bajada">{tema.resumen}</p>}
     </header>
   </div>
 
-  {partes.map((parte, i) => {
+  {partes.map((parte) => {
     const numero = parte.tipo === 'recordar' ? 0 : ++contador;
     const conInteractivo = parte.tipo === 'intuicion' && tema.interactivo && !yaHayInteractivo;
     if (conInteractivo) yaHayInteractivo = true;
     return (
-      <section class="parte" id={parte.tipo}>
+      <section class={`parte parte-${parte.tipo}`} id={parte.tipo}>
         <div class="contenedor">
           {parte.tipo === 'recordar' && (
             <aside class="para-recordar texto">
@@ -40,7 +45,7 @@ let contador = 0; // el recuadro "Para recordar" no lleva número
               <div set:html={parte.html} />
             </aside>
           )}
-          {parte.titulo && parte.tipo !== 'recordar' && <h2><span class="paso-num">{numero}</span>{parte.titulo}</h2>}
+          {parte.titulo && parte.tipo !== 'recordar' && <h2 class="parte-titulo"><span class="paso-num">{numero}</span>{tituloDe(parte)}</h2>}
           {parte.tipo === 'intuicion' && <div class="consigna texto" set:html={parte.html} />}
           {parte.tipo !== 'intuicion' && parte.tipo !== 'recordar' && parte.html && <div class="texto" set:html={parte.html} />}
 
@@ -76,7 +81,7 @@ let contador = 0; // el recuadro "Para recordar" no lleva número
         )}
         {/* un segundo interactivo (opcional), al final de la explicación: campo "interactivo2:" del tema */}
         {parte.tipo === 'explicacion' && tema.opciones.interactivo2 && (
-          <div class="contenedor-ancho">
+          <div class="contenedor-ancho interactivo-segundo">
             <Interactivo nombre={tema.opciones.interactivo2} opciones={tema.opciones} />
           </div>
         )}
@@ -84,12 +89,10 @@ let contador = 0; // el recuadro "Para recordar" no lleva número
     );
   })}
 
-  {tema.tieneTutores && (
-    <div class="contenedor">
-      <div class="aviso-tutores tarjeta">
-        <p><strong>¿Sos tutor o tutora?</strong><br /><span class="texto-suave">Mirá cómo explicar este tema en clase.</span></p>
-        <a class="boton" href={url(`tutores/${tema.slug}/`)}>Notas para tutores →</a>
-      </div>
-    </div>
-  )}
+  <div class="contenedor cierre-tema">
+    <AnteriorSiguiente anterior={anterior} siguiente={siguiente} destino="temas" unidadActual={unidad?.id ?? ''} />
+    {tema.tieneTutores && (
+      <p class="aviso-tutores">¿Sos tutor o tutora? <a href={url(`tutores/${tema.slug}/`)}>Mirá las notas para dar este tema</a>.</p>
+    )}
+  </div>
 </Base>

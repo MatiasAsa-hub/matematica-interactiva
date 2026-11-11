@@ -18,7 +18,7 @@ const LETRAS = ['x', 'y', 'z'];
 export function iniciarPlano3d(raiz) {
   const $ = (sel) => raiz.querySelector(sel);
   const textos = JSON.parse(raiz.dataset.planos);
-  const css = getComputedStyle(document.documentElement);
+  const css = getComputedStyle(raiz);
   const c = (n) => css.getPropertyValue(n).trim();
   const estado = { indice: 0, ec: [1, 1, 2, 4] };
   let casillas = {};

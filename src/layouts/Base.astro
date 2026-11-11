@@ -2,20 +2,22 @@
 // Marco común a todas las páginas: encabezado, navegación y pie.
 // En el celular la navegación va abajo (cómoda para el pulgar);
 // en la compu, arriba.
-import '@fontsource/nunito/latin-400.css';
-import '@fontsource/nunito/latin-700.css';
-import '@fontsource/nunito/latin-400-italic.css';
+import '@fontsource/atkinson-hyperlegible/latin-400.css';
+import '@fontsource/atkinson-hyperlegible/latin-700.css';
+import '@fontsource/atkinson-hyperlegible/latin-400-italic.css';
+import '@fontsource/fraunces/latin-600.css';
 import 'katex/dist/katex.min.css';
 import '../styles/global.css';
 import '../styles/contenido.css';
 import '../styles/interactivos.css';
+import Logo from '../components/Logo.astro';
 import { datosDelSitio } from '../lib/contenido.js';
 import { url } from '../lib/rutas.js';
 
 interface Props {
   titulo?: string;
   descripcion?: string;
-  seccion?: 'inicio' | 'alumnos' | 'tutores' | 'laboratorio' | 'notacion';
+  seccion?: 'inicio' | 'alumnos' | 'interactivos' | 'tutores' | 'notacion';
 }
 const { titulo, descripcion, seccion = 'inicio' } = Astro.props;
 const sitio = datosDelSitio();
@@ -24,8 +26,8 @@ const tituloCompleto = titulo ? `${titulo} · ${sitio.nombre}` : sitio.nombre;
 const enlaces = [
   { id: 'inicio', texto: 'Inicio', href: url(''), icono: 'M3 11.5 12 4l9 7.5M5.5 9.5V20h5v-5.5h3V20h5V9.5' },
   { id: 'alumnos', texto: 'Temas', href: url('alumnos/'), icono: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 21H20' },
+  { id: 'interactivos', texto: 'Interactivos', href: url('interactivos/'), icono: 'M3 20c3-9 6-13 9-8s6 1 9-8M3 4v16h18' },
   { id: 'tutores', texto: 'Tutores', href: url('tutores/'), icono: 'M3 5h18v11H3zM8 20h8M12 16v4M7 9h6M7 12h9' },
-  { id: 'laboratorio', texto: 'Laboratorio', href: url('laboratorio/'), icono: 'M3 20c3-9 6-13 9-8s6 1 9-8M3 4v16h18' },
   { id: 'notacion', texto: 'Notación', href: url('notacion/'), icono: 'M5 4h14M9 4v16M15 4c0 6 0 11 3 16M5 20h7' },
 ];
 ---
@@ -34,9 +36,12 @@ const enlaces = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1e2a36" />
+    <meta name="theme-color" content="#f4f0e6" />
     <title>{tituloCompleto}</title>
     <meta name="description" content={descripcion ?? sitio.descripcion} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion ?? sitio.descripcion} />
+    <meta property="og:site_name" content={sitio.nombre} />
     <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
   </head>
   <body>
@@ -44,10 +49,7 @@ const enlaces = [
     <header class="encabezado">
       <div class="encabezado-interior contenedor-ancho">
         <a class="marca" href={url('')}>
-          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
-            <path d="M3 27 H29 M16 3 V29" stroke="currentColor" stroke-opacity=".35" stroke-width="2" />
-            <path d="M5 6 C 10 30, 22 30, 27 6" fill="none" stroke="var(--c-funcion)" stroke-width="3" stroke-linecap="round" />
-          </svg>
+          <Logo medida={26} />
           <span>{sitio.nombre}</span>
         </a>
         <nav class="nav-arriba" aria-label="Secciones">

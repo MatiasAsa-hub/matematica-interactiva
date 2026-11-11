@@ -28,7 +28,7 @@ function moduloTexto([x, y]) {
 
 export function iniciarVectores(raiz) {
   const $ = (sel) => raiz.querySelector(sel);
-  const css = getComputedStyle(document.documentElement);
+  const css = getComputedStyle(raiz);
   const colU = css.getPropertyValue('--c-ec1').trim();
   const colV = css.getPropertyValue('--c-ec2').trim();
   const estado = { u: [3, 1], v: [1, 2], op: 'suma', k: 2 };

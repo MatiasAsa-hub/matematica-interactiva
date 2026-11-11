@@ -44,7 +44,7 @@ export async function iniciarSistema(raiz) {
   const $ = (sel) => raiz.querySelector(sel);
   const modo = raiz.dataset.modo;
   const textos = JSON.parse(raiz.dataset.sistemas);
-  const css = getComputedStyle(document.documentElement);
+  const css = getComputedStyle(raiz);
   const colorEc = [1, 2, 3].map((i) => css.getPropertyValue(`--c-ec${i}`).trim());
 
   const estado = {

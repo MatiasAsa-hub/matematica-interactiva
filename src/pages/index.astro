@@ -1,48 +1,86 @@
 ---
-// Página de inicio
+// Página de inicio: presentación, los dos caminos (alumno o tutor),
+// el recorrido de unidades, cómo es cada tema y los accesos al resto.
+// Los textos están en contenido/paginas/inicio.md y contenido/sitio.md.
 import Base from '../layouts/Base.astro';
-import { datosDelSitio, obtenerPagina } from '../lib/contenido.js';
+import Logo from '../components/Logo.astro';
+import { datosDelSitio, obtenerPagina, listaDeUnidades } from '../lib/contenido.js';
 import { url } from '../lib/rutas.js';
 
 const sitio = datosDelSitio();
-const inicio = obtenerPagina('inicio');
-const t = inicio.datos.tarjetas;
+const t = obtenerPagina('inicio').datos;
+const unidades = listaDeUnidades();
 
-const tarjetas = [
-  { href: url('alumnos/'), color: 'var(--c-funcion)', ...t.alumnos, icono: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 21H20' },
-  { href: url('tutores/'), color: 'var(--c-raices)', ...t.tutores, icono: 'M3 5h18v11H3zM8 20h8M12 16v4M7 9h6M7 12h9' },
-  { href: url('laboratorio/'), color: 'var(--c-positivo)', ...t.laboratorio, icono: 'M3 20c3-9 6-13 9-8s6 1 9-8M3 4v16h18' },
-  { href: url('notacion/'), color: 'var(--c-vertice)', ...t.notacion, icono: 'M5 4h14M9 4v16M15 4c0 6 0 11 3 16M5 20h7' },
+const accesos = [
+  { href: url('interactivos/'), ...t.accesos.interactivos, icono: 'M3 20c3-9 6-13 9-8s6 1 9-8M3 4v16h18' },
+  { href: url('laboratorio/'), ...t.accesos.laboratorio, icono: 'M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3M7.5 15h9' },
+  { href: url('notacion/'), ...t.accesos.notacion, icono: 'M5 4h14M9 4v16M15 4c0 6 0 11 3 16M5 20h7' },
+  { href: url('tutores/'), ...t.accesos.tutores, icono: 'M3 5h18v11H3zM8 20h8M12 16v4M7 9h6M7 12h9' },
 ];
 ---
 <Base seccion="inicio">
   <div class="contenedor">
     <section class="portada">
+      <Logo medida={54} />
       <h1>{sitio.nombre}</h1>
       <p class="bajada">{sitio.descripcion}</p>
-      <svg class="portada-grafico" viewBox="0 0 320 90" aria-hidden="true">
-        <path d="M0 70 H320" stroke="currentColor" stroke-opacity=".5" />
-        <path d="M20 8 C 70 120, 130 120, 180 8" fill="none" stroke="var(--c-funcion)" stroke-width="3" stroke-linecap="round" />
-        <path d="M150 85 C 200 -25, 260 -25, 310 85" fill="none" stroke="var(--c-derivada)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9" />
-        <circle cx="45.5" cy="70" r="5" fill="var(--c-raices)" />
-        <circle cx="154.5" cy="70" r="5" fill="var(--c-raices)" />
-      </svg>
+      <div class="portada-botones">
+        <a class="boton boton-principal boton-grande" href={url('alumnos/')}>{t.botones.alumnos}</a>
+        <a class="boton boton-grande" href={url('tutores/')}>{t.botones.tutores}</a>
+      </div>
     </section>
 
-    <div class="texto" set:html={inicio.html} />
+    <section class="bloque-inicio">
+      <h2>{t.recorrido.titulo}</h2>
+      <p class="texto-suave">{t.recorrido.texto}</p>
+      <div class="recorrido">
+        {sitio.etapas.map((etapa: any) => (
+          <div class="recorrido-etapa">
+            <p class="recorrido-rotulo">{etapa.nombre}</p>
+            <ol class="recorrido-unidades">
+              {unidades.filter((u) => u.etapa === etapa.id).map((u) => (
+                <li>
+                  <a href={url(`alumnos/#${u.id}`)}>
+                    <span class="unidad-numero">{u.numero}</span>
+                    <span class="unidad-nombre">{u.nombre}</span>
+                    <span class="unidad-cuenta">{u.temas.length} temas</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
+    </section>
 
-    <nav class="secciones" aria-label="Secciones">
-      {tarjetas.map((c) => (
-        <a class="seccion-tarjeta" href={c.href} style={`--color: ${c.color}`}>
-          <span class="icono">
+    <section class="bloque-inicio">
+      <h2>{t.pasos.titulo}</h2>
+      <ol class="pasos-tema">
+        {t.pasos.lista.map((p: any, i: number) => (
+          <li>
+            <span class="paso-num">{i + 1}</span>
+            <strong>{p.titulo}</strong>
+            <span class="texto-suave">{p.texto}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="bloque-inicio">
+      <h2>{t.accesos.titulo}</h2>
+      <nav class="accesos" aria-label="Otras secciones">
+        {accesos.map((a) => (
+          <a class="acceso" href={a.href}>
             <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-              <path d={c.icono} fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d={a.icono} fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </span>
-          <strong>{c.titulo}</strong>
-          <span class="texto-suave">{c.texto}</span>
-        </a>
-      ))}
-    </nav>
+            <span class="acceso-textos">
+              <strong>{a.titulo}</strong>
+              <span>{a.texto}</span>
+            </span>
+          </a>
+        ))}
+      </nav>
+    </section>
   </div>
 </Base>

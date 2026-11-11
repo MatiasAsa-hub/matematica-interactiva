@@ -47,8 +47,14 @@ const temasCrudos = Object.entries(archivos)
 
 const slugsDeTemas = new Set(temasCrudos.map((t) => t.slug));
 
-/** Lista de temas, ordenados por sección y por el campo "orden". */
+/**
+ * Lista de temas en el orden del recorrido: primero por unidad (el orden de
+ * las unidades está en contenido/sitio.md) y, dentro de la unidad, por el
+ * campo "orden". "seccion" es el id de la unidad (el nombre de la carpeta).
+ */
 export function listaDeTemas() {
+  const ids = datosDelSitio().unidades.map((u) => u.id);
+  const lugar = (id) => (ids.includes(id) ? ids.indexOf(id) : ids.length);
   return temasCrudos
     .map((t) => ({
       slug: t.slug,
@@ -57,8 +63,34 @@ export function listaDeTemas() {
       resumen: t.datos.resumen ?? '',
       orden: Number(t.datos.orden ?? 999),
       subseccion: t.datos.subseccion ?? '',
+      interactivo: t.datos.interactivo ?? null,
     }))
-    .sort((a, b) => a.orden - b.orden);
+    .sort((a, b) => lugar(a.seccion) - lugar(b.seccion) || a.orden - b.orden);
+}
+
+/** Las unidades con sus temas y el nombre de su etapa, en orden. */
+export function listaDeUnidades() {
+  const sitio = datosDelSitio();
+  const temas = listaDeTemas();
+  return sitio.unidades.map((u, i) => ({
+    ...u,
+    numero: i + 1,
+    nombreEtapa: sitio.etapas.find((e) => e.id === u.etapa)?.nombre ?? '',
+    temas: temas.filter((t) => t.seccion === u.id),
+  }));
+}
+
+/** La unidad de un tema. */
+export function unidadDe(slug) {
+  return listaDeUnidades().find((u) => u.temas.some((t) => t.slug === slug)) ?? null;
+}
+
+/** El tema anterior y el siguiente en el recorrido (o null en las puntas). */
+export function vecinosDe(slug, filtro = () => true) {
+  const temas = listaDeTemas().filter(filtro);
+  const i = temas.findIndex((t) => t.slug === slug);
+  const conUnidad = (t) => (t ? { ...t, unidad: unidadDe(t.slug) } : null);
+  return { anterior: conUnidad(temas[i - 1]), siguiente: conUnidad(temas[i + 1]) };
 }
 
 /** Un tema completo, ya dividido en partes y convertido a HTML. */
@@ -89,6 +121,32 @@ export function obtenerPagina(nombre) {
   // Una línea que dice solo "(interactivo)" marca dónde va el interactivo de la página
   const partes = content.split(/^\(interactivo\)[ \t]*$/m).map((p) => markdownAHtml(p));
   return { datos: data, html: markdownAHtml(content), partes };
+}
+
+/**
+ * Una página suelta cortada en secciones (cada título "## ..." es una).
+ * Sirve para la página de Notación, que arma un índice con las secciones.
+ * En las listas, un renglón que empieza con algo en **negrita** se muestra
+ * como una ficha: a la izquierda lo que se escribe, a la derecha qué quiere decir.
+ */
+export function obtenerPaginaEnSecciones(nombre) {
+  const crudo = archivos[`/contenido/paginas/${nombre}.md`];
+  if (!crudo) throw new Error(`Falta el archivo contenido/paginas/${nombre}.md`);
+  const { data, content } = matter(crudo);
+  const bloques = cortarPorTitulos(content, '##');
+  const fichas = (html) => html.replace(
+    /<li><strong>([\s\S]*?)<\/strong>[\s:—–-]*([\s\S]*?)<\/li>/g,
+    '<li class="ficha-notacion"><span class="ficha-simbolo">$1</span><span class="ficha-significado">$2</span></li>',
+  );
+  return {
+    datos: data,
+    introHtml: markdownAHtml(bloques[0].texto),
+    secciones: bloques.slice(1).map((b) => ({
+      titulo: b.titulo,
+      id: normalizar(b.titulo).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+      html: fichas(markdownAHtml(b.texto)),
+    })),
+  };
 }
 
 // --------------------------------------------------------------------------

@@ -19,8 +19,8 @@ const ESCALA_MIN = 4;     // píxeles por unidad (lo más alejado)
 const ESCALA_MAX = 3000;  // píxeles por unidad (lo más cerca)
 
 /** Lee los colores definidos en global.css para que gráficos y textos coincidan. */
-export function leerColores() {
-  const css = getComputedStyle(document.documentElement);
+export function leerColores(elemento = document.documentElement) {
+  const css = getComputedStyle(elemento);
   const v = (n) => css.getPropertyValue(n).trim();
   return {
     fondo: v('--fondo-grafico'),
@@ -81,8 +81,8 @@ export class Plano {
     this.factorGrosor = opciones.factorGrosor ?? (this.soloEjeX ? 1 : 0.65);
     this.capas = [];
     this.arrastrables = [];
-    this.colores = leerColores();
-    this.fuente = getComputedStyle(document.body).fontFamily;
+    this.colores = leerColores(contenedor);
+    this.fuente = getComputedStyle(contenedor).fontFamily;
     this.alCambiarVista = [];
     this._tocado = false; // ¿la persona ya movió la vista?
 

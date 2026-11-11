@@ -1,71 +1,86 @@
 ---
-// Lista de temas en carpetas desplegables:
-//   sección (Básico, Análisis…) → subsección (Operaciones, Funciones…) → temas.
-// Se usa en la página de Temas (alumnos) y en la de Tutores.
-import { datosDelSitio } from '../lib/contenido.js';
+// Lista de temas: las unidades agrupadas por etapa. Cada unidad se abre
+// con un toque y muestra sus temas. Se usa en la página de Temas (alumnos)
+// y en la de Tutores.
+import { datosDelSitio, listaDeUnidades } from '../lib/contenido.js';
 import { url } from '../lib/rutas.js';
 
-interface Tema { slug: string; seccion: string; subseccion: string; titulo: string; resumen: string; orden: number }
 interface Props {
-  temas: Tema[];
-  destino: 'temas' | 'tutores'; // a qué página llevan los links
-  textoTema?: string;          // texto fijo debajo de cada tema (si no, va el resumen)
+  destino: 'temas' | 'tutores';            // a qué página llevan los links
+  filtro?: (tema: any) => boolean;        // qué temas se muestran
 }
-const { temas, destino, textoTema } = Astro.props;
+const { destino, filtro = () => true } = Astro.props;
 const sitio = datosDelSitio();
+const unidades = listaDeUnidades()
+  .map((u) => ({ ...u, temas: u.temas.filter(filtro) }))
+  .filter((u) => u.temas.length > 0);
 
-// Agrupa los temas de una sección por subsección, en el orden en que aparecen.
-function porSubseccion(lista: Tema[]) {
-  const grupos = new Map<string, Tema[]>();
-  for (const t of lista) {
+// Dentro de una unidad larga, los temas se separan con subtítulos
+// (el campo "subseccion" de cada tema). En las cortas no hace falta.
+function grupos(u: any) {
+  if (u.temas.length <= 6) return [['', u.temas]];
+  const mapa = new Map<string, any[]>();
+  for (const t of u.temas) {
     const clave = t.subseccion || '';
-    if (!grupos.has(clave)) grupos.set(clave, []);
-    grupos.get(clave)!.push(t);
+    if (!mapa.has(clave)) mapa.set(clave, []);
+    mapa.get(clave)!.push(t);
   }
-  return [...grupos.entries()];
+  return [...mapa.entries()];
 }
 ---
-<div class="arbol-temas">
-  {sitio.secciones.map((s: any) => {
-    const deEsta = temas.filter((t) => t.seccion === s.id);
-    const grupos = porSubseccion(deEsta);
-    const anidar = grupos.length > 1;
+<div class="arbol-temas" data-arbol>
+  {sitio.etapas.map((etapa: any) => {
+    const deEsta = unidades.filter((u) => u.etapa === etapa.id);
+    if (deEsta.length === 0) return null;
     return (
-      <details class="carpeta" open={false}>
-        <summary>
-          <span class="carpeta-titulo">{s.nombre}</span>
-          <span class="carpeta-cuenta">{deEsta.length > 0 ? `${deEsta.length} ${deEsta.length === 1 ? 'tema' : 'temas'}` : 'próximamente'}</span>
-        </summary>
-        <div class="desplegado">
-          <p class="texto-suave chico">{s.descripcion}</p>
-          {deEsta.length === 0 && <p class="proximamente">Próximamente.</p>}
-          {grupos.map(([subseccion, lista]) => {
-            const items = (
-              <ul class="lista-temas">
-                {lista.map((t) => (
-                  <li>
-                    <a href={url(`${destino}/${t.slug}/`)}>
-                      <strong>{t.titulo}</strong>
-                      <span>{textoTema ?? t.resumen}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            );
-            return anidar ? (
-              <details class="subcarpeta">
-                <summary>{subseccion || 'Otros'} <span class="carpeta-cuenta">{lista.length}</span></summary>
-                <div class="desplegado">{items}</div>
-              </details>
-            ) : (
-              <>
-                {subseccion && <p class="subcarpeta-titulo">{subseccion}</p>}
-                {items}
-              </>
-            );
-          })}
-        </div>
-      </details>
+      <section class="etapa">
+        <h2 class="etapa-titulo">{etapa.nombre}</h2>
+        <p class="etapa-descripcion">{etapa.descripcion}</p>
+        {deEsta.map((u) => (
+          <details class="unidad" id={u.id} name="unidad">
+            <summary>
+              <span class="unidad-numero">{u.numero}</span>
+              <span class="unidad-textos">
+                <span class="unidad-nombre">{u.nombre}</span>
+                <span class="unidad-descripcion">{u.descripcion}</span>
+              </span>
+              <span class="unidad-cuenta">{u.temas.length} temas</span>
+            </summary>
+            <div class="unidad-temas">
+              {grupos(u).map(([subtitulo, lista]: any) => (
+                <>
+                  {subtitulo && <p class="unidad-subtitulo">{subtitulo}</p>}
+                  <ol class="lista-temas">
+                    {lista.map((t: any) => (
+                      <li>
+                        <a href={url(`${destino}/${t.slug}/`)}>
+                          <strong>{t.titulo}</strong>
+                          <span>{t.resumen}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </>
+              ))}
+            </div>
+          </details>
+        ))}
+      </section>
     );
   })}
 </div>
+
+<script>
+  // Si la dirección termina en #unidad (por ejemplo, al tocar "volver" desde
+  // un tema), esa unidad aparece abierta.
+  function abrirLaDelLink() {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const unidad = id && document.getElementById(id);
+    if (unidad instanceof HTMLDetailsElement) {
+      unidad.open = true;
+      unidad.scrollIntoView({ block: 'start' });
+    }
+  }
+  abrirLaDelLink();
+  window.addEventListener('hashchange', abrirLaDelLink);
+</script>
