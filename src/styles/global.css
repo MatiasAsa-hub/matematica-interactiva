@@ -27,6 +27,10 @@
   --c-crece: #5fd3c7;       /* crece: turquesa */
   --c-decrece: #e8896b;     /* decrece: terracota */
   --c-fantasma: #8796a6;    /* función de referencia ("fantasma"): gris */
+  /* álgebra (etapa 8): cada ecuación de un sistema tiene su color (y su número) */
+  --c-ec1: #58c4dd;         /* ecuación 1: azul */
+  --c-ec2: #f4a259;         /* ecuación 2: naranja */
+  --c-ec3: #f28fb5;         /* ecuación 3: rosa */
 
   /* --- Medidas --- */
   --radio: 14px;

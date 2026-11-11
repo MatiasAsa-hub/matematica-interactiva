@@ -1,0 +1,85 @@
+---
+// Interactivo de sistemas de ecuaciones (2×2 con rectas, 3×3 con planos en 3D).
+// Lógica: src/interactivos/sistema.js
+// Modos (campo "modo:" del tema):
+//   explorar  → se ven las rectas o los planos y el cartel con la clasificación.
+//               En los 2×2, las rectas se mueven arrastrando sus puntitos.
+//   gauss     → la matriz ampliada y el botón "Siguiente paso": cada paso mueve
+//               una recta o un plano, pero la solución queda fija.
+//   parametro → un deslizador para k (el sistema tiene k adentro).
+// Los sistemas vienen del tema (campo "sistemas:" del .md), por ejemplo
+//   "2x + y = 5 ; x - y = 1"
+// En el modo gauss, cada uno puede traer sus pasos escritos:
+//   - sistema: "x + y = 3 ; 2x - y = 0"
+//     pasos: ["F2 - 2F1 -> F2", "F2 : (-3) -> F2", "F1 - F2 -> F1"]
+// Si no trae pasos, la página los elige sola.
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+import { leerSistema, leerGauss } from '../../lib/sistemas.js';
+
+interface Props { sistemas?: any[]; modo?: string; k?: { min?: number; max?: number; valor?: number } }
+const { sistemas = ['2x + y = 5 ; x - y = 1'], modo = 'explorar', k = {} } = Astro.props;
+
+// Se prueban al armar el sitio: si uno está mal escrito, el armado avisa.
+for (const s of sistemas) {
+  if (modo === 'gauss') leerGauss(s);
+  else {
+    const sis = leerSistema(String(s));
+    if (modo === 'parametro' && !sis.conK) throw new Error(`En el modo "parametro", el sistema tiene que tener k: "${s}"`);
+  }
+}
+const kMin = k.min ?? -5;
+const kMax = k.max ?? 5;
+const kValor = k.valor ?? 0;
+
+const casillas = [
+  { nombre: 'solucion', texto: 'La solución', color: '--c-raices', prendida: true },
+  { nombre: 'cortes', texto: 'Rectas de corte', color: '--texto' },
+  { nombre: 'funciones', texto: 'Despejar <i>y</i>', color: '--c-funcion' },
+];
+const planos = [
+  { nombre: 'p1', texto: 'Plano 1', color: '--c-ec1', prendida: true },
+  { nombre: 'p2', texto: 'Plano 2', color: '--c-ec2', prendida: true },
+  { nombre: 'p3', texto: 'Plano 3', color: '--c-ec3', prendida: true },
+];
+---
+<div class="interactivo" data-interactivo="sistema" data-modo={modo}
+  data-sistemas={JSON.stringify(sistemas.map((s) => (typeof s === 'string' ? s : { sistema: String(s.sistema), pasos: (s.pasos ?? []).map(String) })))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={sistemas.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Sistema anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Sistema siguiente">›</button>
+    </div>
+
+    <div class="sistema-ecuaciones" data-ecuaciones aria-live="polite"></div>
+    <div class="sistema-matriz" data-matriz hidden></div>
+    <div class="gauss-paso" data-paso hidden aria-live="polite"></div>
+    {/* el deslizador de k va arriba del gráfico, para ver qué pasa mientras se mueve */}
+    {modo === 'parametro' && (
+      <Deslizador param="k" min={kMin} max={kMax} paso={0.1} pasoBoton={1} valor={kValor} ayuda="el número que cambia" />
+    )}
+
+    <div class="grafico" data-grafico></div>
+    <div class="grafico grafico-3d" data-espacio hidden></div>
+
+    {modo === 'gauss' && (
+      <div class="interactivo-acciones gauss-botones">
+        <button type="button" class="boton boton-chico" data-paso-anterior aria-label="Paso anterior">‹ Anterior</button>
+        <button type="button" class="boton boton-chico boton-principal" data-paso-siguiente>Siguiente paso ›</button>
+        <button type="button" class="boton boton-chico" data-reiniciar>Empezar de nuevo</button>
+      </div>
+    )}
+    <div class="cartel-sistema" data-cartel aria-live="polite"></div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Casillas titulo="Mostrar" casillas={casillas} extras={planos} />
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarSistema } from '../../interactivos/sistema.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="sistema"]').forEach(iniciarSistema);
+</script>

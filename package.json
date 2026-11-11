@@ -19,6 +19,7 @@
     "remark-math": "^6.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
+    "three": "^0.170.0",
     "unified": "^11.0.5"
   }
 }

@@ -578,3 +578,61 @@
 .linea-integral[hidden] { display: none; }
 .linea-integral i, .titulo-integral i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
 .titulo-integral { margin: 0.5rem 0 0.3rem; color: var(--c-integral); font-size: 0.95rem; }
+
+/* Sistemas de ecuaciones (etapa 8) */
+.sistema-ecuaciones { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 0.1rem 0 0.6rem; }
+.sistema-ecuaciones[hidden], .sistema-matriz[hidden], .gauss-paso[hidden], .cartel-sistema[hidden] { display: none; }
+.llave { border-left: 2px solid var(--texto-suave); border-radius: 12px 0 0 12px; padding: 0.15rem 0 0.15rem 0.7rem; display: grid; gap: 0.2rem; }
+.ec-fila { display: flex; align-items: center; gap: 0.55rem; font-size: 1.3rem; color: var(--color); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ec-fila i, .sistema-matriz i, .cartel-sistema i, .ec-k i, .gauss-paso i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1em; }
+.ec-num { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 0.3rem; border-radius: 999px; border: 2px solid var(--color); color: var(--color); font-size: 0.8rem; font-weight: 700; font-style: normal; }
+.ec-k { color: var(--texto-suave); font-size: 1rem; }
+.grafico.grafico-3d { touch-action: none; }
+.grafico[hidden] { display: none; }
+
+/* matriz ampliada: corchetes a los costados y la raya antes de los resultados */
+.sistema-matriz { display: flex; justify-content: center; overflow-x: auto; padding-bottom: 0.4rem; }
+.matriz-ampliada { border-collapse: separate; border-spacing: 0; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.matriz-ampliada thead th { font-weight: 400; color: var(--texto-tenue); font-size: 0.8rem; padding-bottom: 0.1rem; }
+.matriz-ampliada td { padding: 0.15rem 0.6rem; text-align: center; min-width: 2.2rem; transition: background 0.3s; }
+.matriz-ampliada tbody th { padding-right: 0.4rem; }
+.matriz-ampliada tbody td:nth-child(2) { border-left: 2px solid var(--texto-suave); }
+.matriz-ampliada tbody td:last-child { border-right: 2px solid var(--texto-suave); }
+.matriz-ampliada tbody tr:first-child td:nth-child(2) { border-top-left-radius: 8px; }
+.matriz-ampliada tbody tr:last-child td:nth-child(2) { border-bottom-left-radius: 8px; }
+.matriz-ampliada tbody tr:first-child td:last-child { border-top-right-radius: 8px; }
+.matriz-ampliada tbody tr:last-child td:last-child { border-bottom-right-radius: 8px; }
+.matriz-ampliada td.barra { border-left: 1.5px dashed var(--texto-tenue); }
+.matriz-ampliada tr.cambio td { background: color-mix(in srgb, var(--color) 22%, transparent); }
+.gauss-paso { text-align: center; min-height: 3.2em; }
+.gauss-paso p { margin: 0.15rem 0; }
+.gauss-op { font-size: 1.05rem; }
+.gauss-op b { font-size: 1.12em; }
+.gauss-frase { font-size: 0.92rem; color: var(--texto-suave); }
+.gauss-nota { border-radius: var(--radio-chico); padding: 0.35rem 0.7rem; font-size: 0.95rem; border: 1px solid var(--borde); }
+.gauss-botones { flex-wrap: wrap; justify-content: center; }
+.gauss-botones .boton:disabled { opacity: 0.4; cursor: default; }
+
+/* el cartel con la clasificación */
+.cartel-sistema { margin-top: 0.6rem; border-radius: var(--radio-chico); padding: 0.5rem 0.8rem; border: 1px solid var(--borde); border-left-width: 5px; line-height: 1.45; }
+.cartel-sistema > span { display: block; color: var(--texto-suave); font-size: 0.92rem; }
+.tipo-CD { border-color: var(--c-positivo); }
+.tipo-CI { border-color: var(--c-raices); }
+.tipo-I { border-color: var(--c-negativo); }
+.cartel-sistema.tipo-CD b { color: var(--c-positivo); }
+.cartel-sistema.tipo-CI b { color: var(--c-raices); }
+.cartel-sistema.tipo-I b { color: var(--c-negativo); }
+
+/* 3D */
+.espacio { position: relative; }
+.espacio-lienzo { position: absolute; inset: 0; display: block; touch-action: none; }
+.espacio-textos { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.espacio-etiqueta { position: absolute; left: 0; top: 0; white-space: nowrap; font-weight: 700; font-size: 0.95rem; text-shadow: 0 0 4px var(--fondo-grafico), 0 0 3px var(--fondo-grafico); }
+.espacio-eje { color: var(--texto); font-family: 'KaTeX_Math', 'Times New Roman', serif; font-style: italic; font-size: 1.1rem; }
+.espacio-numero { color: var(--texto-tenue); font-weight: 400; font-size: 0.75rem; }
+.espacio-etiqueta-plano { font-size: 1rem; }
+.espacio-etiqueta-sol { font-size: 0.95rem; }
+.interactivo[data-interactivo="sistema"] .interactivo-grafico .deslizador { margin: 0 0 0.6rem; }
+/* si dos planos casi coinciden, que sus números no se pisen */
+.espacio-etiqueta.plano-2 { margin-top: -10px; }
+.espacio-etiqueta.plano-3 { margin-top: 10px; }
