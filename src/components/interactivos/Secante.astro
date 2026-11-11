@@ -1,0 +1,52 @@
+---
+// Interactivo 6.a: de la secante a la tangente.
+// Lógica: src/interactivos/secante.js
+// Las funciones vienen del tema (campo "funciones:" del .md), por ejemplo
+// "x^2", "x^3 - 3x", "sen(x)". Con "conH: true" se prende la casilla
+// "Con h en la cuenta" (para el tema "Derivada por definición").
+import Deslizador from '../controles/Deslizador.astro';
+import Casillas from '../controles/Casillas.astro';
+import { leerDerivable } from '../../lib/derivadas.js';
+
+interface Props { funciones?: string[]; conH?: boolean }
+const { funciones = ['x^2', 'x^3 - 3x', 'sen(x)'], conH = false } = Astro.props;
+// Se prueban al armar el sitio: si una está mal escrita, el armado avisa.
+for (const f of funciones) leerDerivable(String(f));
+
+const casillas = [
+  { nombre: 'triangulo', texto: 'Triángulo <i>h</i> y lo que sube', color: '--c-vertice', prendida: true },
+  { nombre: 'tangente', texto: 'Recta tangente', color: '--c-derivada' },
+];
+if (conH) casillas.push({ nombre: 'conH', texto: 'Con <i>h</i> en la cuenta', color: '--c-funcion', prendida: true });
+---
+<div class="interactivo" data-interactivo="secante" data-funciones={JSON.stringify(funciones.map(String))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={funciones.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Función anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Función siguiente">›</button>
+    </div>
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="lectura-log lectura-secante" data-lectura aria-live="polite"></p>
+    <div class="grafico" data-grafico></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-achicar>Achicar <i>h</i></button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Deslizador param="x" min={-3} max={3} paso={0.5} valor={1} ayuda="dónde está el punto" />
+    <Deslizador param="h" min={-3} max={3} paso={0.01} pasoBoton={0.1} valor={1} ayuda="cuánto me corro" />
+
+    <div class="tabla-caja tabla-h" data-tabla></div>
+
+    <Casillas titulo="Mostrar en el gráfico" casillas={casillas} />
+
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarSecante } from '../../interactivos/secante.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="secante"]').forEach(iniciarSecante);
+</script>

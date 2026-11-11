@@ -1,0 +1,51 @@
+---
+// Interactivo 6.b: recorrer la curva y dibujar f'(x).
+// Lógica: src/interactivos/recorrer.js
+// Las funciones vienen del tema (campo "funciones:" del .md).
+// Con "formula: true" la casilla "Fórmula de f'" arranca prendida
+// (para el tema "Derivar polinomios").
+import Casillas from '../controles/Casillas.astro';
+import { leerDerivable } from '../../lib/derivadas.js';
+
+interface Props { funciones?: string[]; formula?: boolean }
+const { funciones = ['x^3 - 3x', 'x^2 - 4', 'sen(x)', '2x + 1'], formula = false } = Astro.props;
+for (const f of funciones) leerDerivable(String(f));
+---
+<div class="interactivo" data-interactivo="recorrer" data-funciones={JSON.stringify(funciones.map(String))}>
+  <div class="interactivo-grafico">
+    <div class="cuentas-cabecera" hidden={funciones.length < 2}>
+      <button type="button" class="plano-boton" data-anterior aria-label="Función anterior">‹</button>
+      <span data-contador></span>
+      <button type="button" class="plano-boton" data-proxima aria-label="Función siguiente">›</button>
+    </div>
+    <div class="expresion" data-expresion aria-live="polite"></div>
+    <p class="expresion-desarrollada linea-derivada" data-derivada hidden></p>
+    <p class="lectura-log lectura-recorrer" data-lectura aria-live="polite"></p>
+    <div class="grafico grafico-f" data-grafico></div>
+    <p class="titulo-derivada"><i>f</i>'(<i>x</i>): la pendiente en cada punto</p>
+    <div class="grafico grafico-derivada" data-grafico-derivada></div>
+    <div class="interactivo-acciones">
+      <button type="button" class="boton boton-chico" data-recorrer>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        Recorrer solo
+      </button>
+    </div>
+  </div>
+
+  <div class="interactivo-controles">
+    <Casillas
+      titulo="Mostrar en el gráfico"
+      casillas={[
+        { nombre: 'formula', texto: "Fórmula de <i>f</i>'", color: '--c-derivada', prendida: formula },
+        { nombre: 'tangente', texto: 'Recta tangente', color: '--c-derivada' },
+        { nombre: 'entera', texto: "<i>f</i>' entera (para comprobar)", color: '--c-fantasma' },
+      ]}
+    />
+    <div class="info" data-info aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  import { iniciarRecorrer } from '../../interactivos/recorrer.js';
+  document.querySelectorAll<HTMLElement>('[data-interactivo="recorrer"]').forEach(iniciarRecorrer);
+</script>
