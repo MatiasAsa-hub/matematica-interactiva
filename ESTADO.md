@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 10/11/2026 — sesión 4 (Laboratorio y Etapa 5 completa)_
+_Última actualización: 11/11/2026 — sesión 5 (devolución de las Etapas 1 a 5 y Etapa 6 completa)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -191,11 +191,37 @@ Mati pidió dejar **composición e inversa para el final** de la etapa; el resto
 - Piezas compartidas: el `Plano` acepta números propios en el eje x (`ejeX`, para 90° o π/2) y el deslizador acepta un `formato` para mostrar su valor.
 - Links nuevos en los textos: `[Laboratorio](pagina:laboratorio)` apunta a una página suelta (anotado en `COMO-EDITAR.md`).
 
+### Devolución de las Etapas 1 a 5 (sesión 5)
+- A Mati le pareció bien todo. Único pedido: **líneas y puntos más finos** en los gráficos, para que no se vean sobrecargados con muchas casillas prendidas.
+  - Se hizo en el módulo de graficado (`factorGrosor` en `plano.js`): en los gráficos de funciones todo va al 65 % del grosor (los puntos, un poco menos achicados). La recta numérica de Básico y Ecuaciones queda igual.
+- **Estética: más adelante la pareja de Mati va a armar un sistema de diseño en Figma** y se va a cambiar el diseño. Conviene seguir usando los colores de `global.css` (variables) para que el cambio sea fácil.
+
+### Etapa 6 — Derivadas ✅ (completa; falta la revisión de Mati)
+Mati aprobó todas las propuestas. Subsección nueva "Derivadas" en Análisis, con 4 temas:
+- **¿Qué es la derivada?** (`que-es-la-derivada.md`): interactivo `secante` (6.a).
+  - Punto azul (x, f(x)) y punto blanco (x + h, f(x + h)), con la secante. Los dos se arrastran (el blanco cambia *h*). Deslizadores *x* y *h*; *h* puede ser negativo.
+  - Arriba: "pendiente de la secante = (f(x + h) − f(x)) : h" con los números puestos.
+  - Botón **Achicar h**: *h* va hacia 0 (10 veces más chico cada 2 segundos, hasta 0.001). Con *h* ≤ 0.01 la secante se pinta naranja: "¡ya casi es la tangente!".
+  - Tablita h | pendiente (1, 0.5, 0.1, 0.01, 0.001) que se va llenando, y "Se acerca a 2: esa es la derivada".
+  - Casillas: triángulo *h* y lo que sube (prendida), recta tangente.
+  - 7 ejercicios.
+- **Derivada por definición** (`derivada-por-definicion.md`): el mismo `secante` con `conH: true`: la casilla **Con h en la cuenta** muestra la pendiente escrita con *h* ("2 + h") y qué queda al achicar *h*. 7 ejercicios.
+- **La gráfica de f'(x)** (`grafica-de-la-derivada.md`): interactivo `recorrer` (6.b).
+  - Arriba la curva con un punto que se arrastra y una **flechita de largo 1** en la dirección de la tangente: turquesa si crece, terracota si decrece, lila si está acostada (se "pega" en los puntos con f' = 0).
+  - Abajo, con el mismo eje x, se dibuja f' **desde el borde izquierdo hasta el punto** (si el punto vuelve, se borra). Los dos gráficos se mueven y hacen zoom juntos.
+  - Botón **Recorrer solo**. Casillas: fórmula de f' (apagada), recta tangente, f' entera "para comprobar".
+  - Si f' no entra, el eje y de abajo se achica y lo avisa.
+  - 7 ejercicios.
+- **Derivar polinomios y tabla de derivadas** (`derivar-polinomios.md`): el mismo `recorrer` con `formula: true`. Regla de xⁿ, término a término, y tabla (sen, cos, eˣ, ln). 8 ejercicios.
+- Las funciones de los interactivos se eligen en el tema (campo `funciones:`): polinomios como "x^3 - 3x", y también "sen(x)", "cos(x)" y "e^x". La fórmula de f' sale sola (para los polinomios, se averiguan los coeficientes probando números).
+- Color: **la derivada va en naranja** (ya estaba reservado en `global.css`).
+- Piezas nuevas: `src/lib/derivadas.js`; el `Plano` acepta `relacionY` (eje y con otra escala) y `factorGrosor`.
+
 ## Falta
-- Que Mati revise las Etapas 1 a 5 y dé su devolución.
-- **Próximo:** Etapa 6, derivadas (6.a de la secante a la tangente, 6.b recorrer la curva y dibujar f'(x)).
+- Que Mati revise la Etapa 6.
+- **Próximo:** Etapa 7, integrales. Antes, definir con Mati los detalles de la animación 7.a (dx que se achica).
 - Posible más adelante: ecuaciones con paréntesis (2(x + 1) = 8) o con fracciones. Por ahora la balanza solo entiende números enteros, *x*, + y −.
-- Etapas 5 a 8, según la hoja de ruta de `CLAUDE.md`.
+- Etapas 7 y 8, según la hoja de ruta de `CLAUDE.md`.
 - **Guía imprimible: al final de todo** (decisión de Mati).
 
 ## Decisiones tomadas en la sesión 2
