@@ -111,7 +111,7 @@ export function iniciarInecuacion(raiz) {
 
     const fin = paso === pasos.length - 1;
     textoEl.innerHTML = paso === 0
-      ? `Probá números con el deslizador o arrastrando el punto blanco: ¿cuáles cumplen? Después tocá <b>Resolver paso a paso</b>.`
+      ? `Probá números con el deslizador o arrastrando el punto negro: ¿cuáles cumplen? Después tocá <b>Resolver paso a paso</b>.`
       : `<span class="regla-num">Paso ${paso} de ${pasos.length - 1}</span> ${pasos[paso].regla}${fin ? ' Fijate si coincide con los números que probaste.' : ''}`;
     textoEl.classList.toggle('final', fin && paso > 0);
     botonSiguiente.textContent = paso === 0 ? 'Resolver paso a paso' : 'Siguiente paso';

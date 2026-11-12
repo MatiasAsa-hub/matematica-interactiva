@@ -1,7 +1,9 @@
 ---
-// Lista de temas: las unidades agrupadas por etapa. Cada unidad se abre
-// con un toque y muestra sus temas. Se usa en la página de Temas (alumnos)
-// y en la de Tutores.
+// Lista de temas: las unidades agrupadas por etapa. Cada unidad tiene su
+// ícono y se abre con un toque: adentro, sus temas en una grilla de tarjetas.
+// En la compu arrancan todas abiertas; en el celular, cerradas (para que la
+// lista sea corta). Se usa en la página de Temas (alumnos) y en la de Tutores.
+import IconoUnidad from './IconoUnidad.astro';
 import { datosDelSitio, listaDeUnidades } from '../lib/contenido.js';
 import { url } from '../lib/rutas.js';
 
@@ -39,7 +41,7 @@ function grupos(u: any) {
         {deEsta.map((u) => (
           <details class="unidad" id={u.id} name="unidad">
             <summary>
-              <span class="unidad-numero">{u.numero}</span>
+              <IconoUnidad id={u.id} />
               <span class="unidad-textos">
                 <span class="unidad-nombre">{u.nombre}</span>
                 <span class="unidad-descripcion">{u.descripcion}</span>
@@ -50,12 +52,12 @@ function grupos(u: any) {
               {grupos(u).map(([subtitulo, lista]: any) => (
                 <>
                   {subtitulo && <p class="unidad-subtitulo">{subtitulo}</p>}
-                  <ol class="lista-temas">
+                  <ol class="lista-temas grilla-tarjetas">
                     {lista.map((t: any) => (
                       <li>
-                        <a href={url(`${destino}/${t.slug}/`)}>
-                          <strong>{t.titulo}</strong>
-                          <span>{t.resumen}</span>
+                        <a class="tarjeta-link" href={url(`${destino}/${t.slug}/`)}>
+                          <span class="tarjeta-titulo">{t.titulo}</span>
+                          <span class="tarjeta-texto">{t.resumen}</span>
                         </a>
                       </li>
                     ))}
@@ -70,17 +72,25 @@ function grupos(u: any) {
   })}
 </div>
 
-<script>
-  // Si la dirección termina en #unidad (por ejemplo, al tocar "volver" desde
-  // un tema), esa unidad aparece abierta.
-  function abrirLaDelLink() {
-    const id = decodeURIComponent(location.hash.slice(1));
-    const unidad = id && document.getElementById(id);
-    if (unidad instanceof HTMLDetailsElement) {
-      unidad.open = true;
-      unidad.scrollIntoView({ block: 'start' });
+<script is:inline>
+  // Va "en línea" para que corra antes de que se vea la página (sin saltos).
+  (function () {
+    var unidades = document.querySelectorAll('[data-arbol] details.unidad');
+    // En la compu hay lugar: todas las unidades arrancan abiertas.
+    if (window.matchMedia('(min-width: 900px)').matches) {
+      unidades.forEach(function (u) { u.removeAttribute('name'); u.open = true; });
     }
-  }
-  abrirLaDelLink();
-  window.addEventListener('hashchange', abrirLaDelLink);
+    // Si la dirección termina en #unidad (por ejemplo, al tocar "volver" desde
+    // un tema), esa unidad aparece abierta.
+    function abrirLaDelLink() {
+      var id = decodeURIComponent(location.hash.slice(1));
+      var unidad = id && document.getElementById(id);
+      if (unidad && unidad.tagName === 'DETAILS') {
+        unidad.open = true;
+        unidad.scrollIntoView({ block: 'start' });
+      }
+    }
+    abrirLaDelLink();
+    window.addEventListener('hashchange', abrirLaDelLink);
+  })();
 </script>

@@ -1,8 +1,10 @@
 ---
 // Sección "Interactivos": todos los interactivos de la página, juntos.
-// Acá se elige la unidad; adentro están todos los de esa unidad, uno debajo del otro.
+// Acá se elige la unidad (una tarjeta por unidad); adentro están todos los
+// de esa unidad, uno debajo del otro.
 // El Laboratorio de funciones va destacado arriba.
 import Base from '../../layouts/Base.astro';
+import IconoUnidad from '../../components/IconoUnidad.astro';
 import { datosDelSitio, listaDeUnidades, obtenerPagina } from '../../lib/contenido.js';
 import { url } from '../../lib/rutas.js';
 
@@ -19,15 +21,15 @@ const unidades = listaDeUnidades()
       <div class="bajada" set:html={pagina.html} />
     </header>
 
-    <a class="pizarron destacado" href={url('laboratorio/')}>
+    <a class="tarjeta-link destacado" href={url('laboratorio/')}>
       <svg viewBox="0 0 120 60" width="120" height="60" aria-hidden="true">
-        <path d="M0 42H120" stroke="var(--texto-tenue)" />
+        <path d="M0 42H120" stroke="var(--icono-gris)" stroke-width="1.5" />
         <path d="M6 8C22 70 40 70 56 8" fill="none" stroke="var(--c-fantasma)" stroke-width="2" stroke-dasharray="3 5" stroke-linecap="round" />
         <path d="M50 52C66 -10 90 -10 112 52" fill="none" stroke="var(--c-funcion)" stroke-width="2.6" stroke-linecap="round" />
       </svg>
       <span class="destacado-textos">
-        <strong>{pagina.datos.laboratorio.titulo}</strong>
-        <span>{pagina.datos.laboratorio.texto}</span>
+        <span class="tarjeta-titulo">{pagina.datos.laboratorio.titulo}</span>
+        <span class="tarjeta-texto">{pagina.datos.laboratorio.texto}</span>
       </span>
     </a>
 
@@ -37,17 +39,20 @@ const unidades = listaDeUnidades()
         if (deEsta.length === 0) return null;
         return (
           <section class="etapa">
-            <h2 class="etapa-titulo">{etapa.nombre}</h2>
-            {deEsta.map((u) => (
-              <a class="unidad unidad-link" href={url(`interactivos/${u.id}/`)}>
-                <span class="unidad-numero">{u.numero}</span>
-                <span class="unidad-textos">
-                  <span class="unidad-nombre">{u.nombre}</span>
-                  <span class="unidad-descripcion">{u.temas.map((t) => t.titulo).join(' · ')}</span>
-                </span>
-                <span class="unidad-cuenta">{u.temas.length}</span>
-              </a>
-            ))}
+            <h2 class="etapa-titulo" style="margin-bottom: 0.6rem">{etapa.nombre}</h2>
+            <div class="grilla-tarjetas grilla-3">
+              {deEsta.map((u) => (
+                <a class="tarjeta-link tarjeta-unidad" href={url(`interactivos/${u.id}/`)}>
+                  <IconoUnidad id={u.id} />
+                  <span class="tarjeta-unidad-textos">
+                    <span class="tarjeta-numero">Unidad {u.numero}</span>
+                    <span class="tarjeta-titulo">{u.nombre}</span>
+                    <span class="tarjeta-texto">{u.temas.map((t) => t.titulo).join(' · ')}</span>
+                    <span class="tarjeta-pie">{u.temas.length} interactivos</span>
+                  </span>
+                </a>
+              ))}
+            </div>
           </section>
         );
       })}

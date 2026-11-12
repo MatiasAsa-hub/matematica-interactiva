@@ -1,14 +1,14 @@
 // ==========================================================================
 // INTERACTIVO 6.a: de la secante a la tangente
 //
-// - Un punto azul (x, f(x)) y uno blanco (x + h, f(x + h)), unidos por la
+// - Un punto azul (x, f(x)) y uno negro (x + h, f(x + h)), unidos por la
 //   recta secante. Arriba se lee su pendiente, el cociente incremental:
 //       (f(x + h) − f(x)) : h
-// - "Achicar h" lleva h hacia 0 de a poco (animado): el punto blanco se
+// - "Achicar h" lleva h hacia 0 de a poco (animado): el punto negro se
 //   acerca al azul y la secante se convierte en la tangente.
 // - Una tablita va anotando la pendiente para h = 1, 0.5, 0.1, 0.01, 0.001
 //   y dice a qué número se acerca: la derivada f'(x).
-// - h puede ser negativo (el punto blanco a la izquierda): se llega a lo mismo.
+// - h puede ser negativo (el punto negro a la izquierda): se llega a lo mismo.
 // - Casilla "Con h en la cuenta" (para polinomios): la pendiente escrita con
 //   h, por ejemplo 2 + h, y qué queda cuando h se achica.
 // Las funciones vienen del tema (campo "funciones:" del .md).
@@ -123,7 +123,7 @@ export function iniciarSecante(raiz) {
       const m = pendiente();
       const color = casiTangente() ? col.derivada : col.texto;
       p.curva((t) => y1 + m * (t - x), { color, ancho: 2.5, alfa: 0.9 });
-      // el cartel, sobre la recta, un poco antes del punto azul (del lado contrario al blanco)
+      // el cartel, sobre la recta, un poco antes del punto azul (del lado contrario al negro)
       const xe = x - Math.sign(h) * 1.2 / Math.hypot(1, m);
       p.etiqueta(casiTangente() ? '¡ya casi es la tangente!' : 'secante', xe, y1 + m * (xe - x),
         { color, dx: h > 0 ? 10 : -10, dy: 2, alinear: h > 0 ? 'left' : 'right', tamano: 13 });
@@ -134,7 +134,7 @@ export function iniciarSecante(raiz) {
     p.etiqueta('x', x, y1, { color: col.funcion, dx: h >= 0 ? -12 : 12, dy: -14, alinear: h >= 0 ? 'right' : 'left', tamano: 14 });
   });
 
-  // El punto azul se arrastra sobre la curva (de a 0.5); el blanco cambia h (de a 0.1).
+  // El punto azul se arrastra sobre la curva (de a 0.5); el negro cambia h (de a 0.1).
   plano.agregarArrastrable({
     posicion: () => [estado.x, f(estado.x)],
     mover: (x) => {
@@ -200,7 +200,7 @@ export function iniciarSecante(raiz) {
     const d = estado.fn.d(x);
     const partes = [];
     partes.push(itemInfo(col.texto, 'Secante:', `la recta que pasa por los dos puntos. Su pendiente es lo que sube dividido lo que avanza: (${F}(${X} + ${H}) − ${F}(${X})) : ${H}. Esa cuenta se llama <b>cociente incremental</b>.`));
-    partes.push(itemInfo(col.derivada, 'Si h se achica:', `el punto blanco se acerca al azul y la secante se apoya cada vez más en la curva, hasta ser la <b>recta tangente</b>. Su pendiente es la <b>derivada</b>: ${F}'(${num(x)}) ${igual(d)}.`));
+    partes.push(itemInfo(col.derivada, 'Si h se achica:', `el punto negro se acerca al azul y la secante se apoya cada vez más en la curva, hasta ser la <b>recta tangente</b>. Su pendiente es la <b>derivada</b>: ${F}'(${num(x)}) ${igual(d)}.`));
     if (casillas.tangente) {
       partes.push(itemInfo(col.derivada, 'Tangente:', `toca la curva en (${num(x)}, ${numAprox(f(x))}) y tiene pendiente ${F}'(${num(x)}) ${igual(d)}. ` +
         (Math.abs(d) < 1e-6 ? 'Está acostada: ahí la curva no sube ni baja.' : d > 0 ? 'Sube: ahí la curva crece.' : 'Baja: ahí la curva decrece.')));

@@ -2,10 +2,12 @@
    Estructura de las páginas: encabezado, navegación, inicio, listas de
    temas, página de un tema, ejercicios, notación y sección de tutores.
 
-   Criterio del diseño "Carpeta":
-     - lo que se LEE va directo sobre la hoja, sin recuadro;
-     - lo que se TOCA para ir a otro lado (un tema, el siguiente) es una tarjeta;
-     - lo que se JUEGA (interactivos) es un pizarrón oscuro.
+   Criterio del diseño:
+     - la información va en TARJETAS blancas sobre el fondo gris cálido;
+     - las listas (unidades, temas) son grillas de tarjetas;
+     - en la compu se usa el ancho: dentro de un tema, el texto va a la
+       izquierda y el interactivo queda fijo a la derecha;
+     - en el celular, todo va en una sola columna.
    ========================================================================== */
 
 .saltar { position: absolute; left: -999px; }
@@ -15,20 +17,21 @@
 /* --- Encabezado --- */
 .encabezado {
   position: sticky; top: 0; z-index: 20;
-  background: color-mix(in srgb, var(--fondo) 93%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--fondo) 90%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--borde);
 }
-.encabezado-interior { display: flex; align-items: center; justify-content: space-between; min-height: 56px; }
+.encabezado-interior { display: flex; align-items: center; justify-content: space-between; min-height: var(--alto-encabezado); }
 .marca {
-  display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
-  font-family: var(--fuente-titulos); font-weight: 600; font-size: 1.12rem; color: var(--texto-fuerte);
+  display: flex; align-items: center; gap: 0.55rem; text-decoration: none;
+  font-weight: 700; font-size: 1.05rem; letter-spacing: -0.015em; color: var(--texto-fuerte);
 }
-.nav-arriba { display: none; gap: 0.3rem; }
-.nav-arriba a { text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 999px; color: var(--texto-suave); }
-.nav-arriba a:hover { color: var(--texto); }
-.nav-arriba a[aria-current='page'] { color: var(--texto-fuerte); background: var(--fondo-resalte); font-weight: 700; }
+.marca:hover { color: var(--texto-fuerte); }
+.nav-arriba { display: none; gap: 0.15rem; }
+.nav-arriba a { text-decoration: none; padding: 0.4rem 0.85rem; border-radius: 10px; color: var(--texto-suave); font-size: 0.95rem; font-weight: 500; }
+.nav-arriba a:hover { color: var(--texto-fuerte); background: var(--fondo-resalte); }
+.nav-arriba a[aria-current='page'] { color: var(--acento); background: var(--acento-suave); font-weight: 600; }
 
 /* --- Navegación de abajo (celular) --- */
 .nav-abajo {
@@ -41,10 +44,9 @@
 }
 .nav-abajo a {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-  text-decoration: none; color: var(--texto-tenue); font-size: 0.72rem;
+  text-decoration: none; color: var(--texto-tenue); font-size: 0.68rem; font-weight: 500;
 }
-.nav-abajo a[aria-current='page'] { color: var(--texto-fuerte); font-weight: 700; }
-.nav-abajo a[aria-current='page'] svg { color: var(--acento); }
+.nav-abajo a[aria-current='page'] { color: var(--acento); font-weight: 600; }
 
 @media (min-width: 900px) {
   .nav-arriba { display: flex; }
@@ -52,225 +54,305 @@
 }
 
 /* --- Pie --- */
-.pie { color: var(--texto-tenue); font-size: 0.85rem; padding-top: 2.5rem; padding-bottom: 1.5rem; }
+.pie { color: var(--texto-tenue); font-size: 0.85rem; padding-top: 3rem; padding-bottom: 1.5rem; }
 
 /* --- Cabecera de una página y botón de volver --- */
-.pagina-cabecera, .tema-cabecera { padding-top: 0.7rem; }
-.pagina-cabecera h1, .tema-cabecera h1 { margin: 0.5rem 0 0.3rem; }
-.pagina-cabecera > h1:first-child { margin-top: 1.1rem; }
-.bajada { color: var(--texto-suave); font-size: 1.08rem; margin: 0.2rem 0 0; }
+.pagina-cabecera, .tema-cabecera { padding-top: 0.8rem; }
+.pagina-cabecera h1, .tema-cabecera h1 { margin: 0.5rem 0 0.4rem; }
+.pagina-cabecera > h1:first-child { margin-top: 1.4rem; }
+.bajada { color: var(--texto-suave); font-size: 1.05rem; margin: 0.2rem 0 0; max-width: var(--ancho-texto); }
 .bajada p { margin: 0; }
 
 .volver {
   display: inline-flex; align-items: center; gap: 0.35rem;
   min-height: 44px; margin-left: -0.15rem;
-  color: var(--acento); font-weight: 700; font-size: 0.98rem; text-decoration: none;
+  color: var(--acento); font-weight: 600; font-size: 0.92rem; text-decoration: none;
 }
 .volver:hover span { text-decoration: underline; text-underline-offset: 3px; }
 
-/* Rótulo chico en mayúsculas (etapas, "Para recordar", niveles…) */
-.etapa-titulo, .recorrido-rotulo, .unidad-subtitulo, .sello-tutores {
-  font-family: var(--fuente); font-size: 0.8rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-suave);
+/* Rótulos chicos en mayúsculas */
+.etapa-titulo, .unidad-subtitulo, .sello-tutores {
+  font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--texto-tenue);
 }
 
 /* Índice de una página larga: botoncitos que llevan a cada sección */
-.indice-pagina { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 0; }
+.indice-pagina { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.1rem 0 0; }
 .indice-pagina a {
   padding: 0.3rem 0.8rem; min-height: 36px; display: inline-flex; align-items: center;
-  border: 1px solid var(--borde); border-radius: 999px; background: var(--fondo-tarjeta);
-  font-size: 0.92rem; text-decoration: none;
+  border: 1px solid var(--borde); border-radius: 10px; background: var(--fondo-tarjeta);
+  font-size: 0.9rem; font-weight: 500; text-decoration: none; color: var(--texto);
 }
-.indice-pagina a:hover { border-color: var(--texto-suave); }
+.indice-pagina a:hover { border-color: var(--acento); color: var(--acento); }
+
+/* ==========================================================================
+   Grillas de tarjetas (inicio, temas, interactivos, tutores)
+   ========================================================================== */
+
+/* En la compu entran de 3 a 5 por fila; en el celular, 1 (o 2 si son chicas) */
+.grilla-tarjetas {
+  display: grid; gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr));
+}
+.grilla-3 { grid-template-columns: 1fr; }
+@media (min-width: 700px) { .grilla-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px) { .grilla-tarjetas { gap: 1rem; } }
+
+/* Una tarjeta que se toca (lleva a otro lado) */
+.tarjeta-link {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding: 1rem 1.1rem; text-decoration: none; color: var(--texto);
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: var(--radio);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.tarjeta-link:hover { color: var(--texto); border-color: var(--acento); box-shadow: var(--sombra); transform: translateY(-2px); }
+.tarjeta-titulo { font-weight: 600; font-size: 1.02rem; line-height: 1.3; color: var(--texto-fuerte); }
+.tarjeta-texto { color: var(--texto-suave); font-size: 0.88rem; line-height: 1.45; }
+.tarjeta-pie { margin-top: auto; padding-top: 0.6rem; color: var(--texto-tenue); font-size: 0.8rem; font-weight: 500; }
+.tarjeta-link:hover .tarjeta-pie { color: var(--acento); }
+
+/* Tarjeta de una unidad: ícono, número, nombre y descripción.
+   En el celular va acostada (ícono a la izquierda); en la compu, parada. */
+.tarjeta-unidad { flex-direction: row; align-items: center; gap: 0.9rem; padding: 0.85rem 1rem; }
+.tarjeta-unidad .icono-unidad { width: 52px; height: 52px; flex: none; }
+.tarjeta-unidad-textos { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; flex: 1; }
+.tarjeta-numero { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--texto-tenue); }
+.tarjeta-unidad .tarjeta-titulo { font-size: 1.08rem; }
+@media (min-width: 700px) {
+  .tarjeta-unidad { flex-direction: column; align-items: flex-start; gap: 0.9rem; padding: 1.3rem 1.3rem 1.1rem; }
+  .tarjeta-unidad .icono-unidad { width: 64px; height: 64px; }
+  .tarjeta-unidad-textos { gap: 0.2rem; }
+  .tarjeta-unidad .tarjeta-titulo { font-size: 1.2rem; letter-spacing: -0.01em; }
+}
 
 /* --- Inicio --- */
-.portada { padding: 2.2rem 0 0.4rem; }
+.portada { padding: 2.2rem 0 0.4rem; display: grid; gap: 1.6rem; }
 .portada .logo { color: var(--texto-fuerte); }
-.portada h1 { font-size: 2.35rem; margin: 0.7rem 0 0.4rem; }
-.portada .bajada { font-size: 1.12rem; }
-.portada-botones { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.3rem; }
-.boton-grande { min-height: 50px; padding: 0.5em 1.3em; font-weight: 700; }
+.portada h1 { font-size: 2.3rem; margin: 0.9rem 0 0.5rem; }
+.portada .bajada { font-size: 1.1rem; }
+.portada-botones { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
+.boton-grande { min-height: 50px; padding: 0.5em 1.3em; }
+@media (min-width: 900px) {
+  .portada { padding: 3.6rem 0 1rem; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: end; gap: 3rem; }
+  .portada h1 { font-size: 3.6rem; letter-spacing: -0.035em; line-height: 1.02; }
+  .portada .bajada { font-size: 1.2rem; }
+}
 
-.bloque-inicio { margin: 2.8rem 0; }
+/* Los números grandes de la portada (unidades, temas, interactivos) */
+.cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
+.cifra { margin: 0; padding: 0.8rem 0.9rem; background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: var(--radio); display: flex; flex-direction: column; }
+.cifra-numero { font-size: 2.1rem; font-weight: 700; line-height: 1; letter-spacing: -0.03em; color: var(--texto-fuerte); font-variant-numeric: tabular-nums; }
+.cifra:first-child .cifra-numero { color: var(--acento); }
+.cifra-nombre { margin-top: 0.35rem; font-size: 0.82rem; color: var(--texto-suave); }
+@media (min-width: 900px) {
+  .cifra { padding: 1.2rem 1.3rem; }
+  .cifra-numero { font-size: 3.2rem; }
+  .cifra-nombre { font-size: 0.92rem; }
+}
+
+.bloque-inicio { margin: 2.6rem 0; }
 .bloque-inicio h2 { margin: 0 0 0.2rem; }
 .bloque-inicio > p { margin-top: 0; }
+@media (min-width: 900px) { .bloque-inicio { margin: 3.6rem 0; } }
 
-.recorrido { display: grid; gap: 1.4rem; margin-top: 1.1rem; }
-@media (min-width: 760px) { .recorrido { grid-template-columns: repeat(3, 1fr); gap: 1.6rem; } }
-.recorrido-rotulo { margin: 0 0 0.2rem; }
-.recorrido-unidades { list-style: none; padding: 0; margin: 0; }
-.recorrido-unidades li { margin: 0; }
-.recorrido-unidades a {
-  display: flex; align-items: center; gap: 0.7rem;
-  min-height: 52px; padding: 0.45rem 0;
-  border-top: 1px solid var(--borde); text-decoration: none;
-}
-.recorrido-unidades .unidad-nombre { flex: 1; font-weight: 700; line-height: 1.25; }
-.recorrido-unidades a:hover .unidad-nombre { text-decoration: underline; text-underline-offset: 3px; }
+.recorrido { display: grid; gap: 1.5rem; margin-top: 1.2rem; }
+.recorrido-etapa .etapa-titulo { margin: 0 0 0.5rem; }
 
-.pasos-tema { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1rem; }
-@media (min-width: 760px) { .pasos-tema { grid-template-columns: repeat(4, 1fr); } }
-.pasos-tema li { margin: 0; display: grid; gap: 0.15rem; align-content: start; }
-.pasos-tema .paso-num { margin-bottom: 0.3rem; }
-.pasos-tema .texto-suave { font-size: 0.95rem; line-height: 1.4; }
-
-.accesos { display: grid; gap: 0.7rem; margin-top: 1rem; }
-@media (min-width: 640px) { .accesos { grid-template-columns: 1fr 1fr; } }
-.acceso {
-  display: flex; align-items: center; gap: 0.9rem;
-  padding: 0.8rem 1rem; text-decoration: none;
+/* "Cómo es cada tema": cuatro pasos con el número grande */
+.pasos-tema { list-style: none; padding: 0; margin: 1.1rem 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+@media (min-width: 760px) { .pasos-tema { grid-template-columns: repeat(4, 1fr); gap: 1rem; } }
+.pasos-tema li {
+  margin: 0; padding: 1rem 1.1rem; display: grid; gap: 0.15rem; align-content: start;
   background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: var(--radio);
 }
-.acceso:hover { border-color: var(--texto-suave); }
-.acceso svg { flex: none; color: var(--acento); }
-.acceso-textos strong { display: block; }
-.acceso-textos span { color: var(--texto-suave); font-size: 0.93rem; line-height: 1.35; display: block; }
+.paso-grande { font-size: 1.9rem; font-weight: 700; line-height: 1; letter-spacing: -0.03em; color: var(--acento); margin-bottom: 0.5rem; }
+.pasos-tema strong { font-size: 1.02rem; }
+.pasos-tema .texto-suave { font-size: 0.88rem; line-height: 1.45; }
+
+/* Los accesos del inicio: tarjeta con un ícono de línea */
+.acceso { flex-direction: row; align-items: center; gap: 0.9rem; }
+.acceso > svg { flex: none; color: var(--acento); }
+.acceso-textos { display: flex; flex-direction: column; min-width: 0; }
 
 /* --- Listas de temas: etapas → unidades → temas --- */
 .arbol-temas { margin: 0.6rem 0 1.2rem; }
-.etapa { margin: 2rem 0 0; }
+.etapa { margin: 2.2rem 0 0; }
 .etapa-titulo { margin: 0; }
-.etapa-descripcion { margin: 0.1rem 0 0.7rem; color: var(--texto-suave); font-size: 0.95rem; }
+.etapa-descripcion { margin: 0.1rem 0 0.8rem; color: var(--texto-suave); font-size: 0.92rem; }
 
-/* Una unidad: un renglón que se abre (o un link, en la sección Interactivos) */
-details.unidad, a.unidad {
-  display: block; margin: 0; background: transparent;
-  border: 0; border-top: 1px solid var(--borde); border-radius: 0;
+/* Una unidad: una cabecera con su ícono que se abre con un toque y muestra
+   las tarjetas de sus temas. En la compu arrancan todas abiertas. */
+details.unidad {
+  display: block; margin: 0.75rem 0 0; padding: 0; overflow: hidden;
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: var(--radio);
 }
-.etapa > .unidad:last-child { border-bottom: 1px solid var(--borde); }
-details.unidad > summary, a.unidad {
-  display: flex; align-items: center; gap: 0.8rem;
-  min-height: 64px; padding: 0.65rem 0; text-decoration: none; font-weight: 400;
+details.unidad > summary {
+  display: flex; align-items: center; gap: 0.9rem;
+  min-height: 72px; padding: 0.7rem 1rem; font-weight: 400;
 }
 details.unidad > summary::before { content: none; }
-details.unidad > summary::after, a.unidad::after {
-  content: ''; width: 0.55em; height: 0.55em; flex: none; margin: 0 0.35rem 0 0.1rem;
-  border-right: 2px solid var(--texto-suave); border-bottom: 2px solid var(--texto-suave);
+details.unidad > summary::after {
+  content: ''; width: 0.55em; height: 0.55em; flex: none; margin: 0 0.3rem 0 0.1rem;
+  border-right: 2px solid var(--texto-tenue); border-bottom: 2px solid var(--texto-tenue);
   transform: rotate(45deg); transition: transform 0.2s;
 }
 details.unidad[open] > summary::after { transform: rotate(-135deg); }
-a.unidad::after { transform: rotate(-45deg); }
-.unidad-numero {
-  width: 2.1rem; height: 2.1rem; flex: none; border-radius: 50%;
-  display: grid; place-items: center;
-  border: 1.5px solid var(--texto); color: var(--texto-fuerte);
-  font-family: var(--fuente-titulos); font-weight: 600; font-size: 1rem; line-height: 1;
-}
-details.unidad[open] .unidad-numero { background: var(--texto); color: var(--fondo); }
+details.unidad > summary:hover .unidad-nombre { color: var(--acento); }
+details.unidad .icono-unidad { width: 48px; height: 48px; flex: none; }
 .unidad-textos { flex: 1; min-width: 0; }
-.unidad-nombre { display: block; font-weight: 700; font-size: 1.1rem; line-height: 1.25; color: var(--texto-fuerte); }
-.unidad-descripcion { display: block; color: var(--texto-suave); font-size: 0.92rem; line-height: 1.35; margin-top: 0.1rem; }
-.unidad-cuenta { flex: none; font-size: 0.82rem; color: var(--texto-tenue); white-space: nowrap; }
-.unidad-temas { padding: 0.1rem 0 1.1rem; }
-.unidad-subtitulo { margin: 1rem 0 0.4rem; }
-.unidad-subtitulo:first-child { margin-top: 0.3rem; }
-
-.lista-temas { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
-.lista-temas li { margin: 0; }
-.lista-temas a {
-  display: block; text-decoration: none; padding: 0.75rem 1rem;
-  background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: var(--radio-chico);
+.unidad-nombre { display: block; font-weight: 600; font-size: 1.1rem; line-height: 1.25; color: var(--texto-fuerte); letter-spacing: -0.01em; }
+.unidad-descripcion { display: block; color: var(--texto-suave); font-size: 0.88rem; line-height: 1.4; margin-top: 0.1rem; }
+.unidad-cuenta { flex: none; font-size: 0.8rem; font-weight: 500; color: var(--texto-tenue); white-space: nowrap; }
+.unidad-temas { padding: 0.9rem 1rem 1.1rem; border-top: 1px solid var(--borde); background: var(--fondo-grafico); }
+.unidad-subtitulo { margin: 1.1rem 0 0.5rem; }
+.unidad-subtitulo:first-child { margin-top: 0; }
+@media (min-width: 900px) {
+  details.unidad { margin-top: 1rem; }
+  details.unidad > summary { padding: 0.9rem 1.3rem; }
+  details.unidad .icono-unidad { width: 56px; height: 56px; }
+  .unidad-nombre { font-size: 1.3rem; }
+  .unidad-descripcion { font-size: 0.95rem; }
+  .unidad-temas { padding: 1.2rem 1.3rem 1.4rem; }
 }
-.lista-temas a:hover { border-color: var(--texto-suave); }
-.lista-temas a strong { display: block; }
-.lista-temas a span { color: var(--texto-suave); font-size: 0.93rem; line-height: 1.4; display: block; }
+
+.lista-temas { list-style: none; padding: 0; margin: 0; }
+.lista-temas li { margin: 0; display: flex; }
+.lista-temas .tarjeta-link { flex: 1; border-radius: 12px; padding: 0.8rem 0.95rem; }
 .proximamente { color: var(--texto-tenue); font-style: italic; }
 .link-pendiente { color: var(--texto-suave); }
 
-/* Tarjeta oscura destacada (el Laboratorio, en la sección Interactivos) */
-.pizarron { background: var(--fondo-tarjeta); border-radius: var(--radio); }
-.destacado { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.1rem; margin: 1.3rem 0 0; text-decoration: none; }
+/* Tarjeta destacada (el Laboratorio, en la sección Interactivos) */
+.destacado { flex-direction: row; align-items: center; gap: 1.1rem; margin: 1.4rem 0 0; }
 .destacado svg { flex: none; width: 96px; height: auto; }
-.destacado-textos strong { display: block; font-size: 1.1rem; }
-.destacado-textos span { color: var(--texto-suave); font-size: 0.95rem; line-height: 1.4; display: block; }
+.destacado-textos { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.destacado .tarjeta-titulo { font-size: 1.15rem; }
+@media (min-width: 900px) {
+  .destacado { padding: 1.4rem 1.6rem; gap: 1.6rem; }
+  .destacado svg { width: 150px; }
+  .destacado .tarjeta-titulo { font-size: 1.3rem; }
+}
 
-/* --- Página de un tema --- */
-.parte { margin: 2.8rem 0; }
+/* ==========================================================================
+   Página de un tema
+   ========================================================================== */
+
+/* En el celular: una columna (consigna, interactivo, explicación…).
+   En la compu: el texto a la izquierda y el interactivo fijo a la derecha. */
+.tema-cuerpo { margin-top: 1.6rem; }
+.tema-cuerpo > * { min-width: 0; }
+.tema-cuerpo > .parte { max-width: var(--ancho-texto); }
+.tema-interactivo { margin: 0 0 2.6rem; }
+
+@media (min-width: 1024px) {
+  .tema-cuerpo.con-interactivo {
+    display: grid; column-gap: 2.5rem;
+    /* el texto ocupa un poco más de un tercio (nunca más de 70 letras por renglón); el resto es del interactivo */
+    grid-template-columns: minmax(0, min(var(--ancho-texto), 38%)) minmax(0, 1fr);
+    align-items: start;
+  }
+  .tema-cuerpo.con-interactivo > .parte { grid-column: 1; }
+  .tema-cuerpo.con-interactivo > .tema-interactivo { grid-column: 2; grid-row: 1 / span var(--filas, 12); align-self: stretch; margin: 0; }
+  /* el interactivo acompaña mientras se baja; si es más alto que la pantalla, se mueve por dentro */
+  .tema-interactivo-fijo {
+    position: sticky; top: calc(var(--alto-encabezado) + 1rem);
+    max-height: calc(100vh - var(--alto-encabezado) - 2rem);
+    overflow-y: auto; overscroll-behavior: auto;
+    border-radius: var(--radio);
+    scrollbar-width: thin; scrollbar-color: var(--borde-fuerte) transparent;
+  }
+}
+
+.parte { margin: 0 0 2.6rem; }
 .parte-titulo {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-size: 1.4rem; margin: 0 0 0.7rem;
+  display: flex; align-items: center; gap: 0.65rem;
+  font-size: 1.35rem; margin: 0 0 0.8rem;
 }
 .paso-num {
-  width: 1.75rem; height: 1.75rem; border-radius: 50%; flex: none;
+  width: 1.8rem; height: 1.8rem; border-radius: 9px; flex: none;
   display: grid; place-items: center;
-  background: var(--texto); color: var(--fondo);
-  font-family: var(--fuente); font-size: 0.9rem; font-weight: 700; letter-spacing: 0;
+  background: var(--acento-suave); color: var(--acento);
+  font-size: 0.92rem; font-weight: 700; letter-spacing: 0;
 }
 
-/* La consigna del interactivo: una raya al costado, sin recuadro */
+/* La consigna del interactivo: una tarjeta clarita con el acento */
 .consigna {
-  border-left: 3px solid var(--acento);
-  padding: 0.1rem 0 0.1rem 0.9rem;
+  background: var(--acento-suave);
+  border-radius: var(--radio-chico);
+  padding: 0.55rem 1rem;
   margin-bottom: 1.1rem;
+  max-width: var(--ancho-texto);
 }
 .consigna p { margin: 0.35em 0; }
 .consigna ul { margin: 0.35em 0; }
 .interactivo-segundo { margin-top: 1rem; }
-.link-al-tema { margin: 0.9rem 0 0; font-size: 0.98rem; }
+.link-al-tema { margin: 0.9rem 0 0; font-size: 0.95rem; }
+
+/* La galería de interactivos de una unidad */
+.parte-galeria { margin: 3rem 0 0; }
+.parte-galeria + .parte-galeria { padding-top: 2.6rem; border-top: 1px solid var(--borde); }
 
 .ejemplo-enunciado { margin-bottom: 0.4rem; }
-.pasos-ejemplo details > summary { font-weight: 700; }
 
 /* Tablas dentro del texto */
-.texto table { border-collapse: collapse; margin: 0.8rem 0; font-variant-numeric: tabular-nums; }
+.texto table { border-collapse: collapse; margin: 0.8rem 0; font-variant-numeric: tabular-nums; background: var(--fondo-tarjeta); }
 .texto th, .texto td { border: 1px solid var(--borde); padding: 0.35rem 0.7rem; text-align: center; }
-.texto th { background: var(--fondo-resalte); }
-.texto blockquote { margin: 1rem 0; padding: 0.1rem 0 0.1rem 1rem; border-left: 3px solid var(--borde); color: var(--texto-suave); }
+.texto th { background: var(--fondo); font-weight: 600; }
+.texto blockquote { margin: 1rem 0; padding: 0.1rem 0 0.1rem 1rem; border-left: 3px solid var(--borde-fuerte); color: var(--texto-suave); }
+/* las letras sueltas en cursiva (x, f, a…) van con la letra de las fórmulas */
+.texto em, .consigna em { font-family: var(--fuente-mate); font-size: 1.12em; }
 
-/* --- Recuadro "Para recordar": el único recuadro de color de la hoja --- */
-.parte:has(.para-recordar) { margin-top: -1.2rem; }
+/* --- Recuadro "Para recordar" --- */
 .para-recordar {
-  border: 1px solid color-mix(in srgb, var(--marca-punto) 55%, var(--fondo));
+  border: 1px solid color-mix(in srgb, var(--marca-punto) 55%, var(--fondo-tarjeta));
   border-radius: var(--radio);
-  background: color-mix(in srgb, var(--marca-punto) 13%, var(--fondo));
-  padding: 0.4rem 1.1rem 0.6rem;
+  background: color-mix(in srgb, var(--marca-punto) 12%, var(--fondo-tarjeta));
+  padding: 0.5rem 1.1rem 0.6rem;
 }
-.para-recordar-titulo { margin: 0.4rem 0 0.2rem; font-weight: 700; color: var(--c-raices); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }
+.para-recordar-titulo { margin: 0.4rem 0 0.2rem; font-weight: 600; color: var(--c-raices); text-transform: uppercase; letter-spacing: 0.09em; font-size: 0.74rem; }
 
 /* --- Niveles de ejercicios --- */
-.nivel-ejercicios h3 { margin: 0.8rem 0 0; font-size: 0.85rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.08em; }
+.nivel-ejercicios h3 { margin: 0.8rem 0 0; font-size: 0.74rem; font-weight: 600; color: var(--texto-tenue); text-transform: uppercase; letter-spacing: 0.09em; }
 .nivel-ejercicios .texto p { margin: 0.2rem 0 0; }
 
 /* --- Ejercicios --- */
-.ejercicios { display: grid; gap: 1rem; }
+.ejercicios { display: grid; gap: 0.9rem; }
 .ejercicio { position: relative; transition: border-color 0.2s; }
 .ejercicio.resuelto { border-color: var(--c-positivo); }
-.ejercicio-titulo { display: flex; align-items: center; gap: 0.6rem; margin: 0 0 0.4rem; font-size: 1.08rem; }
+.ejercicio-titulo { display: flex; align-items: center; gap: 0.6rem; margin: 0 0 0.4rem; font-size: 1.02rem; }
 .ejercicio-numero {
   width: 1.7rem; height: 1.7rem; border-radius: 8px; flex: none;
-  display: grid; place-items: center; font-size: 0.9rem;
-  background: var(--fondo-resalte);
+  display: grid; place-items: center; font-size: 0.88rem; font-weight: 600;
+  background: var(--fondo); color: var(--texto-suave);
 }
 .ejercicio-respuesta { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0.8rem 0 0.2rem; }
 .ejercicio-campo input {
   width: 9.5rem; min-height: 46px; padding: 0.4rem 0.8rem;
-  background: #fff; border: 1px solid var(--texto-tenue); border-radius: var(--radio-chico);
-  font-size: 1.1rem;
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde-fuerte); border-radius: var(--radio-chico);
+  font-size: 1.05rem;
 }
 .ejercicio-campo input:focus { border-color: var(--acento); outline: 2px solid var(--acento); outline-offset: 0; }
-.boton-principal { background: var(--texto); color: var(--fondo); border-color: var(--texto); font-weight: 700; }
-.boton-principal:hover { border-color: var(--texto-fuerte); background: var(--texto-fuerte); }
 
 .ejercicio-opciones { display: grid; gap: 0.5rem; margin: 0.8rem 0 0.2rem; }
 .opcion {
   text-align: left; min-height: 48px; padding: 0.55rem 0.9rem;
-  background: var(--fondo); border: 1px solid var(--borde); border-radius: var(--radio-chico);
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde-fuerte); border-radius: var(--radio-chico);
   cursor: pointer; touch-action: manipulation;
 }
-.opcion:hover:not(:disabled) { border-color: var(--texto-suave); }
+.opcion:hover:not(:disabled) { border-color: var(--acento); background: var(--acento-suave); }
 .opcion:disabled { cursor: default; opacity: 0.55; }
-.opcion.elegida-bien { border-color: var(--c-positivo); background: color-mix(in srgb, var(--c-positivo) 14%, transparent); opacity: 1; }
+.opcion.elegida-bien { border-color: var(--c-positivo); background: color-mix(in srgb, var(--c-positivo) 12%, transparent); opacity: 1; }
 .opcion.elegida-bien::after { content: '  ✓'; color: var(--c-positivo); font-weight: 700; }
 .opcion.elegida-mal { border-color: var(--c-negativo); text-decoration: line-through; text-decoration-color: var(--c-negativo); }
 
-.ejercicio-devolucion { min-height: 1.6em; margin: 0.5rem 0; font-weight: 700; }
+.ejercicio-devolucion { min-height: 1.6em; margin: 0.5rem 0; font-weight: 600; }
 .ejercicio-devolucion.bien { color: var(--c-positivo); }
 .ejercicio-devolucion.bien::before { content: '✓ '; }
 .ejercicio-devolucion.mal { color: var(--c-negativo); }
+.ejercicio details { background: var(--fondo-grafico); }
 
 /* --- Final de un tema: siguiente, anterior y aviso para tutores --- */
-.cierre-tema { margin-top: 3.2rem; padding-top: 1.6rem; border-top: 1px solid var(--borde); }
-.anterior-siguiente { display: grid; gap: 0.6rem; }
+.cierre-tema { margin-top: 2.6rem; padding-top: 1.6rem; border-top: 1px solid var(--borde); }
+.anterior-siguiente { display: grid; gap: 0.75rem; }
 @media (min-width: 640px) {
   .anterior-siguiente { grid-template-columns: 1fr 1fr; }
   .vecino-siguiente { order: 2; }
@@ -279,46 +361,54 @@ details.unidad[open] .unidad-numero { background: var(--texto); color: var(--fon
 }
 .vecino {
   display: flex; align-items: center; gap: 0.8rem;
-  min-height: 64px; padding: 0.7rem 1rem; text-decoration: none;
+  min-height: 68px; padding: 0.8rem 1.1rem; text-decoration: none; color: var(--texto);
   border: 1px solid var(--borde); border-radius: var(--radio);
+  transition: border-color 0.15s, background 0.15s;
 }
 .vecino svg { flex: none; }
 .vecino-textos { flex: 1; min-width: 0; }
-.vecino-rotulo { display: block; font-size: 0.82rem; color: var(--texto-suave); }
+.vecino-rotulo { display: block; font-size: 0.8rem; color: var(--texto-suave); }
 .vecino strong { display: block; line-height: 1.25; }
-.vecino-siguiente { background: var(--texto); border-color: var(--texto); color: var(--fondo); }
-.vecino-siguiente strong { color: var(--fondo); font-size: 1.08rem; }
-.vecino-siguiente .vecino-rotulo { color: color-mix(in srgb, var(--fondo) 75%, var(--texto)); }
-.vecino-siguiente:hover { background: var(--texto-fuerte); }
+.vecino-siguiente { background: var(--acento); border-color: var(--acento); color: #fff; }
+.vecino-siguiente strong { color: #fff; font-size: 1.08rem; }
+.vecino-siguiente .vecino-rotulo { color: rgba(255, 255, 255, 0.8); }
+.vecino-siguiente:hover { background: var(--acento-fuerte); border-color: var(--acento-fuerte); color: #fff; }
 .vecino-anterior { background: var(--fondo-tarjeta); }
-.vecino-anterior:hover { border-color: var(--texto-suave); }
-.aviso-tutores { margin: 1.3rem 0 0; color: var(--texto-suave); font-size: 0.98rem; }
+.vecino-anterior:hover { border-color: var(--acento); color: var(--texto); }
+.aviso-tutores { margin: 1.3rem 0 0; color: var(--texto-suave); font-size: 0.95rem; }
 
 /* --- Notación: fichas "lo que se escribe | qué quiere decir" --- */
-.seccion-notacion { margin: 2.4rem 0 0; }
-.seccion-notacion h2 { margin: 0 0 0.5rem; }
+.secciones-notacion { margin-top: 1.6rem; }
+.seccion-notacion {
+  margin: 0 0 1rem; padding: 1.1rem 1.2rem 0.5rem;
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: var(--radio);
+  break-inside: avoid;
+}
+.seccion-notacion h2 { margin: 0 0 0.5rem; font-size: 1.2rem; }
 .seccion-notacion ul { list-style: none; padding: 0; margin: 0; }
+@media (min-width: 1000px) { .secciones-notacion { columns: 2; column-gap: 1rem; } }
 .ficha-notacion {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.1rem 1rem;
-  margin: 0; padding: 0.7rem 0; border-top: 1px solid var(--borde);
+  margin: 0; padding: 0.65rem 0; border-top: 1px solid var(--borde);
 }
-.ficha-simbolo { flex: 0 0 auto; min-width: 5.6rem; font-weight: 700; font-size: 1.12rem; color: var(--texto-fuerte); }
-.ficha-significado { flex: 1 1 13rem; min-width: 0; }
+.ficha-simbolo { flex: 0 0 auto; min-width: 5.6rem; font-weight: 600; font-size: 1.08rem; color: var(--texto-fuerte); }
+.ficha-significado { flex: 1 1 13rem; min-width: 0; font-size: 0.95rem; }
 .leyenda-colores {
-  list-style: none; margin: 0.8rem 0 0; padding: 1rem 1.1rem;
+  list-style: none; margin: 0.8rem 0 0.6rem; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); gap: 0.55rem 1rem;
 }
-.leyenda-colores li { margin: 0; display: flex; align-items: center; gap: 0.6rem; }
+.leyenda-colores li { margin: 0; display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; }
 .leyenda-punto { width: 14px; height: 14px; border-radius: 50%; flex: none; }
 
 /* --- Tutores --- */
 .sello-tutores {
-  display: inline-block; margin: 0.9rem 0 0; padding: 0.15rem 0.6rem;
-  border-radius: 999px; background: var(--fondo-resalte); color: var(--texto);
+  display: inline-block; margin: 0.9rem 0 0; padding: 0.2rem 0.65rem;
+  border-radius: 8px; background: var(--acento-suave); color: var(--acento);
 }
 .volver + .sello-tutores { display: table; margin-top: 0.2rem; }
-.guia-clase { margin: 1.4rem 0 0; }
-.guia-clase > summary { min-height: 56px; }
-.notas-tutor { margin-top: 1.6rem; }
-.notas-tutor h3 { margin: 1.6em 0 0.4em; padding-top: 1em; border-top: 1px solid var(--borde); font-size: 1.15rem; }
+.guia-clase { margin: 1.4rem 0 0; border-radius: var(--radio); }
+.guia-clase > summary { min-height: 56px; padding-left: 1.1rem; }
+.guia-clase > .desplegado { padding: 0.2rem 1.1rem 0.9rem; }
+.guia-clase > .desplegado > * { max-width: var(--ancho-texto); }
+.notas-tutor h3 { margin: 1.6em 0 0.4em; padding-top: 1em; border-top: 1px solid var(--borde); font-size: 1.12rem; }
 .notas-tutor h3:first-child { margin-top: 0; padding-top: 0; border-top: 0; }

@@ -224,7 +224,7 @@ export function iniciarIntegral(raiz) {
         : `están debajo del eje: <i>f</i>(${X}) es negativo, así que esas tiras <b>restan</b>. La integral "descuenta" lo de abajo.`));
     }
     if (casillas.puntos) {
-      partes.push(itemInfo(col.texto, 'La altura:', `cada tira toma la altura de la curva en un punto (los puntitos blancos). Probá <b>Izquierda</b>, <b>Medio</b> y <b>Derecha</b>: al principio dan distinto, pero al achicar ${DX} llegan al mismo número.`));
+      partes.push(itemInfo(col.texto, 'La altura:', `cada tira toma la altura de la curva en un punto (los puntitos negros). Probá <b>Izquierda</b>, <b>Medio</b> y <b>Derecha</b>: al principio dan distinto, pero al achicar ${DX} llegan al mismo número.`));
     }
     if (casillas.barrow) {
       const p = primitivaDe(d.h);

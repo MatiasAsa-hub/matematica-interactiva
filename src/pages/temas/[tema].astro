@@ -2,6 +2,8 @@
 // Página de un tema para alumnos: para probar (con el interactivo),
 // explicación, ejemplo resuelto y ejercicios. Arriba, el botón para volver
 // a la unidad; abajo, los botones de tema siguiente y anterior.
+// En la compu va en dos columnas: el texto a la izquierda y el interactivo
+// fijo a la derecha mientras se baja. En el celular, todo en una columna.
 import Base from '../../layouts/Base.astro';
 import Interactivo from '../../components/Interactivo.astro';
 import Ejercicio from '../../components/Ejercicio.astro';
@@ -18,7 +20,8 @@ const tema = obtenerTema(Astro.params.tema);
 const unidad = unidadDe(tema.slug);
 const { anterior, siguiente } = vecinosDe(tema.slug);
 const partes = tema.partes.filter((p) => p.tipo !== 'tutores');
-let yaHayInteractivo = false;
+// el interactivo va después de la parte "Intuición" (la consigna)
+const conInteractivo = Boolean(tema.interactivo) && partes.some((p) => p.tipo === 'intuicion');
 let contador = 0; // el recuadro "Para recordar" no lleva número
 // La primera parte se llama "Intuición" en los archivos; a los alumnos se les muestra como "Para probar".
 const tituloDe = (parte) => (parte.tipo === 'intuicion' ? 'Para probar' : parte.titulo);
@@ -30,69 +33,73 @@ const tituloDe = (parte) => (parte.tipo === 'intuicion' ? 'Para probar' : parte.
       <h1>{tema.titulo}</h1>
       {tema.resumen && <p class="bajada">{tema.resumen}</p>}
     </header>
-  </div>
 
-  {partes.map((parte) => {
-    const numero = parte.tipo === 'recordar' ? 0 : ++contador;
-    const conInteractivo = parte.tipo === 'intuicion' && tema.interactivo && !yaHayInteractivo;
-    if (conInteractivo) yaHayInteractivo = true;
-    return (
-      <section class={`parte parte-${parte.tipo}`} id={parte.tipo}>
-        <div class="contenedor">
-          {parte.tipo === 'recordar' && (
-            <aside class="para-recordar texto">
-              <p class="para-recordar-titulo">Para recordar</p>
-              <div set:html={parte.html} />
-            </aside>
-          )}
-          {parte.titulo && parte.tipo !== 'recordar' && <h2 class="parte-titulo"><span class="paso-num">{numero}</span>{tituloDe(parte)}</h2>}
-          {parte.tipo === 'intuicion' && <div class="consigna texto" set:html={parte.html} />}
-          {parte.tipo !== 'intuicion' && parte.tipo !== 'recordar' && parte.html && <div class="texto" set:html={parte.html} />}
+    <div class:list={['tema-cuerpo', { 'con-interactivo': conInteractivo }]} style={`--filas: ${partes.length}`}>
+      {partes.map((parte) => {
+        const numero = parte.tipo === 'recordar' ? 0 : ++contador;
+        return (
+          <>
+            <section class={`parte parte-${parte.tipo}`} id={parte.tipo}>
+              {parte.tipo === 'recordar' && (
+                <aside class="para-recordar texto">
+                  <p class="para-recordar-titulo">Para recordar</p>
+                  <div set:html={parte.html} />
+                </aside>
+              )}
+              {parte.titulo && parte.tipo !== 'recordar' && <h2 class="parte-titulo"><span class="paso-num">{numero}</span>{tituloDe(parte)}</h2>}
+              {parte.tipo === 'intuicion' && <div class="consigna texto" set:html={parte.html} />}
+              {parte.tipo !== 'intuicion' && parte.tipo !== 'recordar' && parte.html && <div class="texto" set:html={parte.html} />}
 
-          {parte.tipo === 'ejemplo' && (
-            <>
-              <div class="texto ejemplo-enunciado" set:html={parte.enunciadoHtml} />
-              <div class="pasos-ejemplo">
-                {parte.pasos.map((paso) => (
-                  <details>
-                    <summary>{paso.titulo}</summary>
-                    <div class="desplegado texto" set:html={paso.html} />
-                  </details>
-                ))}
-              </div>
-            </>
-          )}
+              {parte.tipo === 'ejemplo' && (
+                <>
+                  <div class="texto ejemplo-enunciado" set:html={parte.enunciadoHtml} />
+                  <div class="pasos-ejemplo">
+                    {parte.pasos.map((paso) => (
+                      <details>
+                        <summary>{paso.titulo}</summary>
+                        <div class="desplegado texto" set:html={paso.html} />
+                      </details>
+                    ))}
+                  </div>
+                </>
+              )}
 
-          {parte.tipo === 'ejercicios' && (
-            <>
-              <div class="texto" set:html={parte.introHtml} />
-              <div class="ejercicios">
-                {parte.ejercicios.map((ej) => ej.tipo === 'nivel'
-                  ? <div class="nivel-ejercicios"><h3>{ej.titulo}</h3><div class="texto texto-suave" set:html={ej.introHtml} /></div>
-                  : <Ejercicio ej={ej} />)}
-              </div>
-            </>
-          )}
-        </div>
-        {conInteractivo && (
-          <div class="contenedor-ancho">
-            <Interactivo nombre={tema.interactivo} opciones={tema.opciones} />
-          </div>
-        )}
-        {/* un segundo interactivo (opcional), al final de la explicación: campo "interactivo2:" del tema */}
-        {parte.tipo === 'explicacion' && tema.opciones.interactivo2 && (
-          <div class="contenedor-ancho interactivo-segundo">
-            <Interactivo nombre={tema.opciones.interactivo2} opciones={tema.opciones} />
-          </div>
-        )}
-      </section>
-    );
-  })}
+              {parte.tipo === 'ejercicios' && (
+                <>
+                  <div class="texto" set:html={parte.introHtml} />
+                  <div class="ejercicios">
+                    {parte.ejercicios.map((ej) => ej.tipo === 'nivel'
+                      ? <div class="nivel-ejercicios"><h3>{ej.titulo}</h3><div class="texto texto-suave" set:html={ej.introHtml} /></div>
+                      : <Ejercicio ej={ej} />)}
+                  </div>
+                </>
+              )}
 
-  <div class="contenedor cierre-tema">
-    <AnteriorSiguiente anterior={anterior} siguiente={siguiente} destino="temas" unidadActual={unidad?.id ?? ''} />
-    {tema.tieneTutores && (
-      <p class="aviso-tutores">¿Sos tutor o tutora? <a href={url(`tutores/${tema.slug}/`)}>Mirá las notas para dar este tema</a>.</p>
-    )}
+              {/* un segundo interactivo (opcional), al final de la explicación: campo "interactivo2:" del tema */}
+              {parte.tipo === 'explicacion' && tema.opciones.interactivo2 && (
+                <div class="marco-interactivo interactivo-segundo">
+                  <Interactivo nombre={tema.opciones.interactivo2} opciones={tema.opciones} />
+                </div>
+              )}
+            </section>
+
+            {parte.tipo === 'intuicion' && conInteractivo && (
+              <aside class="tema-interactivo" aria-label="Interactivo">
+                <div class="tema-interactivo-fijo marco-interactivo">
+                  <Interactivo nombre={tema.interactivo} opciones={tema.opciones} />
+                </div>
+              </aside>
+            )}
+          </>
+        );
+      })}
+    </div>
+
+    <div class="cierre-tema">
+      <AnteriorSiguiente anterior={anterior} siguiente={siguiente} destino="temas" unidadActual={unidad?.id ?? ''} />
+      {tema.tieneTutores && (
+        <p class="aviso-tutores">¿Sos tutor o tutora? <a href={url(`tutores/${tema.slug}/`)}>Mirá las notas para dar este tema</a>.</p>
+      )}
+    </div>
   </div>
 </Base>

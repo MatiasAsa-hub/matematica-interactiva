@@ -1,15 +1,30 @@
 ---
 // Página de inicio: presentación, los dos caminos (alumno o tutor),
-// el recorrido de unidades, cómo es cada tema y los accesos al resto.
+// el recorrido de unidades (una tarjeta por unidad), cómo es cada tema y
+// los accesos al resto.
 // Los textos están en contenido/paginas/inicio.md y contenido/sitio.md.
 import Base from '../layouts/Base.astro';
 import Logo from '../components/Logo.astro';
-import { datosDelSitio, obtenerPagina, listaDeUnidades } from '../lib/contenido.js';
+import IconoUnidad from '../components/IconoUnidad.astro';
+import { datosDelSitio, obtenerPagina, obtenerTema, listaDeUnidades } from '../lib/contenido.js';
 import { url } from '../lib/rutas.js';
 
 const sitio = datosDelSitio();
 const t = obtenerPagina('inicio').datos;
 const unidades = listaDeUnidades();
+const temas = unidades.flatMap((u) => u.temas);
+
+// Los números grandes de la portada: se cuentan solos.
+const ejercicios = temas
+  .flatMap((x) => obtenerTema(x.slug).partes)
+  .filter((p: any) => p.tipo === 'ejercicios')
+  .flatMap((p: any) => p.ejercicios)
+  .filter((e: any) => e.tipo !== 'nivel').length;
+const cifras = [
+  { numero: unidades.length, nombre: 'unidades' },
+  { numero: temas.length, nombre: 'temas' },
+  { numero: ejercicios, nombre: 'ejercicios' },
+];
 
 const accesos = [
   { href: url('interactivos/'), ...t.accesos.interactivos, icono: 'M3 20c3-9 6-13 9-8s6 1 9-8M3 4v16h18' },
@@ -21,13 +36,23 @@ const accesos = [
 <Base seccion="inicio">
   <div class="contenedor">
     <section class="portada">
-      <Logo medida={54} />
-      <h1>{sitio.nombre}</h1>
-      <p class="bajada">{sitio.descripcion}</p>
-      <div class="portada-botones">
-        <a class="boton boton-principal boton-grande" href={url('alumnos/')}>{t.botones.alumnos}</a>
-        <a class="boton boton-grande" href={url('tutores/')}>{t.botones.tutores}</a>
+      <div>
+        <Logo medida={54} />
+        <h1>{sitio.nombre}</h1>
+        <p class="bajada">{sitio.descripcion}</p>
+        <div class="portada-botones">
+          <a class="boton boton-principal boton-grande" href={url('alumnos/')}>{t.botones.alumnos}</a>
+          <a class="boton boton-grande" href={url('tutores/')}>{t.botones.tutores}</a>
+        </div>
       </div>
+      <ul class="cifras" aria-label="Qué hay en la página">
+        {cifras.map((c) => (
+          <li class="cifra">
+            <span class="cifra-numero">{c.numero}</span>
+            <span class="cifra-nombre">{c.nombre}</span>
+          </li>
+        ))}
+      </ul>
     </section>
 
     <section class="bloque-inicio">
@@ -36,18 +61,20 @@ const accesos = [
       <div class="recorrido">
         {sitio.etapas.map((etapa: any) => (
           <div class="recorrido-etapa">
-            <p class="recorrido-rotulo">{etapa.nombre}</p>
-            <ol class="recorrido-unidades">
+            <p class="etapa-titulo">{etapa.nombre}</p>
+            <div class="grilla-tarjetas grilla-3">
               {unidades.filter((u) => u.etapa === etapa.id).map((u) => (
-                <li>
-                  <a href={url(`alumnos/#${u.id}`)}>
-                    <span class="unidad-numero">{u.numero}</span>
-                    <span class="unidad-nombre">{u.nombre}</span>
-                    <span class="unidad-cuenta">{u.temas.length} temas</span>
-                  </a>
-                </li>
+                <a class="tarjeta-link tarjeta-unidad" href={url(`alumnos/#${u.id}`)}>
+                  <IconoUnidad id={u.id} />
+                  <span class="tarjeta-unidad-textos">
+                    <span class="tarjeta-numero">Unidad {u.numero}</span>
+                    <span class="tarjeta-titulo">{u.nombre}</span>
+                    <span class="tarjeta-texto">{u.descripcion}</span>
+                    <span class="tarjeta-pie">{u.temas.length} temas</span>
+                  </span>
+                </a>
               ))}
-            </ol>
+            </div>
           </div>
         ))}
       </div>
@@ -58,7 +85,7 @@ const accesos = [
       <ol class="pasos-tema">
         {t.pasos.lista.map((p: any, i: number) => (
           <li>
-            <span class="paso-num">{i + 1}</span>
+            <span class="paso-grande" aria-hidden="true">{i + 1}</span>
             <strong>{p.titulo}</strong>
             <span class="texto-suave">{p.texto}</span>
           </li>
@@ -68,15 +95,15 @@ const accesos = [
 
     <section class="bloque-inicio">
       <h2>{t.accesos.titulo}</h2>
-      <nav class="accesos" aria-label="Otras secciones">
+      <nav class="grilla-tarjetas" aria-label="Otras secciones" style="margin-top: 1.1rem">
         {accesos.map((a) => (
-          <a class="acceso" href={a.href}>
-            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <a class="tarjeta-link acceso" href={a.href}>
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
               <path d={a.icono} fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <span class="acceso-textos">
-              <strong>{a.titulo}</strong>
-              <span>{a.texto}</span>
+              <span class="tarjeta-titulo">{a.titulo}</span>
+              <span class="tarjeta-texto">{a.texto}</span>
             </span>
           </a>
         ))}

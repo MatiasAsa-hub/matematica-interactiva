@@ -4,6 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Interactivo from '../../components/Interactivo.astro';
 import Volver from '../../components/Volver.astro';
+import IconoUnidad from '../../components/IconoUnidad.astro';
 import { listaDeUnidades, obtenerTema } from '../../lib/contenido.js';
 import { url } from '../../lib/rutas.js';
 
@@ -28,57 +29,58 @@ const siguiente = unidades[i + 1];
   <div class="contenedor">
     <header class="pagina-cabecera">
       <Volver href={url('interactivos/')} texto="Interactivos" />
-      <h1>{unidad.nombre}</h1>
-      <p class="bajada">Los {temas.length} interactivos de esta unidad, para jugar sin leer nada.</p>
+      <div class="cabecera-con-icono">
+        <IconoUnidad id={unidad.id} />
+        <div>
+          <h1>{unidad.nombre}</h1>
+          <p class="bajada">Los {temas.length} interactivos de esta unidad, para jugar sin leer nada.</p>
+        </div>
+      </div>
     </header>
     <nav class="indice-pagina" aria-label="Interactivos de esta página">
       {temas.map((t) => <a href={`#${t.slug}`}>{t.titulo}</a>)}
     </nav>
-  </div>
 
-  {temas.map((tema, n) => {
-    const consigna = tema.partes.find((p) => p.tipo === 'intuicion');
-    return (
-      <section class="parte parte-galeria" id={tema.slug}>
-        <div class="contenedor">
+    {temas.map((tema, n) => {
+      const consigna = tema.partes.find((p) => p.tipo === 'intuicion');
+      return (
+        <section class="parte-galeria" id={tema.slug}>
           <h2 class="parte-titulo"><span class="paso-num">{n + 1}</span>{tema.titulo}</h2>
           {consigna?.html && <div class="consigna texto" set:html={consigna.html} />}
-        </div>
-        <div class="contenedor-ancho">
-          <Interactivo nombre={tema.interactivo} opciones={tema.opciones} />
-        </div>
-        {tema.opciones.interactivo2 && (
-          <div class="contenedor-ancho interactivo-segundo">
-            <Interactivo nombre={tema.opciones.interactivo2} opciones={tema.opciones} />
+          <div class="marco-interactivo">
+            <Interactivo nombre={tema.interactivo} opciones={tema.opciones} />
           </div>
-        )}
-        <div class="contenedor">
+          {tema.opciones.interactivo2 && (
+            <div class="marco-interactivo interactivo-segundo">
+              <Interactivo nombre={tema.opciones.interactivo2} opciones={tema.opciones} />
+            </div>
+          )}
           <p class="link-al-tema"><a href={url(`temas/${tema.slug}/`)}>Ver el tema completo: explicación, ejemplo y ejercicios</a></p>
-        </div>
-      </section>
-    );
-  })}
+        </section>
+      );
+    })}
 
-  <div class="contenedor cierre-tema">
-    <nav class="anterior-siguiente" aria-label="Otras unidades">
-      {siguiente && (
-        <a class="vecino vecino-siguiente" href={url(`interactivos/${siguiente.id}/`)}>
-          <span class="vecino-textos">
-            <span class="vecino-rotulo">Siguiente unidad</span>
-            <strong>{siguiente.nombre}</strong>
-          </span>
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-        </a>
-      )}
-      {anterior && (
-        <a class="vecino vecino-anterior" href={url(`interactivos/${anterior.id}/`)}>
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-          <span class="vecino-textos">
-            <span class="vecino-rotulo">Unidad anterior</span>
-            <strong>{anterior.nombre}</strong>
-          </span>
-        </a>
-      )}
-    </nav>
+    <div class="cierre-tema">
+      <nav class="anterior-siguiente" aria-label="Otras unidades">
+        {siguiente && (
+          <a class="vecino vecino-siguiente" href={url(`interactivos/${siguiente.id}/`)}>
+            <span class="vecino-textos">
+              <span class="vecino-rotulo">Siguiente unidad</span>
+              <strong>{siguiente.nombre}</strong>
+            </span>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </a>
+        )}
+        {anterior && (
+          <a class="vecino vecino-anterior" href={url(`interactivos/${anterior.id}/`)}>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span class="vecino-textos">
+              <span class="vecino-rotulo">Unidad anterior</span>
+              <strong>{anterior.nombre}</strong>
+            </span>
+          </a>
+        )}
+      </nav>
+    </div>
   </div>
 </Base>

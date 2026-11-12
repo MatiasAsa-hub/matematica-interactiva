@@ -1,0 +1,103 @@
+---
+// El ícono de cada unidad: un dibujo geométrico plano, con el azul de la
+// página, negro y gris. Se elige por el "id" de la unidad (el de contenido/sitio.md).
+// Si aparece una unidad nueva sin ícono propio, se muestra uno genérico.
+interface Props { id: string }
+const { id } = Astro.props;
+const A = 'var(--acento)';        // azul
+const N = 'var(--texto-fuerte)';  // negro
+const G = 'var(--icono-gris)';    // gris
+const B = 'var(--fondo-tarjeta)'; // blanco (para los signos sobre un color)
+---
+<svg class="icono-unidad" viewBox="0 0 48 48" width="56" height="56" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  {id === 'numeros-y-operaciones' && (
+    <>
+      {/* un + y un −: las cuentas con signo */}
+      <rect x="4" y="4" width="21" height="21" rx="5.5" fill={N} />
+      <path d="M14.5 9.5v10M9.5 14.5h10" stroke={B} stroke-width="3" />
+      <circle cx="33" cy="33" r="11.5" fill={A} />
+      <path d="M27.5 33h11" stroke={B} stroke-width="3" />
+      <circle cx="36" cy="10" r="3.5" fill={G} />
+      <circle cx="10" cy="37" r="3.5" fill={G} />
+    </>
+  )}
+  {id === 'fracciones-y-potencias' && (
+    <>
+      {/* un entero partido en cuatro, con un pedazo pintado, y el cuadradito del exponente */}
+      <circle cx="21" cy="27" r="18" fill={G} />
+      <path d="M21 27V9A18 18 0 0 1 39 27Z" fill={A} />
+      <path d="M21 9v36M3 27h36" stroke={B} stroke-width="2.2" />
+      <rect x="38" y="3" width="8" height="8" rx="2" fill={N} />
+    </>
+  )}
+  {id === 'letras-y-ecuaciones' && (
+    <>
+      {/* la balanza: una x de un lado, dos unos del otro */}
+      <path d="M24 26 31.5 43h-15Z" fill={N} />
+      <rect x="3" y="22" width="42" height="4" rx="2" fill={N} />
+      <rect x="6" y="8" width="14" height="14" rx="3.5" fill={A} />
+      <rect x="27" y="13" width="8" height="9" rx="2.2" fill={G} />
+      <rect x="36.5" y="13" width="8" height="9" rx="2.2" fill={G} />
+    </>
+  )}
+  {id === 'funciones' && (
+    <>
+      {/* los ejes y una parábola con su vértice */}
+      <path d="M7 5v36h36" stroke={G} stroke-width="3.2" />
+      <path d="M13 8Q26 60 39 8" stroke={A} stroke-width="3.6" />
+      <circle cx="26" cy="34" r="4" fill={N} />
+    </>
+  )}
+  {id === 'mas-funciones' && (
+    <>
+      {/* una onda sobre su eje */}
+      <path d="M3 24h42" stroke={G} stroke-width="3.2" />
+      <path d="M4 24C10.7 2 17.3 2 24 24S37.3 46 44 24" stroke={A} stroke-width="3.6" />
+      <circle cx="14" cy="7.6" r="4" fill={N} />
+    </>
+  )}
+  {id === 'combinar-funciones' && (
+    <>
+      {/* dos funciones que se juntan */}
+      <circle cx="17.5" cy="24" r="13.5" fill={G} />
+      <circle cx="30.5" cy="24" r="13.5" fill={N} />
+      <path d="M24 12.17A13.5 13.5 0 0 1 24 35.83 13.5 13.5 0 0 1 24 12.17Z" fill={A} />
+    </>
+  )}
+  {id === 'derivadas' && (
+    <>
+      {/* una curva, un punto y su recta tangente */}
+      <path d="M5 41C14 13 30 9 43 27" stroke={G} stroke-width="3.6" />
+      <path d="M4.5 22.75 40.5 10.75" stroke={A} stroke-width="3.4" />
+      <circle cx="22.5" cy="16.75" r="4.2" fill={N} />
+    </>
+  )}
+  {id === 'integrales' && (
+    <>
+      {/* las tiras debajo de la curva */}
+      <rect x="5" y="25" width="8" height="16" rx="1.5" fill={A} />
+      <rect x="15" y="16" width="8" height="25" rx="1.5" fill={A} />
+      <rect x="25" y="13" width="8" height="28" rx="1.5" fill={A} />
+      <rect x="35" y="18" width="8" height="23" rx="1.5" fill={A} />
+      <path d="M4 22C13 6 31 4 44 14" stroke={N} stroke-width="3.2" />
+      <path d="M3 43.5h42" stroke={G} stroke-width="3" />
+    </>
+  )}
+  {id === 'sistemas-matrices-y-vectores' && (
+    <>
+      {/* una matriz: los corchetes y sus números */}
+      <path d="M12 5H6v38h6M36 5h6v38h-6" stroke={N} stroke-width="3.2" />
+      {[14, 24, 34].map((y, i) => [15, 24, 33].map((x, j) => (
+        <circle cx={x} cy={y} r="3.1" fill={i === j ? A : G} />
+      )))}
+    </>
+  )}
+  {!['numeros-y-operaciones', 'fracciones-y-potencias', 'letras-y-ecuaciones', 'funciones', 'mas-funciones', 'combinar-funciones', 'derivadas', 'integrales', 'sistemas-matrices-y-vectores'].includes(id) && (
+    <>
+      <rect x="5" y="5" width="17" height="17" rx="4.5" fill={A} />
+      <rect x="26" y="5" width="17" height="17" rx="4.5" fill={G} />
+      <rect x="5" y="26" width="17" height="17" rx="4.5" fill={G} />
+      <rect x="26" y="26" width="17" height="17" rx="4.5" fill={N} />
+    </>
+  )}
+</svg>

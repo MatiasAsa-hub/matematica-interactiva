@@ -1,34 +1,44 @@
 /* ==========================================================================
-   Estilos de los interactivos: gráfico, deslizadores, casillas e
-   información. Los usan todos los interactivos.
+   Estilos de los interactivos: la tarjeta, el gráfico, los deslizadores,
+   las casillas y la información. Los usan todos los interactivos.
+
+   Cada interactivo es una tarjeta blanca con borde suave. Adentro, el
+   gráfico va sobre un fondo apenas más cálido, con grilla y ejes finos.
    ========================================================================== */
+
+/* El "marco" mide cuánto lugar hay: si es ancho, el interactivo se acomoda
+   en dos columnas (gráfico | controles); si es angosto, en una. */
+.marco-interactivo { container-type: inline-size; }
 
 .interactivo {
   display: grid; gap: 1rem;
   background: var(--fondo-tarjeta);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
+  box-shadow: var(--sombra);
   padding: 0.75rem;
   /* que en el celular el gráfico pueda usar casi todo el ancho */
   margin: 0 -8px;
 }
 /* sin esto, una tabla ancha "empuja" y agranda todo el interactivo */
 .interactivo > * { min-width: 0; }
-@media (min-width: 900px) {
-  .interactivo { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); padding: 1rem; gap: 1.4rem; margin: 0; }
+@media (min-width: 900px) { .interactivo { margin: 0; padding: 1.1rem; } }
+@container (min-width: 700px) {
+  .interactivo { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); padding: 1.25rem; gap: 1.6rem; }
 }
+.titulo-interactivo-tutores { margin: 0 0 0.6rem; }
 
 /* --- La fórmula en vivo --- */
 .expresion {
-  font-size: 1.45rem; text-align: center;
+  font-size: 1.4rem; font-weight: 500; text-align: center;
   padding: 0.2rem 0 0.6rem;
   font-variant-numeric: tabular-nums;
   white-space: nowrap; overflow-x: auto;
   color: var(--c-funcion);
 }
-.expresion i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.12em; }
-.expresion .valor { color: var(--texto); border-radius: 6px; padding: 0 2px; transition: background 0.15s, color 0.15s; }
-.expresion .valor.activo { background: var(--texto); color: var(--fondo); }
+.expresion i { font-family: var(--fuente-mate); font-size: 1.14em; font-weight: 400; }
+.expresion .valor { color: var(--texto-fuerte); border-radius: 6px; padding: 0 2px; transition: background 0.15s, color 0.15s; }
+.expresion .valor.activo { background: var(--acento); color: #fff; }
 
 /* --- El gráfico --- */
 .grafico {
@@ -37,33 +47,42 @@
   aspect-ratio: 1 / 1;
   max-height: 72vh;
   border-radius: var(--radio-chico);
+  border: 1px solid var(--borde);
   overflow: hidden;
   background: var(--fondo-grafico);
 }
-@media (min-width: 900px) { .grafico { aspect-ratio: 5 / 4; } }
+@container (min-width: 700px) { .grafico { aspect-ratio: 5 / 4; } }
+/* dentro de un tema (en la compu), el gráfico no puede comerse toda la pantalla */
+@media (min-width: 1024px) {
+  .tema-interactivo .grafico { aspect-ratio: 1 / 1; max-height: 46vh; }
+}
 .plano-lienzo { position: absolute; inset: 0; touch-action: pan-x pan-y; user-select: none; -webkit-user-select: none; }
 .plano-lienzo.arrastrando { cursor: grabbing; }
 
 .plano-botones { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 6px; }
 .plano-boton {
-  width: 40px; height: 40px; display: grid; place-items: center;
-  font-size: 1.35rem; line-height: 1;
-  background: rgba(37, 51, 65, 0.88); border: 1px solid var(--borde); border-radius: 10px;
+  width: 38px; height: 38px; display: grid; place-items: center;
+  font-size: 1.3rem; line-height: 1; color: var(--texto-suave);
+  background: color-mix(in srgb, var(--fondo-tarjeta) 92%, transparent);
+  border: 1px solid var(--borde); border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(40, 34, 20, 0.06);
   cursor: pointer; touch-action: manipulation;
+  transition: border-color 0.15s, color 0.15s;
 }
-.plano-boton:hover { border-color: var(--texto-suave); }
+.plano-boton:hover { border-color: var(--acento); color: var(--acento); }
 
 .plano-aviso {
   position: absolute; left: 50%; bottom: 14px; transform: translate(-50%, 8px);
   max-width: calc(100% - 24px); text-align: center;
-  background: rgba(15, 22, 30, 0.9); color: var(--texto);
-  padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.92rem;
+  background: color-mix(in srgb, var(--texto-fuerte) 90%, transparent); color: #fff;
+  padding: 0.45rem 0.9rem; border-radius: 10px; font-size: 0.88rem;
   opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
 }
 .plano-aviso.visible { opacity: 1; transform: translate(-50%, 0); }
+.plano-aviso b { color: #fff; }
 
 .interactivo-acciones { display: flex; justify-content: flex-start; gap: 0.5rem; margin-top: 0.6rem; }
-.boton-chico { min-height: 40px; font-size: 0.95rem; padding: 0.3em 0.9em; }
+.boton-chico { min-height: 40px; font-size: 0.9rem; padding: 0.3em 0.9em; border-radius: 10px; }
 
 /* --- Tabla x | f(x) --- */
 .tabla-caja { overflow-x: auto; margin-top: 0.6rem; border-radius: var(--radio-chico); border: 1px solid var(--borde); scroll-behavior: smooth; }
@@ -73,8 +92,8 @@
 .tabla-valores th { position: sticky; left: 0; background: var(--fondo-resalte); z-index: 1; font-weight: 400; }
 .tabla-valores td { transition: opacity 0.2s, background 0.3s; }
 .tabla-valores td.oculta { opacity: 0; }
-.tabla-valores td.nueva { background: rgba(88, 196, 221, 0.22); }
-.tabla-valores i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.tabla-valores td.nueva { background: color-mix(in srgb, var(--c-funcion) 17%, transparent); }
+.tabla-valores i { font-family: var(--fuente-mate); }
 
 /* --- Recta numérica --- */
 .grafico.grafico-recta { aspect-ratio: auto; height: 200px; }
@@ -99,17 +118,17 @@
 }
 .regla-caso .pos { color: var(--c-positivo); }
 .regla-caso .neg { color: var(--c-negativo); }
-.regla-caso.activo { border-color: var(--texto); background: var(--fondo-resalte); color: var(--texto); font-weight: 700; }
+.regla-caso.activo { border-color: var(--texto); background: var(--fondo-resalte); color: var(--texto); font-weight: 600; }
 
 /* --- Cuentas paso a paso (orden de las operaciones) --- */
-.interactivo.interactivo-cuentas { display: block; max-width: var(--ancho-texto); margin-left: auto; margin-right: auto; }
+.interactivo.interactivo-cuentas { display: block; max-width: 46rem; }
 .cuentas-cabecera { display: flex; align-items: center; justify-content: center; gap: 1rem; color: var(--texto-suave); }
 .cuentas-cabecera .plano-boton { font-size: 1.6rem; }
 .renglones { list-style: none; padding: 0; margin: 1rem 0 0.5rem; font-size: 1.45rem; font-variant-numeric: tabular-nums; }
 @media (max-width: 420px) { .renglones { font-size: 1.22rem; } }
 .renglon { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.25rem 0.4rem; border-radius: var(--radio-chico); color: var(--texto-suave); }
 .renglon.actual { color: var(--texto); background: var(--fondo-resalte); }
-.renglon.final .renglon-cuenta { color: var(--c-funcion); font-weight: 700; }
+.renglon.final .renglon-cuenta { color: var(--c-funcion); font-weight: 600; }
 .renglon.nuevo { animation: renglon-aparece 0.35s ease-out; }
 @keyframes renglon-aparece { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 .renglon-igual { width: 1rem; flex: none; color: var(--texto-tenue); }
@@ -118,16 +137,16 @@
 .cuenta-op { margin: 0 0.05em; }
 .cuenta-marcada {
   border-bottom: 3px solid var(--c-raices);
-  background: rgba(247, 212, 107, 0.13);
+  background: color-mix(in srgb, var(--c-raices) 10%, transparent);
   border-radius: 4px; padding: 0 0.12em;
 }
-.cuenta-num.recien { color: var(--c-raices); font-weight: 700; animation: recien 0.6s ease-out; }
-@keyframes recien { from { background: rgba(247, 212, 107, 0.4); } to { background: transparent; } }
+.cuenta-num.recien { color: var(--c-raices); font-weight: 600; animation: recien 0.6s ease-out; }
+@keyframes recien { from { background: color-mix(in srgb, var(--c-raices) 30%, transparent); } to { background: transparent; } }
 .cuenta-termino {
   display: inline-block; padding: 0 0.25em; margin: 0.1em 0;
   border: 2px dashed var(--c-vertice); border-radius: 8px;
 }
-.regla-actual { min-height: 1.6em; margin: 0.6rem 0; font-weight: 700; color: var(--c-raices); }
+.regla-actual { min-height: 1.6em; margin: 0.6rem 0; font-weight: 600; color: var(--c-raices); }
 .regla-actual.listo { color: var(--c-funcion); }
 .regla-num { display: inline-block; margin-right: 0.4em; padding: 0.05em 0.5em; border-radius: 999px; background: var(--fondo-resalte); color: var(--texto-suave); font-size: 0.85em; }
 .cuentas-botones { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.6rem 0 0.9rem; }
@@ -149,7 +168,7 @@
 .galera .celda { text-align: center; position: relative; border-radius: 4px; }
 .galera .celda.subrayada { border-bottom: 2px solid var(--texto-suave); border-radius: 0; }
 .galera-producto { color: var(--texto-suave); }
-.galera .celda.resaltada { background: rgba(247, 212, 107, 0.2); color: var(--c-raices); font-weight: 700; }
+.galera .celda.resaltada { background: color-mix(in srgb, var(--c-raices) 15%, transparent); color: var(--c-raices); font-weight: 600; }
 /* puntito debajo de las cifras del dividendo que ya se usaron */
 .galera-dividendo .celda.usada::after {
   content: ''; position: absolute; left: 50%; bottom: 1px; width: 5px; height: 5px; margin-left: -2.5px;
@@ -157,7 +176,7 @@
 }
 .galera-derecha { min-width: 2.4em; }
 .galera-divisor { border-left: 3px solid var(--texto); border-bottom: 3px solid var(--texto); padding: 0 0.35em; }
-.galera-cociente { padding: 0 0.35em; color: var(--c-funcion); font-weight: 700; min-height: 1.35em; }
+.galera-cociente { padding: 0 0.35em; color: var(--c-funcion); font-weight: 600; min-height: 1.35em; }
 .galera-texto { min-height: 3.2em; margin: 0.6rem 0; line-height: 1.5; }
 .galera-texto.final { color: var(--c-funcion); }
 .galera-tabla {
@@ -166,7 +185,7 @@
   font-variant-numeric: tabular-nums; font-size: 0.95rem;
 }
 .galera-tabla li { margin: 0; padding: 0.2rem 0.5rem; border-radius: 6px; color: var(--texto-suave); }
-.galera-tabla li.elegida { background: rgba(88, 196, 221, 0.18); color: var(--texto); }
+.galera-tabla li.elegida { background: color-mix(in srgb, var(--c-funcion) 14%, transparent); color: var(--texto); }
 .galera-tabla li.se-pasa { color: var(--c-negativo); text-decoration: line-through; }
 .galera-propia { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dashed var(--borde); }
 .galera-propia input {
@@ -183,7 +202,7 @@
 .frac-num { padding: 0 0.2em; border-bottom: 2px solid currentColor; }
 .frac-den { padding: 0 0.2em; }
 .frac-signo { margin-right: 0.05em; }
-.frac-resultado { color: var(--texto); font-weight: 700; }
+.frac-resultado { color: var(--texto); font-weight: 600; }
 .expresion-fracciones { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.15em; min-height: 3.4em; }
 .op-frac { margin: 0 0.15em; }
 .dibujo-fracciones svg { width: 100%; max-width: 520px; display: block; margin: 0.4rem auto; }
@@ -214,7 +233,7 @@
 .selector-4 button { min-height: 44px; font-size: 0.92rem; }
 .fracciones-deslizadores { display: grid; gap: 1rem; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dashed var(--borde); }
 @media (min-width: 640px) { .fracciones-deslizadores { grid-template-columns: 1fr 1fr; } }
-.fraccion-control-titulo { margin: 0 0 0.2rem; font-weight: 700; color: var(--color-frac); }
+.fraccion-control-titulo { margin: 0 0 0.2rem; font-weight: 600; color: var(--color-frac); }
 .galera-texto.final { color: var(--texto); }
 
 /* --- Potencias y raíces --- */
@@ -222,7 +241,7 @@
 .selector-chico { margin-top: 0.5rem; }
 .selector-chico button { font-size: 0.85rem; min-height: 54px; }
 .expresion-potencia { white-space: normal; line-height: 1.5; min-height: 2.2em; margin-top: 0.8rem; }
-.expresion-potencia i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.expresion-potencia i { font-family: var(--fuente-mate); }
 .expresion-potencia sup { font-size: 0.6em; }
 .expresion-potencia .resultado { color: var(--c-funcion); }
 .dibujo-potencias { margin: 0.6rem 0; }
@@ -231,12 +250,12 @@
 .fichas { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; min-height: 44px; }
 .ficha {
   display: inline-grid; place-items: center; min-width: 40px; height: 40px; padding: 0 0.4em;
-  border-radius: 10px; border: 2px solid var(--c-funcion); background: rgba(88, 196, 221, 0.14);
+  border-radius: 10px; border: 2px solid var(--c-funcion); background: color-mix(in srgb, var(--c-funcion) 11%, transparent);
   font-size: 1.1rem; font-variant-numeric: tabular-nums;
   animation: ficha-aparece 0.35s ease-out both; animation-delay: calc(var(--i) * 70ms);
 }
-.ficha i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.15em; }
-.ficha.f-lila { border-color: var(--c-vertice); background: rgba(195, 155, 245, 0.14); }
+.ficha i { font-family: var(--fuente-mate); font-size: 1.15em; }
+.ficha.f-lila { border-color: var(--c-vertice); background: color-mix(in srgb, var(--c-vertice) 11%, transparent); }
 .ficha.tachada { position: relative; opacity: 0.45; }
 .ficha.tachada::after {
   content: ''; position: absolute; left: -3px; right: -3px; top: 50%; height: 3px; background: var(--c-negativo);
@@ -245,7 +264,7 @@
 @keyframes ficha-aparece { from { opacity: 0; transform: translateY(8px) scale(0.8); } to { opacity: 1; transform: none; } }
 @keyframes tachar { from { transform: rotate(-35deg) scaleX(0); } to { transform: rotate(-35deg) scaleX(1); } }
 .ficha-op { font-size: 1.4rem; color: var(--texto-suave); }
-.ficha-uno { font-size: 1.4rem; font-weight: 700; }
+.ficha-uno { font-size: 1.4rem; font-weight: 600; }
 .grupo-fichas { display: inline-flex; gap: 4px; padding: 4px 6px; border: 2px dashed var(--borde); border-radius: 14px; }
 .fichas-fraccion { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .fichas-raya { width: min(100%, 22rem); height: 3px; background: var(--texto); border-radius: 2px; }
@@ -256,7 +275,7 @@
   transform: translate(calc(var(--col) * var(--sep) * 16px), calc(var(--fila) * var(--sep) * 16px));
   transition: transform 0.7s cubic-bezier(.5, -0.2, .3, 1.3);
 }
-.svg-area { fill: var(--texto); font-size: 16px; font-weight: 700; font-family: var(--fuente); }
+.svg-area { fill: var(--texto); font-size: 16px; font-weight: 600; font-family: var(--fuente); }
 .svg-lado { fill: var(--texto-suave); font-size: 15px; font-family: var(--fuente); }
 .dibujo-area i, .svg-area i { font-style: italic; }
 .expresion-distributiva .tenue { color: var(--texto-tenue); }
@@ -266,59 +285,67 @@
 /* --- mcm y mcd --- */
 .grafico.grafico-recta-alta { height: 230px; }
 .listas-numeros p { margin: 0.4rem 0; line-height: 2.1; }
-.lista-nombre { font-weight: 700; margin-right: 0.3rem; }
+.lista-nombre { font-weight: 600; margin-right: 0.3rem; }
 .numero-lista {
   display: inline-block; min-width: 2em; text-align: center; margin: 0 2px; padding: 0 0.3em;
   border-radius: 8px; border: 1px solid var(--borde); color: var(--texto-suave); font-variant-numeric: tabular-nums;
 }
 .numero-lista.comun { border-color: var(--c-raices); color: var(--texto); }
-.numero-lista.destacado { background: var(--c-raices); color: var(--fondo); font-weight: 700; }
+.numero-lista.destacado { background: var(--c-raices); color: #fff; font-weight: 600; }
 
 /* --- Términos semejantes (fichas de álgebra) --- */
 .mesa-fichas { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; justify-content: center; min-height: 120px; padding: 0.8rem 0.4rem; }
 .mesa-fichas.agrupado { flex-direction: column; align-items: center; }
 .fila-fichas { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; justify-content: center; }
 .ficha-algebra {
-  display: grid; place-items: center; border-radius: 6px; font-weight: 700; font-size: 0.85rem;
-  border: 2px solid var(--c-funcion); background: rgba(88, 196, 221, 0.2); color: var(--texto);
+  display: grid; place-items: center; border-radius: 6px; font-weight: 600; font-size: 0.85rem;
+  border: 2px solid var(--c-funcion); background: color-mix(in srgb, var(--c-funcion) 15%, transparent); color: var(--texto);
   transition: opacity 0.5s 0.7s, filter 0.5s 0.7s;
 }
 .ficha-algebra.equis { width: 26px; height: 60px; }
-.ficha-algebra.uno { width: 26px; height: 26px; border-color: var(--c-raices); background: rgba(247, 212, 107, 0.2); }
-.ficha-algebra.negativa { border-style: dashed; border-color: var(--c-negativo); background: rgba(252, 98, 85, 0.15); }
+.ficha-algebra.uno { width: 26px; height: 26px; border-color: var(--c-raices); background: color-mix(in srgb, var(--c-raices) 15%, transparent); }
+.ficha-algebra.negativa { border-style: dashed; border-color: var(--c-negativo); background: color-mix(in srgb, var(--c-negativo) 11%, transparent); }
 .ficha-algebra.anulada { opacity: 0.15; filter: grayscale(1); }
 
-/* --- Selector de forma (ej. polinómica / canónica) --- */
+/* --- Selector de forma (ej. polinómica / canónica): botones "segmentados" --- */
 .selector-forma {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
-  padding: 4px; margin-bottom: 0.3rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  padding: 3px; margin-bottom: 0.3rem;
   background: var(--fondo); border: 1px solid var(--borde); border-radius: 12px;
 }
 .selector-forma button {
-  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
   min-height: 48px; padding: 0.3rem 0.4rem;
   background: transparent; border: 0; border-radius: 9px;
-  color: var(--texto-suave); font-weight: 700; cursor: pointer; touch-action: manipulation;
+  color: var(--texto-suave); font-weight: 500; font-size: 0.95rem; cursor: pointer; touch-action: manipulation;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
 }
-.selector-forma button span { font-weight: 400; font-size: 0.85rem; white-space: nowrap; }
-.selector-forma button i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
-.selector-forma button[aria-checked='true'] { background: var(--fondo-resalte); color: var(--texto); box-shadow: inset 0 0 0 1px var(--borde); }
+.selector-forma button:hover { color: var(--texto-fuerte); }
+.selector-forma button span { font-weight: 400; font-size: 0.82rem; white-space: nowrap; }
+.selector-forma button i { font-family: var(--fuente-mate); }
+.selector-forma button[aria-checked='true'] {
+  background: var(--fondo-tarjeta); color: var(--acento); font-weight: 600;
+  box-shadow: 0 0 0 1px var(--borde), 0 1px 3px rgba(40, 34, 20, 0.1);
+}
 .grupo-deslizadores { display: flex; flex-direction: column; gap: 0.5rem; }
 .grupo-deslizadores[hidden] { display: none; }
 
 /* --- Deslizadores --- */
 .interactivo-controles { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
 .deslizador { --porcentaje: 50%; }
-.deslizador-nombre { display: block; font-size: 1.15rem; font-variant-numeric: tabular-nums; padding-left: 0.2rem; }
-.deslizador-nombre i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.15em; }
-.deslizador-nombre output { font-weight: 700; }
+.deslizador-nombre { display: block; font-size: 1.05rem; font-variant-numeric: tabular-nums; padding-left: 0.2rem; color: var(--texto-suave); }
+.deslizador-nombre i { font-family: var(--fuente-mate); font-size: 1.2em; color: var(--texto-fuerte); }
+.deslizador-nombre output { font-weight: 600; color: var(--texto-fuerte); }
 .deslizador-fila { display: flex; align-items: center; gap: 0.5rem; }
 .deslizador-paso {
-  flex: none; width: 40px; height: 40px; border-radius: 50%;
-  background: var(--fondo-resalte); border: 1px solid var(--borde);
-  font-size: 1.3rem; line-height: 1; cursor: pointer; touch-action: manipulation;
+  flex: none; width: 40px; height: 40px; border-radius: 10px;
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde);
+  color: var(--texto-suave);
+  font-size: 1.25rem; line-height: 1; cursor: pointer; touch-action: manipulation;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
-.deslizador-paso:hover { border-color: var(--texto-suave); }
+.deslizador-paso:hover { border-color: var(--acento); color: var(--acento); }
+.deslizador-paso:active { background: var(--acento-suave); }
 
 .deslizador input[type='range'] {
   -webkit-appearance: none; appearance: none;
@@ -326,73 +353,76 @@
   background: transparent; cursor: pointer; touch-action: pan-y;
 }
 .deslizador input[type='range']::-webkit-slider-runnable-track {
-  height: 6px; border-radius: 3px;
-  background: linear-gradient(to right, var(--texto-suave) var(--porcentaje), var(--borde) var(--porcentaje));
+  height: 4px; border-radius: 2px;
+  background: linear-gradient(to right, var(--acento) var(--porcentaje), var(--borde) var(--porcentaje));
 }
-.deslizador input[type='range']::-moz-range-track { height: 6px; border-radius: 3px; background: var(--borde); }
-.deslizador input[type='range']::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--texto-suave); }
+.deslizador input[type='range']::-moz-range-track { height: 4px; border-radius: 2px; background: var(--borde); }
+.deslizador input[type='range']::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--acento); }
 .deslizador input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
-  width: 28px; height: 28px; margin-top: -11px; border-radius: 50%;
-  background: var(--texto); border: 3px solid var(--fondo-tarjeta);
-  box-shadow: 0 0 0 1px var(--texto-suave);
+  width: 24px; height: 24px; margin-top: -10px; border-radius: 50%;
+  background: var(--fondo-tarjeta); border: 2px solid var(--acento);
+  box-shadow: 0 1px 4px rgba(40, 34, 20, 0.22);
 }
 .deslizador input[type='range']::-moz-range-thumb {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--texto); border: 3px solid var(--fondo-tarjeta);
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--fondo-tarjeta); border: 2px solid var(--acento);
+  box-shadow: 0 1px 4px rgba(40, 34, 20, 0.22);
 }
 .deslizador input[type='range']:focus-visible { outline: none; }
-.deslizador input[type='range']:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--c-funcion); }
+.deslizador input[type='range']:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--acento-suave), 0 0 0 5px var(--acento); }
 
 /* --- Casillas (botones que se prenden y apagan) --- */
-.casillas { border: 0; padding: 0; margin: 0.5rem 0 0; min-width: 0; }
-.casillas legend { font-size: 0.85rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; padding: 0; }
+.casillas { border: 0; padding: 0; margin: 0.6rem 0 0; min-width: 0; }
+.casillas legend { font-size: 0.74rem; font-weight: 600; color: var(--texto-tenue); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 0.45rem; padding: 0; }
 .casillas-grupo { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.casillas-extras { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px dashed var(--borde); }
+.casillas-extras { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--borde); }
 .casilla {
   --color: var(--texto);
   display: inline-flex; align-items: center; gap: 0.45rem;
-  min-height: 40px; padding: 0.3rem 0.8rem 0.3rem 0.55rem;
-  background: transparent; border: 1px solid var(--borde); border-radius: 999px;
-  color: var(--texto-suave); font-size: 0.95rem; cursor: pointer; touch-action: manipulation;
+  min-height: 40px; padding: 0.3rem 0.75rem 0.3rem 0.55rem;
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 10px;
+  color: var(--texto-suave); font-size: 0.9rem; cursor: pointer; touch-action: manipulation;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
+.casilla:hover { border-color: var(--borde-fuerte); }
 .casilla-marca {
   width: 16px; height: 16px; border-radius: 5px; flex: none;
-  border: 2px solid var(--color); position: relative;
+  border: 1.5px solid var(--color); position: relative;
 }
-.casilla[aria-pressed='true'] { color: var(--texto); border-color: var(--color); background: color-mix(in srgb, var(--color) 14%, transparent); }
+.casilla[aria-pressed='true'] { color: var(--texto-fuerte); border-color: var(--color); background: color-mix(in srgb, var(--color) 9%, var(--fondo-tarjeta)); }
 .casilla[aria-pressed='true'] .casilla-marca { background: var(--color); }
 .casilla[aria-pressed='true'] .casilla-marca::after {
-  content: ''; position: absolute; left: 3.5px; top: 0px; width: 4px; height: 8px;
-  border: solid var(--fondo); border-width: 0 2px 2px 0; transform: rotate(45deg);
+  content: ''; position: absolute; left: 4px; top: 0.5px; width: 4px; height: 8px;
+  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
 }
-.casilla i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.casilla i { font-family: var(--fuente-mate); }
 
 /* --- Información que acompaña al gráfico --- */
-.info { margin-top: 0.3rem; font-variant-numeric: tabular-nums; }
+.info { margin-top: 0.3rem; font-variant-numeric: tabular-nums; font-size: 0.95rem; }
 .info-lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
-.info-lista li { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0; line-height: 1.45; }
-.info-marca { width: 12px; height: 12px; border-radius: 50%; background: var(--color); flex: none; margin-top: 0.4em; }
+.info-lista li { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0; line-height: 1.5; }
+.info-marca { width: 10px; height: 10px; border-radius: 50%; background: var(--color); flex: none; margin-top: 0.5em; }
 .info-lista p { margin: 0.3em 0; }
 .info-larga > div { min-width: 0; }
 .info-formula .katex-display { margin: 0.3em 0; }
 .info-resultado { color: var(--c-raices); }
-.info i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.info i { font-family: var(--fuente-mate); }
 
 .cartel-aviso {
-  border: 1px solid var(--c-raices);
-  background: rgba(247, 212, 107, 0.09);
+  border: 1px solid color-mix(in srgb, var(--c-raices) 55%, var(--fondo-tarjeta));
+  background: color-mix(in srgb, var(--c-raices) 8%, var(--fondo-tarjeta));
   border-radius: var(--radio-chico);
   padding: 0.55rem 0.8rem;
   margin: 0.4rem 0;
+  font-size: 0.95rem;
 }
 
 /* --- Balanza (ecuaciones) --- */
 .balanza { position: relative; height: 250px; max-width: 34rem; margin: 0.4rem auto 0.6rem; }
 .balanza-pie {
   position: absolute; left: 50%; bottom: 0; width: 64px; height: 58px; transform: translateX(-50%);
-  background: var(--borde); clip-path: polygon(50% 0, 100% 100%, 0 100%); border-radius: 4px;
+  background: var(--borde-fuerte); clip-path: polygon(50% 0, 100% 100%, 0 100%); border-radius: 4px;
 }
 .balanza-brazo {
   position: absolute; left: 25%; right: 25%; bottom: 54px; height: 7px; border-radius: 4px;
@@ -415,8 +445,8 @@
 .balanza .ficha-algebra { font-size: 0.68rem; border-radius: 4px; }
 .balanza .ficha-algebra.equis { width: 19px; height: 44px; }
 .balanza .ficha-algebra.uno { width: 19px; height: 19px; }
-.ficha-algebra.bloque { width: auto; min-width: 34px; height: 26px; padding: 0 6px; font-size: 0.9rem; border-color: var(--c-raices); background: rgba(247, 212, 107, 0.2); white-space: nowrap; }
-.ficha-algebra.nueva { animation: ficha-aparece 0.35s ease-out both; animation-delay: calc(var(--i) * 25ms); box-shadow: 0 0 0 2px rgba(233, 238, 242, 0.5); }
+.ficha-algebra.bloque { width: auto; min-width: 34px; height: 26px; padding: 0 6px; font-size: 0.9rem; border-color: var(--c-raices); background: color-mix(in srgb, var(--c-raices) 15%, transparent); white-space: nowrap; }
+.ficha-algebra.nueva { animation: ficha-aparece 0.35s ease-out both; animation-delay: calc(var(--i) * 25ms); box-shadow: 0 0 0 2px color-mix(in srgb, var(--texto) 30%, transparent); }
 .grupo-plato {
   display: inline-flex; flex-wrap: wrap-reverse; align-items: flex-end; justify-content: center; gap: 3px;
   padding: 3px; border: 2px dashed var(--c-vertice); border-radius: 8px; max-width: 100%;
@@ -430,21 +460,21 @@
 .balanza.desequilibrada .balanza-brazo { background: var(--c-negativo); }
 .renglones-ecuacion .renglon { flex-wrap: wrap; align-items: center; }
 .renglon-nota { margin-left: auto; padding-left: 0.6rem; font-size: 0.62em; color: var(--c-vertice); white-space: nowrap; }
-.renglon-nota i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
-.galera-texto i, .probados i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.renglon-nota i { font-family: var(--fuente-mate); }
+.galera-texto i, .probados i { font-family: var(--fuente-mate); }
 .galera-texto .pos { color: var(--c-positivo); }
 .probados { margin: 0.3rem 0 0; color: var(--texto-suave); line-height: 2; }
 .probado { display: inline-block; padding: 0 0.5em; border-radius: 999px; border: 1px solid var(--borde); font-variant-numeric: tabular-nums; }
-.probado.si { border-color: var(--c-positivo); color: var(--c-positivo); font-weight: 700; }
+.probado.si { border-color: var(--c-positivo); color: var(--c-positivo); font-weight: 600; }
 .probado.no { color: var(--texto-suave); text-decoration: line-through; text-decoration-color: var(--c-negativo); }
 
 /* --- Intervalos e inecuaciones --- */
 .intervalo-escrito { text-align: center; font-size: 1.2rem; margin: 0.6rem 0 0; color: var(--texto-suave); }
 .intervalo-nota { color: var(--c-positivo); font-size: 1.15em; font-variant-numeric: tabular-nums; }
-.explicacion-viva i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.explicacion-viva i { font-family: var(--fuente-mate); }
 .interactivo-grafico .deslizador { margin-top: 0.6rem; }
 .signo-girado {
-  display: inline-block; color: var(--c-raices); font-weight: 700;
+  display: inline-block; color: var(--c-raices); font-weight: 600;
   animation: signo-gira 0.8s ease-out;
 }
 @keyframes signo-gira { from { transform: rotateY(180deg) scale(1.4); } to { transform: none; } }
@@ -455,21 +485,21 @@
   display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.35rem;
   font-size: 1.2rem; font-variant-numeric: tabular-nums; margin: 0.3rem 0 0.2rem;
 }
-.maquina i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1em; }
+.maquina i { font-family: var(--fuente-mate); font-size: 1.1em; }
 .maquina-entra, .maquina-sale {
   padding: 0.2rem 0.6rem; border-radius: 999px; border: 2px solid var(--borde); background: var(--fondo); white-space: nowrap;
 }
 .maquina-caja {
   padding: 0.35rem 0.8rem; border-radius: 10px; border: 2px solid var(--c-funcion);
-  background: rgba(88, 196, 221, 0.12); color: var(--c-funcion); white-space: nowrap;
+  background: color-mix(in srgb, var(--c-funcion) 9%, transparent); color: var(--c-funcion); white-space: nowrap;
 }
 .maquina-sale { border-color: var(--c-funcion); }
 .maquina-sale.error { border-color: var(--c-negativo); color: var(--c-negativo); }
 .maquina-sale.pulso { animation: maquina-pulso 0.45s ease-out; }
-@keyframes maquina-pulso { from { transform: scale(1.3); background: rgba(88, 196, 221, 0.35); } to { transform: none; } }
+@keyframes maquina-pulso { from { transform: scale(1.3); background: color-mix(in srgb, var(--c-funcion) 26%, transparent); } to { transform: none; } }
 .maquina-flecha { color: var(--texto-tenue); }
 .maquina-cuenta { text-align: center; margin: 0.2rem 0 0.6rem; color: var(--texto-suave); font-variant-numeric: tabular-nums; }
-.maquina-cuenta i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.maquina-cuenta i { font-family: var(--fuente-mate); }
 .maquina-cuenta .neg, .explicacion-viva .neg { color: var(--c-negativo); }
 @media (max-width: 420px) { .maquina { font-size: 1.05rem; } }
 
@@ -479,19 +509,19 @@
 .selector-forma.selector-5 button span { font-size: 0.72rem; }
 .selector-titulo { margin: 0; font-size: 0.85rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.05em; }
 .expresion-desarrollada { margin: -0.4rem 0 0.5rem; text-align: center; color: var(--texto-suave); font-variant-numeric: tabular-nums; overflow-x: auto; white-space: nowrap; }
-.expresion-desarrollada i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.expresion-desarrollada i { font-family: var(--fuente-mate); }
 .expresion.expresion-larga { font-size: 1.15rem; }
 
 /* --- Laboratorio de funciones --- */
 .selector-forma.selector-base { grid-template-columns: repeat(5, 1fr); }
 .selector-forma.selector-base button { min-height: 44px; justify-content: center; font-size: 1.05rem; padding: 0.2rem; }
-.selector-forma.selector-base button .base-etiqueta { font-size: inherit; font-weight: 700; white-space: nowrap; }
+.selector-forma.selector-base button .base-etiqueta { font-size: inherit; font-weight: 600; white-space: nowrap; }
 .selector-forma.selector-base button i { font-size: 1.1em; }
 .selector-forma.selector-base sup, .selector-forma.selector-base sub { font-size: 0.7em; }
 .radicando { border-top: 2px solid currentColor; padding: 0 0.1em; margin-left: 0.04em; }
-.texto-fantasma { color: var(--c-fantasma); font-weight: 700; }
+.texto-fantasma { color: var(--c-fantasma); font-weight: 600; }
 .formula-general { margin: 0.9rem 0 0.1rem; text-align: center; font-size: 1.15rem; color: var(--texto-suave); }
-.formula-general i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.formula-general i { font-family: var(--fuente-mate); }
 .efecto { margin: 0 0 0.6rem; min-height: 2.6em; font-size: 0.95rem; text-align: center; color: var(--texto-suave); }
 .efecto b { color: var(--texto); }
 .expresion sup { font-size: 0.65em; }
@@ -529,7 +559,7 @@
 
 /* Composición: dos máquinas, una debajo de la otra */
 .cadena-maquinas { display: flex; flex-direction: column; gap: 0.2rem; margin-top: 0.3rem; }
-.maquina-nombre { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-style: italic; opacity: 0.75; margin-right: 0.2rem; }
+.maquina-nombre { font-family: var(--fuente-mate); font-style: italic; opacity: 0.75; margin-right: 0.2rem; }
 .maquina-medio { border-color: var(--c-vertice); }
 .composicion-definiciones { margin: 0.2rem 0 0; }
 .boton-ancho { width: 100%; margin: 0.6rem 0 0.2rem; }
@@ -555,18 +585,18 @@
 .grafico-derivada .plano-botones { flex-direction: row; top: 6px; right: 6px; }
 .grafico-derivada .plano-boton { width: 34px; height: 34px; }
 .titulo-derivada { margin: 0.5rem 0 0.3rem; color: var(--c-derivada); font-size: 0.95rem; }
-.titulo-derivada i, .linea-derivada i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.titulo-derivada i, .linea-derivada i { font-family: var(--fuente-mate); }
 .linea-derivada { color: var(--c-derivada); font-size: 1.15rem; }
 .linea-derivada[hidden] { display: none; }
 .lectura-recorrer { font-size: 1rem; color: var(--texto); }
-.lectura-recorrer i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.lectura-recorrer i { font-family: var(--fuente-mate); }
 
 /* Integrales (etapa 7) */
 .lectura-integral { font-size: 1rem; line-height: 1.5; color: var(--texto); }
 .lectura-integral > span { display: block; }
 .lectura-integral .lectura-titulo { color: var(--texto-suave); font-size: 0.92em; }
 .lectura-integral b, .color-integral { color: var(--c-integral); }
-.lectura-integral i, .info i, .tabla-h i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.lectura-integral i, .info i, .tabla-h i { font-family: var(--fuente-mate); }
 /* ∫ con los límites chiquitos (b arriba, a abajo) */
 .limites { display: inline-flex; flex-direction: column; vertical-align: middle; font-size: 0.68em; line-height: 1; margin: 0 0.15em 0 0.05em; }
 .limites sup, .limites sub { position: static; font-size: 1em; }
@@ -576,7 +606,7 @@
 .expresion-g { color: var(--c-ordenada); margin-left: 1.2em; }
 .linea-integral { color: var(--c-integral); font-size: 1.15rem; }
 .linea-integral[hidden] { display: none; }
-.linea-integral i, .titulo-integral i { font-family: 'KaTeX_Math', 'Times New Roman', serif; }
+.linea-integral i, .titulo-integral i { font-family: var(--fuente-mate); }
 .titulo-integral { margin: 0.5rem 0 0.3rem; color: var(--c-integral); font-size: 0.95rem; }
 
 /* Sistemas de ecuaciones (etapa 8) */
@@ -584,8 +614,8 @@
 .sistema-ecuaciones[hidden], .sistema-matriz[hidden], .gauss-paso[hidden], .cartel-sistema[hidden] { display: none; }
 .llave { border-left: 2px solid var(--texto-suave); border-radius: 12px 0 0 12px; padding: 0.15rem 0 0.15rem 0.7rem; display: grid; gap: 0.2rem; }
 .ec-fila { display: flex; align-items: center; gap: 0.55rem; font-size: 1.3rem; color: var(--color); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.ec-fila i, .sistema-matriz i, .cartel-sistema i, .ec-k i, .gauss-paso i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1em; }
-.ec-num { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 0.3rem; border-radius: 999px; border: 2px solid var(--color); color: var(--color); font-size: 0.8rem; font-weight: 700; font-style: normal; }
+.ec-fila i, .sistema-matriz i, .cartel-sistema i, .ec-k i, .gauss-paso i { font-family: var(--fuente-mate); font-size: 1.1em; }
+.ec-num { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 0.3rem; border-radius: 999px; border: 2px solid var(--color); color: var(--color); font-size: 0.8rem; font-weight: 600; font-style: normal; }
 .ec-k { color: var(--texto-suave); font-size: 1rem; }
 .grafico.grafico-3d { touch-action: none; }
 .grafico[hidden] { display: none; }
@@ -627,8 +657,8 @@
 .espacio { position: relative; }
 .espacio-lienzo { position: absolute; inset: 0; display: block; touch-action: none; }
 .espacio-textos { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.espacio-etiqueta { position: absolute; left: 0; top: 0; white-space: nowrap; font-weight: 700; font-size: 0.95rem; text-shadow: 0 0 4px var(--fondo-grafico), 0 0 3px var(--fondo-grafico); }
-.espacio-eje { color: var(--texto); font-family: 'KaTeX_Math', 'Times New Roman', serif; font-style: italic; font-size: 1.1rem; }
+.espacio-etiqueta { position: absolute; left: 0; top: 0; white-space: nowrap; font-weight: 600; font-size: 0.95rem; text-shadow: 0 0 4px var(--fondo-grafico), 0 0 3px var(--fondo-grafico); }
+.espacio-eje { color: var(--texto); font-family: var(--fuente-mate); font-style: italic; font-size: 1.1rem; }
 .espacio-numero { color: var(--texto-tenue); font-weight: 400; font-size: 0.75rem; }
 .espacio-etiqueta-plano { font-size: 1rem; }
 .espacio-etiqueta-sol { font-size: 0.95rem; }
@@ -658,14 +688,14 @@
 .mat td.vacia { color: var(--texto-tenue); }
 .mat td.resalta-a { background: color-mix(in srgb, var(--c-ec1) 28%, transparent); }
 .mat td.resalta-b { background: color-mix(in srgb, var(--c-ec2) 28%, transparent); }
-.mat td.resalta-r { background: color-mix(in srgb, var(--c-raices) 30%, transparent); color: var(--c-raices); font-weight: 700; }
-.mat td.resalta-mas { background: color-mix(in srgb, var(--c-positivo) 32%, transparent); color: var(--texto); font-weight: 700; }
-.mat td.resalta-menos { background: color-mix(in srgb, var(--c-negativo) 32%, transparent); color: var(--texto); font-weight: 700; }
+.mat td.resalta-r { background: color-mix(in srgb, var(--c-raices) 30%, transparent); color: var(--c-raices); font-weight: 600; }
+.mat td.resalta-mas { background: color-mix(in srgb, var(--c-positivo) 32%, transparent); color: var(--texto); font-weight: 600; }
+.mat td.resalta-menos { background: color-mix(in srgb, var(--c-negativo) 32%, transparent); color: var(--texto); font-weight: 600; }
 .mat td.tachada { opacity: 0.25; text-decoration: line-through; }
 .mat td.menor { background: color-mix(in srgb, var(--c-vertice) 22%, transparent); }
 .mat-op.resalta-k { background: color-mix(in srgb, var(--c-ec1) 28%, transparent); }
 .mat-tamanos { display: flex; justify-content: center; gap: 1.2rem; color: var(--texto-tenue); font-size: 0.85rem; margin-top: 0.3rem; }
-.mat-nombre i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1rem; color: var(--texto-suave); }
+.mat-nombre i { font-family: var(--fuente-mate); font-size: 1.1rem; color: var(--texto-suave); }
 .mat-nombre small { margin-left: 0.3rem; }
 .mat-paso { text-align: center; min-height: 4.6em; }
 .mat-paso p { margin: 0.4rem 0; line-height: 1.5; }
@@ -676,7 +706,7 @@
 .color-b { color: var(--c-ec2); }
 .mat-productos { list-style: none; padding: 0; margin: 0.3rem auto 0; width: max-content; max-width: 100%; font-variant-numeric: tabular-nums; }
 .mat-productos li { margin: 0.1rem 0; }
-.mat-productos li.nuevo { color: var(--texto); font-weight: 700; }
+.mat-productos li.nuevo { color: var(--texto); font-weight: 600; }
 .mat-botones { justify-content: center; flex-wrap: wrap; }
 .mat-botones .boton:disabled { opacity: 0.4; cursor: default; }
 .det-expresion { padding-top: 0; }
@@ -685,7 +715,7 @@
 .det-lectura { text-align: center; margin: 0.2rem 0 0.6rem; min-height: 3em; }
 /* Vectores */
 .vec-lectura { text-align: center; line-height: 1.6; margin: 0.3rem 0 0.5rem; min-height: 4.8em; font-variant-numeric: tabular-nums; }
-.vec-lectura i, .det-lectura i { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.1em; }
+.vec-lectura i, .det-lectura i { font-family: var(--fuente-mate); font-size: 1.1em; }
 [data-caja-k][hidden] { display: none; }
 /* Ecuación del plano */
 .plano3d-deslizadores { display: grid; gap: 0.2rem; margin-top: 0.6rem; }
@@ -693,7 +723,7 @@
 .espacio-etiqueta-chica { font-size: 0.85rem; }
 .expresion .fr { font-size: 0.6em; }
 .interactivo-segundo { margin-top: 1.2rem; }
-.mat-titulo { text-align: center; color: var(--texto-suave); font-weight: 700; margin: 0 0 0.5rem; }
+.mat-titulo { text-align: center; color: var(--texto-suave); font-weight: 600; margin: 0 0 0.5rem; }
 
 /* --- Límites --- */
 .lectura-limite { font-size: 1rem; line-height: 1.5; color: var(--texto); }
@@ -705,3 +735,20 @@
 .tabla-limite td.col-izq { color: var(--c-vertice); }
 .tabla-limite td.col-der { color: var(--c-ordenada); }
 .color-raices { color: var(--c-raices); }
+
+/* --- Dentro de un tema, en la compu: los interactivos con dos gráficos
+   (derivada, integral acumulada) se achican para entrar en la pantalla --- */
+@media (min-width: 1024px) {
+  .tema-interactivo .grafico.grafico-f { max-height: 40vh; }
+  .tema-interactivo .grafico.grafico-derivada { max-height: 24vh; }
+  .tema-interactivo .interactivo.interactivo-cuentas { max-width: none; }
+}
+/* una cabecera con el ícono de la unidad al lado del título */
+.cabecera-con-icono { display: flex; align-items: center; gap: 1rem; }
+.cabecera-con-icono .icono-unidad { width: 56px; height: 56px; flex: none; }
+@media (min-width: 900px) { .cabecera-con-icono .icono-unidad { width: 76px; height: 76px; } }
+/* lo que va entre paréntesis dentro de un botón azul: blanco, un poco más suave */
+.boton-principal .texto-suave { color: rgba(255, 255, 255, 0.78); font-weight: 400; }
+/* en un selector, "Con x" va en un solo renglón */
+.selector-forma button > i { display: contents; }
+.selector-forma button:has(> i) { flex-direction: row; gap: 0.3em; }

@@ -87,7 +87,7 @@ export function tramoCrecimiento(p, X1, X2, crece) {
   p.flechaPx(X1 + 8, crece ? Y + m : Y - m, X2 - 8, crece ? Y - m : Y + m, { color, ancho: 3 });
   const ctx = p.ctx;
   ctx.save();
-  ctx.font = `700 14px ${p.fuente}`;
+  ctx.font = `600 13px ${p.fuente}`;
   ctx.fillStyle = color;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'bottom';

@@ -15,11 +15,11 @@ funciones:
 
 ## Intuición
 
-Tocá **Achicar h** y mirá qué pasa con el punto blanco y con la recta.
+Tocá **Achicar h** y mirá qué pasa con el punto negro y con la recta.
 
 - ¿Qué números van apareciendo en la tablita? ¿A cuál se acercan?
 - Cuando *h* es muy chico, ¿la recta corta la curva o apenas la toca?
-- Poné *h* negativo (el punto blanco a la izquierda) y achicalo de nuevo. ¿Se llega al mismo número?
+- Poné *h* negativo (el punto negro a la izquierda) y achicalo de nuevo. ¿Se llega al mismo número?
 - Prendé **Con h en la cuenta**. Para $x^2$ en $x = 1$ dice $2 + h$: ¿qué le pasa cuando *h* se achica? Mové el punto azul a $x = 2$, $x = 3$… ¿Ves un patrón?
 - Pasá a $2x + 1$ con ‹ ›. ¿Por qué la cuenta no tiene *h*?
 

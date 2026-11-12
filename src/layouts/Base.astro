@@ -2,10 +2,11 @@
 // Marco común a todas las páginas: encabezado, navegación y pie.
 // En el celular la navegación va abajo (cómoda para el pulgar);
 // en la compu, arriba.
-import '@fontsource/atkinson-hyperlegible/latin-400.css';
-import '@fontsource/atkinson-hyperlegible/latin-700.css';
-import '@fontsource/atkinson-hyperlegible/latin-400-italic.css';
-import '@fontsource/fraunces/latin-600.css';
+// Una sola tipografía para todo (Lexend), con los cuatro pesos que se usan.
+import '@fontsource/lexend/latin-400.css';
+import '@fontsource/lexend/latin-500.css';
+import '@fontsource/lexend/latin-600.css';
+import '@fontsource/lexend/latin-700.css';
 import 'katex/dist/katex.min.css';
 import '../styles/global.css';
 import '../styles/contenido.css';
@@ -36,7 +37,7 @@ const enlaces = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f4f0e6" />
+    <meta name="theme-color" content="#f1efeb" />
     <title>{tituloCompleto}</title>
     <meta name="description" content={descripcion ?? sitio.descripcion} />
     <meta property="og:title" content={tituloCompleto} />
@@ -47,7 +48,7 @@ const enlaces = [
   <body>
     <a class="saltar" href="#principal">Ir al contenido</a>
     <header class="encabezado">
-      <div class="encabezado-interior contenedor-ancho">
+      <div class="encabezado-interior contenedor">
         <a class="marca" href={url('')}>
           <Logo medida={26} />
           <span>{sitio.nombre}</span>

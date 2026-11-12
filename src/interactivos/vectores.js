@@ -1,7 +1,7 @@
 // ==========================================================================
 // INTERACTIVO: vectores en el plano.
 // u (azul) y v (naranja) salen del origen; sus puntas se arrastran (de a
-// números enteros). El resultado de la operación va en blanco.
+// números enteros). El resultado de la operación va en negro.
 //   - Suma: v se "pega" en la punta de u (punteado) → u + v.
 //   - Resta: u − v es la flecha que va de la punta de v a la punta de u.
 //   - Por un número: k · u (con el deslizador k).
@@ -140,7 +140,7 @@ export function iniciarVectores(raiz) {
       partes.push(itemInfo(col.texto, 'Suma:', 'se suman las <i>x</i> por un lado y las <i>y</i> por el otro. En el dibujo: ponés <i>v</i> en la punta de <i>u</i> (punteado) y vas del origen hasta el final.'));
     } else if (op === 'resta') {
       lectura = `${cu} &nbsp; ${cv}<br>${U} − ${V} = (${num(u[0])} − ${np(v[0])}, ${num(u[1])} − ${np(v[1])}) = <b>${par(r)}</b>`;
-      partes.push(itemInfo(col.texto, 'Resta:', '<i>u</i> − <i>v</i> es la flecha que va <b>de la punta de <i>v</i> a la punta de <i>u</i></b> (punteada). Si la llevás al origen, es la blanca.'));
+      partes.push(itemInfo(col.texto, 'Resta:', '<i>u</i> − <i>v</i> es la flecha que va <b>de la punta de <i>v</i> a la punta de <i>u</i></b> (punteada). Si la llevás al origen, es la negra.'));
     } else if (op === 'escalar') {
       lectura = `${cu}<br>${num(k)} · ${U} = (${num(k)} · ${np(u[0])}, ${num(k)} · ${np(u[1])}) = <b>${par(r)}</b>`;
       partes.push(itemInfo(col.texto, 'Por un número:', 'se multiplican las dos componentes. La flecha se estira (o se achica) y, si el número es negativo, <b>se da vuelta</b>.'));

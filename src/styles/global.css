@@ -3,87 +3,71 @@
    Los colores están todos acá arriba, como "variables". Si se cambia un
    color acá, cambia en toda la página (incluidos los gráficos).
 
-   El diseño se llama "Carpeta" y tiene dos mundos:
-     - LA HOJA: el fondo claro color hueso donde se lee (textos, ejercicios).
-     - EL PIZARRÓN: los recuadros oscuros de los interactivos, donde se toca.
-   Cada mundo tiene su juego de colores. Los nombres de las variables son
-   los mismos en los dos; lo que cambia es el valor.
+   El diseño: claro y sobrio.
+     - fondo gris cálido muy claro, con TARJETAS blancas encima;
+     - una sola tipografía (Lexend); los títulos se distinguen por peso y tamaño;
+     - un solo acento (azul), que hace juego con el punto amarillo del logo;
+     - cada concepto (función, raíces, C⁺…) tiene su color fijo.
    ========================================================================== */
 
 :root {
-  /* --- LA HOJA: fondo y texto --- */
-  --fondo: #f4f0e6;
-  --fondo-tarjeta: #fbf9f3;
-  --fondo-resalte: #e9e3d3;
-  --borde: #d8d0bd;
-  --texto: #1d2740;
-  --texto-fuerte: #0f1830;
-  --texto-suave: #556079;
-  --texto-tenue: #7f8799;
-  --acento: #2468a8;        /* links, botón de volver, lo que se puede tocar */
-  --marca-punto: #e3a400;   /* el punto amarillo del logo */
+  /* --- Fondo y texto --- */
+  --fondo: #f1efeb;           /* el fondo de la página: gris cálido muy claro */
+  --fondo-tarjeta: #ffffff;   /* las tarjetas (y los interactivos) */
+  --fondo-grafico: #fcfbf9;   /* donde se dibujan los gráficos */
+  --fondo-resalte: #e9e6e0;   /* lo que está elegido o resaltado, en gris */
+  --borde: #dfdbd3;
+  --borde-fuerte: #c3beb4;
+  --texto: #2a2823;
+  --texto-fuerte: #15140f;
+  --texto-suave: #5f5b53;
+  --texto-tenue: #8d887e;
+  --acento: #2b5bd7;          /* el único acento: links, botones, lo que se puede tocar */
+  --acento-fuerte: #1e45ae;   /* el acento al pasar el mouse o apretar */
+  --acento-suave: #e7edfb;    /* fondo muy clarito del acento */
+  --marca-punto: #f2b01e;     /* el punto amarillo del logo */
+  --icono-gris: #bcb7ad;      /* el gris de los íconos de las unidades */
 
-  /* --- Colores de los conceptos, en su versión "tinta" (para la hoja) --- */
-  --c-funcion: #1f78a8;     /* la función f: azul */
-  --c-derivada: #bf6a14;    /* la derivada f': naranja */
-  --c-integral: #6c4fc2;    /* áreas e integrales: violeta */
-  --c-positivo: #3b8523;    /* C⁺: verde */
-  --c-negativo: #c93a2d;    /* C⁻: rojo */
-  --c-raices: #a87600;      /* C⁰ y raíces: amarillo */
-  --c-vertice: #7f52cc;     /* vértice, eje de simetría, máximos y mínimos: lila */
-  --c-ordenada: #bd447b;    /* ordenada al origen: rosa */
-  --c-crece: #17877a;       /* crece: turquesa */
-  --c-decrece: #b95a3a;     /* decrece: terracota */
-  --c-fantasma: #7a8696;    /* función de referencia ("fantasma"): gris */
-  --c-ec1: #1f78a8;         /* ecuación 1: azul */
-  --c-ec2: #bf6a14;         /* ecuación 2: naranja */
-  --c-ec3: #bd447b;         /* ecuación 3: rosa */
+  /* --- Colores de los conceptos (los mismos en toda la página) --- */
+  --c-funcion: #2b5bd7;     /* la función f: azul */
+  --c-derivada: #cc6a14;    /* la derivada f': naranja */
+  --c-integral: #6f4fcf;    /* áreas e integrales: violeta */
+  --c-positivo: #2c8a4b;    /* C⁺: verde */
+  --c-negativo: #cb3f35;    /* C⁻: rojo */
+  --c-raices: #b47f04;      /* C⁰ y raíces: amarillo (oscuro, para que se lea) */
+  --c-vertice: #9a52c6;     /* vértice, eje de simetría, máximos y mínimos: lila */
+  --c-ordenada: #c7437e;    /* ordenada al origen: rosa */
+  --c-crece: #12877b;       /* crece: turquesa */
+  --c-decrece: #b65a37;     /* decrece: terracota */
+  --c-fantasma: #8a8f98;    /* función de referencia ("fantasma"): gris */
+  --c-ec1: #2b5bd7;         /* ecuación 1: azul */
+  --c-ec2: #cc6a14;         /* ecuación 2: naranja */
+  --c-ec3: #c7437e;         /* ecuación 3: rosa */
+
+  /* --- Los gráficos: grilla, ejes y números --- */
+  --grafico-grilla: rgba(42, 40, 35, 0.085);
+  --grafico-grilla-fina: rgba(42, 40, 35, 0.04);
+  --grafico-eje: rgba(42, 40, 35, 0.62);
+  --grafico-numeros: #7d786e;
 
   /* --- Medidas --- */
-  --radio: 14px;
-  --radio-chico: 9px;
-  --ancho-texto: 46rem;
-  --ancho-interactivo: 72rem;
+  --radio: 16px;
+  --radio-chico: 10px;
+  --margen: 16px;             /* el margen a los costados de la página */
+  --ancho-pagina: 88rem;      /* el ancho máximo de la página en la compu */
+  --ancho-texto: 39rem;       /* un texto para leer: unas 70 letras por renglón */
+  --alto-encabezado: 58px;
   --alto-nav-abajo: 64px;
+  --sombra: 0 1px 2px rgba(40, 34, 20, 0.04), 0 6px 20px rgba(40, 34, 20, 0.045);
 
-  --fuente: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --fuente-titulos: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fuente: 'Lexend', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fuente-mate: 'KaTeX_Math', 'Times New Roman', serif; /* las letras de las fórmulas */
 
   color-scheme: light;
 }
 
-/* --- EL PIZARRÓN: dentro de un interactivo valen estos colores --- */
-.interactivo, .pizarron {
-  --fondo: #1e2a36;
-  --fondo-tarjeta: #253341;
-  --fondo-grafico: #1a2531;
-  --fondo-resalte: #2d3d4d;
-  --borde: #3a4b5d;
-  --texto: #e9eef2;
-  --texto-fuerte: #ffffff;
-  --texto-suave: #a9b7c4;
-  --texto-tenue: #7d8c9b;
-  --acento: #58c4dd;
-  --marca-punto: #f7d46b;
-
-  /* los mismos conceptos, en su versión "tiza" (más clara) */
-  --c-funcion: #58c4dd;
-  --c-derivada: #f4a259;
-  --c-integral: #a88beb;
-  --c-positivo: #83c167;
-  --c-negativo: #fc6255;
-  --c-raices: #f7d46b;
-  --c-vertice: #c39bf5;
-  --c-ordenada: #f28fb5;
-  --c-crece: #5fd3c7;
-  --c-decrece: #e8896b;
-  --c-fantasma: #8796a6;
-  --c-ec1: #58c4dd;
-  --c-ec2: #f4a259;
-  --c-ec3: #f28fb5;
-
-  color: var(--texto);
-  color-scheme: dark;
+@media (min-width: 900px) {
+  :root { --margen: 32px; }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -94,7 +78,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: calc(var(--alto-encabezado) + 1rem);
 }
 
 body {
@@ -102,42 +86,48 @@ body {
   background: var(--fondo);
   color: var(--texto);
   font-family: var(--fuente);
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
   /* espacio para la barra de navegación de abajo en el celular */
   padding-bottom: calc(var(--alto-nav-abajo) + env(safe-area-inset-bottom, 0px));
 }
 
 @media (min-width: 900px) {
-  body { padding-bottom: 0; font-size: 1.125rem; }
+  body { padding-bottom: 0; font-size: 1.0625rem; }
 }
 
 img, svg, canvas { display: block; max-width: 100%; }
 
-a { color: var(--texto); text-decoration-color: var(--acento); text-underline-offset: 3px; text-decoration-thickness: 2px; }
-a:hover { text-decoration-color: var(--texto); }
+a { color: var(--acento); text-decoration-color: color-mix(in srgb, var(--acento) 40%, transparent); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--acento-fuerte); text-decoration-color: currentColor; }
 
-h1, h2, h3, h4 { line-height: 1.25; margin: 1.6em 0 0.5em; font-weight: 700; color: var(--texto-fuerte); }
-h1, h2 { font-family: var(--fuente-titulos); font-weight: 600; letter-spacing: -0.01em; }
-h1 { font-size: 1.95rem; margin-top: 0.4em; line-height: 1.15; }
-h2 { font-size: 1.45rem; }
-h3 { font-size: 1.12rem; }
+h1, h2, h3, h4 { line-height: 1.2; margin: 1.6em 0 0.5em; font-weight: 700; color: var(--texto-fuerte); }
+h1 { font-size: 1.9rem; margin-top: 0.4em; line-height: 1.1; letter-spacing: -0.025em; }
+h2 { font-size: 1.35rem; letter-spacing: -0.015em; }
+h3 { font-size: 1.08rem; font-weight: 600; }
+@media (min-width: 900px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.5rem; }
+}
 p { margin: 0.6em 0; }
 ul, ol { padding-left: 1.4em; }
 li { margin: 0.25em 0; }
-strong { color: var(--texto-fuerte); }
+strong, b { font-weight: 600; color: var(--texto-fuerte); }
 
 button, input, select { font: inherit; color: inherit; }
 
 :focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
 
 /* Fórmulas de KaTeX: un poco más grandes y que nunca rompan el ancho del celular */
-.katex { font-size: 1.08em; white-space: nowrap; } /* que una fórmula corta no se parta en dos renglones */
+.katex { font-size: 1.1em; white-space: nowrap; } /* que una fórmula corta no se parta en dos renglones */
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.3em 0; }
 
 /* --- Contenedores --- */
-.contenedor { width: 100%; max-width: var(--ancho-texto); margin: 0 auto; padding: 0 16px; }
-.contenedor-ancho { width: 100%; max-width: var(--ancho-interactivo); margin: 0 auto; padding: 0 16px; }
+/* La página entera: ancha, con margen a los costados */
+.contenedor { width: 100%; max-width: var(--ancho-pagina); margin: 0 auto; padding: 0 var(--margen); }
+/* Un texto para leer: renglones de unas 70 letras como mucho */
+.columna-texto { max-width: var(--ancho-texto); }
 
 .tarjeta {
   background: var(--fondo-tarjeta);
@@ -149,28 +139,30 @@ button, input, select { font: inherit; color: inherit; }
 .texto-suave { color: var(--texto-suave); }
 .chico { font-size: 0.9em; }
 
-/* Etiqueta chiquita arriba de los títulos (ej.: "Análisis · Funciones") */
-.sobretitulo {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-  margin: 1.6rem 0 0;
+/* Rótulo chiquito en mayúsculas (etapas, "Para recordar", niveles…) */
+.rotulo {
+  font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--texto-tenue);
 }
 
 /* --- Botones genéricos --- */
 .boton {
-  display: inline-flex; align-items: center; justify-content: center; gap: 0.4em;
-  min-height: 44px; padding: 0.4em 1em;
-  background: var(--fondo-resalte);
-  border: 1px solid var(--borde);
-  border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.45em;
+  min-height: 44px; padding: 0.4em 1.05em;
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde-fuerte);
+  border-radius: 12px;
+  color: var(--texto-fuerte); font-weight: 500;
   cursor: pointer;
   text-decoration: none;
   touch-action: manipulation;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
-.boton:hover { border-color: var(--texto-suave); }
+.boton:hover { border-color: var(--texto-suave); color: var(--texto-fuerte); background: var(--fondo); }
 .boton:active { transform: translateY(1px); }
+.boton:disabled { opacity: 0.45; cursor: default; }
+.boton-principal { background: var(--acento); color: #fff; border-color: var(--acento); font-weight: 600; }
+.boton-principal:hover { background: var(--acento-fuerte); border-color: var(--acento-fuerte); color: #fff; }
 
 /* --- Desplegables (pasos, pistas, resoluciones) --- */
 details {
@@ -185,14 +177,14 @@ details > summary {
   min-height: 44px;
   list-style: none;
   display: flex; align-items: center; gap: 0.6em;
-  font-weight: 700;
+  font-weight: 600; color: var(--texto-fuerte);
 }
 details > summary::-webkit-details-marker { display: none; }
 details > summary::before {
   content: '';
-  width: 0.55em; height: 0.55em; flex: none;
-  border-right: 2px solid var(--texto-suave);
-  border-bottom: 2px solid var(--texto-suave);
+  width: 0.5em; height: 0.5em; flex: none;
+  border-right: 2px solid var(--acento);
+  border-bottom: 2px solid var(--acento);
   transform: rotate(-45deg);
   transition: transform 0.2s;
 }

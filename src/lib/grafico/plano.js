@@ -26,6 +26,11 @@ export function leerColores(elemento = document.documentElement) {
     fondo: v('--fondo-grafico'),
     texto: v('--texto'),
     textoSuave: v('--texto-suave'),
+    // la grilla, los ejes y los números de los ejes
+    grilla: v('--grafico-grilla'),
+    grillaFina: v('--grafico-grilla-fina'),
+    eje: v('--grafico-eje'),
+    numeros: v('--grafico-numeros'),
     funcion: v('--c-funcion'),
     derivada: v('--c-derivada'),
     integral: v('--c-integral'),
@@ -83,6 +88,8 @@ export class Plano {
     this.arrastrables = [];
     this.colores = leerColores(contenedor);
     this.fuente = getComputedStyle(contenedor).fontFamily;
+    // la letra de las fórmulas, para los nombres de los ejes (x, y)
+    this.fuenteMate = getComputedStyle(contenedor).getPropertyValue('--fuente-mate').trim() || 'serif';
     this.alCambiarVista = [];
     this._tocado = false; // ¿la persona ya movió la vista?
 
@@ -268,8 +275,8 @@ export class Plano {
   dibujarRectaNumerica() {
     const { ctx } = this;
     const Y0 = Math.round(this.py(0)) + 0.5;
-    ctx.strokeStyle = 'rgba(233,238,242,0.7)';
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = this.colores.eje;
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(0, Y0); ctx.lineTo(this.ancho, Y0);
     // marquitas: una por entero (si entran), más largas donde va número
@@ -287,8 +294,8 @@ export class Plano {
       const X = this.px(x);
       if (X < 8 || X > this.ancho - 8) continue;
       const cero = Math.abs(x) < paso / 2;
-      ctx.font = `${cero ? '700 ' : ''}15px ${this.fuente}`;
-      ctx.fillStyle = cero ? this.colores.texto : 'rgba(233,238,242,0.65)';
+      ctx.font = `${cero ? '600 ' : ''}14px ${this.fuente}`;
+      ctx.fillStyle = cero ? this.colores.texto : this.colores.numeros;
       this._textoConHalo(textoNumeroEje(cero ? 0 : x, paso), X, Y0 + 12);
     }
   }
@@ -313,8 +320,8 @@ export class Plano {
       }
       ctx.stroke();
     };
-    if (sub * this.escala > 9) dibujarLineas(sub, 'rgba(255,255,255,0.025)', this.ejeX ? this.pasoX / 2 : sub, subY);
-    dibujarLineas(paso, 'rgba(255,255,255,0.07)', undefined, pasoY);
+    if (sub * this.escala > 9) dibujarLineas(sub, this.colores.grillaFina, this.ejeX ? this.pasoX / 2 : sub, subY);
+    dibujarLineas(paso, this.colores.grilla, undefined, pasoY);
   }
 
   dibujarEjes() {
@@ -322,16 +329,16 @@ export class Plano {
     const paso = this.pasoGrilla;
     const X0 = Math.round(this.px(0)) + 0.5;
     const Y0 = Math.round(this.py(0)) + 0.5;
-    ctx.strokeStyle = 'rgba(233,238,242,0.55)';
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = this.colores.eje;
+    ctx.lineWidth = 1.25;
     ctx.beginPath();
     if (X0 >= 0 && X0 <= this.ancho) { ctx.moveTo(X0, 0); ctx.lineTo(X0, this.alto); }
     if (Y0 >= 0 && Y0 <= this.alto) { ctx.moveTo(0, Y0); ctx.lineTo(this.ancho, Y0); }
     ctx.stroke();
 
     // Números de los ejes (si el eje no se ve, quedan pegados al borde)
-    ctx.font = `13px ${this.fuente}`;
-    ctx.fillStyle = 'rgba(233,238,242,0.6)';
+    ctx.font = `12px ${this.fuente}`;
+    ctx.fillStyle = this.colores.numeros;
     const yTexto = Math.min(Math.max(Y0 + 5, 4), this.alto - 18);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
@@ -356,8 +363,8 @@ export class Plano {
       this._textoConHalo(textoNumeroEje(y, pasoY), pegadoIzq ? 4 : xTexto, Y);
     }
     // nombres de los ejes
-    ctx.font = `italic 15px ${this.fuente}`;
-    ctx.fillStyle = 'rgba(233,238,242,0.75)';
+    ctx.font = `italic 17px ${this.fuenteMate}`;
+    ctx.fillStyle = this.colores.textoSuave;
     if (Y0 >= 0 && Y0 <= this.alto) {
       ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
       this._textoConHalo('x', this.ancho - 6, Y0 - 4);
@@ -485,10 +492,10 @@ export class Plano {
    * Texto en coordenadas matemáticas. dx, dy: corrimiento en píxeles.
    * Si el texto se saldría del gráfico, se lo acomoda adentro.
    */
-  etiqueta(texto, x, y, { color = this.colores.texto, dx = 10, dy = -10, alinear = 'left', tamano = 15, negrita = true } = {}) {
+  etiqueta(texto, x, y, { color = this.colores.texto, dx = 10, dy = -10, alinear = 'left', tamano = 14, negrita = true } = {}) {
     const { ctx } = this;
     ctx.save();
-    ctx.font = `${negrita ? '700 ' : ''}${tamano}px ${this.fuente}`;
+    ctx.font = `${negrita ? '600 ' : ''}${tamano}px ${this.fuente}`;
     const ancho = ctx.measureText(texto).width;
     let X = this.px(x) + dx;
     let Y = this.py(y) + dy;

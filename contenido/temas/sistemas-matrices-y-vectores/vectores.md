@@ -10,7 +10,7 @@ interactivo: vectores
 
 Arrastrá las puntas de las flechas y probá las cuatro operaciones de arriba.
 
-- En **Suma**, ¿adónde llega la flecha blanca? Fijate en la naranja punteada.
+- En **Suma**, ¿adónde llega la flecha negra? Fijate en la naranja punteada.
 - En **Por un número**, ¿qué pasa si el número es negativo? ¿Y si es 0.5?
 - En **Producto escalar**, buscá una posición donde dé 0. ¿Cómo quedan las flechas?
 

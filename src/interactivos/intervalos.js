@@ -155,7 +155,7 @@ export function iniciarIntervalos(raiz) {
       const motivo = forma === 'una'
         ? `${num(p)} ${signo} ${num(a)}`
         : `${num(a)} ${puntas[0]} ${num(p)} ${puntas[1]} ${num(b)}`;
-      pruebaEl.innerHTML = `¿El <b>${num(p)}</b> está? ${ok ? `<b class="pos">Sí</b>: ${motivo} es verdad.` : `<b class="neg">No</b>: ${motivo} es falso.`} Arrastrá el punto blanco para probar otros.`;
+      pruebaEl.innerHTML = `¿El <b>${num(p)}</b> está? ${ok ? `<b class="pos">Sí</b>: ${motivo} es verdad.` : `<b class="neg">No</b>: ${motivo} es falso.`} Arrastrá el punto negro para probar otros.`;
     }
   }
 

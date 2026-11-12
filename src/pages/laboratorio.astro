@@ -15,14 +15,12 @@ const [antes, ...despues] = pagina.partes;
       <Volver href={url('interactivos/')} texto="Interactivos" />
       <h1>{pagina.datos.titulo}</h1>
     </header>
-    <div class="consigna texto" set:html={antes} />
-  </div>
-  <div class="contenedor-ancho">
-    <Interactivo nombre="laboratorio" />
-  </div>
-  {despues.length > 0 && (
-    <div class="contenedor">
-      <div class="texto" set:html={despues.join('')} />
+    <div class="consigna texto" style="margin-top: 1rem" set:html={antes} />
+    <div class="marco-interactivo">
+      <Interactivo nombre="laboratorio" />
     </div>
-  )}
+    {despues.length > 0 && (
+      <div class="texto columna-texto" style="margin-top: 1.6rem" set:html={despues.join('')} />
+    )}
+  </div>
 </Base>
