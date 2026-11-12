@@ -82,7 +82,7 @@ interactivo: cuadratica
 
 - **Ojo:** si un texto de esta parte tiene **dos puntos seguidos de un espacio** (por ejemplo `resumen: Y al revés: sacar factor común`), hay que ponerlo **entre comillas**: `resumen: "Y al revés: sacar factor común"`. Si no, el armado falla.
 - `orden`: decide en qué orden aparecen los temas **dentro de su unidad** (más chico = más arriba). También decide cuál es el "tema siguiente" y el "tema anterior" de los botones del final.
-- La **unidad** de un tema es la carpeta donde está el archivo (`contenido/temas/funciones/`, `contenido/temas/derivadas/`…). Para pasar un tema a otra unidad, se mueve el archivo de carpeta. Los nombres, el orden y las descripciones de las unidades están en `contenido/sitio.md`.
+- La **unidad** de un tema es la carpeta donde está el archivo (`contenido/temas/funciones/`, `contenido/temas/derivadas/`…). Para pasar un tema a otra unidad, se mueve el archivo de carpeta. Los nombres, el orden y las descripciones de las unidades están en `contenido/sitio.md`. El **ícono** de cada unidad sale de su `id` (si algún día se agrega una unidad nueva, aparece con un ícono genérico hasta que se le dibuje uno: pedíselo a Claude).
 - `subseccion`: solo se usa en las unidades largas (más de 6 temas), para separar los temas con subtítulos.
 - `interactivo`: qué gráfico interactivo va en la parte de "Intuición" (a los alumnos ese título se les muestra como **"Para probar"**). Si el tema no tiene, se borra esa línea.
 - Algunos interactivos usan datos extra. Por ejemplo, el de **orden de las operaciones** lee la lista `cuentas:`. Cada cuenta va entre comillas, con `·` para multiplicar, `:` para dividir y `^` para las potencias (`2^2` es 2²):

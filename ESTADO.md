@@ -1,11 +1,38 @@
 # Estado del proyecto
 
-_Última actualización: 11/11/2026 — sesión 6 (revisión general y sección de tutores completa)_
+_Última actualización: 12/11/2026 — sesión 8 (rediseño, parte 1 de 3)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
 
+## Rediseño y dos funciones nuevas, en 3 partes (pedido de Mati, 12/11/2026)
+
+| Parte | Qué es | Estado |
+|---|---|---|
+| **1 — Rediseño** | Diseño claro: Lexend, gris cálido con tarjetas blancas, acento azul, dos columnas, grillas de tarjetas, íconos, interactivos rediseñados | ✅ **Publicada. Falta la devolución de Mati.** |
+| **2 — Guías para imprimir (PDF)** | Botón "Imprimir guía" en cada tema y en cada unidad | ⏳ **Es la próxima.** No empezar sin el OK de Mati a la Parte 1. |
+| **3 — Mapa de correlativas** | Página "Mapa" con los temas como nodos y flechas de requisito | ⏳ Después de la 2. |
+
+El pedido completo de las partes 2 y 3 (lo que escribió Mati):
+- **Parte 2:** un botón "Imprimir guía" en cada tema y otro en cada unidad (junta todos sus temas). CSS de impresión → "Guardar como PDF". Contenido, en orden: Para recordar, Ejemplo resuelto (con sus pasos desplegados) y Ejercicios. **Solo los ejercicios de respuesta numérica** (los de opción múltiple quedan afuera). Al final, "Respuestas": solo el resultado, sin resolución. Solo texto, en blanco y negro, sin logo, sin QR, sin encabezados decorativos y sin espacio para escribir; lo más compacto posible. Las fórmulas se tienen que imprimir bien.
+- **Parte 3:** página propia "Mapa" en el menú. Los temas son los nodos (todos), agrupados por unidad como un plan de estudios, con flechas de requisito. Al tocar un tema se resalta todo su camino hacia atrás (requisitos directos e indirectos) y el resto se atenúa; cada nodo tiene un link al tema. Sin progreso guardado. En el celular, el mismo grafo con zoom y arrastre con dos dedos y botón de vista inicial. Las correlativas salen del apartado "Antes tiene que saber" de cada tema y van en un archivo fácil de editar (por ejemplo, un campo `necesita:` en el frontmatter); sumar a `COMO-EDITAR.md` cómo cambiarlas. Al terminar, pasarle a Mati la lista de correlativas para revisar.
+
+### Parte 1 — Rediseño ✅ (publicada el 12/11/2026)
+Reemplaza al diseño "Carpeta" (Fraunces + pizarrones oscuros). Las decisiones están en `CLAUDE.md`, sección 4.
+- **Tipografía:** Lexend para todo (pesos 400, 500, 600 y 700). Se sacaron Fraunces, Atkinson y Nunito.
+- **Colores:** todo en `src/styles/global.css`. Fondo gris cálido, tarjetas blancas, acento azul. Ya no hay "dos mundos" (hoja y pizarrón): hay un solo juego de colores. Los colores por concepto conservan nombre y significado, en tonos más sobrios. Variables nuevas para los gráficos: `--grafico-grilla`, `--grafico-grilla-fina`, `--grafico-eje`, `--grafico-numeros`.
+- **Layout:** la página usa el ancho (`--ancho-pagina`). En un tema (y en las notas de tutores), en la compu: texto a la izquierda y el interactivo fijo a la derecha (`.tema-cuerpo`, `.tema-interactivo-fijo` en `contenido.css`). Si el interactivo es más alto que la pantalla, se mueve por dentro. En el celular, una columna, como antes.
+- **Los interactivos se acomodan según el lugar que tienen**, no según la pantalla: el "marco" (`.marco-interactivo`) mide el ancho y, si hay 700 px o más, el interactivo va en dos columnas (gráfico | controles).
+- **Listas en tarjetas:** Inicio (9 tarjetas de unidad y los números grandes: unidades, temas y ejercicios, que se cuentan solos), Temas y Tutores (cada unidad es una tarjeta que se abre y muestra sus temas en una grilla; **en la compu arrancan todas abiertas**, en el celular cerradas), Interactivos (tarjetas de unidad). Notación: una tarjeta por sección, en dos columnas.
+- **Íconos:** `src/components/IconoUnidad.astro`, uno por unidad, elegido por el `id` de la unidad.
+- **Interactivos:** tarjeta clara, grilla y ejes finos, deslizadores azules, casillas como chips, selectores segmentados. **No se tocó la lógica**: mismos controles, mismas casillas y mismos valores por defecto. Revisados los 35 (más el Laboratorio y los 3D) a 375 px y en compu: sin errores y sin nada que se salga de la pantalla.
+- **Textos que cambiaron por el fondo claro:** los puntos que antes eran blancos ahora son negros, así que donde decía "punto blanco" o "flecha blanca" ahora dice "negro/negra" (recta de signos, inecuaciones, intervalos, integral, secante, vectores y el tema "¿Qué es la derivada?").
+- **Arreglo de paso:** los exponentes y subíndices de las fórmulas (x², x₁,₂) salían del mismo tamaño que la letra, porque los estilos de KaTeX eran de una versión y las fórmulas de otra. Quedó una sola versión de KaTeX (0.16).
+- Para revisar con Mati: el tono del azul, el tamaño de la letra, si en la compu prefiere las unidades de Temas cerradas, y los 9 íconos.
+
 ## Revisión general (sesión 6, 11/11/2026) — parte 1 publicada, falta la devolución de Mati
+
+_(Lo que acá dice del diseño "Carpeta", las tipografías y los pizarrones quedó reemplazado por el rediseño de arriba. Lo demás sigue igual.)_
 
 Decisiones de Mati: diseño **"Carpeta"** (hoja color hueso para leer + interactivos como pizarrones oscuros), nombre **"Matemática para todos"** con logo **∀ con un punto amarillo**, **9 unidades** en vez de Básico / Análisis / Álgebra, y sección **Interactivos** con todos los de una unidad en la misma página.
 

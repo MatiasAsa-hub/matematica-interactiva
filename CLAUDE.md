@@ -39,11 +39,19 @@ Una página web interactiva de matemática, gratuita y de acceso libre, para un 
 
 ## 4. Estética
 
-- Inspiración: **3Blue1Brown**. Sobrio, claro, animaciones suaves que explican y no decoran.
-- **Fondo ni blanco ni negro** (por ejemplo, un gris azulado tipo pizarra o un tono hueso). La estética final se discute con Mati cuando haya un prototipo. Hasta entonces, elegí vos.
-- Colores sencillos pero atractivos, con **códigos de color fijos para los conceptos** en toda la página (por ejemplo: la función siempre del mismo color, la derivada de otro, C⁺ y C⁻ siempre con los mismos). Que el significado no dependa solo del color: sumá etiquetas o estilos de línea.
+Diseño vigente desde el 12/11/2026 (rediseño pedido por Mati; **reemplaza al diseño "Carpeta"**, el de Fraunces y los pizarrones oscuros).
+
+- **Referencias:** Brilliant (grilla de tarjetas, un ícono geométrico por curso, paleta corta), Bureau Oberhaeuser "City Statistics" (gris cálido, casi monocromo, línea fina, un solo acento) y un dashboard tipo Avito (tarjetas grandes de bordes redondeados, números grandes en bold, un solo acento). En común: **claro, una sola sans, un acento, la información en tarjetas**. Las animaciones siguen siendo suaves, de las que explican y no decoran (3Blue1Brown).
+- **Tipografía:** una sola familia para todo, **Lexend** (con `@fontsource`, solo los pesos 400, 500, 600 y 700). Los títulos se diferencian por peso y tamaño. Las fórmulas van con KaTeX (serif matemática), sin cambios.
+- **Color y fondo:** fondo general **gris cálido muy claro**, con **tarjetas blancas** encima. **Un solo acento: azul**, que hace juego con el punto amarillo del logo ∀.
+- **Colores por concepto** (función, raíces, C⁺, C⁻, vértice, derivada, integral…): fijos en toda la página, con los mismos nombres de variable de siempre, en tonos sobrios que se leen sobre fondo claro. Que el significado no dependa solo del color: sumá etiquetas o estilos de línea.
+- **Todo sale de las variables de `src/styles/global.css`** (nada de colores sueltos en el código; los gráficos también leen de ahí la grilla, los ejes y los números).
+- **Ancho y layout (compu):** se usa el ancho, con márgenes. Dentro de un tema, **dos columnas**: el texto a la izquierda (como máximo unas 70 letras por renglón) y el **interactivo fijo (sticky) a la derecha** mientras se baja. En el celular, todo en una columna.
+- **Listas** (Inicio, Temas, Interactivos, Tutores): **grillas de tarjetas**, de 3 a 5 por fila en la compu y 1 o 2 en el celular.
+- **Íconos:** uno geométrico propio por unidad (9), en SVG inline y con la paleta de la página: formas planas en azul, negro y gris (`src/components/IconoUnidad.astro`).
+- **Interactivos:** tarjeta clara con borde suave y esquinas redondeadas; grilla y ejes finos; deslizadores con el acento; casillas como "chips"; botones segmentados para elegir entre opciones (por ejemplo, Polinómica | Canónica).
 - Poca información a la vez: la suficiente para entender el tema, nunca abrumadora. Lo opcional va con casillas para prender y apagar.
-- Tipografía legible en el celular.
+- Sigue siendo provisoria hasta que llegue el sistema de diseño de Figma.
 
 ## 5. Tono y enfoque pedagógico
 
@@ -210,7 +218,7 @@ Transversales, a lo largo de todas las etapas: la página de notación y la secc
 ## 11. Decisiones pendientes
 
 - ~~Nombre de la página~~ → **"Matemática para todos"**, con el logo de la **∀ ("para todo") y un punto amarillo** en la punta (decidido por Mati, 11/11/2026).
-- ~~La estética final~~ → diseño **"Carpeta"** (elegido por Mati, 11/11/2026): hoja color hueso para leer, interactivos como **pizarrones oscuros**, títulos en Fraunces y texto en Atkinson Hyperlegible, colores por concepto (versión "tinta" en la hoja y "tiza" en el pizarrón). Sigue siendo provisoria hasta que llegue el sistema de diseño de Figma.
+- ~~La estética final~~ → **rediseño claro** (pedido por Mati, 12/11/2026): fondo gris cálido con tarjetas blancas, una sola tipografía (Lexend), un solo acento azul, grillas de tarjetas, un ícono por unidad y dos columnas en la compu. Ver la sección 4. Reemplaza al diseño "Carpeta" (11/11/2026: hoja color hueso, pizarrones oscuros, Fraunces y Atkinson). Sigue siendo provisoria hasta que llegue el sistema de diseño de Figma.
 - ~~La forma de los parámetros para polinomios de grado ≥ 3~~ → **con las raíces**.
 - ~~La tabla x | f(x)~~ → **opcional, apagada por defecto**.
 - ~~Los detalles de la animación de integral 7.a~~ → **dx a la mitad, animado, altura a la izquierda con botón, lo de abajo del eje en rojo y resta**.
