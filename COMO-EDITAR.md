@@ -178,6 +178,17 @@ El vértice está arriba del eje y la parábola abre para arriba.
 
 ---
 
+### Las guías para imprimir
+
+Cada tema tiene un botón **Imprimir guía**, y cada unidad (en la lista de Temas) uno que junta todos sus temas. La guía se arma **sola** con lo que ya está en el archivo del tema, así que no hay que escribir nada aparte:
+
+- el recuadro `## Para recordar`,
+- el `## Ejemplo resuelto` con todos sus pasos a la vista,
+- los ejercicios **de respuesta numérica** (los de opción múltiple no entran),
+- y al final, **Respuestas**: el renglón `respuesta:` de cada ejercicio, tal como está escrito (por eso conviene escribirlo lindo: `3/4`, `-2 ; 2`).
+
+Si cambiás un ejercicio, la guía cambia sola.
+
 ## 6. Agregar un tema nuevo
 
 1. En GitHub, entrá a la carpeta de la unidad donde va el tema (por ejemplo `contenido/temas/funciones`). Las unidades y su orden están en `contenido/sitio.md`.
