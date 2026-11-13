@@ -11,7 +11,7 @@ _Última actualización: 13/11/2026 — sesión 9 (guías para imprimir y mapa d
 |---|---|---|
 | **1 — Rediseño** | Diseño claro: Lexend, gris cálido con tarjetas blancas, acento azul, dos columnas, grillas de tarjetas, íconos, interactivos rediseñados | ✅ Publicada. Mati dio el OK para seguir (13/11/2026). |
 | **2 — Guías para imprimir (PDF)** | Botón "Imprimir guía" en cada tema y en cada unidad | ✅ Publicada. Mati dio el OK para seguir (13/11/2026). |
-| **3 — Mapa de correlativas** | Página "Mapa" con los temas como nodos y flechas de requisito | ✅ **Publicada. Falta que Mati revise el mapa y la lista de correlativas.** |
+| **3 — Mapa de correlativas** | Página "Mapa" con los temas como nodos y flechas de requisito | ✅ Publicada. Mati aprobó la lista de correlativas (13/11/2026). |
 
 El pedido completo de las partes 2 y 3 (lo que escribió Mati):
 - **Parte 2:** un botón "Imprimir guía" en cada tema y otro en cada unidad (junta todos sus temas). CSS de impresión → "Guardar como PDF". Contenido, en orden: Para recordar, Ejemplo resuelto (con sus pasos desplegados) y Ejercicios. **Solo los ejercicios de respuesta numérica** (los de opción múltiple quedan afuera). Al final, "Respuestas": solo el resultado, sin resolución. Solo texto, en blanco y negro, sin logo, sin QR, sin encabezados decorativos y sin espacio para escribir; lo más compacto posible. Las fórmulas se tienen que imprimir bien.
@@ -23,8 +23,8 @@ El pedido completo de las partes 2 y 3 (lo que escribió Mati):
 - Tocar un tema: se marcan él (azul lleno), todos sus requisitos directos e indirectos (azul claro) y las flechas entre ellos; el resto se apaga. Abajo aparece una tarjeta con el tema, "Ir al tema" y la lista de todo lo que hay que saber antes (★ = directo). Tocar de nuevo el mismo tema lo abre (cada nodo es un link). Tocar afuera o Escape borra la marca.
 - Mover y acercar: como los gráficos. Celular: dos dedos (con uno se mueve la página; si se arrastra de costado, avisa). Compu: arrastrar con el mouse y Ctrl + rueda. Botones +, − y vista inicial (abajo a la izquierda). En la compu entra todo a lo ancho; en el celular arranca con letra legible y se recorre.
 - **Datos:** campo `necesita:` en cada tema (solo los requisitos directos). Se armó a partir de "Antes tiene que saber" de las notas para tutores. El armado revisa que los nombres existan y que no haya vueltas (A necesita B y B necesita A). Explicado en `COMO-EDITAR.md`.
-- Dos links de "Antes tiene que saber" quedaron **afuera** a propósito, porque el texto los marca como opcionales (falta que Mati confirme): "¿Qué es la integral?" → "¿Qué es la derivada?" ("ayuda haber visto") y "Orden de las operaciones" → "Potencias y raíces" ("para las cuentas con potencias"; además iría hacia atrás, de la unidad 1 a la 2).
-- Para revisar con Mati: la lista de correlativas, si el mapa en el celular se entiende, y si quiere que el mapa quite las flechas "redundantes" (por ejemplo, si A → B → C y también A → C).
+- Dos links de "Antes tiene que saber" quedaron **afuera** a propósito, porque el texto los marca como opcionales (Mati aprobó la lista así, sin estas dos): "¿Qué es la integral?" → "¿Qué es la derivada?" ("ayuda haber visto") y "Orden de las operaciones" → "Potencias y raíces" ("para las cuentas con potencias"; además iría hacia atrás, de la unidad 1 a la 2).
+- **Mati aprobó las correlativas tal como están (13/11/2026).** Queda abierto, si Mati quiere más adelante: si el mapa en el celular se entiende bien y si quiere que el mapa quite las flechas "redundantes" (por ejemplo, si A → B → C y también A → C).
 
 ### Parte 2 — Guías para imprimir ✅ (publicada el 13/11/2026)
 - Páginas nuevas: `guia/<tema>/` (una por tema; no hay guía si el tema no tiene nada para imprimir) y `guia/unidad/<unidad>/` (las 9 unidades). Se arman solas desde el .md de cada tema.
