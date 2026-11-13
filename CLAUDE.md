@@ -103,6 +103,8 @@ Una página de referencia con todas las convenciones, que va creciendo. Las conv
 - **Desde la revisión general (11/11/2026):** la lista de **Temas** y la de **Tutores** se organizan en **9 unidades cortas** que se abren con un toque, agrupadas en 3 etapas (Para arrancar, Funciones, Para 4.º y 5.º año). Las unidades: Números y operaciones · Fracciones y potencias · Letras y ecuaciones · Funciones: las primeras · Más funciones · Combinar funciones · Límites y derivadas · Integrales · Sistemas, matrices y vectores. Están definidas en `contenido/sitio.md` y cada una es una carpeta de `contenido/temas/`.
 - Los títulos BÁSICO / ANÁLISIS / ÁLGEBRA de más abajo quedan como lista del contenido, no como secciones de la página.
 - Hay una sección **Interactivos** con todos los interactivos de cada unidad en una misma página (sin subsecciones). El Laboratorio vive ahí adentro.
+- Hay una página **Mapa** (13/11/2026, pedido de Mati): los temas como un plan de estudios (una columna por unidad) con flechas de correlativas. Las correlativas viven en el campo `necesita:` de cada tema (solo las directas). Tocar un tema marca todo su camino hacia atrás. Sin progreso guardado.
+- Cada tema y cada unidad tienen un botón **Imprimir guía** (13/11/2026): Para recordar, ejemplo resuelto, ejercicios numéricos y respuestas al final, en blanco y negro.
 - Cada tema tiene arriba un botón para **volver** a su unidad y abajo los botones de **tema siguiente** y **anterior**.
 
 ### BÁSICO — Cómo operar

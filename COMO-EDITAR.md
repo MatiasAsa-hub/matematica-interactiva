@@ -189,6 +189,21 @@ Cada tema tiene un botón **Imprimir guía**, y cada unidad (en la lista de Tema
 
 Si cambiás un ejercicio, la guía cambia sola.
 
+### Las correlativas (el Mapa)
+
+La página **Mapa** dibuja todos los temas con flechas de "hay que saber esto antes". Las flechas salen de un renglón del encabezado de cada tema (arriba de todo del archivo, entre los `---`):
+
+```
+necesita: [que-es-una-funcion, resolver-ecuaciones]
+```
+
+- Adentro de los corchetes van los temas que hay que saber **justo antes** (no hace falta poner los de más atrás: el mapa los encuentra solo).
+- Cada uno es el **nombre del archivo** del tema, sin `.md` (por ejemplo `funcion-lineal` para `funcion-lineal.md`), separados por comas.
+- Si el tema no necesita ninguno, queda vacío: `necesita: []`.
+- Si escribís mal un nombre, o dos temas se necesitan uno al otro, el armado de la página avisa qué pasó y la página publicada no cambia hasta que se corrija.
+
+Ojo: esto es aparte del apartado "Antes tiene que saber" de las notas para tutores. Si cambiás uno, conviene cambiar el otro.
+
 ## 6. Agregar un tema nuevo
 
 1. En GitHub, entrá a la carpeta de la unidad donde va el tema (por ejemplo `contenido/temas/funciones`). Las unidades y su orden están en `contenido/sitio.md`.
@@ -196,6 +211,7 @@ Si cambiás un ejercicio, la guía cambia sola.
 3. Poné el nombre en minúsculas, sin acentos y con guiones, terminado en `.md`. Por ejemplo: `funcion-lineal.md`. Ese nombre es el que va en la dirección de la página y en los links `tema:funcion-lineal`.
 4. Lo más fácil: copiá el contenido de `funcion-cuadratica.md`, pegalo y cambiá los textos.
 5. Si el tema todavía no tiene interactivo, borrá la línea `interactivo:`.
+6. Cambiá la línea `necesita:` por los temas que hay que saber antes (ver "Las correlativas", más arriba). Así el tema aparece bien en el Mapa.
 
 ---
 

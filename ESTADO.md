@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-_Última actualización: 13/11/2026 — sesión 9 (guías para imprimir, parte 2 de 3)_
+_Última actualización: 13/11/2026 — sesión 9 (guías para imprimir y mapa de correlativas, partes 2 y 3 de 3)_
 
 **Página publicada:** https://matiasasa-hub.github.io/matematica-interactiva/
 **Repositorio:** https://github.com/MatiasAsa-hub/matematica-interactiva
@@ -10,12 +10,21 @@ _Última actualización: 13/11/2026 — sesión 9 (guías para imprimir, parte 2
 | Parte | Qué es | Estado |
 |---|---|---|
 | **1 — Rediseño** | Diseño claro: Lexend, gris cálido con tarjetas blancas, acento azul, dos columnas, grillas de tarjetas, íconos, interactivos rediseñados | ✅ Publicada. Mati dio el OK para seguir (13/11/2026). |
-| **2 — Guías para imprimir (PDF)** | Botón "Imprimir guía" en cada tema y en cada unidad | ✅ **Publicada. Falta la devolución de Mati.** |
-| **3 — Mapa de correlativas** | Página "Mapa" con los temas como nodos y flechas de requisito | ⏳ **Es la próxima.** No empezar sin el OK de Mati a la Parte 2. |
+| **2 — Guías para imprimir (PDF)** | Botón "Imprimir guía" en cada tema y en cada unidad | ✅ Publicada. Mati dio el OK para seguir (13/11/2026). |
+| **3 — Mapa de correlativas** | Página "Mapa" con los temas como nodos y flechas de requisito | ✅ **Publicada. Falta que Mati revise el mapa y la lista de correlativas.** |
 
 El pedido completo de las partes 2 y 3 (lo que escribió Mati):
 - **Parte 2:** un botón "Imprimir guía" en cada tema y otro en cada unidad (junta todos sus temas). CSS de impresión → "Guardar como PDF". Contenido, en orden: Para recordar, Ejemplo resuelto (con sus pasos desplegados) y Ejercicios. **Solo los ejercicios de respuesta numérica** (los de opción múltiple quedan afuera). Al final, "Respuestas": solo el resultado, sin resolución. Solo texto, en blanco y negro, sin logo, sin QR, sin encabezados decorativos y sin espacio para escribir; lo más compacto posible. Las fórmulas se tienen que imprimir bien.
 - **Parte 3:** página propia "Mapa" en el menú. Los temas son los nodos (todos), agrupados por unidad como un plan de estudios, con flechas de requisito. Al tocar un tema se resalta todo su camino hacia atrás (requisitos directos e indirectos) y el resto se atenúa; cada nodo tiene un link al tema. Sin progreso guardado. En el celular, el mismo grafo con zoom y arrastre con dos dedos y botón de vista inicial. Las correlativas salen del apartado "Antes tiene que saber" de cada tema y van en un archivo fácil de editar (por ejemplo, un campo `necesita:` en el frontmatter); sumar a `COMO-EDITAR.md` cómo cambiarlas. Al terminar, pasarle a Mati la lista de correlativas para revisar.
+
+### Parte 3 — Mapa de correlativas ✅ (publicada el 13/11/2026)
+- Página `mapa/`, en el menú entre Temas e Interactivos (arriba en la compu y abajo en el celular, que ahora tiene 6 botones). El texto de arriba está en `contenido/paginas/mapa.md`.
+- Dibujo en SVG, armado al construir el sitio (`src/lib/mapa.js`): una columna por unidad (agrupadas por etapa, como un plan de estudios) y los temas en el orden del recorrido. Las flechas van del tema que se necesita al que lo necesita; dentro de una misma columna, por el costado izquierdo.
+- Tocar un tema: se marcan él (azul lleno), todos sus requisitos directos e indirectos (azul claro) y las flechas entre ellos; el resto se apaga. Abajo aparece una tarjeta con el tema, "Ir al tema" y la lista de todo lo que hay que saber antes (★ = directo). Tocar de nuevo el mismo tema lo abre (cada nodo es un link). Tocar afuera o Escape borra la marca.
+- Mover y acercar: como los gráficos. Celular: dos dedos (con uno se mueve la página; si se arrastra de costado, avisa). Compu: arrastrar con el mouse y Ctrl + rueda. Botones +, − y vista inicial (abajo a la izquierda). En la compu entra todo a lo ancho; en el celular arranca con letra legible y se recorre.
+- **Datos:** campo `necesita:` en cada tema (solo los requisitos directos). Se armó a partir de "Antes tiene que saber" de las notas para tutores. El armado revisa que los nombres existan y que no haya vueltas (A necesita B y B necesita A). Explicado en `COMO-EDITAR.md`.
+- Dos links de "Antes tiene que saber" quedaron **afuera** a propósito, porque el texto los marca como opcionales (falta que Mati confirme): "¿Qué es la integral?" → "¿Qué es la derivada?" ("ayuda haber visto") y "Orden de las operaciones" → "Potencias y raíces" ("para las cuentas con potencias"; además iría hacia atrás, de la unidad 1 a la 2).
+- Para revisar con Mati: la lista de correlativas, si el mapa en el celular se entiende, y si quiere que el mapa quite las flechas "redundantes" (por ejemplo, si A → B → C y también A → C).
 
 ### Parte 2 — Guías para imprimir ✅ (publicada el 13/11/2026)
 - Páginas nuevas: `guia/<tema>/` (una por tema; no hay guía si el tema no tiene nada para imprimir) y `guia/unidad/<unidad>/` (las 9 unidades). Se arman solas desde el .md de cada tema.
