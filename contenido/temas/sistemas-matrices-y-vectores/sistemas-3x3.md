@@ -3,6 +3,8 @@ titulo: "Sistemas 3×3: tres planos"
 subseccion: Sistemas de ecuaciones
 resumen: Tres ecuaciones con x, y, z. Cada una es un plano en el espacio, y la solución es el punto que está en los tres.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [sistemas-2x2, clasificacion-de-sistemas]
 interactivo: sistema
 modo: explorar
 sistemas:

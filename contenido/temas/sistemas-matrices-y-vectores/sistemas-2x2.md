@@ -3,6 +3,8 @@ titulo: "Sistemas 2×2: dos rectas"
 subseccion: Sistemas de ecuaciones
 resumen: Dos ecuaciones con x e y. Cada una es una recta, y la solución es donde se cruzan.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [resolver-ecuaciones, funcion-lineal]
 interactivo: sistema
 modo: explorar
 # Cada sistema: las ecuaciones separadas por ";"

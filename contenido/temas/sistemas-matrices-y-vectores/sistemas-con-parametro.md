@@ -3,6 +3,8 @@ titulo: Sistemas con parámetro k
 subseccion: Sistemas de ecuaciones
 resumen: Un sistema con una letra k adentro. Según cuánto vale k, tiene una solución, infinitas o ninguna.
 orden: 50
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [metodo-de-gauss, clasificacion-de-sistemas]
 interactivo: sistema
 modo: parametro
 # El deslizador de k va de min a max (con imán en los valores especiales)

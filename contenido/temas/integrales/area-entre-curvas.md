@@ -3,6 +3,8 @@ titulo: Área entre dos curvas
 subseccion: Integrales
 resumen: El área entre f y g es la integral de "la de arriba menos la de abajo".
 orden: 40
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [regla-de-barrow, funcion-cuadratica]
 interactivo: integral
 barrow: true
 # Cada ejemplo: "la de arriba ; abajo: la de abajo ; de a a b"

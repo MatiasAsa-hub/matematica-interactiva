@@ -47,6 +47,33 @@ const temasCrudos = Object.entries(archivos)
 
 const slugsDeTemas = new Set(temasCrudos.map((t) => t.slug));
 
+// Correlativas (campo "necesita:" de cada tema): se revisan al armar el sitio.
+// Si un nombre está mal escrito o hay una vuelta (A necesita B y B necesita A),
+// el armado avisa y la página publicada no se toca.
+function necesitaDe(t) {
+  const n = t.datos.necesita ?? [];
+  if (!Array.isArray(n)) throw new Error(`En ${t.ruta}, "necesita:" tiene que ser una lista entre corchetes, por ejemplo: necesita: [funcion-lineal, resolver-ecuaciones]`);
+  return n.map(String);
+}
+(() => {
+  for (const t of temasCrudos) {
+    for (const s of necesitaDe(t)) {
+      if (!slugsDeTemas.has(s)) throw new Error(`En ${t.ruta}, "necesita:" nombra "${s}", que no es ningún tema. Tiene que ser el nombre de un archivo de contenido/temas/, sin ".md".`);
+      if (s === t.slug) throw new Error(`En ${t.ruta}, el tema se necesita a sí mismo en "necesita:".`);
+    }
+  }
+  const mapa = new Map(temasCrudos.map((t) => [t.slug, necesitaDe(t)]));
+  const estado = new Map();
+  const visitar = (s, camino) => {
+    if (estado.get(s) === 'listo') return;
+    if (estado.get(s) === 'viendo') throw new Error(`Las correlativas dan una vuelta: ${[...camino, s].join(' → ')}. Revisá "necesita:" en esos temas.`);
+    estado.set(s, 'viendo');
+    for (const r of mapa.get(s)) visitar(r, [...camino, s]);
+    estado.set(s, 'listo');
+  };
+  for (const s of mapa.keys()) visitar(s, []);
+})();
+
 /**
  * Lista de temas en el orden del recorrido: primero por unidad (el orden de
  * las unidades está en contenido/sitio.md) y, dentro de la unidad, por el
@@ -64,6 +91,7 @@ export function listaDeTemas() {
       orden: Number(t.datos.orden ?? 999),
       subseccion: t.datos.subseccion ?? '',
       interactivo: t.datos.interactivo ?? null,
+      necesita: necesitaDe(t),
     }))
     .sort((a, b) => lugar(a.seccion) - lugar(b.seccion) || a.orden - b.orden);
 }

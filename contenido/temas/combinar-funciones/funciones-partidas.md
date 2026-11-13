@@ -3,6 +3,8 @@ titulo: Funciones partidas
 subseccion: Funciones
 resumen: Funciones con distintas fórmulas según dónde esté x. Puntos llenos y huecos, saltos.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [desigualdades-e-intervalos, funcion-lineal, que-es-una-funcion]
 interactivo: partida
 # Los ejemplos del interactivo. Cada tramo es "fórmula si condición", separados por ";".
 # Condiciones: x < 1, x <= 1, x > 1, x >= 1, o entre dos números: -2 <= x < 2

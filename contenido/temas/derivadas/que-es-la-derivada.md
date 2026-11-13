@@ -3,6 +3,8 @@ titulo: ¿Qué es la derivada?
 subseccion: Derivadas
 resumen: De la secante a la tangente, y la cuenta por definición con x y x + h.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [funcion-lineal, que-es-una-funcion, distributiva-y-factor-comun, limites]
 interactivo: secante
 # Las funciones del interactivo (se pasa de una a otra con las flechitas ‹ ›).
 # Se puede escribir: x^2, x^3 - 3x, 2x + 1, sen(x), cos(x), e^x

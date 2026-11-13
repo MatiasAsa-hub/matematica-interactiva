@@ -3,6 +3,8 @@ titulo: Función raíz cuadrada
 subseccion: Funciones
 resumen: f(x) = a√(x − h) + k. Media parábola acostada. Dominio.
 orden: 50
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [potencias-y-raices, desigualdades-e-intervalos, funcion-cuadratica]
 interactivo: familia
 familia: raiz
 ---

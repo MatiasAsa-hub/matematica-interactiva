@@ -3,6 +3,8 @@ titulo: ¿Qué es una función?
 subseccion: Funciones
 resumen: Una regla que a cada x le da un f(x). Tabla, fórmula y gráfico. Dominio e imagen.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [orden-de-las-operaciones, potencias-y-raices, que-es-una-ecuacion]
 interactivo: funcion
 # Las funciones de la "máquina". Se escriben con x, + − · : ^ y paréntesis
 # (x^2 es x²; 2x es 2 · x). Se prueban con x de −4 a 4.

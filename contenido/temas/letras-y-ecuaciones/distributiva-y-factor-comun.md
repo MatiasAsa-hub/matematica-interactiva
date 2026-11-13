@@ -3,6 +3,8 @@ titulo: Distributiva y factor común
 subseccion: Operaciones con letras
 resumen: "El número de afuera multiplica a cada término. Y al revés: sacar factor común."
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [terminos-semejantes, multiplicar-y-dividir-con-signos]
 interactivo: distributiva
 ---
 

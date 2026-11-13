@@ -3,6 +3,8 @@ titulo: Operaciones con fracciones
 subseccion: Fracciones
 resumen: Sumar, restar, multiplicar y dividir. El truco de dar vuelta la fracción.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-una-fraccion, multiplos-y-divisores]
 interactivo: fracciones-operaciones
 ---
 

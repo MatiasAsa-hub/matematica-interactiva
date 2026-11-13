@@ -3,6 +3,8 @@ titulo: Regla de Barrow y primitivas
 subseccion: Integrales
 resumen: Calcular una integral sin tiras, con una primitiva. Tabla de primitivas.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [derivar-polinomios, integral-acumulada]
 interactivo: integral
 # barrow: true prende la casilla "Regla de Barrow" (la cuenta con la primitiva)
 barrow: true

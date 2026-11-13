@@ -3,6 +3,8 @@ titulo: Método de Gauss
 subseccion: Sistemas de ecuaciones
 resumen: Se ordena el sistema en una matriz y se combinan las filas hasta que quede escalonado. Las rectas o planos se mueven, pero la solución no.
 orden: 40
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [sistemas-2x2, sistemas-3x3]
 interactivo: sistema
 modo: gauss
 # Cada sistema puede traer sus pasos escritos (si no, la página los elige sola):

@@ -3,6 +3,8 @@ titulo: Determinante
 subseccion: Matrices
 resumen: Un número que sale de una matriz cuadrada. En 2×2 es el área de un paralelogramo; si da 0, el sistema no tiene una sola solución.
 orden: 70
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [matrices, sistemas-2x2]
 interactivo: determinante
 # Un segundo interactivo, al final de la explicación: las cuentas paso a paso
 interactivo2: matrices

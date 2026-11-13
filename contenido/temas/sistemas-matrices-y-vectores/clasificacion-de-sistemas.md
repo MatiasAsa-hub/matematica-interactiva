@@ -3,6 +3,8 @@ titulo: Clasificación de sistemas
 subseccion: Sistemas de ecuaciones
 resumen: Una solución, infinitas o ninguna. Compatible determinado, compatible indeterminado e incompatible.
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [sistemas-2x2]
 interactivo: sistema
 modo: explorar
 sistemas:

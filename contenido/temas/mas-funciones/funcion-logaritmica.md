@@ -3,6 +3,8 @@ titulo: Función logarítmica
 subseccion: Funciones
 resumen: f(x) = logₖ(x). La exponencial al revés. Dominio, raíz y asíntota.
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [potencias-y-raices, funcion-exponencial]
 interactivo: logaritmica
 ---
 

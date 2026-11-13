@@ -3,6 +3,8 @@ titulo: Vectores
 subseccion: Vectores y planos
 resumen: Flechas con componentes. Suma, resta, producto por un número, módulo y producto escalar, en el plano y en el espacio.
 orden: 80
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [potencias-y-raices]
 interactivo: vectores
 ---
 

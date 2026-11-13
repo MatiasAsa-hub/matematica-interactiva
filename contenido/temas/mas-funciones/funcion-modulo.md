@@ -3,6 +3,8 @@ titulo: Función módulo
 subseccion: Funciones
 resumen: f(x) = a|x − h| + k. La V. El módulo da vuelta lo negativo.
 orden: 40
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [sumar-y-restar-con-signos, funcion-lineal]
 interactivo: familia
 familia: modulo
 ---

@@ -3,6 +3,8 @@ titulo: Potencias y raíces
 subseccion: Potencias y raíces
 resumen: Multiplicar un número por sí mismo, sus propiedades, y la raíz como operación inversa.
 orden: 40
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [multiplicar-y-dividir-con-signos]
 interactivo: potencias
 ---
 

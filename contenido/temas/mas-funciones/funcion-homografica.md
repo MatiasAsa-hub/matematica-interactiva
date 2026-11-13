@@ -3,6 +3,8 @@ titulo: Función homográfica
 subseccion: Funciones
 resumen: f(x) = a/(x − h) + k. Dos asíntotas, una vertical y una horizontal.
 orden: 60
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [operaciones-con-fracciones, resolver-ecuaciones, que-es-una-funcion]
 interactivo: familia
 familia: homografica
 ---

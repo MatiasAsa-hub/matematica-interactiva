@@ -3,6 +3,8 @@ titulo: Función cuadrática
 subseccion: Funciones
 resumen: La parábola, sus raíces y su vértice. La forma polinómica y la canónica.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [potencias-y-raices, sumar-y-restar-con-signos, resolver-ecuaciones, funcion-lineal]
 interactivo: cuadratica
 ---
 

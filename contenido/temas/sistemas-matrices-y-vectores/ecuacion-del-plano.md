@@ -3,6 +3,8 @@ titulo: Ecuación del plano
 subseccion: Vectores y planos
 resumen: "a·x + b·y + c·z = d: los números de adelante forman el vector normal, la flecha perpendicular al plano."
 orden: 90
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [vectores, sistemas-3x3]
 interactivo: plano3d
 # Los planos de ejemplo (los números de adelante, de −3 a 3; el resultado, de −8 a 8)
 planos:

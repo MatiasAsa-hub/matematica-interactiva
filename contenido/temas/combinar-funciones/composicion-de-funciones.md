@@ -3,6 +3,8 @@ titulo: Composición de funciones
 subseccion: Funciones
 resumen: "f ∘ g: dos máquinas en cadena. Primero la de adentro. El orden importa."
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-una-funcion, orden-de-las-operaciones]
 interactivo: composicion
 # Los ejemplos del interactivo: cada uno con su f y su g.
 # Las fórmulas se escriben con x, + − · : ^ y paréntesis (x^2 es x²; 2x es 2 · x).

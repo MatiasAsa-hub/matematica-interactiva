@@ -3,6 +3,8 @@ titulo: Funciones trigonométricas
 subseccion: Funciones
 resumen: Seno, coseno y tangente, con un punto que gira en una circunferencia.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-una-funcion]
 interactivo: trigonometrica
 ---
 

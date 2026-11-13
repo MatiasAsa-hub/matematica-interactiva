@@ -3,6 +3,8 @@ titulo: Resolver ecuaciones (despejar)
 subseccion: Ecuaciones e inecuaciones
 resumen: Dejar la x sola haciendo lo mismo de los dos lados. Por qué "pasa restando".
 orden: 40
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-una-ecuacion, terminos-semejantes, sumar-y-restar-con-signos]
 interactivo: balanza
 modo: resolver
 # Las ecuaciones de la balanza, en orden. Se pueden agregar o cambiar.

@@ -3,6 +3,8 @@ titulo: Desigualdades e intervalos
 subseccion: Ecuaciones e inecuaciones
 resumen: Mayor, menor, mayor o igual. Cómo se ven en la recta y cómo se escriben como intervalo.
 orden: 50
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [sumar-y-restar-con-signos]
 interactivo: intervalos
 ---
 

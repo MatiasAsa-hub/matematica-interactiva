@@ -3,6 +3,8 @@ titulo: La gráfica de f'(x)
 subseccion: Derivadas
 resumen: Recorrer la curva y dibujar la pendiente en cada punto. Crece, decrece y extremos.
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-la-derivada, funcion-cuadratica]
 interactivo: recorrer
 # Las funciones del interactivo (se pasa de una a otra con las flechitas ‹ ›).
 funciones:

@@ -3,6 +3,8 @@ titulo: Función exponencial
 subseccion: Funciones
 resumen: f(x) = a · kˣ. Multiplicar siempre por lo mismo. Asíntota y crecimiento.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [potencias-y-raices, funcion-lineal]
 interactivo: exponencial
 ---
 

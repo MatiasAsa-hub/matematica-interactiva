@@ -3,6 +3,8 @@ titulo: La integral acumulada
 subseccion: Integrales
 resumen: "F(x), el área que se va juntando desde a. Su derivada es f: la integral es la inversa de la derivada."
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-la-integral, grafica-de-la-derivada]
 interactivo: acumulada
 # Las funciones del interactivo. Se puede agregar "; desde 1" para que el área
 # arranque en otro lugar (si no, arranca en 0).

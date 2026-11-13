@@ -3,6 +3,8 @@ titulo: Qué es una fracción
 subseccion: Fracciones
 resumen: Pedazos de un entero, un punto en la recta… y una división.
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [division-cociente-y-resto, multiplos-y-divisores]
 interactivo: fraccion
 ---
 

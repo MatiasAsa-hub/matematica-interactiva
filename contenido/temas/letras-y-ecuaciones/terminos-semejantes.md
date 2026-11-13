@@ -3,6 +3,8 @@ titulo: Términos semejantes
 subseccion: Operaciones con letras
 resumen: Sumar y restar con letras. Las x se juntan con las x, y los números con los números.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [sumar-y-restar-con-signos, orden-de-las-operaciones]
 interactivo: terminos
 ---
 

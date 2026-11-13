@@ -3,6 +3,8 @@ titulo: Derivar polinomios y tabla de derivadas
 subseccion: Derivadas
 resumen: La regla para derivar xⁿ, término a término, y las derivadas de tabla.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [potencias-y-raices, que-es-la-derivada]
 interactivo: recorrer
 # formula: true deja prendida la casilla "Fórmula de f'"
 formula: true

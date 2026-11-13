@@ -3,6 +3,8 @@ titulo: Resolver inecuaciones
 subseccion: Ecuaciones e inecuaciones
 resumen: Se despeja como una ecuación, pero ojo al dividir por un negativo. La solución es un intervalo.
 orden: 60
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [resolver-ecuaciones, desigualdades-e-intervalos]
 interactivo: inecuacion
 # Las inecuaciones del interactivo, en orden. Se pueden agregar o cambiar.
 # Se puede escribir >= y <= en lugar de ≥ y ≤.

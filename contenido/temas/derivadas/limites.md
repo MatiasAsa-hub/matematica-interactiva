@@ -3,6 +3,8 @@ titulo: Límites
 subseccion: Límites
 resumen: A qué número se acerca una función cuando x se acerca a un valor. Huecos, saltos y asíntotas.
 orden: 5
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [funciones-partidas, funcion-homografica, distributiva-y-factor-comun, operaciones-con-fracciones]
 interactivo: limite
 # Los ejemplos del interactivo (se pasa de uno a otro con las flechitas ‹ ›).
 # f es la función y a es el número al que se acerca x.

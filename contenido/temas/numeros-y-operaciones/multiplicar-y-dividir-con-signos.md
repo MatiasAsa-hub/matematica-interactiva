@@ -3,6 +3,8 @@ titulo: Multiplicar y dividir con signos
 subseccion: Operaciones
 resumen: La regla de los signos, vista con saltos en la recta. Por qué menos por menos da más.
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [sumar-y-restar-con-signos]
 interactivo: recta-multiplicacion
 ---
 

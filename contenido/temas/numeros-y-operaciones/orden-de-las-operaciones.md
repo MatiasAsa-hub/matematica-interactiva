@@ -3,6 +3,8 @@ titulo: Orden de las operaciones
 subseccion: Operaciones
 resumen: Qué se hace primero en una cuenta larga. Separar en términos.
 orden: 40
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [multiplicar-y-dividir-con-signos]
 interactivo: orden-operaciones
 # Las cuentas del interactivo. Se escriben con · para multiplicar, : para dividir
 # y ^ para las potencias (2^2 es 2²). Se pueden agregar o cambiar.

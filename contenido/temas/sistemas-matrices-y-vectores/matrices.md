@@ -3,6 +3,8 @@ titulo: Matrices y sus operaciones
 subseccion: Matrices
 resumen: Una tabla de números. Cómo se suman, cómo se multiplican por un número y cómo se multiplican entre sí (fila por columna).
 orden: 60
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [metodo-de-gauss, multiplicar-y-dividir-con-signos]
 interactivo: matrices
 # Cada cuenta: las matrices entre paréntesis, con las filas separadas por ";"
 cuentas:

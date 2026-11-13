@@ -3,6 +3,8 @@ titulo: Sumar y restar con signos
 subseccion: Operaciones
 resumen: Números negativos en la recta numérica. Por qué restar es sumar el opuesto.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: []
 interactivo: recta-signos
 ---
 

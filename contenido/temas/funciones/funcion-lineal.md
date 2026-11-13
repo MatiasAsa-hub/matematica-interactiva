@@ -3,6 +3,8 @@ titulo: Función lineal
 subseccion: Funciones
 resumen: La recta f(x) = mx + b. Pendiente, ordenada al origen y raíz.
 orden: 20
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-una-funcion, resolver-ecuaciones, resolver-inecuaciones]
 interactivo: lineal
 ---
 

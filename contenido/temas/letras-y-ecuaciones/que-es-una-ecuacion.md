@@ -3,6 +3,8 @@ titulo: ¿Qué es una ecuación?
 subseccion: Ecuaciones e inecuaciones
 resumen: Una igualdad con un número escondido. La solución es el número que la hace verdad.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [orden-de-las-operaciones, terminos-semejantes]
 interactivo: balanza
 modo: probar
 # Las ecuaciones de la balanza. En este tema, la solución tiene que ser

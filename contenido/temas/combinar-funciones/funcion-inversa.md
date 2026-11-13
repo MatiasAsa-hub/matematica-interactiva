@@ -3,6 +3,8 @@ titulo: Función inversa
 subseccion: Funciones
 resumen: f⁻¹ deshace lo que hace f. El espejo en y = x. Cuándo existe.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [resolver-ecuaciones, funcion-lineal, composicion-de-funciones]
 interactivo: inversa
 # Los ejemplos del interactivo. Se escriben con x, + − · : ^ y paréntesis.
 inversas:

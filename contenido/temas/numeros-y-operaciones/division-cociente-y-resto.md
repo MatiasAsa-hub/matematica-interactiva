@@ -3,6 +3,8 @@ titulo: "División: cociente y resto"
 subseccion: Operaciones
 resumen: Dividir con la galera, paso a paso. Qué son el cociente y el resto.
 orden: 30
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: []
 interactivo: galera
 # Divisiones de ejemplo del interactivo (dividendo : divisor). Se pueden cambiar.
 divisiones:

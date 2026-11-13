@@ -36,7 +36,7 @@
 /* --- Navegación de abajo (celular) --- */
 .nav-abajo {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
-  display: grid; grid-template-columns: repeat(5, 1fr);
+  display: grid; grid-auto-columns: 1fr; grid-auto-flow: column;
   height: calc(var(--alto-nav-abajo) + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--fondo-tarjeta);
@@ -418,3 +418,70 @@ details.unidad .icono-unidad { width: 48px; height: 48px; flex: none; }
 .acciones-unidad { margin: 0 0 0.8rem; }
 .boton-guia { gap: 0.4em; }
 .boton-guia svg { color: var(--acento); }
+
+/* ==========================================================================
+   Mapa de correlativas
+   ========================================================================== */
+.mapa-marco {
+  position: relative; margin: 1.4rem 0 0; height: 70vh; min-height: 420px;
+  background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: var(--radio);
+  overflow: hidden;
+}
+@media (min-width: 900px) { .mapa-marco { min-height: 0; } }
+.mapa-svg {
+  display: block; width: 100%; height: 100%;
+  touch-action: pan-x pan-y; user-select: none; -webkit-user-select: none; cursor: grab;
+}
+.mapa-svg.arrastrando { cursor: grabbing; }
+.mapa-fondo { fill: transparent; }
+
+.mapa-etapa line { stroke: var(--borde-fuerte); stroke-width: 1; }
+.mapa-etapa text { fill: var(--texto-tenue); font-size: 11px; font-weight: 600; letter-spacing: 0.09em; }
+.mapa-unidad-numero { fill: var(--texto-tenue); font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; }
+.mapa-unidad-nombre { fill: var(--texto-fuerte); font-size: 14.5px; font-weight: 600; }
+
+.mapa-flechas path {
+  fill: none; stroke: var(--borde-fuerte); stroke-width: 1.3;
+  transition: stroke 0.2s, opacity 0.2s, stroke-width 0.2s;
+}
+.mapa-punta { fill: var(--borde-fuerte); }
+.mapa-punta-camino { fill: var(--acento); }
+
+.mapa-nodo { cursor: pointer; text-decoration: none; }
+.mapa-nodo rect {
+  fill: var(--fondo-tarjeta); stroke: var(--borde-fuerte); stroke-width: 1;
+  transition: fill 0.2s, stroke 0.2s, opacity 0.2s;
+}
+.mapa-nodo text { fill: var(--texto-fuerte); font-size: 13px; font-weight: 500; transition: opacity 0.2s; pointer-events: none; }
+.mapa-nodo:hover rect, .mapa-nodo:focus-visible rect { stroke: var(--acento); stroke-width: 1.6; }
+.mapa-nodo:focus { outline: none; }
+
+/* con un tema elegido: su camino resaltado y el resto apagado */
+.hay-eleccion .mapa-nodo:not(.en-camino) rect,
+.hay-eleccion .mapa-nodo:not(.en-camino) text { opacity: 0.22; }
+.hay-eleccion .mapa-flechas path { opacity: 0.12; }
+.hay-eleccion .mapa-flechas path.en-camino { opacity: 1; stroke: var(--acento); stroke-width: 2; }
+.mapa-nodo.en-camino rect { fill: var(--acento-suave); stroke: var(--acento); stroke-width: 1.4; }
+.mapa-nodo.elegido rect { fill: var(--acento); stroke: var(--acento); }
+.mapa-nodo.elegido text { fill: #fff; font-weight: 600; }
+
+.mapa-marco .mapa-botones { top: auto; right: auto; bottom: 10px; left: 10px; flex-direction: row; }
+.mapa-ayuda { margin: 0.6rem 0 0; font-size: 0.88rem; }
+.solo-compu { display: none; }
+@media (hover: hover) and (pointer: fine) { .solo-compu { display: inline; } .solo-celular { display: none; } }
+
+.mapa-info { margin: 1rem 0 0; }
+.mapa-info-cabeza { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.mapa-info h2 { margin: 0; font-size: 1.2rem; }
+.mapa-info p { margin: 0.6rem 0 0; }
+.mapa-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.mapa-chip {
+  display: inline-flex; align-items: center; min-height: 34px; padding: 0.2rem 0.7rem;
+  border: 1px solid var(--borde); border-radius: 9px; background: var(--acento-suave);
+  color: var(--texto-fuerte); font-size: 0.88rem; text-decoration: none;
+}
+.mapa-chip:hover { border-color: var(--acento); color: var(--acento); }
+/* con 6 secciones, en los celulares angostos la letra de la barra de abajo va más chica */
+@media (max-width: 420px) {
+  .nav-abajo a { font-size: 0.6rem; letter-spacing: -0.01em; white-space: nowrap; }
+}

@@ -3,6 +3,8 @@ titulo: Funciones polinómicas
 subseccion: Funciones
 resumen: Polinomios de cualquier grado, escritos con sus raíces. La lineal y la cuadrática son casos particulares.
 orden: 40
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [funcion-lineal, funcion-cuadratica, distributiva-y-factor-comun]
 interactivo: polinomica
 ---
 

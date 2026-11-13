@@ -3,6 +3,8 @@ titulo: ¿Qué es la integral?
 subseccion: Integrales
 resumen: El área bajo la curva, con tiras que se van afinando. Σ f(x) · dx se convierte en ∫ f(x) dx.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [que-es-una-funcion]
 interactivo: integral
 # Los ejemplos del interactivo (se pasa de uno a otro con las flechitas ‹ ›).
 # Cada uno: "función ; de a a b" (a y b, números enteros).

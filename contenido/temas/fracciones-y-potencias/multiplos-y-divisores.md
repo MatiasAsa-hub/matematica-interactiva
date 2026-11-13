@@ -3,6 +3,8 @@ titulo: "Múltiplos y divisores: mcm y mcd"
 subseccion: Fracciones
 resumen: El mínimo común múltiplo y el máximo común divisor, y para qué sirven en las fracciones.
 orden: 10
+# Qué temas hay que saber antes (para el Mapa): los nombres de sus archivos, sin ".md".
+necesita: [division-cociente-y-resto]
 interactivo: mcm-mcd
 ---
 
