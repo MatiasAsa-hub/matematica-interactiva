@@ -1,0 +1,38 @@
+---
+// Guía imprimible de una unidad: junta las guías de todos sus temas, uno
+// después del otro, y al final todas las Respuestas, agrupadas por tema.
+import Guia from '../../../layouts/Guia.astro';
+import GuiaTema from '../../../components/GuiaTema.astro';
+import { listaDeUnidades, obtenerTema } from '../../../lib/contenido.js';
+import { ejerciciosNumericos, tieneGuia, conCierre } from '../../../lib/guia.js';
+import { url } from '../../../lib/rutas.js';
+
+export function getStaticPaths() {
+  return listaDeUnidades()
+    .filter((u) => u.temas.some((t) => tieneGuia(obtenerTema(t.slug))))
+    .map((u) => ({ params: { unidad: u.id } }));
+}
+
+const unidad = listaDeUnidades().find((u) => u.id === Astro.params.unidad);
+const temas = unidad.temas.map((t) => obtenerTema(t.slug)).filter(tieneGuia);
+const respuestas = temas
+  .map((t) => ({ tema: t, ejercicios: ejerciciosNumericos(t) }))
+  .filter((r) => r.ejercicios.length > 0);
+---
+<Guia titulo={unidad.nombre} volver={url(`alumnos/#${unidad.id}`)}>
+  <div class="guia-unidad">
+    <h1>{unidad.nombre}</h1>
+    {temas.map((t) => <GuiaTema tema={t} nivel="h2" />)}
+    {respuestas.length > 0 && (
+      <section class="guia-respuestas">
+        <h2>Respuestas</h2>
+        {respuestas.map((r) => (
+          <p class="guia-respuestas-tema">
+            <b>{conCierre(r.tema.titulo, ':')}</b>
+            {r.ejercicios.map((e) => <span class="guia-respuesta"><b>{e.numeroGuia}.</b> {e.respuestaTexto}</span>)}
+          </p>
+        ))}
+      </section>
+    )}
+  </div>
+</Guia>

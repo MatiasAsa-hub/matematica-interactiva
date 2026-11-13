@@ -1,0 +1,55 @@
+---
+// La guía imprimible de UN tema: Para recordar, Ejemplo resuelto (con todos
+// sus pasos a la vista) y Ejercicios (solo los de respuesta numérica).
+// Las respuestas NO van acá: las junta la página de la guía al final.
+// Se usa en la guía de un tema y en la de una unidad (una vez por tema).
+interface Props {
+  tema: any;                   // el tema completo (obtenerTema)
+  nivel?: 'h1' | 'h2';         // h1 si es la guía de un tema; h2 dentro de una unidad
+}
+import { ejerciciosNumericos, conCierre } from '../lib/guia.js';
+const { tema, nivel = 'h1' } = Astro.props;
+const Titulo = nivel;
+const Sub = nivel === 'h1' ? 'h2' : 'h3';
+const recordar = tema.partes.filter((p: any) => p.tipo === 'recordar');
+const ejemplo = tema.partes.find((p: any) => p.tipo === 'ejemplo');
+const ejercicios = ejerciciosNumericos(tema);
+
+---
+<section class="guia-tema">
+  <Titulo class="guia-titulo">{tema.titulo}</Titulo>
+
+  {recordar.length > 0 && (
+    <div class="guia-bloque">
+      <Sub>Para recordar</Sub>
+      {recordar.map((p: any) => <div set:html={p.html} />)}
+    </div>
+  )}
+
+  {ejemplo && (
+    <div class="guia-bloque">
+      <Sub>Ejemplo resuelto</Sub>
+      <div set:html={ejemplo.enunciadoHtml} />
+      {ejemplo.pasos.map((paso: any) => (
+        <div class="guia-paso">
+          <p class="guia-paso-titulo">{paso.titulo}</p>
+          <div set:html={paso.html} />
+        </div>
+      ))}
+    </div>
+  )}
+
+  {ejercicios.length > 0 && (
+    <div class="guia-bloque">
+      <Sub>Ejercicios</Sub>
+      <ol class="guia-ejercicios">
+        {ejercicios.map((ej: any) => (
+          <li value={ej.numeroGuia}>
+            <span class="guia-ej-titulo">{conCierre(ej.titulo, '.')}</span>{" "}
+            <div class="guia-ej-enunciado" set:html={ej.enunciadoHtml} />
+          </li>
+        ))}
+      </ol>
+    </div>
+  )}
+</section>

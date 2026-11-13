@@ -1,0 +1,14 @@
+---
+// Botón "Imprimir guía": lleva a la guía imprimible (de un tema o de una
+// unidad) y abre sola la ventana de impresión.
+import { url } from '../lib/rutas.js';
+interface Props {
+  ruta: string;     // ej. "guia/funcion-lineal/" o "guia/unidad/funciones/"
+  texto?: string;
+}
+const { ruta, texto = 'Imprimir guía' } = Astro.props;
+---
+<a class="boton boton-chico boton-guia" href={url(ruta) + '#imprimir'} rel="nofollow">
+  <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
+  <span>{texto}</span>
+</a>

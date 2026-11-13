@@ -1,0 +1,49 @@
+---
+// Marco de las guías imprimibles: una página de solo texto, en blanco y negro,
+// pensada para "Imprimir → Guardar como PDF" desde el navegador.
+// En la pantalla se ve una barrita arriba con el botón para imprimir y el de
+// volver; esa barrita no sale en el papel.
+// Si la dirección termina en #imprimir, se abre sola la ventana de impresión.
+import '@fontsource/lexend/latin-400.css';
+import '@fontsource/lexend/latin-600.css';
+import 'katex/dist/katex.min.css';
+import '../styles/guia.css';
+import { datosDelSitio } from '../lib/contenido.js';
+import { url } from '../lib/rutas.js';
+
+interface Props {
+  titulo: string;   // para la pestaña y el nombre del PDF
+  volver: string;   // a dónde lleva "Volver"
+}
+const { titulo, volver } = Astro.props;
+const sitio = datosDelSitio();
+---
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{`Guía · ${titulo} · ${sitio.nombre}`}</title>
+    <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="guia-barra">
+      <a href={volver}>← Volver</a>
+      <button type="button" data-imprimir>Imprimir o guardar como PDF</button>
+    </div>
+    <p class="guia-ayuda">Así va a salir en el papel. En la ventana de impresión elegí <b>"Guardar como PDF"</b> si querés el archivo.</p>
+    <main class="guia">
+      <slot />
+    </main>
+    <script>
+      const imprimir = () => document.fonts.ready.then(() => window.print());
+      document.querySelector('[data-imprimir]')?.addEventListener('click', imprimir);
+      if (location.hash === '#imprimir') {
+        // se saca el #imprimir para que al volver atrás no se abra de nuevo
+        history.replaceState(null, '', location.pathname);
+        window.addEventListener('load', () => setTimeout(imprimir, 300));
+      }
+    </script>
+  </body>
+</html>

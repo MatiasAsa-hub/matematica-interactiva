@@ -9,6 +9,8 @@ import Interactivo from '../../components/Interactivo.astro';
 import Ejercicio from '../../components/Ejercicio.astro';
 import Volver from '../../components/Volver.astro';
 import AnteriorSiguiente from '../../components/AnteriorSiguiente.astro';
+import BotonGuia from '../../components/BotonGuia.astro';
+import { tieneGuia } from '../../lib/guia.js';
 import { listaDeTemas, obtenerTema, unidadDe, vecinosDe } from '../../lib/contenido.js';
 import { url } from '../../lib/rutas.js';
 
@@ -32,6 +34,7 @@ const tituloDe = (parte) => (parte.tipo === 'intuicion' ? 'Para probar' : parte.
       <Volver href={url(`alumnos/#${unidad?.id ?? ''}`)} texto={unidad?.nombre ?? 'Temas'} />
       <h1>{tema.titulo}</h1>
       {tema.resumen && <p class="bajada">{tema.resumen}</p>}
+      {tieneGuia(tema) && <p class="acciones-tema"><BotonGuia ruta={`guia/${tema.slug}/`} /></p>}
     </header>
 
     <div class:list={['tema-cuerpo', { 'con-interactivo': conInteractivo }]} style={`--filas: ${partes.length}`}>

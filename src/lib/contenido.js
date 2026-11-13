@@ -338,6 +338,8 @@ function armarEjercicio(titulo, texto, numero, ruta) {
     tipo,
     enunciadoHtml: markdownAHtml(resto.join('\n')),
     respuestas,
+    // la respuesta tal como está escrita (3/4, -2 ; 2), para la guía imprimible
+    respuestaTexto: tipo === 'numero' ? respuestaTexto.split(';').map((r) => r.trim().replace(/-/g, '−')).join(' ; ') : null,
     tolerancia,
     opciones,
     pistaHtml: pista ? markdownEnLinea(pista) : null,

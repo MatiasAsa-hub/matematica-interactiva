@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Guías imprimibles: solo texto, en blanco y negro, lo más compacto posible.
+   Sin logo, sin colores, sin recuadros y sin espacio para escribir.
+   ========================================================================== */
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0; background: #e9e7e3; color: #000;
+  font-family: 'Lexend', system-ui, sans-serif; font-size: 10.5pt; line-height: 1.38;
+}
+
+/* --- Solo en la pantalla: la barrita de arriba y la "hoja" --- */
+.guia-barra {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; justify-content: space-between; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 16px; background: #fff; border-bottom: 1px solid #d6d2ca;
+  font-size: 0.95rem;
+}
+.guia-barra a { color: #2b5bd7; font-weight: 600; text-decoration: none; }
+.guia-barra button {
+  font: inherit; font-weight: 600; color: #fff; background: #2b5bd7;
+  border: 0; border-radius: 10px; min-height: 42px; padding: 0.4em 1em; cursor: pointer;
+}
+.guia-ayuda { max-width: 210mm; margin: 0.8rem auto 0; padding: 0 16px; font-size: 0.88rem; color: #555; }
+.guia {
+  max-width: 210mm; margin: 0.8rem auto 2rem; padding: 14mm 14mm;
+  background: #fff; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+@media (max-width: 600px) { .guia { padding: 18px 16px; margin: 0.6rem 0 1.5rem; box-shadow: none; } }
+
+/* --- El contenido --- */
+.guia h1, .guia h2, .guia h3 { color: #000; line-height: 1.2; break-after: avoid; page-break-after: avoid; }
+.guia h1 { font-size: 15pt; margin: 0 0 4pt; font-weight: 600; }
+.guia h2 { font-size: 12pt; margin: 9pt 0 3pt; font-weight: 600; }
+.guia h3 { font-size: 10.5pt; margin: 7pt 0 2pt; font-weight: 600; }
+/* en la guía de una unidad, cada tema es un h2 y sus partes son h3 */
+.guia-unidad .guia-tema > h2.guia-titulo { font-size: 13pt; margin-top: 12pt; padding-top: 6pt; border-top: 0.75pt solid #000; }
+.guia-unidad .guia-tema:first-of-type > h2.guia-titulo { border-top: 0; padding-top: 0; }
+.guia-unidad .guia-tema h3 { text-transform: uppercase; letter-spacing: 0.05em; font-size: 8.5pt; }
+.guia-tema > h2:not(.guia-titulo), .guia-tema > .guia-bloque > h2 { text-transform: uppercase; letter-spacing: 0.05em; font-size: 9pt; }
+
+.guia p { margin: 2pt 0; }
+.guia ul, .guia ol { margin: 2pt 0; padding-left: 14pt; }
+.guia li { margin: 1pt 0; }
+.guia a { color: #000; text-decoration: none; }
+.guia strong, .guia b { font-weight: 600; }
+.guia em { font-family: 'KaTeX_Math', 'Times New Roman', serif; font-size: 1.08em; }
+.guia table { border-collapse: collapse; margin: 3pt 0; font-size: 0.95em; }
+.guia th, .guia td { border: 0.5pt solid #000; padding: 1pt 5pt; text-align: center; }
+.guia blockquote { margin: 3pt 0; padding-left: 8pt; border-left: 1pt solid #000; }
+.guia img, .guia svg:not(.katex svg) { max-width: 100%; }
+
+/* fórmulas: todo en negro y sin cortar */
+.guia .katex { font-size: 1.05em; white-space: nowrap; }
+.guia .katex-display { margin: 3pt 0; overflow: visible; }
+.guia, .guia * { color: #000 !important; }
+
+.guia-bloque { margin: 0 0 4pt; }
+.guia-paso { margin: 3pt 0 0; break-inside: avoid; page-break-inside: avoid; }
+.guia-paso-titulo { font-weight: 600; margin: 0; }
+
+/* ejercicios: en dos columnas para ahorrar papel */
+.guia-ejercicios { columns: 2; column-gap: 9mm; padding-left: 16pt; margin-top: 3pt; }
+@media screen and (max-width: 600px) { .guia-ejercicios { columns: 1; } }
+.guia-ejercicios > li { break-inside: avoid; page-break-inside: avoid; margin: 0 0 4pt; }
+.guia-ejercicios > li::marker { font-weight: 600; }
+.guia-ej-titulo { font-weight: 600; margin-right: 0.3em; }
+.guia-ej-enunciado { display: inline; }
+.guia-ej-enunciado > p:first-child { display: inline; }
+
+/* las respuestas, al final: solo el resultado */
+.guia-respuestas { margin-top: 10pt; padding-top: 6pt; border-top: 0.75pt solid #000; break-before: auto; }
+.guia-respuestas h2 { margin-top: 0; }
+.guia-respuestas-tema { margin: 2pt 0; }
+.guia-respuestas-tema b { margin-right: 4pt; }
+.guia-respuesta { white-space: nowrap; margin-right: 13pt; display: inline-block; }
+.guia-vacia { font-style: italic; }
+
+/* --- En el papel --- */
+@page { size: A4; margin: 12mm 13mm; }
+@media print {
+  body { background: #fff; font-size: 10pt; }
+  .guia-barra, .guia-ayuda { display: none !important; }
+  .guia { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+  .guia-ejercicios { columns: 2; }
+}

@@ -4,7 +4,9 @@
 // En la compu arrancan todas abiertas; en el celular, cerradas (para que la
 // lista sea corta). Se usa en la página de Temas (alumnos) y en la de Tutores.
 import IconoUnidad from './IconoUnidad.astro';
-import { datosDelSitio, listaDeUnidades } from '../lib/contenido.js';
+import BotonGuia from './BotonGuia.astro';
+import { datosDelSitio, listaDeUnidades, obtenerTema } from '../lib/contenido.js';
+import { tieneGuia } from '../lib/guia.js';
 import { url } from '../lib/rutas.js';
 
 interface Props {
@@ -49,6 +51,9 @@ function grupos(u: any) {
               <span class="unidad-cuenta">{u.temas.length} temas</span>
             </summary>
             <div class="unidad-temas">
+              {u.temas.some((t: any) => tieneGuia(obtenerTema(t.slug))) && (
+                <p class="acciones-unidad"><BotonGuia ruta={`guia/unidad/${u.id}/`} texto="Imprimir la guía de la unidad" /></p>
+              )}
               {grupos(u).map(([subtitulo, lista]: any) => (
                 <>
                   {subtitulo && <p class="unidad-subtitulo">{subtitulo}</p>}

@@ -1,0 +1,29 @@
+---
+// Guía imprimible de un tema: Para recordar, Ejemplo resuelto, Ejercicios
+// (solo los de respuesta numérica) y, al final, las Respuestas.
+import Guia from '../../layouts/Guia.astro';
+import GuiaTema from '../../components/GuiaTema.astro';
+import { listaDeTemas, obtenerTema } from '../../lib/contenido.js';
+import { ejerciciosNumericos, tieneGuia } from '../../lib/guia.js';
+import { url } from '../../lib/rutas.js';
+
+export function getStaticPaths() {
+  return listaDeTemas()
+    .filter((t) => tieneGuia(obtenerTema(t.slug)))
+    .map((t) => ({ params: { tema: t.slug } }));
+}
+
+const tema = obtenerTema(Astro.params.tema);
+const ejercicios = ejerciciosNumericos(tema);
+---
+<Guia titulo={tema.titulo} volver={url(`temas/${tema.slug}/`)}>
+  <GuiaTema tema={tema} nivel="h1" />
+  {ejercicios.length > 0 && (
+    <section class="guia-respuestas">
+      <h2>Respuestas</h2>
+      <p class="guia-respuestas-tema">
+        {ejercicios.map((e) => <span class="guia-respuesta"><b>{e.numeroGuia}.</b> {e.respuestaTexto}</span>)}
+      </p>
+    </section>
+  )}
+</Guia>

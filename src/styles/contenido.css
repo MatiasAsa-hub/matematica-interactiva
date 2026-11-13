@@ -412,3 +412,9 @@ details.unidad .icono-unidad { width: 48px; height: 48px; flex: none; }
 .guia-clase > .desplegado > * { max-width: var(--ancho-texto); }
 .notas-tutor h3 { margin: 1.6em 0 0.4em; padding-top: 1em; border-top: 1px solid var(--borde); font-size: 1.12rem; }
 .notas-tutor h3:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+/* --- Botón "Imprimir guía" (en cada tema y en cada unidad) --- */
+.acciones-tema { margin: 0.9rem 0 0; }
+.acciones-unidad { margin: 0 0 0.8rem; }
+.boton-guia { gap: 0.4em; }
+.boton-guia svg { color: var(--acento); }
